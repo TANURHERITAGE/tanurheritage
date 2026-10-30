@@ -1,0 +1,344 @@
+/* ============================================================
+   BLOG FEED SECTION — Tanur Heritage
+   ============================================================ */
+
+/* ---- Breaking News Bar ---- */
+.breaking-bar {
+  display: flex;
+  align-items: center;
+  background: #1a1a2e;
+  color: #fff;
+  padding: 10px 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 100;
+  width: 100%;
+}
+
+.breaking-label {
+  background: #ef6603;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 6px 18px;
+  white-space: nowrap;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+  margin-right: 16px;
+  border-radius: 0 4px 4px 0;
+}
+
+.breaking-ticker-wrap {
+  overflow: hidden;
+  flex: 1;
+}
+
+.breaking-ticker {
+  display: inline-flex;
+  gap: 60px;
+  animation: ticker-scroll 30s linear infinite;
+  white-space: nowrap;
+}
+
+.breaking-ticker:hover {
+  animation-play-state: paused;
+}
+
+.ticker-item a {
+  color: #f0c040;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.ticker-item a:hover {
+  color: #ef6603;
+}
+
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ---- Blog Section ---- */
+.blog-feed-section {
+  padding: 60px 0;
+  background-color: #f9f9f9;
+  color: #333333;
+}
+
+/* ---- Blog Cards ---- */
+.blog-card-wrap {
+  display: flex;
+}
+
+.blog-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+}
+
+.blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.blog-card-img-wrap {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+  background: #f0ede8;
+}
+
+.blog-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.blog-card:hover .blog-card-img {
+  transform: scale(1.05);
+}
+
+.blog-card-img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e8d5b7, #c8a97a);
+  color: #8b6914;
+  font-size: 48px;
+}
+
+.blog-cat-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 3px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.blog-card-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.blog-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.blog-card-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.blog-card-title a:hover {
+  color: #ef6603;
+}
+
+.blog-card-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.blog-author strong {
+  color: #ef6603;
+}
+
+.blog-card-excerpt {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: 12px;
+}
+
+.blog-read-more {
+  color: #ef6603;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  align-self: flex-start;
+  transition: color 0.3s, letter-spacing 0.3s;
+}
+
+.blog-read-more:hover {
+  color: #c24e00;
+  letter-spacing: 0.5px;
+}
+
+/* ---- View All Button ---- */
+.btn-view-all {
+  display: inline-block;
+  background: #ef6603;
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.btn-view-all:hover {
+  background: #c24e00;
+  color: #fff;
+}
+
+/* ---- Sidebar Widgets ---- */
+.blog-sidebar-widget {
+  background: #fff;
+  border-radius: 10px;
+  padding: 22px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  color: #333333;
+}
+
+.widget-title {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #1a1a2e;
+  text-transform: uppercase;
+  border-bottom: 3px solid #ef6603;
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+/* Carnival Widget */
+.carnival-logo-box {
+  background: linear-gradient(135deg, #e8f4fd, #d0eaff);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.carnival-logo-text {
+  text-align: center;
+  line-height: 1.2;
+}
+
+.cl-tanur {
+  font-size: 22px;
+  font-weight: 900;
+  color: #1a73e8;
+  letter-spacing: 2px;
+}
+
+.cl-heritage {
+  font-size: 26px;
+  font-weight: 900;
+  color: #ef6603;
+  letter-spacing: 1px;
+}
+
+.cl-carnival {
+  font-size: 22px;
+  font-weight: 900;
+  color: #1a73e8;
+  letter-spacing: 2px;
+}
+
+.cl-date {
+  font-size: 12px;
+  font-weight: 700;
+  color: #555;
+  margin-top: 4px;
+  display: block;
+}
+
+.carnival-desc {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+  text-align: left;
+}
+
+/* Category List */
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-list li {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 8px 0;
+}
+
+.category-list li:last-child {
+  border-bottom: none;
+}
+
+.category-list li a {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.category-list li a:hover {
+  color: #ef6603;
+}
+
+/* Visit Blog Button */
+.btn-visit-blog {
+  display: inline-block;
+  background: #1a1a2e;
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.3s;
+  margin-top: 6px;
+}
+
+.btn-visit-blog:hover {
+  background: #ef6603;
+  color: #fff;
+}
+
+/* ---- Loading Spinner Colour ---- */
+.blog-loading p {
+  color: #888;
+  font-size: 14px;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .breaking-bar {
+    flex-wrap: wrap;
+  }
+  .breaking-label {
+    margin-bottom: 6px;
+  }
+  .blog-card-img-wrap {
+    height: 160px;
+  }
+}

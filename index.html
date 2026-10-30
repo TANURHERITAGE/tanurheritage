@@ -527,104 +527,96 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <!-- Blogger Feed Script -->
+  <!-- Blogger Feed Script (JSONP – works without CORS issues) -->
   <script>
-    (function () {
-      const FEED_URL = 'https://thetanurheritage.blogspot.com/feeds/posts/default?alt=json&max-results=8';
-      const container = document.getElementById('blog-posts-container');
-      const ticker = document.getElementById('breaking-ticker');
+    // Utility functions
+    function stripHtml(html) {
+      var tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      return tmp.textContent || tmp.innerText || '';
+    }
+    function formatDate(dateStr) {
+      var d = new Date(dateStr);
+      return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+    function badgeColor(cat) {
+      var map = { 'HISTORY': '#8b0000', 'CULTURE': '#3a5a8c', 'ARTICLES': '#ef6603', 'Monuments': '#2e7d32', 'Updates': '#6a1a8c' };
+      return map[cat] || '#555';
+    }
+    function extractImage(html) {
+      var match = html.match(/<img[^>]+src=["']([^"']+)["']/i);
+      return match ? match[1] : null;
+    }
 
-      // Utility: strip HTML tags
-      function stripHtml(html) {
-        const tmp = document.createElement('div');
-        tmp.innerHTML = html;
-        return tmp.textContent || tmp.innerText || '';
+    // JSONP callback — called automatically by the Blogger script tag
+    function handleBlogFeed(data) {
+      var container = document.getElementById('blog-posts-container');
+      var ticker = document.getElementById('breaking-ticker');
+      var entries = (data.feed && data.feed.entry) ? data.feed.entry : [];
+
+      if (entries.length === 0) {
+        container.innerHTML = '<div class="col-12 text-center py-4"><p style="color:#888">No articles found.</p></div>';
+        return;
       }
 
-      // Utility: format date nicely
-      function formatDate(dateStr) {
-        const d = new Date(dateStr);
-        return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
-      }
+      // ---- Breaking Ticker ----
+      var tickerHtml = '';
+      entries.slice(0, 6).forEach(function(e) {
+        var title = e.title.$t;
+        var linkObj = e.link.filter(function(l){ return l.rel === 'alternate'; })[0];
+        var link = linkObj ? linkObj.href : 'https://thetanurheritage.blogspot.com/';
+        tickerHtml += '<span class="ticker-item"><a href="' + link + '" target="_blank">' + title + '</a></span>&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;';
+      });
+      // Duplicate for seamless looping
+      ticker.innerHTML = tickerHtml + tickerHtml;
 
-      // Utility: get category badge colour
-      function badgeColor(cat) {
-        const map = { 'HISTORY': '#8b0000', 'CULTURE': '#3a5a8c', 'ARTICLES': '#ef6603', 'Monuments': '#2e7d32', 'Updates': '#6a1a8c' };
-        return map[cat] || '#555';
-      }
+      // ---- Blog Cards ----
+      container.innerHTML = '';
+      entries.forEach(function(entry, idx) {
+        var title = entry.title.$t;
+        var linkObj = entry.link.filter(function(l){ return l.rel === 'alternate'; })[0];
+        var link = linkObj ? linkObj.href : 'https://thetanurheritage.blogspot.com/';
+        var pubDate = formatDate(entry.published.$t);
+        var rawContent = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : '');
+        var excerpt = stripHtml(rawContent).substring(0, 160).trim() + '…';
+        var imgSrc = extractImage(rawContent);
+        var cats = (entry.category || []).map(function(c){ return c.term; });
+        var cat = cats[0] || 'ARTICLES';
+        var color = badgeColor(cat);
+        var delay = idx * 80;
 
-      // Utility: extract first image from post content HTML
-      function extractImage(html) {
-        const match = html.match(/<img[^>]+src=["']([^"']+)["']/i);
-        return match ? match[1] : null;
-      }
+        var imgHtml = imgSrc
+          ? '<img src="' + imgSrc + '" alt="' + title + '" class="blog-card-img" loading="lazy">'
+          : '<div class="blog-card-img-placeholder"><i class="bi bi-journal-text"></i></div>';
 
-      fetch(FEED_URL)
-        .then(r => r.json())
-        .then(data => {
-          const entries = data.feed.entry || [];
-          container.innerHTML = '';
+        var card = document.createElement('div');
+        card.className = 'col-md-6 blog-card-wrap';
+        card.setAttribute('data-aos', 'fade-up');
+        card.setAttribute('data-aos-delay', String(delay));
+        card.innerHTML =
+          '<div class="blog-card">' +
+            '<div class="blog-card-img-wrap">' +
+              imgHtml +
+              '<span class="blog-cat-badge" style="background:' + color + '">' + cat + '</span>' +
+            '</div>' +
+            '<div class="blog-card-body">' +
+              '<h4 class="blog-card-title"><a href="' + link + '" target="_blank">' + title + '</a></h4>' +
+              '<div class="blog-card-meta">' +
+                '<span class="blog-author">by <strong>The Tanur Heritage</strong></span>' +
+                '<span class="blog-date">' + pubDate + '</span>' +
+              '</div>' +
+              '<p class="blog-card-excerpt">' + excerpt + '</p>' +
+              '<a href="' + link + '" target="_blank" class="blog-read-more">Read More &rarr;</a>' +
+            '</div>' +
+          '</div>';
+        container.appendChild(card);
+      });
 
-          // ---- Build breaking ticker ----
-          let tickerHtml = '';
-          entries.slice(0, 5).forEach(e => {
-            const title = e.title.$t;
-            const link = (e.link.find(l => l.rel === 'alternate') || {}).href || '#';
-            tickerHtml += `<span class="ticker-item"><a href="${link}" target="_blank">${title}</a></span>`;
-          });
-          ticker.innerHTML = tickerHtml;
-
-          // ---- Build blog cards ----
-          entries.forEach((entry, idx) => {
-            const title = entry.title.$t;
-            const link = (entry.link.find(l => l.rel === 'alternate') || {}).href || '#';
-            const pubDate = formatDate(entry.published.$t);
-            const rawContent = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : '');
-            const excerpt = stripHtml(rawContent).substring(0, 150).trim() + '…';
-            const imgSrc = extractImage(rawContent);
-            const cats = (entry.category || []).map(c => c.term);
-            const cat = cats[0] || 'ARTICLES';
-            const color = badgeColor(cat);
-            const delay = idx * 80;
-
-            const card = document.createElement('div');
-            card.className = 'col-md-6 blog-card-wrap';
-            card.setAttribute('data-aos', 'fade-up');
-            card.setAttribute('data-aos-delay', delay);
-
-            card.innerHTML = `
-              <div class="blog-card">
-                <div class="blog-card-img-wrap">
-                  ${imgSrc
-                    ? `<img src="${imgSrc}" alt="${title}" class="blog-card-img" loading="lazy">`
-                    : `<div class="blog-card-img-placeholder"><i class="bi bi-journal-text"></i></div>`
-                  }
-                  <span class="blog-cat-badge" style="background:${color}">${cat}</span>
-                </div>
-                <div class="blog-card-body">
-                  <h4 class="blog-card-title"><a href="${link}" target="_blank">${title}</a></h4>
-                  <div class="blog-card-meta">
-                    <span class="blog-author">by <strong>The Tanur Heritage</strong></span>
-                    <span class="blog-date">${pubDate}</span>
-                  </div>
-                  <p class="blog-card-excerpt">${excerpt}</p>
-                  <a href="${link}" target="_blank" class="blog-read-more">Read More &rarr;</a>
-                </div>
-              </div>`;
-            container.appendChild(card);
-          });
-
-          // Re-init AOS for dynamically added elements
-          if (window.AOS) AOS.refresh();
-        })
-        .catch(() => {
-          container.innerHTML = `
-            <div class="col-12 text-center py-5">
-              <p class="text-muted">Could not load articles. <a href="https://thetanurheritage.blogspot.com/" target="_blank">Visit our blog</a> to read them.</p>
-            </div>`;
-        });
-    })();
+      if (window.AOS) AOS.refresh();
+    }
   </script>
+  <!-- Load Blogger feed via JSONP script tag (no CORS issues) -->
+  <script src="https://thetanurheritage.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=8&callback=handleBlogFeed"></script>
 
 </body>
 
