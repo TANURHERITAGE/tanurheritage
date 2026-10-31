@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Heritage Archives - The Tanur Heritage</title>
+  <meta name="description" content="Explore historical photos, ancient records, documents, and architectural heritage of Tanur.">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Raleway:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/blog-feed.css" rel="stylesheet">
+
+  <style>
+    /* Inner page header */
+    .inner-header {
+      background: #2a2c39;
+      position: sticky;
+      top: 0;
+      z-index: 997;
+      padding: 15px 0;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.15);
+    }
+    .inner-header .navmenu a { color: #fff; }
+    .inner-header .navmenu a:hover,
+    .inner-header .navmenu .active { color: #ef6603; }
+
+    /* Page Hero Banner */
+    .archives-hero {
+      background: linear-gradient(135deg, #161824 0%, #2a2c39 60%, #1e2235 100%);
+      padding: 60px 0 40px;
+      text-align: center;
+      color: #fff;
+    }
+    .archives-hero h1 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .archives-hero p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.75);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    .archives-hero .hero-accent {
+      display: inline-block;
+      width: 60px;
+      height: 3px;
+      background: #ef6603;
+      margin: 18px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Switcher tabs (Articles vs Photos) */
+    .archive-type-switch {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 25px;
+    }
+    .type-switch-btn {
+      padding: 9px 24px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .type-switch-btn.active {
+      background: #ef6603;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(239,102,3,0.35);
+    }
+    .type-switch-btn:not(.active) {
+      background: rgba(255,255,255,0.1);
+      color: #ddd;
+    }
+    .type-switch-btn:not(.active):hover {
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    /* Category Filter Tabs */
+    .archives-filter-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      padding: 30px 0 20px;
+    }
+    .archive-filter-btn {
+      padding: 8px 22px;
+      border-radius: 25px;
+      border: 2px solid #ddd;
+      background: #fff;
+      color: #555;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .archive-filter-btn:hover,
+    .archive-filter-btn.active {
+      background: #ef6603;
+      color: #fff;
+      border-color: #ef6603;
+    }
+
+    /* Masonry Grid */
+    .archives-grid {
+      columns: 3;
+      column-gap: 18px;
+      padding: 10px 0 60px;
+    }
+    @media (max-width: 992px) { .archives-grid { columns: 2; } }
+    @media (max-width: 576px) { .archives-grid { columns: 1; } }
+
+    .archive-item {
+      break-inside: avoid;
+      margin-bottom: 18px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      display: block;
+      cursor: pointer;
+      background: #fff;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .archive-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+    }
+    .archive-item img {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+      transition: transform 0.4s ease;
+    }
+    .archive-item:hover img {
+      transform: scale(1.04);
+    }
+    .archive-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.85) 100%);
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 16px;
+    }
+    .archive-item:hover .archive-item-overlay {
+      opacity: 1;
+    }
+    .archive-item-overlay .overlay-icon {
+      color: #fff;
+      font-size: 22px;
+      margin-right: 8px;
+    }
+    .archive-item-overlay .overlay-title {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .archive-item-overlay .overlay-year {
+      color: #ffc107;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .archive-item-overlay .overlay-tag {
+      display: inline-block;
+      background: #ef6603;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+
+<body class="archives-page">
+
+  <!-- Header -->
+  <header id="header" class="header inner-header d-flex align-items-center">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/main logo in (300).png" alt="The Tanur Heritage">
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="articles.html?cat=HISTORY">History</a></li>
+          <li><a href="articles.html?cat=CULTURE">Culture</a></li>
+          <li><a href="articles.html?cat=ARTICLES">Articles</a></li>
+          <li><a href="articles.html?cat=Who'sWho">Who's Who</a></li>
+          <li><a href="articles.html?cat=Monuments">Monuments</a></li>
+          <li><a href="gallery.html">Updates</a></li>
+          <li><a href="archives.html" class="active">Archives</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Archives Hero -->
+  <div class="archives-hero">
+    <h1><i class="bi bi-archive-fill me-2" style="color:#ef6603;"></i>HERITAGE ARCHIVES</h1>
+    <p>Historical photographs, ancient documents, port records, and cultural artifacts of Tanur</p>
+    <div class="hero-accent"></div>
+
+    <div class="archive-type-switch">
+      <a href="archives.html" class="type-switch-btn active"><i class="bi bi-images me-1"></i> Photo & Document Archives</a>
+      <a href="articles.html" class="type-switch-btn"><i class="bi bi-journal-text me-1"></i> Articles Archive</a>
+    </div>
+  </div>
+
+  <main class="main">
+    <div class="container">
+
+      <!-- Folder / Category Filter Tabs -->
+      <div class="archives-filter-wrap" id="archive-filter-wrap" data-aos="fade-up">
+        <button class="archive-filter-btn active" onclick="filterArchives('all', this)">All Archives</button>
+        <button class="archive-filter-btn" onclick="filterArchives('historical-photos', this)">Historical Photos</button>
+        <button class="archive-filter-btn" onclick="filterArchives('ancient-records', this)">Ancient Records</button>
+        <button class="archive-filter-btn" onclick="filterArchives('monuments', this)">Monuments</button>
+        <button class="archive-filter-btn" onclick="filterArchives('manuscripts', this)">Manuscripts</button>
+      </div>
+
+      <!-- Archives Grid -->
+      <div class="archives-grid" id="archives-grid" data-aos="fade-up" data-aos-delay="100">
+
+        <!-- Default Items (dynamically updated by site-loader.js) -->
+        <a class="archive-item glightbox" href="assets/img/masonry-portfolio/masonry-portfolio-1.jpg"
+           data-folder="ancient-records"
+           data-glightbox="title: Tanur Coastal Heritage Record; description: Documentation of Tanur's maritime coastal trade and community heritage.">
+          <img src="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" alt="Tanur Coastal Heritage Record">
+          <div class="archive-item-overlay">
+            <div>
+              <span class="overlay-tag">ANCIENT RECORDS</span><br>
+              <span class="overlay-title">Tanur Coastal Heritage Record</span><br>
+              <span class="overlay-year">Historical Record</span>
+            </div>
+            <i class="bi bi-zoom-in overlay-icon ms-auto"></i>
+          </div>
+        </a>
+
+        <a class="archive-item glightbox" href="assets/img/sub 3.png"
+           data-folder="monuments"
+           data-glightbox="title: Ancient Trade Landmark; description: Visual archive of historical port points and trade passages in Tanur.">
+          <img src="assets/img/sub 3.png" alt="Ancient Trade Landmark">
+          <div class="archive-item-overlay">
+            <div>
+              <span class="overlay-tag">MONUMENTS</span><br>
+              <span class="overlay-title">Ancient Trade Landmark</span><br>
+              <span class="overlay-year">Traditional Era</span>
+            </div>
+            <i class="bi bi-zoom-in overlay-icon ms-auto"></i>
+          </div>
+        </a>
+
+        <a class="archive-item glightbox" href="assets/img/sub 2.png"
+           data-folder="monuments"
+           data-glightbox="title: Heritage Architectural Monument; description: Traditional architecture reflecting Malabar and coastal Kerala influences.">
+          <img src="assets/img/sub 2.png" alt="Heritage Architectural Monument">
+          <div class="archive-item-overlay">
+            <div>
+              <span class="overlay-tag">MONUMENTS</span><br>
+              <span class="overlay-title">Heritage Architectural Monument</span><br>
+              <span class="overlay-year">Centuries-old</span>
+            </div>
+            <i class="bi bi-zoom-in overlay-icon ms-auto"></i>
+          </div>
+        </a>
+
+        <a class="archive-item glightbox" href="assets/img/sub 1.png"
+           data-folder="historical-photos"
+           data-glightbox="title: Early Cultural Community Gathering; description: Archived photography depicting early community and educational gatherings.">
+          <img src="assets/img/sub 1.png" alt="Early Cultural Community Gathering">
+          <div class="archive-item-overlay">
+            <div>
+              <span class="overlay-tag">HISTORICAL PHOTOS</span><br>
+              <span class="overlay-title">Early Cultural Community Gathering</span><br>
+              <span class="overlay-year">Archives Collection</span>
+            </div>
+            <i class="bi bi-zoom-in overlay-icon ms-auto"></i>
+          </div>
+        </a>
+
+      </div>
+      <!-- /archives-grid -->
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer dark-background">
+    <div class="container text-center">
+      <h3 style="font-family: Raleway, sans-serif;" class="sitename">The Tanur Heritage</h3>
+      <p style="color: #fff;" class="footer-tagline">"Tracing the past for the future"</p>
+      <div class="social-links d-flex justify-content-center">
+        <a href="https://www.facebook.com/profile.php?id=61563132563708"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/tanurheritage?igsh=bTZyOTExczI1cGF0"><i class="bi bi-instagram"></i></a>
+        <a href="https://youtube.com/@thetanurheritage?si=rTJ6PPk1Zgz3N1QH"><i class="bi bi-youtube"></i></a>
+        <a href="https://whatsapp.com/channel/0029VaejDuLI1rch0o5tn73w"><i class="bi bi-whatsapp"></i></a>
+      </div>
+      <div class="copyright mt-3">
+        <span>Copyright</span> <strong class="px-1 sitename"><a href="index.html">The Tanur Heritage</a></strong> <span>All Rights Reserved</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    AOS.init();
+    var archiveLightbox = GLightbox({ selector: '.glightbox' });
+    window.archiveLightbox = archiveLightbox;
+
+    function filterArchives(folder, btn) {
+      document.querySelectorAll('.archive-filter-btn').forEach(function(b) {
+        b.classList.remove('active');
+      });
+      btn.classList.add('active');
+
+      document.querySelectorAll('.archive-item').forEach(function(item) {
+        if (folder === 'all' || item.getAttribute('data-folder') === folder) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      if (window.archiveLightbox) {
+        window.archiveLightbox.reload();
+      }
+    }
+  </script>
+
+  <!-- Dynamic Content Loader from site-content.json -->
+  <script src="assets/js/site-loader.js"></script>
+
+</body>
+</html>

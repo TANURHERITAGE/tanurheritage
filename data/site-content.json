@@ -1,28 +1,220 @@
 {
   "about": {
+    "title": "Who we are",
+    "subtitle": "Discover Tanur's Legacy",
     "text1": "The Tanur Heritage is a cultural and historical program aimed at unveiling the rich history and vibrant traditions of Tanur, a coastal town in Kerala. The initiative brings together historians, scholars, and the local community to celebrate and explore Tanur's diverse cultural past, including its ancient maritime trade connections, historical landmarks, and unique traditions.",
-    "text2": "Through exhibitions, talks, and cultural performances, Tanur Heritage highlights the town's role in Kerala's historical narrative, showcasing its contributions to art, religion, and trade. The program seeks to preserve and promote awareness of Tanur's heritage for future generations."
+    "text2": "Through exhibitions, talks, and cultural performances, Tanur Heritage highlights the town's role in Kerala's historical narrative, showcasing its contributions to art, religion, and trade. The program seeks to preserve and promote awareness of Tanur's heritage for future generations.",
+    "paragraphs": [
+      "The Tanur Heritage is a cultural and historical program aimed at unveiling the rich history and vibrant traditions of Tanur, a coastal town in Kerala. The initiative brings together historians, scholars, and the local community to celebrate and explore Tanur's diverse cultural past, including its ancient maritime trade connections, historical landmarks, and unique traditions.",
+      "Through exhibitions, talks, and cultural performances, Tanur Heritage highlights the town's role in Kerala's historical narrative, showcasing its contributions to art, religion, and trade. The program seeks to preserve and promote awareness of Tanur's heritage for future generations."
+    ]
   },
   "team": [
     {
+      "id": "team-1",
       "name": "Sayyid Munavvar Ali Shihab Thangal",
       "role": "Heritage Chairman",
       "photo": "assets/img/team/team-1.jpg"
     },
     {
+      "id": "team-2",
       "name": "Dr. Shakeel",
       "role": "Heritage Ambassador",
       "photo": "assets/img/team/team-2.jpg"
     },
     {
+      "id": "team-3",
       "name": "Rasheed Moriya",
       "role": "Heritage Director",
       "photo": "assets/img/team/team-3.jpg"
     },
     {
+      "id": "team-4",
       "name": "CP Abdul Basith Hudawi",
       "role": "Heritage Curator",
       "photo": "assets/img/team/team-4.jpg"
+    }
+  ],
+  "events": [
+    {
+      "id": "event-1",
+      "title": "Heritage Carnival",
+      "date": "Oct 19-20, 2024",
+      "description": "Get ready to uncover Tanur's hidden gems! Join the Heritage Carnival on Oct 19-20, 2024, for an immersive experience of traditional art, food, and craft workshops. Discover the region's fascinating history and cultural significance.",
+      "image": "assets/img/sub 3.png",
+      "link": "gallery.html"
+    },
+    {
+      "id": "event-2",
+      "title": "Heritage Walk",
+      "date": "Heritage Walk",
+      "description": "Join us for a guided tour of Tanur's historic landmarks, cultural centers, and esteemed institutions. This heritage walk unveils the town's rich cultural tapestry, showcasing traditional monuments, architectural marvels, and community hubs.",
+      "image": "assets/img/sub 2.png",
+      "link": "gallery.html"
+    },
+    {
+      "id": "event-3",
+      "title": "Photography Award",
+      "date": "18 October 2024",
+      "description": "Enter our Heritage Photography Award contest! Capture the essence of cultural and historical landmarks, traditions, and artifacts. Submit your best shots by 18 October 2024. Winner receives the coveted Heritage Photography Award!",
+      "image": "assets/img/sub 1.png",
+      "link": "gallery.html"
+    }
+  ],
+  "galleryFolders": [
+    {
+      "id": "carnival",
+      "name": "Heritage Carnival"
+    },
+    {
+      "id": "launch",
+      "name": "Project Launch"
+    },
+    {
+      "id": "event",
+      "name": "Cultural Events"
+    },
+    {
+      "id": "team",
+      "name": "Team & Dignitaries"
+    }
+  ],
+  "gallery": [
+    {
+      "id": "gal-1",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-1.jpg",
+      "caption": "Project Launch Event",
+      "description": "The Tanur Heritage Project Launching ceremony.",
+      "folder": "launch"
+    },
+    {
+      "id": "gal-2",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-2.jpg",
+      "caption": "Heritage Carnival 2024",
+      "description": "Tanur Heritage Carnival – 19th & 20th October 2024.",
+      "folder": "carnival"
+    },
+    {
+      "id": "gal-3",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-3.jpg",
+      "caption": "Heritage Carnival 2024",
+      "description": "Tanur Heritage Carnival – 19th & 20th October 2024.",
+      "folder": "carnival"
+    },
+    {
+      "id": "gal-4",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-4.jpg",
+      "caption": "Heritage Carnival 2024",
+      "description": "Tanur Heritage Carnival – 19th & 20th October 2024.",
+      "folder": "carnival"
+    },
+    {
+      "id": "gal-5",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-5.jpg",
+      "caption": "Heritage Carnival 2024",
+      "description": "Tanur Heritage Carnival – 19th & 20th October 2024.",
+      "folder": "carnival"
+    },
+    {
+      "id": "gal-6",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-6.jpg",
+      "caption": "Heritage Carnival 2024",
+      "description": "Tanur Heritage Carnival – 19th & 20th October 2024.",
+      "folder": "carnival"
+    },
+    {
+      "id": "gal-7",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-7.jpg",
+      "caption": "Team Photo with Dignitaries",
+      "description": "Heritage team members with esteemed guests.",
+      "folder": "team"
+    },
+    {
+      "id": "gal-8",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-8.jpg",
+      "caption": "Community Heritage Gathering",
+      "description": "Local community participation in heritage discussions.",
+      "folder": "event"
+    },
+    {
+      "id": "gal-9",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-9.jpg",
+      "caption": "Carnival Highlights",
+      "description": "Highlights from Tanur Heritage Carnival.",
+      "folder": "carnival"
+    },
+    {
+      "id": "gal-10",
+      "url": "assets/img/Project (20241001042716).png",
+      "caption": "Project Inception",
+      "description": "The Tanur Heritage inception and launch session.",
+      "folder": "launch"
+    },
+    {
+      "id": "gal-11",
+      "url": "assets/img/sub 1.png",
+      "caption": "Heritage Seminar",
+      "description": "Discussion on Tanur's historical trade connections.",
+      "folder": "event"
+    },
+    {
+      "id": "gal-12",
+      "url": "assets/img/sub 2.png",
+      "caption": "Cultural Walk Session",
+      "description": "Exploring local monuments and landmarks.",
+      "folder": "event"
+    }
+  ],
+  "archiveFolders": [
+    {
+      "id": "historical-photos",
+      "name": "Historical Photos (പഴയ ചിത്രങ്ങൾ)"
+    },
+    {
+      "id": "ancient-records",
+      "name": "Ancient Records & Documents"
+    },
+    {
+      "id": "monuments",
+      "name": "Heritage Monuments & Architecture"
+    },
+    {
+      "id": "manuscripts",
+      "name": "Inscriptions & Manuscripts"
+    }
+  ],
+  "archives": [
+    {
+      "id": "arc-1",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-1.jpg",
+      "title": "Tanur Coastal Heritage Record",
+      "year": "Historical Record",
+      "description": "Documentation of Tanur's maritime coastal trade and community heritage.",
+      "folder": "ancient-records"
+    },
+    {
+      "id": "arc-2",
+      "url": "assets/img/sub 3.png",
+      "title": "Ancient Trade Landmark",
+      "year": "Traditional Era",
+      "description": "Visual archive of historical port points and trade passages in Tanur.",
+      "folder": "monuments"
+    },
+    {
+      "id": "arc-3",
+      "url": "assets/img/sub 2.png",
+      "title": "Heritage Architectural Monument",
+      "year": "Centuries-old",
+      "description": "Traditional architecture reflecting Malabar and coastal Kerala influences.",
+      "folder": "monuments"
+    },
+    {
+      "id": "arc-4",
+      "url": "assets/img/sub 1.png",
+      "title": "Early Cultural Community Gathering",
+      "year": "Archives Collection",
+      "description": "Archived photography depicting early community and educational gatherings.",
+      "folder": "historical-photos"
     }
   ],
   "social": {
@@ -35,62 +227,6 @@
   "footer": {
     "tagline": "\"Tracing the past for the future\""
   },
-  "gallery": [
-    {
-      "url": "assets/img/masonry-portfolio/masonry-portfolio-1.jpg",
-      "caption": "Project Launch Event",
-      "description": "The Tanur Heritage Project Launching ceremony.",
-      "category": "event"
-    },
-    {
-      "url": "assets/img/masonry-portfolio/masonry-portfolio-2.jpg",
-      "caption": "Heritage Carnival 2024",
-      "description": "Tanur Heritage Carnival – 19th & 20th October 2024.",
-      "category": "event"
-    },
-    {
-      "url": "assets/img/masonry-portfolio/masonry-portfolio-3.jpg",
-      "caption": "Heritage Carnival 2024",
-      "description": "Tanur Heritage Carnival – 19th & 20th October 2024.",
-      "category": "event"
-    },
-    {
-      "url": "assets/img/masonry-portfolio/masonry-portfolio-4.jpg",
-      "caption": "Heritage Carnival 2024",
-      "description": "Tanur Heritage Carnival – 19th & 20th October 2024.",
-      "category": "event"
-    },
-    {
-      "url": "assets/img/masonry-portfolio/masonry-portfolio-5.jpg",
-      "caption": "Heritage Carnival 2024",
-      "description": "Tanur Heritage Carnival – 19th & 20th October 2024.",
-      "category": "event"
-    },
-    {
-      "url": "assets/img/masonry-portfolio/masonry-portfolio-6.jpg",
-      "caption": "Heritage Carnival 2024",
-      "description": "Tanur Heritage Carnival – 19th & 20th October 2024.",
-      "category": "event"
-    },
-    {
-      "url": "assets/img/masonry-portfolio/masonry-portfolio-7.jpg",
-      "caption": "Heritage Carnival 2024",
-      "description": "Tanur Heritage Carnival – 19th & 20th October 2024.",
-      "category": "event"
-    },
-    {
-      "url": "assets/img/masonry-portfolio/masonry-portfolio-8.jpg",
-      "caption": "Heritage Carnival 2024",
-      "description": "Tanur Heritage Carnival – 19th & 20th October 2024.",
-      "category": "event"
-    },
-    {
-      "url": "assets/img/masonry-portfolio/masonry-portfolio-9.jpg",
-      "caption": "Heritage Carnival 2024",
-      "description": "Tanur Heritage Carnival – 19th & 20th October 2024.",
-      "category": "event"
-    }
-  ],
   "meta": {
     "siteName": "The Tanur Heritage",
     "siteDescription": "The Tanur Heritage – Discover the rich history, culture, monuments, and traditions of Tanur, a coastal town in Kerala.",

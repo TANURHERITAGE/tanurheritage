@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard – The Tanur Heritage</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="../assets/img/favicon.png">
+
+  <!-- Bootstrap 5 & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #ef6603;
+      --primary-hover: #d35400;
+      --dark: #20222e;
+      --dark-sidebar: #191b26;
+      --light-bg: #f4f6fa;
+      --border-color: #e5e9f2;
+    }
+
+    body {
+      background: var(--light-bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    /* ===== LOGIN SCREEN ===== */
+    #login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #161824 0%, #2a2c39 100%);
+      padding: 20px;
+    }
+    .login-box {
+      background: #fff;
+      border-radius: 18px;
+      padding: 40px 32px;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+    }
+    .login-box .brand-img {
+      max-height: 55px;
+      margin-bottom: 12px;
+    }
+
+    /* ===== ADMIN LAYOUT ===== */
+    #admin-app {
+      display: none;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 260px;
+      background: var(--dark-sidebar);
+      min-height: 100vh;
+      position: fixed;
+      top: 0; left: 0;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+    }
+    .sidebar-header {
+      padding: 22px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.15);
+    }
+    .sidebar-header h5 {
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+      margin: 0;
+    }
+    .sidebar-header small {
+      color: rgba(255,255,255,0.45);
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .sidebar-menu {
+      flex: 1;
+      padding: 16px 0;
+      overflow-y: auto;
+    }
+    .sidebar-menu .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 22px;
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      font-weight: 500;
+      border-left: 4px solid transparent;
+      transition: all 0.2s;
+    }
+    .sidebar-menu .nav-link:hover,
+    .sidebar-menu .nav-link.active {
+      color: #fff;
+      background: rgba(239, 102, 3, 0.12);
+      border-left-color: var(--primary);
+    }
+    .sidebar-menu .nav-link i {
+      font-size: 18px;
+      color: var(--primary);
+      width: 22px;
+      text-align: center;
+    }
+    .sidebar-footer {
+      padding: 16px 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.15);
+    }
+
+    /* ===== MAIN CONTENT AREA ===== */
+    .main-wrapper {
+      margin-left: 260px;
+      padding: 30px;
+      min-height: 100vh;
+    }
+    @media (max-width: 991px) {
+      .sidebar {
+        position: static;
+        width: 100%;
+        min-height: auto;
+      }
+      .main-wrapper {
+        margin-left: 0;
+        padding: 20px 15px;
+      }
+    }
+
+    /* ===== CONTENT CARDS ===== */
+    .content-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 26px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      border: 1px solid var(--border-color);
+    }
+    .card-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #edf0f5;
+    }
+    .card-topbar h4 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card-topbar h4 i {
+      color: var(--primary);
+    }
+
+    /* ===== ACTION BUTTONS ===== */
+    .btn-brand {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .btn-brand:hover {
+      background: var(--primary-hover);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .btn-save-sticky {
+      background: #28a745;
+      color: #fff;
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: 30px;
+      border: none;
+      box-shadow: 0 4px 15px rgba(40,167,69,0.3);
+      transition: all 0.2s;
+    }
+    .btn-save-sticky:hover {
+      background: #218838;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ===== STATS TILES ===== */
+    .stat-tile {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      border-left: 4px solid var(--primary);
+    }
+    .stat-tile h3 {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--dark);
+      margin: 0;
+    }
+    .stat-tile p {
+      color: #777;
+      margin: 4px 0 0;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* ===== GRID ITEMS ===== */
+    .item-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .item-card {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s;
+    }
+    .item-card:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.07);
+    }
+    .item-card .item-thumb {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      background: #f1f3f7;
+    }
+    .item-card .item-body {
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .item-card .item-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid #f0f2f5;
+    }
+
+    /* ===== FOLDER BADGES ===== */
+    .folder-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      background: #edf2f7;
+      color: #4a5568;
+      border: 1px solid #e2e8f0;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .folder-pill:hover,
+    .folder-pill.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* Status Banner */
+    .alert-banner {
+      display: none;
+      padding: 12px 18px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ======================= 1. LOGIN SCREEN ======================= -->
+<div id="login-screen">
+  <div class="login-box text-center">
+    <img src="../assets/img/tanur%20logo.png" alt="Logo" class="brand-img" onerror="this.src='../assets/img/main logo in (300).png'">
+    <h4 class="fw-bold text-dark mt-2 mb-1">Tanur Heritage Admin</h4>
+    <p class="text-muted small mb-4">Official Content Management System</p>
+
+    <div id="login-alert" class="alert alert-danger py-2 mb-3 d-none text-start small"></div>
+
+    <div class="text-start mb-3">
+      <label class="form-label small fw-semibold text-secondary">Admin Password</label>
+      <div class="input-group">
+        <input type="password" id="login-pwd" class="form-control" placeholder="Enter password">
+        <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('login-pwd', this)">
+          <i class="bi bi-eye"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="text-start mb-3">
+      <div class="d-flex justify-content-between align-items-center">
+        <label class="form-label small fw-semibold text-secondary mb-1">GitHub Token (PAT)</label>
+        <a href="#patHelpModal" data-bs-toggle="modal" class="small text-decoration-none" style="font-size: 11px;">How to get token?</a>
+      </div>
+      <div class="input-group">
+        <input type="password" id="login-token" class="form-control" placeholder="ghp_xxxxxxxxxxxx">
+        <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('login-token', this)">
+          <i class="bi bi-eye"></i>
+        </button>
+      </div>
+      <div class="form-text" style="font-size: 11px;">Saved safely in your browser storage for instant saves.</div>
+    </div>
+
+    <div class="form-check text-start mb-4">
+      <input class="form-check-input" type="checkbox" id="remember-me" checked>
+      <label class="form-check-label small text-secondary" for="remember-me">
+        Keep me signed in on this computer
+      </label>
+    </div>
+
+    <button class="btn btn-brand w-100 py-2 fs-6 shadow-sm" onclick="handleLogin()">
+      <i class="bi bi-lock-fill me-2"></i>Sign In to Dashboard
+    </button>
+  </div>
+</div>
+
+<!-- ======================= 2. ADMIN DASHBOARD ======================= -->
+<div id="admin-app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header d-flex align-items-center justify-content-between">
+      <div>
+        <h5>🏛️ Tanur Heritage</h5>
+        <small>Control Panel</small>
+      </div>
+    </div>
+
+    <nav class="sidebar-menu nav flex-column">
+      <a href="#" class="nav-link active" onclick="switchSection('dashboard', this)">
+        <i class="bi bi-speedometer2"></i> Dashboard
+      </a>
+      <a href="#" class="nav-link" onclick="switchSection('about', this)">
+        <i class="bi bi-info-circle"></i> About Us / Who We Are
+      </a>
+      <a href="#" class="nav-link" onclick="switchSection('gallery', this)">
+        <i class="bi bi-images"></i> Gallery & Folders
+      </a>
+      <a href="#" class="nav-link" onclick="switchSection('team', this)">
+        <i class="bi bi-people"></i> Our Team
+      </a>
+      <a href="#" class="nav-link" onclick="switchSection('events', this)">
+        <i class="bi bi-calendar-event"></i> Our Events
+      </a>
+      <a href="#" class="nav-link" onclick="switchSection('archives', this)">
+        <i class="bi bi-archive"></i> Archives & Records
+      </a>
+      <a href="#" class="nav-link" onclick="switchSection('social', this)">
+        <i class="bi bi-share"></i> Social Links & Footer
+      </a>
+      <a href="#" class="nav-link" onclick="switchSection('settings', this)">
+        <i class="bi bi-gear"></i> Settings & Password
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="../index.html" target="_blank" class="btn btn-sm btn-outline-light w-100 mb-2">
+        <i class="bi bi-box-arrow-up-right me-1"></i> View Live Site
+      </a>
+      <button class="btn btn-sm btn-outline-danger w-100" onclick="handleLogout()">
+        <i class="bi bi-box-arrow-left me-1"></i> Log Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Wrapper -->
+  <main class="main-wrapper">
+
+    <!-- Top Action Bar -->
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+      <div>
+        <h3 class="fw-bold mb-0 text-dark" id="page-title">Dashboard Overview</h3>
+        <p class="text-muted small mb-0">Manage and update all content on www.tanurheritage.in</p>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-outline-secondary btn-sm" onclick="loadSiteData(true)">
+          <i class="bi bi-arrow-clockwise me-1"></i> Reload
+        </button>
+        <button class="btn btn-save-sticky" id="btn-save-global" onclick="saveAllChangesToGitHub()">
+          <i class="bi bi-cloud-arrow-up-fill me-2"></i> Save to Website
+        </button>
+      </div>
+    </div>
+
+    <!-- Alert Banner -->
+    <div id="save-status-banner" class="alert-banner"></div>
+
+    <!-- ──────────────── SECTION 1: DASHBOARD ──────────────── -->
+    <div id="sec-dashboard" class="admin-sec active">
+      <div class="row g-3 mb-4">
+        <div class="col-md-3 col-6">
+          <div class="stat-tile">
+            <h3 id="stat-team-count">0</h3>
+            <p>Team Members</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-tile" style="border-left-color: #17a2b8;">
+            <h3 id="stat-events-count">0</h3>
+            <p>Active Events</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-tile" style="border-left-color: #6f42c1;">
+            <h3 id="stat-gallery-count">0</h3>
+            <p>Gallery Photos</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-tile" style="border-left-color: #fd7e14;">
+            <h3 id="stat-archives-count">0</h3>
+            <p>Historical Archives</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-rocket-takeoff-fill"></i> Quick Management Navigation</h4>
+        </div>
+        <p class="text-secondary small">Click any tile below to start modifying the corresponding section of the website:</p>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="p-3 border rounded-3 bg-light cursor-pointer" onclick="switchSection('about')">
+              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-info-circle text-primary me-2"></i>About Us / Who We Are</h6>
+              <p class="text-muted small mb-0">Update heading, subtitles, and introductory paragraphs.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 border rounded-3 bg-light cursor-pointer" onclick="switchSection('gallery')">
+              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-images text-primary me-2"></i>Gallery & Folders</h6>
+              <p class="text-muted small mb-0">Create event albums/folders, upload and organize photos.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 border rounded-3 bg-light cursor-pointer" onclick="switchSection('events')">
+              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-calendar-event text-primary me-2"></i>Our Events</h6>
+              <p class="text-muted small mb-0">Add, edit, or delete upcoming programs and festivals.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 border rounded-3 bg-light cursor-pointer" onclick="switchSection('team')">
+              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-people text-primary me-2"></i>Our Team</h6>
+              <p class="text-muted small mb-0">Manage committee members, designations, and portraits.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 border rounded-3 bg-light cursor-pointer" onclick="switchSection('archives')">
+              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-archive text-primary me-2"></i>Archives & Records</h6>
+              <p class="text-muted small mb-0">Add historical photos, ancient records, and documents.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="p-3 border rounded-3 bg-light cursor-pointer" onclick="switchSection('social')">
+              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-share text-primary me-2"></i>Social Links & Tagline</h6>
+              <p class="text-muted small mb-0">Update social media URLs and footer tagline.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────── SECTION 2: ABOUT US / WHO WE ARE ──────────────── -->
+    <div id="sec-about" class="admin-sec d-none">
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-pencil-square"></i> 'Who We Are' Content Management</h4>
+          <button class="btn btn-outline-success btn-sm" onclick="addAboutParagraph()">
+            <i class="bi bi-plus-circle me-1"></i> Add New Paragraph
+          </button>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold small">Section Heading</label>
+          <input type="text" id="about-heading-input" class="form-control" placeholder="Who we are">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold small">Sub-heading / Catchphrase</label>
+          <input type="text" id="about-subtitle-input" class="form-control" placeholder="Discover Tanur's Legacy">
+        </div>
+
+        <hr class="my-4">
+
+        <h6 class="fw-bold mb-3 text-secondary">Paragraphs / Content Blocks</h6>
+        <div id="about-paragraphs-list">
+          <!-- Populated dynamically -->
+        </div>
+
+        <div class="mt-4">
+          <button class="btn btn-brand" onclick="saveSectionPrompt('About Us')">
+            <i class="bi bi-check2-circle me-1"></i> Update About Section
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────── SECTION 3: GALLERY (PHOTOS & FOLDERS) ──────────────── -->
+    <div id="sec-gallery" class="admin-sec d-none">
+      <!-- Folder Management -->
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-folder-fill"></i> Gallery Folders / Albums</h4>
+          <button class="btn btn-outline-primary btn-sm" onclick="promptCreateGalleryFolder()">
+            <i class="bi bi-folder-plus me-1"></i> New Folder
+          </button>
+        </div>
+        <p class="text-muted small mb-3">Folders organize photos into categories on the website (e.g. Carnival, Launch, Heritage Walk).</p>
+        <div class="d-flex flex-wrap gap-2 mb-3" id="gallery-folders-container">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Photo Management -->
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-images"></i> Photos in Gallery</h4>
+          <div class="d-flex gap-2">
+            <select class="form-select form-select-sm" id="gallery-folder-filter" onchange="filterGalleryGridByFolder(this.value)">
+              <option value="all">Show All Folders</option>
+            </select>
+            <button class="btn btn-brand btn-sm text-nowrap" onclick="openAddPhotoModal()">
+              <i class="bi bi-plus-lg me-1"></i> Add Photo
+            </button>
+          </div>
+        </div>
+
+        <div class="item-grid" id="gallery-photos-grid">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────── SECTION 4: OUR TEAM ──────────────── -->
+    <div id="sec-team" class="admin-sec d-none">
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-people-fill"></i> Our Team Members</h4>
+          <button class="btn btn-brand btn-sm" onclick="openAddTeamModal()">
+            <i class="bi bi-person-plus-fill me-1"></i> Add Team Member
+          </button>
+        </div>
+        <p class="text-muted small mb-3">Manage key leaders, chairman, ambassador, director, and curator profiles.</p>
+        <div class="item-grid" id="team-members-grid">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────── SECTION 5: OUR EVENTS ──────────────── -->
+    <div id="sec-events" class="admin-sec d-none">
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-calendar2-event-fill"></i> Our Events & Programs</h4>
+          <button class="btn btn-brand btn-sm" onclick="openAddEventModal()">
+            <i class="bi bi-calendar-plus me-1"></i> Add Event
+          </button>
+        </div>
+        <p class="text-muted small mb-3">Manage Carnival, Heritage Walks, Award Contests, and Cultural Programs displayed on the homepage.</p>
+        <div class="item-grid" id="events-grid">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────── SECTION 6: ARCHIVES (PHOTOS & RECORDS) ──────────────── -->
+    <div id="sec-archives" class="admin-sec d-none">
+      <!-- Archive Folders -->
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-folder-symlink-fill"></i> Archive Folders & Categories</h4>
+          <button class="btn btn-outline-primary btn-sm" onclick="promptCreateArchiveFolder()">
+            <i class="bi bi-folder-plus me-1"></i> New Archive Folder
+          </button>
+        </div>
+        <p class="text-muted small mb-3">Organize historical assets into categories (e.g. Historical Photos, Ancient Records, Monuments, Manuscripts).</p>
+        <div class="d-flex flex-wrap gap-2 mb-3" id="archive-folders-container">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Archive Photos/Records -->
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-archive-fill"></i> Archived Photos, Records & Documents</h4>
+          <div class="d-flex gap-2">
+            <select class="form-select form-select-sm" id="archive-folder-filter" onchange="filterArchiveGridByFolder(this.value)">
+              <option value="all">Show All Archive Folders</option>
+            </select>
+            <button class="btn btn-brand btn-sm text-nowrap" onclick="openAddArchiveModal()">
+              <i class="bi bi-plus-lg me-1"></i> Add Archive Photo/Record
+            </button>
+          </div>
+        </div>
+
+        <div class="item-grid" id="archives-items-grid">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────── SECTION 7: SOCIAL LINKS & FOOTER ──────────────── -->
+    <div id="sec-social" class="admin-sec d-none">
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-share-fill"></i> Social Media & WhatsApp Links</h4>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold"><i class="bi bi-facebook text-primary me-1"></i> Facebook Page URL</label>
+            <input type="url" id="social-facebook" class="form-control" placeholder="https://facebook.com/...">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold"><i class="bi bi-instagram text-danger me-1"></i> Instagram Profile URL</label>
+            <input type="url" id="social-instagram" class="form-control" placeholder="https://instagram.com/...">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold"><i class="bi bi-youtube text-danger me-1"></i> YouTube Channel URL</label>
+            <input type="url" id="social-youtube" class="form-control" placeholder="https://youtube.com/@...">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold"><i class="bi bi-whatsapp text-success me-1"></i> WhatsApp Official Channel</label>
+            <input type="url" id="social-whatsapp-channel" class="form-control" placeholder="https://whatsapp.com/channel/...">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold"><i class="bi bi-whatsapp text-success me-1"></i> WhatsApp Community Group</label>
+            <input type="url" id="social-whatsapp-group" class="form-control" placeholder="https://chat.whatsapp.com/...">
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <h5 class="fw-bold mb-3 text-dark"><i class="bi bi-layout-text-window-reverse me-2 text-primary"></i>Footer Tagline</h5>
+        <div class="col-md-8">
+          <label class="form-label small fw-semibold">Tagline Text</label>
+          <input type="text" id="footer-tagline-input" class="form-control" placeholder='"Tracing the past for the future"'>
+        </div>
+
+        <div class="mt-4">
+          <button class="btn btn-brand" onclick="saveSectionPrompt('Social & Footer')">
+            <i class="bi bi-check2-circle me-1"></i> Update Links & Footer
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────── SECTION 8: SETTINGS & PASSWORD ──────────────── -->
+    <div id="sec-settings" class="admin-sec d-none">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="content-card h-100">
+            <div class="card-topbar">
+              <h4><i class="bi bi-key-fill"></i> Change Admin Password</h4>
+            </div>
+            <p class="text-muted small">Update the password required to access this admin panel.</p>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">New Password</label>
+              <input type="password" id="new-admin-pwd" class="form-control" placeholder="Enter new password">
+            </div>
+            <button class="btn btn-outline-primary btn-sm" onclick="changeAdminPassword()">
+              Update Password
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="content-card h-100">
+            <div class="card-topbar">
+              <h4><i class="bi bi-github"></i> GitHub Token Configuration</h4>
+            </div>
+            <p class="text-muted small">Your token connects this browser to GitHub to save updates directly.</p>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Current Personal Access Token</label>
+              <div class="input-group">
+                <input type="password" id="settings-pat" class="form-control" placeholder="ghp_xxxxxxxxxxxx">
+                <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('settings-pat', this)">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline-primary btn-sm" onclick="updateGitHubToken()">
+                Update Token
+              </button>
+              <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#patHelpModal">
+                Token Help
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ======================= MODALS ======================= -->
+
+<!-- Photo Modal (Gallery) -->
+<div class="modal fade" id="photoModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="photoModalTitle">Add Gallery Photo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="edit-photo-id">
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Photo Caption / Title</label>
+          <input type="text" id="photo-caption" class="form-control" placeholder="e.g. Project Launch Ceremony">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Folder / Category</label>
+          <select id="photo-folder-select" class="form-select">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Image Source</label>
+          <input type="text" id="photo-url" class="form-control mb-2" placeholder="assets/img/... or https://...">
+          <div class="p-2 border rounded bg-light">
+            <small class="d-block text-muted mb-1"><i class="bi bi-upload me-1"></i> Or choose image from device to upload directly:</small>
+            <input type="file" id="photo-file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'photo-url', 'photo-preview')">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Description (Optional)</label>
+          <textarea id="photo-desc" class="form-control" rows="2" placeholder="Brief details about the photo"></textarea>
+        </div>
+        <div class="text-center">
+          <img id="photo-preview" src="" alt="Preview" class="img-thumbnail d-none" style="max-height: 140px;">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-brand btn-sm" onclick="saveGalleryPhoto()">Save Photo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Team Member Modal -->
+<div class="modal fade" id="teamModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="teamModalTitle">Add Team Member</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="edit-team-id">
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Full Name</label>
+          <input type="text" id="team-name" class="form-control" placeholder="e.g. Sayyid Munavvar Ali Shihab Thangal">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Role / Designation</label>
+          <input type="text" id="team-role" class="form-control" placeholder="e.g. Heritage Chairman">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Photo Source</label>
+          <input type="text" id="team-photo" class="form-control mb-2" placeholder="assets/img/team/team-1.jpg or https://...">
+          <div class="p-2 border rounded bg-light">
+            <small class="d-block text-muted mb-1"><i class="bi bi-upload me-1"></i> Or upload portrait photo:</small>
+            <input type="file" id="team-file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'team-photo', 'team-preview')">
+          </div>
+        </div>
+        <div class="text-center">
+          <img id="team-preview" src="" alt="Preview" class="rounded-circle d-none" style="width: 80px; height: 80px; object-fit: cover;">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-brand btn-sm" onclick="saveTeamMember()">Save Member</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Event Modal -->
+<div class="modal fade" id="eventModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="eventModalTitle">Add Event</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="edit-event-id">
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Event Title</label>
+          <input type="text" id="event-title" class="form-control" placeholder="e.g. Heritage Carnival">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Date / Badge Text</label>
+          <input type="text" id="event-date" class="form-control" placeholder="e.g. Oct 19-20, 2024 or Upcoming">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Event Description</label>
+          <textarea id="event-desc" class="form-control" rows="3" placeholder="Description of the event and highlights"></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Thumbnail / Icon Image</label>
+          <input type="text" id="event-image" class="form-control mb-2" placeholder="assets/img/sub 3.png or https://...">
+          <div class="p-2 border rounded bg-light">
+            <small class="d-block text-muted mb-1"><i class="bi bi-upload me-1"></i> Or upload event thumbnail:</small>
+            <input type="file" id="event-file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'event-image', 'event-preview')">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Link URL</label>
+          <input type="text" id="event-link" class="form-control" placeholder="gallery.html or https://...">
+        </div>
+        <div class="text-center">
+          <img id="event-preview" src="" alt="Preview" class="img-thumbnail d-none" style="max-height: 120px;">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-brand btn-sm" onclick="saveEventItem()">Save Event</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Archive Modal -->
+<div class="modal fade" id="archiveModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="archiveModalTitle">Add Archive Record/Photo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="edit-archive-id">
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Title of Record / Photo</label>
+          <input type="text" id="archive-title" class="form-control" placeholder="e.g. Ancient Maritime Inscription">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Year / Era</label>
+          <input type="text" id="archive-year" class="form-control" placeholder="e.g. 1948 or Ancient Malabar Era">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Archive Folder / Category</label>
+          <select id="archive-folder-select" class="form-select">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Image / Document Scan Source</label>
+          <input type="text" id="archive-url" class="form-control mb-2" placeholder="assets/img/... or https://...">
+          <div class="p-2 border rounded bg-light">
+            <small class="d-block text-muted mb-1"><i class="bi bi-upload me-1"></i> Or upload scan/photo:</small>
+            <input type="file" id="archive-file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'archive-url', 'archive-preview')">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Historical Description</label>
+          <textarea id="archive-desc" class="form-control" rows="3" placeholder="Context, discovery location, or historical details"></textarea>
+        </div>
+        <div class="text-center">
+          <img id="archive-preview" src="" alt="Preview" class="img-thumbnail d-none" style="max-height: 140px;">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-brand btn-sm" onclick="saveArchiveItem()">Save Archive Record</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAT Help Modal -->
+<div class="modal fade" id="patHelpModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold">How to Generate GitHub Token</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body small" style="line-height: 1.8;">
+        <p>A free GitHub Personal Access Token allows you to save updates directly from this admin panel to the website repository without needing a paid server:</p>
+        <ol>
+          <li>Open <a href="https://github.com/settings/tokens/new" target="_blank" class="fw-bold text-primary">github.com/settings/tokens/new</a></li>
+          <li>Note: Type <strong>Tanur Heritage Admin</strong></li>
+          <li>Expiration: Select <strong>No expiration</strong> (or 90 days)</li>
+          <li>Scopes: Check the box <strong>[x] repo</strong> (Full control of repositories)</li>
+          <li>Click the green <strong>Generate token</strong> button at the bottom</li>
+          <li>Copy the generated token (starts with <code>ghp_...</code>) and paste it here!</li>
+        </ol>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Got It</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ======================= ADMIN LOGIC SCRIPT ======================= -->
+<script>
+  const GITHUB_REPO_OWNER = 'muhammedmubarisa135-dev';
+  const GITHUB_REPO_NAME  = 'tanurheritage';
+  const GITHUB_BRANCH     = 'main';
+  const CONTENT_FILE_PATH = 'data/site-content.json';
+  const DEFAULT_ADMIN_PWD = 'tanurheritage2024';
+
+  let siteData = {
+    about: { title: 'Who we are', subtitle: '', paragraphs: [] },
+    team: [],
+    events: [],
+    galleryFolders: [],
+    gallery: [],
+    archiveFolders: [],
+    archives: [],
+    social: {},
+    footer: {}
+  };
+
+  // Bootstrap modals
+  let photoModalInstance, teamModalInstance, eventModalInstance, archiveModalInstance;
+
+  // Initialize
+  window.addEventListener('DOMContentLoaded', function() {
+    photoModalInstance   = new bootstrap.Modal(document.getElementById('photoModal'));
+    teamModalInstance    = new bootstrap.Modal(document.getElementById('teamModal'));
+    eventModalInstance   = new bootstrap.Modal(document.getElementById('eventModal'));
+    archiveModalInstance = new bootstrap.Modal(document.getElementById('archiveModal'));
+
+    const savedPat = localStorage.getItem('th_github_pat') || '';
+    if (savedPat) {
+      document.getElementById('login-token').value = savedPat;
+    }
+
+    if (sessionStorage.getItem('th_logged_in') === 'true' && savedPat) {
+      revealAdminPanel();
+    }
+  });
+
+  // Authentication
+  function handleLogin() {
+    const pwd = document.getElementById('login-pwd').value.trim();
+    const token = document.getElementById('login-token').value.trim();
+    const remember = document.getElementById('remember-me').checked;
+    const currentPwd = localStorage.getItem('th_admin_pwd') || DEFAULT_ADMIN_PWD;
+
+    const alertEl = document.getElementById('login-alert');
+
+    if (!pwd) {
+      showLoginAlert('Please enter the admin password.');
+      return;
+    }
+    if (!token) {
+      showLoginAlert('Please enter your GitHub Personal Access Token.');
+      return;
+    }
+    if (pwd !== currentPwd) {
+      showLoginAlert('Incorrect password. Please try again.');
+      return;
+    }
+
+    if (remember) {
+      localStorage.setItem('th_github_pat', token);
+    } else {
+      sessionStorage.setItem('th_github_pat_session', token);
+    }
+    sessionStorage.setItem('th_logged_in', 'true');
+    revealAdminPanel();
+  }
+
+  function showLoginAlert(msg) {
+    const el = document.getElementById('login-alert');
+    el.textContent = msg;
+    el.classList.remove('d-none');
+  }
+
+  function handleLogout() {
+    sessionStorage.removeItem('th_logged_in');
+    sessionStorage.removeItem('th_github_pat_session');
+    location.reload();
+  }
+
+  function revealAdminPanel() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-app').style.display = 'block';
+    document.getElementById('settings-pat').value = getActiveToken();
+    loadSiteData();
+  }
+
+  function getActiveToken() {
+    return localStorage.getItem('th_github_pat') || sessionStorage.getItem('th_github_pat_session') || '';
+  }
+
+  function togglePasswordVisibility(id, btn) {
+    const input = document.getElementById(id);
+    const icon = btn.querySelector('i');
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.className = 'bi bi-eye-slash';
+    } else {
+      input.type = 'password';
+      icon.className = 'bi bi-eye';
+    }
+  }
+
+  // Section Switching
+  function switchSection(secId, clickedLink) {
+    document.querySelectorAll('.admin-sec').forEach(s => s.classList.add('d-none'));
+    const target = document.getElementById('sec-' + secId);
+    if (target) target.classList.remove('d-none');
+
+    document.querySelectorAll('.sidebar-menu .nav-link').forEach(l => l.classList.remove('active'));
+    if (clickedLink) clickedLink.classList.add('active');
+
+    const titles = {
+      dashboard: 'Dashboard Overview',
+      about: 'About Us / Who We Are',
+      gallery: 'Gallery Photos & Folders',
+      team: 'Our Team Members',
+      events: 'Our Events & Programs',
+      archives: 'Archives & Historical Records',
+      social: 'Social Links & Footer Tagline',
+      settings: 'Settings & Credentials'
+    };
+    document.getElementById('page-title').textContent = titles[secId] || 'Admin Dashboard';
+  }
+
+  // Load Site Data
+  async function loadSiteData(showToast = false) {
+    try {
+      const pat = getActiveToken();
+      const apiUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${CONTENT_FILE_PATH}?ref=${GITHUB_BRANCH}&t=${Date.now()}`;
+      const headers = { 'Accept': 'application/vnd.github.v3+json' };
+      if (pat) headers['Authorization'] = `token ${pat}`;
+
+      const res = await fetch(apiUrl, { headers });
+      if (res.ok) {
+        const jsonRes = await res.json();
+        const contentStr = decodeURIComponent(escape(atob(jsonRes.content.replace(/\n/g, ''))));
+        siteData = JSON.parse(contentStr);
+      } else {
+        throw new Error('API fetch error: ' + res.status);
+      }
+    } catch (e) {
+      // Fallback local fetch
+      try {
+        const localPath = window.location.protocol === 'file:' 
+          ? (window.location.pathname.replace(/\\/g, '/').includes('/admin/') ? '../data/site-content.json' : 'data/site-content.json')
+          : '/data/site-content.json';
+        const localRes = await fetch(localPath + '?t=' + Date.now());
+        siteData = await localRes.json();
+      } catch (err) {
+        console.warn('Fallback failed:', err);
+      }
+    }
+
+    ensureDataStructure();
+    renderAllSections();
+    updateDashboardStats();
+
+    if (showToast) {
+      showStatusBanner('success', 'Content successfully reloaded from GitHub.');
+    }
+  }
+
+  function ensureDataStructure() {
+    if (!siteData.about) siteData.about = {};
+    if (!siteData.about.paragraphs) {
+      siteData.about.paragraphs = [
+        siteData.about.text1 || 'The Tanur Heritage cultural and historical program...',
+        siteData.about.text2 || 'Through exhibitions, talks, and cultural performances...'
+      ];
+    }
+    if (!siteData.team) siteData.team = [];
+    if (!siteData.events) siteData.events = [];
+    if (!siteData.galleryFolders) {
+      siteData.galleryFolders = [
+        { id: 'carnival', name: 'Heritage Carnival' },
+        { id: 'launch', name: 'Project Launch' },
+        { id: 'event', name: 'Cultural Events' },
+        { id: 'team', name: 'Team & Dignitaries' }
+      ];
+    }
+    if (!siteData.gallery) siteData.gallery = [];
+    if (!siteData.archiveFolders) {
+      siteData.archiveFolders = [
+        { id: 'historical-photos', name: 'Historical Photos (പഴയ ചിത്രങ്ങൾ)' },
+        { id: 'ancient-records', name: 'Ancient Records & Documents' },
+        { id: 'monuments', name: 'Heritage Monuments & Architecture' },
+        { id: 'manuscripts', name: 'Inscriptions & Manuscripts' }
+      ];
+    }
+    if (!siteData.archives) siteData.archives = [];
+    if (!siteData.social) siteData.social = {};
+    if (!siteData.footer) siteData.footer = {};
+  }
+
+  function renderAllSections() {
+    renderAboutSection();
+    renderGalleryFolders();
+    renderGalleryPhotos();
+    renderTeamSection();
+    renderEventsSection();
+    renderArchiveFolders();
+    renderArchivesSection();
+    renderSocialSection();
+  }
+
+  function updateDashboardStats() {
+    document.getElementById('stat-team-count').textContent     = (siteData.team || []).length;
+    document.getElementById('stat-events-count').textContent   = (siteData.events || []).length;
+    document.getElementById('stat-gallery-count').textContent  = (siteData.gallery || []).length;
+    document.getElementById('stat-archives-count').textContent = (siteData.archives || []).length;
+  }
+
+  // ────────────── 1. ABOUT SECTION ──────────────
+  function renderAboutSection() {
+    document.getElementById('about-heading-input').value = siteData.about.title || 'Who we are';
+    document.getElementById('about-subtitle-input').value = siteData.about.subtitle || '';
+
+    const list = document.getElementById('about-paragraphs-list');
+    list.innerHTML = '';
+    const paras = siteData.about.paragraphs || [];
+
+    paras.forEach((p, idx) => {
+      const div = document.createElement('div');
+      div.className = 'mb-3 p-3 bg-light border rounded-3';
+      div.innerHTML = `
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="badge bg-secondary">Paragraph ${idx + 1}</span>
+          <button class="btn btn-outline-danger btn-sm py-0 px-2" onclick="removeAboutParagraph(${idx})">
+            <i class="bi bi-trash3"></i> Delete
+          </button>
+        </div>
+        <textarea class="form-control" rows="3" onchange="updateAboutParagraph(${idx}, this.value)">${p}</textarea>
+      `;
+      list.appendChild(div);
+    });
+  }
+
+  function addAboutParagraph() {
+    if (!siteData.about.paragraphs) siteData.about.paragraphs = [];
+    siteData.about.paragraphs.push('New paragraph describing Tanur Heritage activities and mission.');
+    renderAboutSection();
+  }
+
+  function updateAboutParagraph(idx, val) {
+    siteData.about.paragraphs[idx] = val;
+    if (idx === 0) siteData.about.text1 = val;
+    if (idx === 1) siteData.about.text2 = val;
+  }
+
+  function removeAboutParagraph(idx) {
+    if (!confirm('Delete this paragraph?')) return;
+    siteData.about.paragraphs.splice(idx, 1);
+    renderAboutSection();
+  }
+
+  function collectAboutData() {
+    siteData.about.title = document.getElementById('about-heading-input').value.trim();
+    siteData.about.subtitle = document.getElementById('about-subtitle-input').value.trim();
+    if (siteData.about.paragraphs && siteData.about.paragraphs.length > 0) {
+      siteData.about.text1 = siteData.about.paragraphs[0];
+      siteData.about.text2 = siteData.about.paragraphs[1] || '';
+    }
+  }
+
+  // ────────────── 2. GALLERY SECTION ──────────────
+  function renderGalleryFolders() {
+    const container = document.getElementById('gallery-folders-container');
+    const filterSelect = document.getElementById('gallery-folder-filter');
+    const modalSelect  = document.getElementById('photo-folder-select');
+
+    container.innerHTML = '';
+    filterSelect.innerHTML = '<option value="all">Show All Folders</option>';
+    modalSelect.innerHTML  = '';
+
+    (siteData.galleryFolders || []).forEach(f => {
+      // Badges
+      const pill = document.createElement('span');
+      pill.className = 'folder-pill';
+      pill.innerHTML = `
+        <i class="bi bi-folder2-open"></i> ${f.name}
+        <button class="btn-close btn-close-white" style="width:6px;height:6px;padding:0;font-size:8px;" onclick="event.stopPropagation(); deleteGalleryFolder('${f.id}')"></button>
+      `;
+      pill.onclick = () => filterGalleryGridByFolder(f.id);
+      container.appendChild(pill);
+
+      // Select options
+      filterSelect.innerHTML += `<option value="${f.id}">${f.name}</option>`;
+      modalSelect.innerHTML  += `<option value="${f.id}">${f.name}</option>`;
+    });
+  }
+
+  function promptCreateGalleryFolder() {
+    const name = prompt('Enter new Gallery Folder / Album Name (e.g. Carnival 2024, Heritage Walk):');
+    if (!name || !name.trim()) return;
+    const id = name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    if (siteData.galleryFolders.some(f => f.id === id)) {
+      alert('A folder with this name already exists.');
+      return;
+    }
+    siteData.galleryFolders.push({ id, name: name.trim() });
+    renderGalleryFolders();
+  }
+
+  function deleteGalleryFolder(folderId) {
+    if (!confirm(`Are you sure you want to delete this folder? Existing photos in this folder will stay preserved under 'event'.`)) return;
+    siteData.galleryFolders = siteData.galleryFolders.filter(f => f.id !== folderId);
+    (siteData.gallery || []).forEach(p => {
+      if (p.folder === folderId) p.folder = 'event';
+    });
+    renderGalleryFolders();
+    renderGalleryPhotos();
+  }
+
+  function filterGalleryGridByFolder(folderId) {
+    renderGalleryPhotos(folderId);
+  }
+
+  function renderGalleryPhotos(activeFolder = 'all') {
+    const grid = document.getElementById('gallery-photos-grid');
+    grid.innerHTML = '';
+
+    const list = (siteData.gallery || []).filter(item => {
+      if (activeFolder === 'all') return true;
+      return (item.folder || 'event') === activeFolder;
+    });
+
+    if (list.length === 0) {
+      grid.innerHTML = '<div class="col-12 text-center text-muted py-4"><i class="bi bi-images fs-3 d-block mb-2"></i>No photos in this folder yet. Click "Add Photo" to add one.</div>';
+      return;
+    }
+
+    list.forEach(p => {
+      const folderName = (siteData.galleryFolders.find(f => f.id === p.folder) || {}).name || p.folder || 'General';
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.innerHTML = `
+        <img src="${p.url}" class="item-thumb" onerror="this.src='https://via.placeholder.com/300x160?text=Image'">
+        <div class="item-body">
+          <span class="badge bg-warning text-dark align-self-start mb-2">${folderName}</span>
+          <h6 class="fw-bold mb-1">${p.caption || 'Untitled Photo'}</h6>
+          <p class="text-muted small mb-2 text-truncate">${p.description || ''}</p>
+          <div class="item-actions">
+            <button class="btn btn-outline-primary btn-sm flex-fill" onclick="openEditPhotoModal('${p.id || p.url}')">
+              <i class="bi bi-pencil"></i> Edit
+            </button>
+            <button class="btn btn-outline-danger btn-sm" onclick="deleteGalleryPhoto('${p.id || p.url}')">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function openAddPhotoModal() {
+    document.getElementById('photoModalTitle').textContent = 'Add Gallery Photo';
+    document.getElementById('edit-photo-id').value = '';
+    document.getElementById('photo-caption').value = '';
+    document.getElementById('photo-url').value = '';
+    document.getElementById('photo-desc').value = '';
+    document.getElementById('photo-preview').classList.add('d-none');
+    photoModalInstance.show();
+  }
+
+  function openEditPhotoModal(idOrUrl) {
+    const item = siteData.gallery.find(p => (p.id === idOrUrl || p.url === idOrUrl));
+    if (!item) return;
+
+    document.getElementById('photoModalTitle').textContent = 'Edit Gallery Photo';
+    document.getElementById('edit-photo-id').value = item.id || item.url;
+    document.getElementById('photo-caption').value = item.caption || '';
+    document.getElementById('photo-folder-select').value = item.folder || 'carnival';
+    document.getElementById('photo-url').value = item.url || '';
+    document.getElementById('photo-desc').value = item.description || '';
+
+    const prev = document.getElementById('photo-preview');
+    prev.src = item.url;
+    prev.classList.remove('d-none');
+
+    photoModalInstance.show();
+  }
+
+  function saveGalleryPhoto() {
+    const editId = document.getElementById('edit-photo-id').value;
+    const caption = document.getElementById('photo-caption').value.trim();
+    const folder  = document.getElementById('photo-folder-select').value;
+    const url     = document.getElementById('photo-url').value.trim();
+    const desc    = document.getElementById('photo-desc').value.trim();
+
+    if (!url) {
+      alert('Please provide an image URL or upload an image file.');
+      return;
+    }
+
+    if (editId) {
+      const idx = siteData.gallery.findIndex(p => (p.id === editId || p.url === editId));
+      if (idx !== -1) {
+        siteData.gallery[idx] = { ...siteData.gallery[idx], caption, folder, url, description: desc };
+      }
+    } else {
+      siteData.gallery.push({
+        id: 'gal-' + Date.now(),
+        caption: caption || 'Heritage Photo',
+        folder,
+        url,
+        description: desc
+      });
+    }
+
+    photoModalInstance.hide();
+    renderGalleryPhotos();
+    updateDashboardStats();
+  }
+
+  function deleteGalleryPhoto(idOrUrl) {
+    if (!confirm('Delete this photo from the gallery?')) return;
+    siteData.gallery = siteData.gallery.filter(p => (p.id !== idOrUrl && p.url !== idOrUrl));
+    renderGalleryPhotos();
+    updateDashboardStats();
+  }
+
+  // ────────────── 3. TEAM SECTION ──────────────
+  function renderTeamSection() {
+    const grid = document.getElementById('team-members-grid');
+    grid.innerHTML = '';
+
+    (siteData.team || []).forEach(m => {
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.innerHTML = `
+        <div class="text-center p-3 bg-light">
+          <img src="${m.photo || '../assets/img/team/team-1.jpg'}" class="rounded-circle shadow-sm" style="width:90px;height:90px;object-fit:cover;" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(m.name)}&size=90&background=ef6603&color=fff'">
+        </div>
+        <div class="item-body">
+          <h6 class="fw-bold mb-1 text-center">${m.name}</h6>
+          <p class="text-primary small text-center mb-3">${m.role || 'Member'}</p>
+          <div class="item-actions">
+            <button class="btn btn-outline-primary btn-sm flex-fill" onclick="openEditTeamModal('${m.id || m.name}')">
+              <i class="bi bi-pencil"></i> Edit
+            </button>
+            <button class="btn btn-outline-danger btn-sm" onclick="deleteTeamMember('${m.id || m.name}')">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function openAddTeamModal() {
+    document.getElementById('teamModalTitle').textContent = 'Add Team Member';
+    document.getElementById('edit-team-id').value = '';
+    document.getElementById('team-name').value = '';
+    document.getElementById('team-role').value = '';
+    document.getElementById('team-photo').value = '';
+    document.getElementById('team-preview').classList.add('d-none');
+    teamModalInstance.show();
+  }
+
+  function openEditTeamModal(idOrName) {
+    const m = siteData.team.find(t => (t.id === idOrName || t.name === idOrName));
+    if (!m) return;
+
+    document.getElementById('teamModalTitle').textContent = 'Edit Team Member';
+    document.getElementById('edit-team-id').value = m.id || m.name;
+    document.getElementById('team-name').value = m.name || '';
+    document.getElementById('team-role').value = m.role || '';
+    document.getElementById('team-photo').value = m.photo || '';
+
+    const prev = document.getElementById('team-preview');
+    prev.src = m.photo || '';
+    prev.classList.remove('d-none');
+
+    teamModalInstance.show();
+  }
+
+  function saveTeamMember() {
+    const editId = document.getElementById('edit-team-id').value;
+    const name   = document.getElementById('team-name').value.trim();
+    const role   = document.getElementById('team-role').value.trim();
+    const photo  = document.getElementById('team-photo').value.trim();
+
+    if (!name) {
+      alert('Please enter member name.');
+      return;
+    }
+
+    if (editId) {
+      const idx = siteData.team.findIndex(t => (t.id === editId || t.name === editId));
+      if (idx !== -1) {
+        siteData.team[idx] = { ...siteData.team[idx], name, role, photo };
+      }
+    } else {
+      siteData.team.push({
+        id: 'team-' + Date.now(),
+        name,
+        role: role || 'Member',
+        photo: photo || 'assets/img/team/team-1.jpg'
+      });
+    }
+
+    teamModalInstance.hide();
+    renderTeamSection();
+    updateDashboardStats();
+  }
+
+  function deleteTeamMember(idOrName) {
+    if (!confirm('Remove this team member?')) return;
+    siteData.team = siteData.team.filter(t => (t.id !== idOrName && t.name !== idOrName));
+    renderTeamSection();
+    updateDashboardStats();
+  }
+
+  // ────────────── 4. EVENTS SECTION ──────────────
+  function renderEventsSection() {
+    const grid = document.getElementById('events-grid');
+    grid.innerHTML = '';
+
+    (siteData.events || []).forEach(ev => {
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.innerHTML = `
+        <img src="${ev.image || '../assets/img/sub 1.png'}" class="item-thumb" onerror="this.src='../assets/img/sub 1.png'">
+        <div class="item-body">
+          <span class="badge bg-warning text-dark align-self-start mb-2">${ev.date || 'Event'}</span>
+          <h6 class="fw-bold mb-1">${ev.title || 'Untitled Event'}</h6>
+          <p class="text-muted small mb-2 text-truncate">${ev.description || ''}</p>
+          <div class="item-actions">
+            <button class="btn btn-outline-primary btn-sm flex-fill" onclick="openEditEventModal('${ev.id || ev.title}')">
+              <i class="bi bi-pencil"></i> Edit
+            </button>
+            <button class="btn btn-outline-danger btn-sm" onclick="deleteEventItem('${ev.id || ev.title}')">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function openAddEventModal() {
+    document.getElementById('eventModalTitle').textContent = 'Add Event';
+    document.getElementById('edit-event-id').value = '';
+    document.getElementById('event-title').value = '';
+    document.getElementById('event-date').value = '';
+    document.getElementById('event-desc').value = '';
+    document.getElementById('event-image').value = '';
+    document.getElementById('event-link').value = 'gallery.html';
+    document.getElementById('event-preview').classList.add('d-none');
+    eventModalInstance.show();
+  }
+
+  function openEditEventModal(idOrTitle) {
+    const ev = siteData.events.find(e => (e.id === idOrTitle || e.title === idOrTitle));
+    if (!ev) return;
+
+    document.getElementById('eventModalTitle').textContent = 'Edit Event';
+    document.getElementById('edit-event-id').value = ev.id || ev.title;
+    document.getElementById('event-title').value = ev.title || '';
+    document.getElementById('event-date').value = ev.date || '';
+    document.getElementById('event-desc').value = ev.description || '';
+    document.getElementById('event-image').value = ev.image || '';
+    document.getElementById('event-link').value = ev.link || 'gallery.html';
+
+    const prev = document.getElementById('event-preview');
+    prev.src = ev.image || '';
+    prev.classList.remove('d-none');
+
+    eventModalInstance.show();
+  }
+
+  function saveEventItem() {
+    const editId = document.getElementById('edit-event-id').value;
+    const title  = document.getElementById('event-title').value.trim();
+    const date   = document.getElementById('event-date').value.trim();
+    const desc   = document.getElementById('event-desc').value.trim();
+    const image  = document.getElementById('event-image').value.trim();
+    const link   = document.getElementById('event-link').value.trim();
+
+    if (!title) {
+      alert('Please enter event title.');
+      return;
+    }
+
+    if (editId) {
+      const idx = siteData.events.findIndex(e => (e.id === editId || e.title === editId));
+      if (idx !== -1) {
+        siteData.events[idx] = { ...siteData.events[idx], title, date, description: desc, image, link };
+      }
+    } else {
+      siteData.events.push({
+        id: 'event-' + Date.now(),
+        title,
+        date: date || 'Upcoming',
+        description: desc,
+        image: image || 'assets/img/sub 1.png',
+        link: link || 'gallery.html'
+      });
+    }
+
+    eventModalInstance.hide();
+    renderEventsSection();
+    updateDashboardStats();
+  }
+
+  function deleteEventItem(idOrTitle) {
+    if (!confirm('Delete this event?')) return;
+    siteData.events = siteData.events.filter(e => (e.id !== idOrTitle && e.title !== idOrTitle));
+    renderEventsSection();
+    updateDashboardStats();
+  }
+
+  // ────────────── 5. ARCHIVES SECTION ──────────────
+  function renderArchiveFolders() {
+    const container = document.getElementById('archive-folders-container');
+    const filterSelect = document.getElementById('archive-folder-filter');
+    const modalSelect  = document.getElementById('archive-folder-select');
+
+    container.innerHTML = '';
+    filterSelect.innerHTML = '<option value="all">Show All Archive Folders</option>';
+    modalSelect.innerHTML  = '';
+
+    (siteData.archiveFolders || []).forEach(f => {
+      const pill = document.createElement('span');
+      pill.className = 'folder-pill';
+      pill.innerHTML = `
+        <i class="bi bi-archive"></i> ${f.name}
+        <button class="btn-close btn-close-white" style="width:6px;height:6px;padding:0;font-size:8px;" onclick="event.stopPropagation(); deleteArchiveFolder('${f.id}')"></button>
+      `;
+      pill.onclick = () => filterArchiveGridByFolder(f.id);
+      container.appendChild(pill);
+
+      filterSelect.innerHTML += `<option value="${f.id}">${f.name}</option>`;
+      modalSelect.innerHTML  += `<option value="${f.id}">${f.name}</option>`;
+    });
+  }
+
+  function promptCreateArchiveFolder() {
+    const name = prompt('Enter new Archive Folder Name (e.g. Historical Photos, Documents, Inscriptions):');
+    if (!name || !name.trim()) return;
+    const id = name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    if (siteData.archiveFolders.some(f => f.id === id)) {
+      alert('An archive folder with this name already exists.');
+      return;
+    }
+    siteData.archiveFolders.push({ id, name: name.trim() });
+    renderArchiveFolders();
+  }
+
+  function deleteArchiveFolder(folderId) {
+    if (!confirm(`Delete this archive folder? Existing items will stay preserved.`)) return;
+    siteData.archiveFolders = siteData.archiveFolders.filter(f => f.id !== folderId);
+    (siteData.archives || []).forEach(a => {
+      if (a.folder === folderId) a.folder = 'ancient-records';
+    });
+    renderArchiveFolders();
+    renderArchivesSection();
+  }
+
+  function filterArchiveGridByFolder(folderId) {
+    renderArchivesSection(folderId);
+  }
+
+  function renderArchivesSection(activeFolder = 'all') {
+    const grid = document.getElementById('archives-items-grid');
+    grid.innerHTML = '';
+
+    const list = (siteData.archives || []).filter(item => {
+      if (activeFolder === 'all') return true;
+      return (item.folder || 'ancient-records') === activeFolder;
+    });
+
+    if (list.length === 0) {
+      grid.innerHTML = '<div class="col-12 text-center text-muted py-4"><i class="bi bi-archive fs-3 d-block mb-2"></i>No items in this archive folder yet. Click "Add Archive Photo/Record" to add.</div>';
+      return;
+    }
+
+    list.forEach(a => {
+      const folderName = (siteData.archiveFolders.find(f => f.id === a.folder) || {}).name || a.folder || 'Archive';
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.innerHTML = `
+        <img src="${a.url}" class="item-thumb" onerror="this.src='https://via.placeholder.com/300x160?text=Archive+Record'">
+        <div class="item-body">
+          <span class="badge bg-secondary align-self-start mb-2">${folderName}</span>
+          <h6 class="fw-bold mb-1">${a.title || 'Historical Document'}</h6>
+          <span class="text-warning small fw-semibold mb-2">${a.year || ''}</span>
+          <p class="text-muted small mb-2 text-truncate">${a.description || ''}</p>
+          <div class="item-actions">
+            <button class="btn btn-outline-primary btn-sm flex-fill" onclick="openEditArchiveModal('${a.id || a.title}')">
+              <i class="bi bi-pencil"></i> Edit
+            </button>
+            <button class="btn btn-outline-danger btn-sm" onclick="deleteArchiveItem('${a.id || a.title}')">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function openAddArchiveModal() {
+    document.getElementById('archiveModalTitle').textContent = 'Add Archive Photo/Record';
+    document.getElementById('edit-archive-id').value = '';
+    document.getElementById('archive-title').value = '';
+    document.getElementById('archive-year').value = '';
+    document.getElementById('archive-url').value = '';
+    document.getElementById('archive-desc').value = '';
+    document.getElementById('archive-preview').classList.add('d-none');
+    archiveModalInstance.show();
+  }
+
+  function openEditArchiveModal(idOrTitle) {
+    const a = siteData.archives.find(item => (item.id === idOrTitle || item.title === idOrTitle));
+    if (!a) return;
+
+    document.getElementById('archiveModalTitle').textContent = 'Edit Archive Photo/Record';
+    document.getElementById('edit-archive-id').value = a.id || a.title;
+    document.getElementById('archive-title').value = a.title || '';
+    document.getElementById('archive-year').value = a.year || '';
+    document.getElementById('archive-folder-select').value = a.folder || 'historical-photos';
+    document.getElementById('archive-url').value = a.url || '';
+    document.getElementById('archive-desc').value = a.description || '';
+
+    const prev = document.getElementById('archive-preview');
+    prev.src = a.url || '';
+    prev.classList.remove('d-none');
+
+    archiveModalInstance.show();
+  }
+
+  function saveArchiveItem() {
+    const editId = document.getElementById('edit-archive-id').value;
+    const title  = document.getElementById('archive-title').value.trim();
+    const year   = document.getElementById('archive-year').value.trim();
+    const folder = document.getElementById('archive-folder-select').value;
+    const url    = document.getElementById('archive-url').value.trim();
+    const desc   = document.getElementById('archive-desc').value.trim();
+
+    if (!url) {
+      alert('Please provide an image URL or upload an image file.');
+      return;
+    }
+
+    if (editId) {
+      const idx = siteData.archives.findIndex(a => (a.id === editId || a.title === editId));
+      if (idx !== -1) {
+        siteData.archives[idx] = { ...siteData.archives[idx], title, year, folder, url, description: desc };
+      }
+    } else {
+      siteData.archives.push({
+        id: 'arc-' + Date.now(),
+        title: title || 'Archive Record',
+        year,
+        folder,
+        url,
+        description: desc
+      });
+    }
+
+    archiveModalInstance.hide();
+    renderArchivesSection();
+    updateDashboardStats();
+  }
+
+  function deleteArchiveItem(idOrTitle) {
+    if (!confirm('Delete this record from archives?')) return;
+    siteData.archives = siteData.archives.filter(a => (a.id !== idOrTitle && a.title !== idOrTitle));
+    renderArchivesSection();
+    updateDashboardStats();
+  }
+
+  // ────────────── 6. SOCIAL & FOOTER SECTION ──────────────
+  function renderSocialSection() {
+    const s = siteData.social || {};
+    document.getElementById('social-facebook').value         = s.facebook || '';
+    document.getElementById('social-instagram').value        = s.instagram || '';
+    document.getElementById('social-youtube').value          = s.youtube || '';
+    document.getElementById('social-whatsapp-channel').value = s.whatsapp_channel || '';
+    document.getElementById('social-whatsapp-group').value   = s.whatsapp_group || '';
+    document.getElementById('footer-tagline-input').value    = (siteData.footer || {}).tagline || '';
+  }
+
+  function collectSocialData() {
+    siteData.social = {
+      facebook:         document.getElementById('social-facebook').value.trim(),
+      instagram:        document.getElementById('social-instagram').value.trim(),
+      youtube:          document.getElementById('social-youtube').value.trim(),
+      whatsapp_channel: document.getElementById('social-whatsapp-channel').value.trim(),
+      whatsapp_group:   document.getElementById('social-whatsapp-group').value.trim()
+    };
+    siteData.footer = {
+      tagline: document.getElementById('footer-tagline-input').value.trim()
+    };
+  }
+
+  // ────────────── 7. DIRECT IMAGE UPLOADER ──────────────
+  async function handleImageUploadDirect(fileInput, targetUrlInputId, previewImgId) {
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    const pat = getActiveToken();
+    if (!pat) {
+      alert('GitHub Token required for uploading images directly to repository.');
+      return;
+    }
+
+    const previewEl = document.getElementById(previewImgId);
+    const targetInput = document.getElementById(targetUrlInputId);
+
+    // Show temporary local base64 preview
+    const reader = new FileReader();
+    reader.onload = async function(e) {
+      const base64Data = e.target.result.split(',')[1];
+      previewEl.src = e.target.result;
+      previewEl.classList.remove('d-none');
+
+      // Upload directly to GitHub repository: assets/img/uploads/
+      const cleanFileName = Date.now() + '-' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+      const uploadPath = `assets/img/uploads/${cleanFileName}`;
+
+      targetInput.value = 'Uploading image to repository...';
+      targetInput.disabled = true;
+
+      try {
+        const uploadUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${uploadPath}`;
+        const res = await fetch(uploadUrl, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `token ${pat}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify({
+            message: `Upload media: ${cleanFileName}`,
+            content: base64Data,
+            branch: GITHUB_BRANCH
+          })
+        });
+
+        if (!res.ok) {
+          const err = await res.json();
+          throw new Error(err.message || 'Upload failed');
+        }
+
+        targetInput.value = uploadPath;
+        targetInput.disabled = false;
+        alert('Image successfully uploaded into repository!');
+      } catch (err) {
+        console.error('Image upload failed:', err);
+        targetInput.value = e.target.result; // Use data URL as fallback
+        targetInput.disabled = false;
+        alert('Notice: Image saved locally as data URL.');
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ────────────── 8. GLOBAL SAVE TO GITHUB ──────────────
+  function saveSectionPrompt(sectionName) {
+    saveAllChangesToGitHub(`Updated ${sectionName}`);
+  }
+
+  async function saveAllChangesToGitHub(commitCustomMsg) {
+    collectAboutData();
+    collectSocialData();
+
+    const pat = getActiveToken();
+    if (!pat) {
+      showStatusBanner('danger', 'GitHub Token not found. Please go to Settings and enter your token.');
+      return;
+    }
+
+    const saveBtn = document.getElementById('btn-save-global');
+    saveBtn.disabled = true;
+    saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving to Website...';
+
+    showStatusBanner('info', 'Connecting to GitHub and updating website data...');
+
+    try {
+      // 1. Fetch current file SHA
+      const getFileUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${CONTENT_FILE_PATH}?ref=${GITHUB_BRANCH}`;
+      const getRes = await fetch(getFileUrl, {
+        headers: {
+          'Authorization': `token ${pat}`,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      });
+
+      let currentSha = null;
+      if (getRes.ok) {
+        const fileInfo = await getRes.json();
+        currentSha = fileInfo.sha;
+      }
+
+      // 2. Prepare JSON with proper UTF-8 handling
+      const jsonText = JSON.stringify(siteData, null, 2);
+      const b64Data = btoa(unescape(encodeURIComponent(jsonText)));
+
+      // 3. Commit to GitHub
+      const putFileUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${CONTENT_FILE_PATH}`;
+      const commitMessage = commitCustomMsg ? `Admin: ${commitCustomMsg}` : `Admin: Update website content [${new Date().toLocaleTimeString()}]`;
+
+      const putRes = await fetch(putFileUrl, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${pat}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/vnd.github.v3+json'
+        },
+        body: JSON.stringify({
+          message: commitMessage,
+          content: b64Data,
+          branch: GITHUB_BRANCH,
+          sha: currentSha
+        })
+      });
+
+      if (!putRes.ok) {
+        const errJson = await putRes.json();
+        throw new Error(errJson.message || 'Commit rejected by GitHub');
+      }
+
+      showStatusBanner('success', 'Changes saved successfully! Your website is now automatically updating via Vercel (~1 min).');
+    } catch (err) {
+      console.error(err);
+      showStatusBanner('danger', 'Save error: ' + err.message);
+    } finally {
+      saveBtn.disabled = false;
+      saveBtn.innerHTML = '<i class="bi bi-cloud-arrow-up-fill me-2"></i> Save to Website';
+    }
+  }
+
+  function showStatusBanner(type, message) {
+    const banner = document.getElementById('save-status-banner');
+    banner.className = `alert-banner alert alert-${type}`;
+    banner.innerHTML = `<i class="bi bi-info-circle-fill me-2"></i> ${message}`;
+    banner.style.display = 'block';
+
+    if (type === 'success') {
+      setTimeout(() => { banner.style.display = 'none'; }, 8000);
+    }
+  }
+
+  // ────────────── 9. SETTINGS & PASSWORD ──────────────
+  function changeAdminPassword() {
+    const newPwd = document.getElementById('new-admin-pwd').value.trim();
+    if (!newPwd) {
+      alert('Please enter a new password.');
+      return;
+    }
+    localStorage.setItem('th_admin_pwd', newPwd);
+    document.getElementById('new-admin-pwd').value = '';
+    alert('Admin password updated successfully!');
+  }
+
+  function updateGitHubToken() {
+    const token = document.getElementById('settings-pat').value.trim();
+    if (!token) {
+      alert('Please enter a GitHub Personal Access Token.');
+      return;
+    }
+    localStorage.setItem('th_github_pat', token);
+    alert('GitHub Token saved successfully!');
+  }
+</script>
+
+</body>
+</html>
