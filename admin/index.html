@@ -302,14 +302,6 @@
     <div id="login-alert" class="alert alert-danger py-2 mb-3 d-none text-start small"></div>
 
     <div class="text-start mb-3">
-      <label class="form-label small fw-semibold text-secondary">Username</label>
-      <div class="input-group">
-        <span class="input-group-text bg-light text-muted"><i class="bi bi-person-fill"></i></span>
-        <input type="text" id="login-username" class="form-control" placeholder="Enter username" autocomplete="username">
-      </div>
-    </div>
-
-    <div class="text-start mb-3">
       <label class="form-label small fw-semibold text-secondary">Password</label>
       <div class="input-group">
         <span class="input-group-text bg-light text-muted"><i class="bi bi-shield-lock-fill"></i></span>
@@ -930,7 +922,6 @@
   const GITHUB_REPO_NAME  = 'tanurheritage';
   const GITHUB_BRANCH     = 'main';
   const CONTENT_FILE_PATH = 'data/site-content.json';
-  const DEFAULT_ADMIN_USER = 'tanur heritage';
   const DEFAULT_ADMIN_PWD  = 'civil@tanur';
 
   let siteData = {
@@ -955,53 +946,35 @@
     eventModalInstance   = new bootstrap.Modal(document.getElementById('eventModal'));
     archiveModalInstance = new bootstrap.Modal(document.getElementById('archiveModal'));
 
-    // Pre-fill username if remembered
-    const savedUser = localStorage.getItem('th_admin_username') || DEFAULT_ADMIN_USER;
-    const userInputEl = document.getElementById('login-username');
-    if (userInputEl) {
-      userInputEl.value = savedUser;
-    }
-
     if (sessionStorage.getItem('th_logged_in') === 'true') {
       revealAdminPanel();
     }
 
-    ['login-username', 'login-pwd'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.addEventListener('keyup', function(e) {
-          if (e.key === 'Enter') handleLogin();
-        });
-      }
-    });
+    const pwdEl = document.getElementById('login-pwd');
+    if (pwdEl) {
+      pwdEl.addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') handleLogin();
+      });
+    }
   });
 
   // Authentication
   function handleLogin() {
-    const userInput = document.getElementById('login-username').value.trim();
-    const pwdInput   = document.getElementById('login-pwd').value.trim();
-    const remember   = document.getElementById('remember-me').checked;
+    const pwdInput = document.getElementById('login-pwd').value.trim();
+    const remember = document.getElementById('remember-me').checked;
 
-    const currentExpectedUser = (localStorage.getItem('th_admin_username') || DEFAULT_ADMIN_USER).trim();
-    const currentExpectedPwd  = (localStorage.getItem('th_admin_pwd') || DEFAULT_ADMIN_PWD).trim();
+    const currentExpectedPwd = (localStorage.getItem('th_admin_pwd') || DEFAULT_ADMIN_PWD).trim();
 
-    if (!userInput) {
-      showLoginAlert('Please enter your username.');
-      return;
-    }
     if (!pwdInput) {
       showLoginAlert('Please enter your password.');
       return;
     }
 
-    if (userInput.toLowerCase() !== currentExpectedUser.toLowerCase() || pwdInput !== currentExpectedPwd) {
-      showLoginAlert('Invalid username or password. Please try again.');
+    if (pwdInput !== currentExpectedPwd) {
+      showLoginAlert('Incorrect password. Please try again.');
       return;
     }
 
-    if (remember) {
-      localStorage.setItem('th_admin_username', userInput);
-    }
     sessionStorage.setItem('th_logged_in', 'true');
     revealAdminPanel();
   }
