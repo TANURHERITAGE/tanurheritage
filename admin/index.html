@@ -302,38 +302,33 @@
     <div id="login-alert" class="alert alert-danger py-2 mb-3 d-none text-start small"></div>
 
     <div class="text-start mb-3">
-      <label class="form-label small fw-semibold text-secondary">Admin Password</label>
+      <label class="form-label small fw-semibold text-secondary">Username</label>
       <div class="input-group">
-        <input type="password" id="login-pwd" class="form-control" placeholder="Enter password">
+        <span class="input-group-text bg-light text-muted"><i class="bi bi-person-fill"></i></span>
+        <input type="text" id="login-username" class="form-control" placeholder="Enter username" autocomplete="username">
+      </div>
+    </div>
+
+    <div class="text-start mb-3">
+      <label class="form-label small fw-semibold text-secondary">Password</label>
+      <div class="input-group">
+        <span class="input-group-text bg-light text-muted"><i class="bi bi-shield-lock-fill"></i></span>
+        <input type="password" id="login-pwd" class="form-control" placeholder="Enter password" autocomplete="current-password">
         <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('login-pwd', this)">
           <i class="bi bi-eye"></i>
         </button>
       </div>
     </div>
 
-    <div class="text-start mb-3">
-      <div class="d-flex justify-content-between align-items-center">
-        <label class="form-label small fw-semibold text-secondary mb-1">GitHub Token (PAT)</label>
-        <a href="#patHelpModal" data-bs-toggle="modal" class="small text-decoration-none" style="font-size: 11px;">How to get token?</a>
-      </div>
-      <div class="input-group">
-        <input type="password" id="login-token" class="form-control" placeholder="ghp_xxxxxxxxxxxx">
-        <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('login-token', this)">
-          <i class="bi bi-eye"></i>
-        </button>
-      </div>
-      <div class="form-text" style="font-size: 11px;">Saved safely in your browser storage for instant saves.</div>
-    </div>
-
     <div class="form-check text-start mb-4">
       <input class="form-check-input" type="checkbox" id="remember-me" checked>
       <label class="form-check-label small text-secondary" for="remember-me">
-        Keep me signed in on this computer
+        Remember me on this browser
       </label>
     </div>
 
     <button class="btn btn-brand w-100 py-2 fs-6 shadow-sm" onclick="handleLogin()">
-      <i class="bi bi-lock-fill me-2"></i>Sign In to Dashboard
+      <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
     </button>
   </div>
 </div>
@@ -674,15 +669,19 @@
         <div class="col-md-6">
           <div class="content-card h-100">
             <div class="card-topbar">
-              <h4><i class="bi bi-key-fill"></i> Change Admin Password</h4>
+              <h4><i class="bi bi-person-lock"></i> Admin Login Credentials</h4>
             </div>
-            <p class="text-muted small">Update the password required to access this admin panel.</p>
+            <p class="text-muted small">Update the username and password required to access this admin panel.</p>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Username</label>
+              <input type="text" id="setting-admin-user" class="form-control" placeholder="tanur heritage">
+            </div>
             <div class="mb-3">
               <label class="form-label small fw-semibold">New Password</label>
-              <input type="password" id="new-admin-pwd" class="form-control" placeholder="Enter new password">
+              <input type="password" id="new-admin-pwd" class="form-control" placeholder="Enter new password (leave blank to keep current)">
             </div>
-            <button class="btn btn-outline-primary btn-sm" onclick="changeAdminPassword()">
-              Update Password
+            <button class="btn btn-outline-primary btn-sm" onclick="changeAdminCredentials()">
+              Update Credentials
             </button>
           </div>
         </div>
@@ -927,11 +926,12 @@
 
 <!-- ======================= ADMIN LOGIC SCRIPT ======================= -->
 <script>
-  const GITHUB_REPO_OWNER = 'muhammedmubarisa135-dev';
+  const GITHUB_REPO_OWNER = 'tanurheritage';
   const GITHUB_REPO_NAME  = 'tanurheritage';
   const GITHUB_BRANCH     = 'main';
   const CONTENT_FILE_PATH = 'data/site-content.json';
-  const DEFAULT_ADMIN_PWD = 'tanurheritage2024';
+  const DEFAULT_ADMIN_USER = 'tanur heritage';
+  const DEFAULT_ADMIN_PWD  = 'civil@tanur';
 
   let siteData = {
     about: { title: 'Who we are', subtitle: '', paragraphs: [] },
@@ -955,42 +955,52 @@
     eventModalInstance   = new bootstrap.Modal(document.getElementById('eventModal'));
     archiveModalInstance = new bootstrap.Modal(document.getElementById('archiveModal'));
 
-    const savedPat = localStorage.getItem('th_github_pat') || '';
-    if (savedPat) {
-      document.getElementById('login-token').value = savedPat;
+    // Pre-fill username if remembered
+    const savedUser = localStorage.getItem('th_admin_username') || DEFAULT_ADMIN_USER;
+    const userInputEl = document.getElementById('login-username');
+    if (userInputEl) {
+      userInputEl.value = savedUser;
     }
 
-    if (sessionStorage.getItem('th_logged_in') === 'true' && savedPat) {
+    if (sessionStorage.getItem('th_logged_in') === 'true') {
       revealAdminPanel();
     }
+
+    ['login-username', 'login-pwd'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('keyup', function(e) {
+          if (e.key === 'Enter') handleLogin();
+        });
+      }
+    });
   });
 
   // Authentication
   function handleLogin() {
-    const pwd = document.getElementById('login-pwd').value.trim();
-    const token = document.getElementById('login-token').value.trim();
-    const remember = document.getElementById('remember-me').checked;
-    const currentPwd = localStorage.getItem('th_admin_pwd') || DEFAULT_ADMIN_PWD;
+    const userInput = document.getElementById('login-username').value.trim();
+    const pwdInput   = document.getElementById('login-pwd').value.trim();
+    const remember   = document.getElementById('remember-me').checked;
 
-    const alertEl = document.getElementById('login-alert');
+    const currentExpectedUser = (localStorage.getItem('th_admin_username') || DEFAULT_ADMIN_USER).trim();
+    const currentExpectedPwd  = (localStorage.getItem('th_admin_pwd') || DEFAULT_ADMIN_PWD).trim();
 
-    if (!pwd) {
-      showLoginAlert('Please enter the admin password.');
+    if (!userInput) {
+      showLoginAlert('Please enter your username.');
       return;
     }
-    if (!token) {
-      showLoginAlert('Please enter your GitHub Personal Access Token.');
+    if (!pwdInput) {
+      showLoginAlert('Please enter your password.');
       return;
     }
-    if (pwd !== currentPwd) {
-      showLoginAlert('Incorrect password. Please try again.');
+
+    if (userInput.toLowerCase() !== currentExpectedUser.toLowerCase() || pwdInput !== currentExpectedPwd) {
+      showLoginAlert('Invalid username or password. Please try again.');
       return;
     }
 
     if (remember) {
-      localStorage.setItem('th_github_pat', token);
-    } else {
-      sessionStorage.setItem('th_github_pat_session', token);
+      localStorage.setItem('th_admin_username', userInput);
     }
     sessionStorage.setItem('th_logged_in', 'true');
     revealAdminPanel();
@@ -1011,7 +1021,13 @@
   function revealAdminPanel() {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('admin-app').style.display = 'block';
-    document.getElementById('settings-pat').value = getActiveToken();
+    const savedUser = localStorage.getItem('th_admin_username') || DEFAULT_ADMIN_USER;
+    if (document.getElementById('setting-admin-user')) {
+      document.getElementById('setting-admin-user').value = savedUser;
+    }
+    if (document.getElementById('settings-pat')) {
+      document.getElementById('settings-pat').value = getActiveToken();
+    }
     loadSiteData();
   }
 
@@ -1029,6 +1045,7 @@
       input.type = 'password';
       icon.className = 'bi bi-eye';
     }
+  }
   }
 
   // Section Switching
@@ -1800,17 +1817,46 @@
     collectAboutData();
     collectSocialData();
 
-    const pat = getActiveToken();
-    if (!pat) {
-      showStatusBanner('danger', 'GitHub Token not found. Please go to Settings and enter your token.');
-      return;
-    }
-
     const saveBtn = document.getElementById('btn-save-global');
     saveBtn.disabled = true;
     saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving to Website...';
 
-    showStatusBanner('info', 'Connecting to GitHub and updating website data...');
+    showStatusBanner('info', 'Connecting and updating website data...');
+
+    const commitMessage = commitCustomMsg ? `Admin: ${commitCustomMsg}` : `Admin: Update website content [${new Date().toLocaleTimeString()}]`;
+
+    // 1. Try serverless API save (/api/save)
+    try {
+      const apiRes = await fetch('/api/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${getActiveToken()}`
+        },
+        body: JSON.stringify({
+          content: siteData,
+          message: commitMessage
+        })
+      });
+
+      if (apiRes.ok) {
+        showStatusBanner('success', 'Changes saved successfully! Your website is updating via Vercel (~1 min).');
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = '<i class="bi bi-cloud-arrow-up-fill me-2"></i> Save to Website';
+        return;
+      }
+    } catch (apiErr) {
+      // Fallback to client-side GitHub API
+    }
+
+    // 2. Direct GitHub API save
+    const pat = getActiveToken();
+    if (!pat) {
+      saveBtn.disabled = false;
+      saveBtn.innerHTML = '<i class="bi bi-cloud-arrow-up-fill me-2"></i> Save to Website';
+      promptSaveWithoutToken();
+      return;
+    }
 
     try {
       // 1. Fetch current file SHA
@@ -1834,7 +1880,6 @@
 
       // 3. Commit to GitHub
       const putFileUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${CONTENT_FILE_PATH}`;
-      const commitMessage = commitCustomMsg ? `Admin: ${commitCustomMsg}` : `Admin: Update website content [${new Date().toLocaleTimeString()}]`;
 
       const putRes = await fetch(putFileUrl, {
         method: 'PUT',
@@ -1866,6 +1911,29 @@
     }
   }
 
+  function promptSaveWithoutToken() {
+    const token = prompt('To save updates directly to GitHub & Vercel, please enter your GitHub Token once (or click Cancel to download site-content.json backup):');
+    if (token && token.trim()) {
+      localStorage.setItem('th_github_pat', token.trim());
+      saveAllChangesToGitHub();
+    } else {
+      downloadJsonBackup();
+    }
+  }
+
+  function downloadJsonBackup() {
+    collectAboutData();
+    collectSocialData();
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(siteData, null, 2));
+    const dlAnchor = document.createElement('a');
+    dlAnchor.setAttribute("href", dataStr);
+    dlAnchor.setAttribute("download", "site-content.json");
+    document.body.appendChild(dlAnchor);
+    dlAnchor.click();
+    dlAnchor.remove();
+    showStatusBanner('success', 'site-content.json downloaded successfully!');
+  }
+
   function showStatusBanner(type, message) {
     const banner = document.getElementById('save-status-banner');
     banner.className = `alert-banner alert alert-${type}`;
@@ -1878,15 +1946,18 @@
   }
 
   // ────────────── 9. SETTINGS & PASSWORD ──────────────
-  function changeAdminPassword() {
-    const newPwd = document.getElementById('new-admin-pwd').value.trim();
-    if (!newPwd) {
-      alert('Please enter a new password.');
-      return;
+  function changeAdminCredentials() {
+    const newUser = document.getElementById('setting-admin-user').value.trim();
+    const newPwd  = document.getElementById('new-admin-pwd').value.trim();
+
+    if (newUser) {
+      localStorage.setItem('th_admin_username', newUser);
     }
-    localStorage.setItem('th_admin_pwd', newPwd);
-    document.getElementById('new-admin-pwd').value = '';
-    alert('Admin password updated successfully!');
+    if (newPwd) {
+      localStorage.setItem('th_admin_pwd', newPwd);
+      document.getElementById('new-admin-pwd').value = '';
+    }
+    alert('Admin credentials updated successfully!');
   }
 
   function updateGitHubToken() {
