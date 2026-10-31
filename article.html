@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title id="page-title">The Tanur Heritage - Article</title>
+  <meta name="description" id="page-description" content="Read articles on Tanur's heritage, history, culture, and traditions.">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts (Including Malayalam fonts Noto Sans Malayalam & Manjari) -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/blog-feed.css" rel="stylesheet">
+
+  <style>
+    /* Inner page header */
+    .inner-header {
+      background: #2a2c39;
+      position: sticky;
+      top: 0;
+      z-index: 997;
+      padding: 15px 0;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    }
+    .inner-header .navmenu a {
+      color: #fff;
+    }
+    .inner-header .navmenu a:hover,
+    .inner-header .navmenu .active {
+      color: #ef6603;
+    }
+  </style>
+</head>
+
+<body class="article-page" style="background-color: #f6f8fa;">
+
+  <!-- Header -->
+  <header id="header" class="header inner-header d-flex align-items-center">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/main logo in (300).png" alt="The Tanur Heritage">
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="articles.html?cat=HISTORY">History</a></li>
+          <li><a href="articles.html?cat=CULTURE">Culture</a></li>
+          <li><a href="articles.html?cat=ARTICLES" class="active">Articles</a></li>
+          <li><a href="articles.html?cat=Who'sWho">Who's Who</a></li>
+          <li><a href="articles.html?cat=Monuments">Monuments</a></li>
+          <li><a href="articles.html?cat=Updates">Updates</a></li>
+          <li><a href="articles.html">Archives</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breaking News Ticker -->
+  <div id="breaking-bar" class="breaking-bar">
+    <span class="breaking-label">&#x25BA; BREAKING</span>
+    <div class="breaking-ticker-wrap">
+      <div class="breaking-ticker" id="breaking-ticker">
+        <!-- Ticker items loaded via JS -->
+      </div>
+    </div>
+  </div>
+
+  <main class="main my-5">
+    <div class="container">
+      <div class="row">
+
+        <!-- Article Content Column -->
+        <div class="col-lg-8">
+
+          <!-- Loading Placeholder -->
+          <div id="article-loader" class="text-center py-5">
+            <div class="spinner-border text-warning" role="status" style="width: 3rem; height: 3rem;"></div>
+            <p class="mt-3 text-muted">ലേഖനം ലോഡ് ചെയ്യുന്നു... (Loading article...)</p>
+          </div>
+
+          <!-- Error Placeholder -->
+          <div id="article-error" class="alert alert-warning py-4 text-center d-none" role="alert">
+            <h4 class="alert-heading">ലേഖനം കണ്ടെത്താനായില്ല</h4>
+            <p>ക്ഷമിക്കണം, ഈ ലേഖനം ലഭ്യമായില്ല. എല്ലാ ലേഖനങ്ങളും കാണാൻ താഴെയുള്ള ലിങ്ക് ക്ലിക്ക് ചെയ്യുക.</p>
+            <hr>
+            <a href="articles.html" class="btn btn-warning mt-2">എല്ലാ ലേഖനങ്ങളും കാണുക (View All Articles)</a>
+          </div>
+
+          <!-- Article Main Card -->
+          <article id="article-container" class="article-main-container d-none" data-aos="fade-up">
+
+            <!-- Breadcrumbs -->
+            <nav class="article-breadcrumbs">
+              <a href="index.html">Home</a> &nbsp;/&nbsp; 
+              <a href="articles.html">Articles</a> &nbsp;/&nbsp; 
+              <span id="breadcrumb-category" class="text-muted">General</span>
+            </nav>
+
+            <!-- Article Header -->
+            <header class="article-header">
+              <span id="article-category-badge" class="blog-cat-badge" style="position: static; display: inline-block; margin-bottom: 12px;">ARTICLES</span>
+              <h1 id="article-title" class="article-title"></h1>
+              
+              <div class="article-meta-info">
+                <span><i class="bi bi-person-fill text-warning"></i> <strong>The Tanur Heritage</strong></span>
+                <span><i class="bi bi-calendar3 text-warning"></i> <span id="article-date"></span></span>
+              </div>
+            </header>
+
+            <!-- Full Body Content -->
+            <div id="article-body" class="article-body-content">
+              <!-- Content from Blogger rendered here -->
+            </div>
+
+            <!-- Share & Navigation Section -->
+            <footer class="article-share-section">
+              <span class="share-label"><i class="bi bi-share-fill me-1"></i> ഈ ലേഖനം പങ്കുവെക്കൂ (Share):</span>
+              <div class="share-buttons">
+                <a id="share-whatsapp" href="#" target="_blank" class="btn-share btn-share-whatsapp">
+                  <i class="bi bi-whatsapp"></i> WhatsApp
+                </a>
+                <a id="share-facebook" href="#" target="_blank" class="btn-share btn-share-facebook">
+                  <i class="bi bi-facebook"></i> Facebook
+                </a>
+                <a id="share-twitter" href="#" target="_blank" class="btn-share btn-share-twitter">
+                  <i class="bi bi-twitter-x"></i> Share
+                </a>
+                <button id="share-copy" class="btn-share btn-share-copy" onclick="copyArticleLink()">
+                  <i class="bi bi-link-45deg"></i> Link Copy
+                </button>
+              </div>
+            </footer>
+
+            <div class="mt-4 pt-3 text-center border-top">
+              <a href="articles.html" class="btn-view-all">
+                &larr; മറ്റ് ലേഖനങ്ങൾ കാണുക (Back to Articles)
+              </a>
+            </div>
+
+          </article>
+
+        </div>
+
+        <!-- Sidebar Column -->
+        <div class="col-lg-4">
+
+          <!-- Carnival Widget -->
+          <div class="blog-sidebar-widget carnival-widget text-center mb-4" data-aos="fade-up">
+            <h5 class="widget-title">TANUR HERITAGE CARNIVAL</h5>
+            <div class="carnival-logo-box">
+              <div class="carnival-logo-text">
+                <span class="cl-tanur">TANUR</span><br>
+                <span class="cl-heritage">HERITAGE</span><br>
+                <span class="cl-carnival">CARNIVAL</span><br>
+                <span class="cl-date">&#9788; 19th &amp; 20th<br>— OCTOBER 2024 —</span>
+              </div>
+            </div>
+            <p class="carnival-desc mt-3">Heritage Carnival is a major cultural event dedicated to rediscovering and reclaiming the rich legacy of the Tanur region and its broader historical context within Malabar.</p>
+          </div>
+
+          <!-- Browse Categories Widget -->
+          <div class="blog-sidebar-widget mb-4" data-aos="fade-up" data-aos-delay="100">
+            <h5 class="widget-title">BROWSE BY CATEGORY</h5>
+            <ul class="category-list">
+              <li><a href="articles.html?cat=HISTORY">&#10148; History (ചരിത്രം)</a></li>
+              <li><a href="articles.html?cat=CULTURE">&#10148; Culture (സംസ്കാരം)</a></li>
+              <li><a href="articles.html?cat=ARTICLES">&#10148; Articles (ലേഖനങ്ങൾ)</a></li>
+              <li><a href="articles.html?cat=Who'sWho">&#10148; Who's Who (വ്യക്തികൾ)</a></li>
+              <li><a href="articles.html?cat=Monuments">&#10148; Monuments (സ്മാരകങ്ങൾ)</a></li>
+              <li><a href="articles.html?cat=Updates">&#10148; Updates (വാർത്തകൾ)</a></li>
+            </ul>
+          </div>
+
+          <!-- Recent Articles Widget -->
+          <div class="blog-sidebar-widget mb-4" data-aos="fade-up" data-aos-delay="200">
+            <h5 class="widget-title">RECENT ARTICLES</h5>
+            <ul id="sidebar-recent-articles" class="category-list">
+              <li><span class="text-muted small">Loading recent...</span></li>
+            </ul>
+          </div>
+
+          <!-- Follow Social Widget -->
+          <div class="blog-sidebar-widget text-center" data-aos="fade-up" data-aos-delay="300">
+            <h5 class="widget-title">FOLLOW OUR JOURNEY</h5>
+            <p class="small text-muted mb-3">Join our WhatsApp channel to get heritage updates directly.</p>
+            <a href="https://whatsapp.com/channel/0029VaejDuLI1rch0o5tn73w" target="_blank" class="btn btn-success btn-sm w-100 py-2 mb-2">
+              <i class="bi bi-whatsapp"></i> WhatsApp Channel
+            </a>
+            <a href="https://youtube.com/@thetanurheritage?si=rTJ6PPk1Zgz3N1QH" target="_blank" class="btn btn-danger btn-sm w-100 py-2">
+              <i class="bi bi-youtube"></i> YouTube Channel
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="footer" class="footer dark-background">
+    <div class="container text-center">
+      <h3 style="font-family: Raleway, sans-serif;" class="sitename">The Tanur Heritage</h3>
+      <p style="color: #fff;">"Tracing the past for the future"</p>
+      <div class="social-links d-flex justify-content-center">
+        <a href="https://www.facebook.com/profile.php?id=61563132563708"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/tanurheritage?igsh=bTZyOTExczI1cGF0"><i class="bi bi-instagram"></i></a>
+        <a href="https://youtube.com/@thetanurheritage?si=rTJ6PPk1Zgz3N1QH"><i class="bi bi-youtube"></i></a>
+        <a href="https://whatsapp.com/channel/0029VaejDuLI1rch0o5tn73w"><i class="bi bi-whatsapp"></i></a>
+      </div>
+      <div class="copyright mt-3">
+        <span>Copyright</span> <strong class="px-1 sitename"><a href="index.html">The Tanur Heritage</a></strong> <span>All Rights Reserved</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vendor JS -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+
+  <!-- Article Loader Script -->
+  <script>
+    AOS.init();
+
+    // Helper functions
+    function formatDate(dateStr) {
+      var d = new Date(dateStr);
+      return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    function badgeColor(cat) {
+      var map = { 'HISTORY': '#8b0000', 'CULTURE': '#3a5a8c', 'ARTICLES': '#ef6603', 'Monuments': '#2e7d32', 'Updates': '#6a1a8c' };
+      return map[cat] || '#555';
+    }
+
+    function copyArticleLink() {
+      navigator.clipboard.writeText(window.location.href).then(function() {
+        var btn = document.getElementById('share-copy');
+        var original = btn.innerHTML;
+        btn.innerHTML = '<i class="bi bi-check-lg"></i> Copied!';
+        setTimeout(function() { btn.innerHTML = original; }, 2000);
+      });
+    }
+
+    // Get Post ID from URL query: ?id=12345
+    var urlParams = new URLSearchParams(window.location.search);
+    var postId = urlParams.get('id');
+
+    // JSONP callback for single article
+    function handleArticle(data) {
+      var loader = document.getElementById('article-loader');
+      var container = document.getElementById('article-container');
+      var errorBox = document.getElementById('article-error');
+
+      if (!data || !data.entry) {
+        loader.classList.add('d-none');
+        errorBox.classList.remove('d-none');
+        return;
+      }
+
+      var entry = data.entry;
+      var title = entry.title.$t;
+      var contentHtml = entry.content ? entry.content.$t : '';
+      var pubDate = formatDate(entry.published.$t);
+      var cats = (entry.category || []).map(function(c){ return c.term; });
+      var cat = cats[0] || 'ARTICLES';
+
+      // Update Meta & Title
+      document.title = title + " - The Tanur Heritage";
+      document.getElementById('page-title').innerText = title + " - The Tanur Heritage";
+
+      // Populate Elements
+      document.getElementById('article-title').innerText = title;
+      document.getElementById('article-date').innerText = pubDate;
+      document.getElementById('article-body').innerHTML = contentHtml;
+
+      var badge = document.getElementById('article-category-badge');
+      badge.innerText = cat;
+      badge.style.background = badgeColor(cat);
+
+      var breadcrumbCat = document.getElementById('breadcrumb-category');
+      breadcrumbCat.innerHTML = '<a href="articles.html?cat=' + encodeURIComponent(cat) + '">' + cat + '</a>';
+
+      // Setup Social Share Links
+      var curUrl = encodeURIComponent(window.location.href);
+      var shareText = encodeURIComponent(title + " - The Tanur Heritage\n");
+      document.getElementById('share-whatsapp').href = "https://api.whatsapp.com/send?text=" + shareText + curUrl;
+      document.getElementById('share-facebook').href = "https://www.facebook.com/sharer/sharer.php?u=" + curUrl;
+      document.getElementById('share-twitter').href = "https://twitter.com/intent/tweet?text=" + shareText + "&url=" + curUrl;
+
+      // Show article container
+      loader.classList.add('d-none');
+      container.classList.remove('d-none');
+
+      // Initialize Lightbox on article images
+      if (window.GLightbox) {
+        var imgs = document.querySelectorAll('#article-body img');
+        imgs.forEach(function(img) {
+          var a = img.closest('a');
+          if (a) {
+            a.classList.add('glightbox');
+          }
+        });
+        GLightbox({ selector: '.glightbox' });
+      }
+    }
+
+    // JSONP callback for recent articles & ticker
+    function handleFeedSummary(data) {
+      var entries = (data.feed && data.feed.entry) ? data.feed.entry : [];
+      var ticker = document.getElementById('breaking-ticker');
+      var recentList = document.getElementById('sidebar-recent-articles');
+
+      if (entries.length > 0) {
+        // Ticker
+        var tickerHtml = '';
+        entries.slice(0, 6).forEach(function(e) {
+          var t = e.title.$t;
+          var pid = (e.id.$t.split('.post-')[1]) || '';
+          var link = pid ? 'article.html?id=' + pid : (e.link.filter(function(l){ return l.rel === 'alternate'; })[0].href);
+          tickerHtml += '<span class="ticker-item"><a href="' + link + '">' + t + '</a></span>&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;';
+        });
+        ticker.innerHTML = tickerHtml + tickerHtml;
+
+        // Sidebar Recent Articles
+        recentList.innerHTML = '';
+        entries.slice(0, 5).forEach(function(e) {
+          var t = e.title.$t;
+          var pid = (e.id.$t.split('.post-')[1]) || '';
+          var link = pid ? 'article.html?id=' + pid : (e.link.filter(function(l){ return l.rel === 'alternate'; })[0].href);
+          var li = document.createElement('li');
+          li.innerHTML = '<a href="' + link + '">&#10148; ' + t + '</a>';
+          recentList.appendChild(li);
+        });
+      }
+    }
+
+    // Load Data
+    if (postId) {
+      var articleScript = document.createElement('script');
+      articleScript.src = "https://thetanurheritage.blogspot.com/feeds/posts/default/" + postId + "?alt=json-in-script&callback=handleArticle";
+      document.body.appendChild(articleScript);
+    } else {
+      document.getElementById('article-loader').classList.add('d-none');
+      document.getElementById('article-error').classList.remove('d-none');
+    }
+
+    // Load recent feed for sidebar & ticker
+    var feedScript = document.createElement('script');
+    feedScript.src = "https://thetanurheritage.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=6&callback=handleFeedSummary";
+    document.body.appendChild(feedScript);
+  </script>
+
+</body>
+</html>

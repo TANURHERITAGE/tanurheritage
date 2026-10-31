@@ -45,10 +45,11 @@
 }
 
 .ticker-item a {
+  font-family: 'Manjari', 'Noto Sans Malayalam', sans-serif;
   color: #f0c040;
   text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
   transition: color 0.3s;
 }
 
@@ -139,11 +140,12 @@
 }
 
 .blog-card-title {
-  font-size: 15px;
+  font-family: 'Manjari', 'Noto Sans Malayalam', sans-serif;
+  font-size: 17px;
   font-weight: 700;
   color: #1a1a2e;
   margin-bottom: 8px;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .blog-card-title a {
@@ -341,4 +343,213 @@
   .blog-card-img-wrap {
     height: 160px;
   }
+}
+
+
+/* ============================================================
+   ARTICLE DETAIL & ARCHIVE STYLES
+   ============================================================ */
+
+/* Breadcrumbs */
+.article-breadcrumbs {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.article-breadcrumbs a {
+  color: #ef6603;
+  text-decoration: none;
+}
+
+.article-breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+/* Article Container */
+.article-main-container {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+  .article-main-container {
+    padding: 22px 16px;
+  }
+}
+
+.article-header {
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+
+.article-title {
+  font-family: 'Manjari', 'Noto Sans Malayalam', 'Roboto', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #1a1a2e;
+  margin-top: 14px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  .article-title {
+    font-size: 1.6rem;
+  }
+}
+
+.article-meta-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: #777;
+  align-items: center;
+}
+
+.article-meta-info span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Article Body Content */
+.article-body-content {
+  font-family: 'Noto Sans Malayalam', 'Roboto', sans-serif;
+  font-size: 17.5px;
+  line-height: 1.95;
+  color: #2c3038;
+}
+
+.article-body-content p {
+  margin-bottom: 1.4rem;
+  letter-spacing: 0.2px;
+}
+
+.article-body-content img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 8px;
+  margin: 18px auto;
+  display: block;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.article-body-content .separator {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.article-body-content blockquote {
+  border-left: 4px solid #ef6603;
+  padding: 12px 20px;
+  margin: 24px 0;
+  background: #fdfaf6;
+  font-style: italic;
+  border-radius: 0 8px 8px 0;
+}
+
+.article-body-content h2,
+.article-body-content h3,
+.article-body-content h4 {
+  font-family: 'Manjari', 'Noto Sans Malayalam', sans-serif;
+  color: #1a1a2e;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+/* Share Section */
+.article-share-section {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 24px;
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.share-label {
+  font-weight: 600;
+  color: #333;
+  font-size: 15px;
+}
+
+.share-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-share {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn-share:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+.btn-share-whatsapp {
+  background: #25D366;
+}
+
+.btn-share-facebook {
+  background: #1877F2;
+}
+
+.btn-share-twitter {
+  background: #000000;
+}
+
+.btn-share-copy {
+  background: #555555;
+}
+
+/* Category Filter Tabs for articles.html */
+.category-filter-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 35px;
+  justify-content: center;
+}
+
+.cat-filter-btn {
+  padding: 8px 20px;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #555;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.cat-filter-btn:hover,
+.cat-filter-btn.active {
+  background: #ef6603;
+  color: #fff;
+  border-color: #ef6603;
 }
