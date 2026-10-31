@@ -409,7 +409,7 @@
   <footer id="footer" class="footer dark-background">
     <div class="container text-center">
       <h3 style="font-family: Raleway, sans-serif;" class="sitename">The Tanur Heritage</h3>
-      <p style="color: #fff;">"Tracing the past for the future"</p>
+      <p style="color: #fff;" class="footer-tagline">"Tracing the past for the future"</p>
       <div class="social-links d-flex justify-content-center">
         <a href="https://www.facebook.com/profile.php?id=61563132563708"><i class="bi bi-facebook"></i></a>
         <a href="https://www.instagram.com/tanurheritage?igsh=bTZyOTExczI1cGF0"><i class="bi bi-instagram"></i></a>
@@ -433,6 +433,7 @@
 
     // Initialize GLightbox
     var lightbox = GLightbox({ selector: '.glightbox' });
+    window.galleryLightbox = lightbox;
 
     // Filter gallery by category
     function filterGallery(category, btn) {
@@ -452,9 +453,16 @@
       });
 
       // Re-init lightbox after filter
-      lightbox.reload();
+      if (window.galleryLightbox) {
+        window.galleryLightbox.reload();
+      } else if (lightbox) {
+        lightbox.reload();
+      }
     }
   </script>
+
+  <!-- Dynamic Content Loader from site-content.json -->
+  <script src="assets/js/site-loader.js"></script>
 
 </body>
 </html>

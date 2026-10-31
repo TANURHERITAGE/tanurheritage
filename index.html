@@ -196,7 +196,7 @@
         <div class="row gy-4">
 
           <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-            <p>
+            <p id="about-text-1">
               The Tanur Heritage is a cultural and historical program aimed at unveiling the
                rich history and vibrant traditions of Tanur, a coastal town in Kerala. 
                The initiative brings together historians, scholars, and the local community to
@@ -210,7 +210,7 @@
           </div>
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <p>Through exhibitions,
+            <p id="about-text-2">Through exhibitions,
               talks, and cultural performances, Tanur Heritage highlights the town’s role in Kerala's 
               historical narrative, showcasing its contributions to art, religion, and trade. The program 
               seeks to preserve and promote awareness of Tanur's heritage for future generations. </p>
@@ -316,7 +316,7 @@
 
       <div class="container">
 
-        <div class="row gy-4">
+        <div class="row gy-4" id="team-container">
 
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
             <div class="team-member">
@@ -381,7 +381,7 @@
   <footer id="footer" class="footer dark-background">
     <div class="container">
       <h3 style="font-family: mainfont;font-weight: 50;" class="sitename">The Tanur Heritage</h3>
-      <p style="color: rgb(255, 255, 255);">"Tracing the past for the future"</p>
+      <p style="color: rgb(255, 255, 255);" class="footer-tagline">"Tracing the past for the future"</p>
       <div class="social-links d-flex justify-content-center">
 
         <a href="https://www.facebook.com/profile.php?id=61563132563708"><i class="bi bi-facebook"></i></a>
@@ -394,7 +394,7 @@
       </div>
       <div class="container">
         <div class="copyright">
-          <span>Copyright</span> <strong class="px-1 sitename"><a href="button.html">tanurheritage</a></strong> <span>All Rights Reserved</span>
+          <span>Copyright</span> <strong class="px-1 sitename"><a href="admin.html" title="Admin Login">tanurheritage</a></strong> <span>All Rights Reserved</span>
         </div>
         <div class="credits">
           <!-- All the links in the footer should remain intact. -->
@@ -515,6 +515,9 @@
   </script>
   <!-- Load Blogger feed via JSONP script tag (no CORS issues) -->
   <script src="https://thetanurheritage.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=8&callback=handleBlogFeed"></script>
+
+  <!-- Dynamic Content Loader from site-content.json -->
+  <script src="assets/js/site-loader.js"></script>
 
 </body>
 
