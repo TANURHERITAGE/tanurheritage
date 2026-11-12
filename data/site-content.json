@@ -1,4 +1,241 @@
 {
+  "posters": [
+    {
+      "id": "poster-1",
+      "title": "TWO-DAY Leadership Appraisal & Workshop 2026",
+      "image": "assets/img/posters/poster-1.jpg",
+      "link": "gallery.html",
+      "active": true
+    },
+    {
+      "id": "poster-2",
+      "title": "Tanur Heritage Carnival & Exhibition",
+      "image": "assets/img/sub 3.png",
+      "link": "gallery.html",
+      "active": true
+    },
+    {
+      "id": "poster-3",
+      "title": "Tanur Guided Historical Heritage Walk",
+      "image": "assets/img/sub 2.png",
+      "link": "gallery.html",
+      "active": true
+    },
+    {
+      "id": "poster-4",
+      "title": "Heritage Photography Award Contest",
+      "image": "assets/img/sub 1.png",
+      "link": "gallery.html",
+      "active": true
+    }
+  ],
+  "posterSettings": {
+    "autoSlideInterval": 4000,
+    "pauseOnHover": true
+  },
+  "magazineFeatured": {
+    "topMain": {
+      "category": "TRAVELOKAM",
+      "title": "കർഷകർക്ക് പൂമണം കൊടുത്ത വദ്‌ജി ഗ്രാമം",
+      "excerpt": "പൂപ്പാടങ്ങളുടെ പകിട്ടും സുഗന്ധവും വദ്‌ജിയിലെ ഓരോ നിമിഷങ്ങൾക്കും നിറം ചാർത്തുന്നതായിരുന്നു. 'ഗുലാബാച്ചെ ഗാവ്' എന്ന...",
+      "author": "മുഹമ്മദലി സഖാഫി പൊട്ടിക്കല്ല്",
+      "time": "2 HOURS AGO",
+      "image": "assets/img/masonry-portfolio/masonry-portfolio-5.jpg",
+      "link": "articles.html?cat=CULTURE"
+    },
+    "gridArticles": [
+      {
+        "id": "mag-1",
+        "category": "RELIGION",
+        "title": "മഹ്ബരിനും മലബാറും ഇടയിലെ സ്വദഖത്തുല്ലാഹിൽ ഖാഹിരി",
+        "excerpt": "കീഴക്കരയുടെ ആത്മീയ പ്രഭാവത്തിന് അടിത്തറയിട്ടതും വിജ്ഞാനത്തിന്റെ അടിത്തറയിട്ട...",
+        "author": "ഷിഫ നസ്വീഹ സി തലക്കടത്തൂർ",
+        "time": "A DAY AGO",
+        "image": "assets/img/masonry-portfolio/masonry-portfolio-1.jpg",
+        "link": "articles.html?cat=HISTORY"
+      },
+      {
+        "id": "mag-2",
+        "category": "UPDATION",
+        "title": "ക്ഷമിക്കണം റോജി ജോൺ, നിങ്ങളിൽ ഞങ്ങൾക്ക് സംശയങ്ങളുണ്ട്",
+        "excerpt": "വിനോദ് കുമാർ കല്ലോലിക്കലിനെ നിയമിക്കുക വഴി ആ സ്ഥാപനത്തിന്റെ...",
+        "author": "സഞ്ജയൻ 2.0",
+        "time": "19 MINUTES AGO",
+        "image": "assets/img/team/team-2.jpg",
+        "link": "articles.html?cat=ARTICLES"
+      },
+      {
+        "id": "mag-3",
+        "category": "HEALTH",
+        "title": "നിങ്ങൾക്ക് ഒറ്റയ്ക്ക് കേൾക്കാൻ ഇത്ര ഒച്ച വേണോ?",
+        "excerpt": "ശബ്ദമര്യാദ ശബ്ദമുണ്ടാക്കാതിരിക്കാനുള്ള നിയമം...",
+        "author": "ഡോ. ഫാത്തിമ. എസ്",
+        "time": "2 DAYS AGO",
+        "image": "assets/img/masonry-portfolio/masonry-portfolio-3.jpg",
+        "link": "articles.html?cat=ARTICLES"
+      }
+    ],
+    "sidebarHighlight": {
+      "title": "എത്ര റീൽ വേണം ഒരു ദിവസം ജീവിക്കാൻ?",
+      "image": "assets/img/masonry-portfolio/masonry-portfolio-8.jpg",
+      "link": "articles.html?cat=ARTICLES"
+    },
+    "mostRead": [
+      {
+        "id": "mr-1",
+        "title": "ദലാഇലുൽ ഖൈറാത്തിന്റെ ദേശവും ദേശാന്തരീയതയും",
+        "link": "articles.html?cat=HISTORY"
+      },
+      {
+        "id": "mr-2",
+        "title": "കോമു മുസ്ലിയാരുടെ ജ്ഞാനജീവിതം",
+        "link": "articles.html?cat=Who'sWho"
+      },
+      {
+        "id": "mr-3",
+        "title": "കാലടിയിലെ സിസ തോമസ് അറിയുമോ ബഹാവുദ്ദീനെ?",
+        "link": "articles.html?cat=ARTICLES"
+      },
+      {
+        "id": "mr-4",
+        "title": "മുഅല്ലിമുകളുടെ തങ്ങൾ",
+        "link": "articles.html?cat=Who'sWho"
+      },
+      {
+        "id": "mr-5",
+        "title": "എം എ ഉസ്താദ്; കവിയും കവിതകളും",
+        "link": "articles.html?cat=Who'sWho"
+      }
+    ]
+  },
+  "videos": {
+    "mainGrid": [
+      {
+        "id": "vid-1",
+        "title": "അഗ്നിപഥിലും കാർഷിക നിയമങ്ങളിലും മോദി തോറ്റുവോ? | BINOY THOMAS",
+        "tag": "update",
+        "author": "ബിനോയ് തോമസ് | സ്പെഷ്യൽ അനാലിസിസ്",
+        "thumbnail": "assets/img/sub 1.png",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      },
+      {
+        "id": "vid-2",
+        "title": "ഇന്ത്യക്കാർക്ക് 'ലിക്വിഡ് മണി'യെ വിശ്വാസം | നോട്ടുനിരോധനത്തെ...",
+        "tag": "EXPLAINER",
+        "author": "മുഹമ്മദ് നജ്മീർ",
+        "thumbnail": "assets/img/sub 2.png",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      },
+      {
+        "id": "vid-3",
+        "title": "E20 പെട്രോൾ; സർക്കാർ സ്പോൺസേഡ് വഞ്ചന? | BINOY THOMAS | NEWS KITCHEN",
+        "tag": "update",
+        "author": "ബിനോയ് തോമസ് | ന്യൂസ് കിച്ചൻ",
+        "thumbnail": "assets/img/sub 3.png",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      },
+      {
+        "id": "vid-4",
+        "title": "വിദ്യാഭ്യാസ കച്ചവടക്കാരെ കയറൂരി വിടുകയാണോ? | Dr. PJ VINCENT | BINOY...",
+        "tag": "InSight",
+        "author": "ഡോ. പി.ജെ. വിൻസെന്റ് | ബിനോയ് തോമസ്",
+        "thumbnail": "assets/img/Project (20241001042716).png",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      }
+    ],
+    "sidebarList": [
+      {
+        "id": "vsb-1",
+        "category": "OTHERS",
+        "title": "നമ്മൾ ഒഴിവാക്കുന്ന വസ്ത്രങ്ങൾ എങ്ങോട്ട് പോകുന്നു? | പഴയ...",
+        "time": "2 DAYS AGO",
+        "thumbnail": "assets/img/masonry-portfolio/masonry-portfolio-6.jpg",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      },
+      {
+        "id": "vsb-2",
+        "category": "OTHERS",
+        "title": "ക്രിയേറ്റീവ് മാർക്കറ്റിങ്ങിലെ AI | salim kodur | risala update",
+        "time": "2 DAYS AGO",
+        "thumbnail": "assets/img/masonry-portfolio/masonry-portfolio-7.jpg",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      },
+      {
+        "id": "vsb-3",
+        "category": "SATYAM PARANJAL",
+        "title": "ജാമിയ മില്ലിയ ഇസ്ലാമിയ | സത്യം പറഞ്ഞാൽ | dr. ns abdul hameed",
+        "time": "2 DAYS AGO",
+        "thumbnail": "assets/img/masonry-portfolio/masonry-portfolio-8.jpg",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      },
+      {
+        "id": "vsb-4",
+        "category": "SPECIAL ANALYSIS",
+        "title": "പടക്ക് പരാന്നിയുന്നതോ രാഷ്ട്രീയസ്നേഹം? | binoy thomas",
+        "time": "3 DAYS AGO",
+        "thumbnail": "assets/img/masonry-portfolio/masonry-portfolio-9.jpg",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      },
+      {
+        "id": "vsb-5",
+        "category": "OTHERS",
+        "title": "ചികിത്സ കിട്ടാത്ത കേരള മോഡൽ | risala update",
+        "time": "3 DAYS AGO",
+        "thumbnail": "assets/img/masonry-portfolio/masonry-portfolio-4.jpg",
+        "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      }
+    ]
+  },
+  "recentArticles": [
+    {
+      "id": "rec-1",
+      "readTime": "5 minutes",
+      "category": "UPDATION",
+      "title": "ക്ഷമിക്കണം റോജി ജോൺ, നിങ്ങളിൽ ഞങ്ങൾക്ക് സംശയങ്ങളുണ്ട്",
+      "excerpt": "വിനോദ് കുമാർ കല്ലോലിക്കലിനെ നിയമിക്കുക വഴി ആ സ്ഥാപനത്തിന്റെ...",
+      "tags": ["#RSS", "#Education", "#Sangh Parivar"],
+      "author": "സഞ്ജയൻ 2.0",
+      "time": "19 MINUTES AGO",
+      "image": "assets/img/team/team-2.jpg",
+      "link": "articles.html?cat=UPDATES"
+    },
+    {
+      "id": "rec-2",
+      "readTime": "4 minutes",
+      "category": "TRAVELOKAM",
+      "title": "കർഷകർക്ക് പൂമണം കൊടുത്ത വദ്‌ജി ഗ്രാമം",
+      "excerpt": "പൂപ്പാടങ്ങളുടെ പകിട്ടും സുഗന്ധവും വദ്‌ജിയിലെ ഓരോ നിമിഷങ്ങൾക്കും...",
+      "tags": ["#Travelogue", "#Farmers", "#Wadji"],
+      "author": "മുഹമ്മദലി സഖാഫി പൊട്ടിക്കല്ല്",
+      "time": "2 HOURS AGO",
+      "image": "assets/img/masonry-portfolio/masonry-portfolio-5.jpg",
+      "link": "articles.html?cat=CULTURE"
+    },
+    {
+      "id": "rec-3",
+      "readTime": "8 minutes",
+      "category": "RELIGION",
+      "title": "മഹ്ബരിനും മലബാറും ഇടയിലെ സ്വദഖത്തുല്ലാഹിൽ ഖാഹിരി",
+      "excerpt": "കീഴക്കരയുടെ ആത്മീയ പ്രഭാവത്തിന് അടിത്തറയിട്ടതും വിജ്ഞാനത്തിന്റെ...",
+      "tags": ["#Sufi", "#Sheikh", "#Aurangzeb"],
+      "author": "ഷിഫ നസ്വീഹ സി തലക്കടത്തൂർ",
+      "time": "A DAY AGO",
+      "image": "assets/img/masonry-portfolio/masonry-portfolio-1.jpg",
+      "link": "articles.html?cat=HISTORY"
+    },
+    {
+      "id": "rec-4",
+      "readTime": "8 minutes",
+      "category": "HEALTH",
+      "title": "നിങ്ങൾക്ക് ഒറ്റയ്ക്ക് കേൾക്കാൻ ഇത്ര ഒച്ച വേണോ?",
+      "excerpt": "ശബ്ദമര്യാദ ശബ്ദമുണ്ടാക്കാതിരിക്കാനുള്ള നിയമം...",
+      "tags": ["#Mobile", "#public space", "#Noise"],
+      "author": "ഡോ. ഫാത്തിമ. എസ്",
+      "time": "2 DAYS AGO",
+      "image": "assets/img/masonry-portfolio/masonry-portfolio-3.jpg",
+      "link": "articles.html?cat=ARTICLES"
+    }
+  ],
   "about": {
     "title": "Who we are",
     "subtitle": "Discover Tanur's Legacy",

@@ -15,6 +15,7 @@
     :root {
       --primary: #ef6603;
       --primary-hover: #d35400;
+      --accent: #e52b50;
       --dark: #20222e;
       --dark-sidebar: #191b26;
       --light-bg: #f4f6fa;
@@ -56,7 +57,7 @@
       min-height: 100vh;
     }
     .sidebar {
-      width: 260px;
+      width: 270px;
       background: var(--dark-sidebar);
       min-height: 100vh;
       position: fixed;
@@ -67,7 +68,7 @@
       box-shadow: 2px 0 15px rgba(0,0,0,0.1);
     }
     .sidebar-header {
-      padding: 22px 20px;
+      padding: 20px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
       background: rgba(0,0,0,0.15);
     }
@@ -85,47 +86,54 @@
     }
     .sidebar-menu {
       flex: 1;
-      padding: 16px 0;
+      padding: 12px 0;
       overflow-y: auto;
     }
     .sidebar-menu .nav-link {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 12px 22px;
-      color: rgba(255,255,255,0.7);
-      font-size: 14px;
+      padding: 10px 20px;
+      color: rgba(255,255,255,0.72);
+      font-size: 13.5px;
       font-weight: 500;
       border-left: 4px solid transparent;
       transition: all 0.2s;
+      cursor: pointer;
     }
     .sidebar-menu .nav-link:hover,
     .sidebar-menu .nav-link.active {
       color: #fff;
-      background: rgba(239, 102, 3, 0.12);
-      border-left-color: var(--primary);
+      background: rgba(255,255,255,0.08);
+      border-left-color: var(--accent);
     }
     .sidebar-menu .nav-link i {
-      font-size: 18px;
-      color: var(--primary);
-      width: 22px;
-      text-align: center;
+      font-size: 17px;
+      width: 20px;
+    }
+    .sidebar-section-divider {
+      padding: 10px 20px 4px 20px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.3);
     }
     .sidebar-footer {
       padding: 16px 20px;
       border-top: 1px solid rgba(255,255,255,0.08);
-      background: rgba(0,0,0,0.15);
+      background: rgba(0,0,0,0.1);
     }
 
-    /* ===== MAIN CONTENT AREA ===== */
     .main-wrapper {
-      margin-left: 260px;
+      margin-left: 270px;
       padding: 30px;
       min-height: 100vh;
     }
+
     @media (max-width: 991px) {
       .sidebar {
-        position: static;
+        position: relative;
         width: 100%;
         min-height: auto;
       }
@@ -135,151 +143,138 @@
       }
     }
 
-    /* ===== CONTENT CARDS ===== */
+    /* Cards & Components */
     .content-card {
       background: #fff;
       border-radius: 14px;
-      padding: 28px;
-      margin-bottom: 26px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      padding: 24px;
+      margin-bottom: 24px;
       border: 1px solid var(--border-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
     .card-topbar {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 22px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid #edf0f5;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
     }
     .card-topbar h4 {
-      margin: 0;
       font-size: 18px;
       font-weight: 700;
+      margin: 0;
       color: var(--dark);
       display: flex;
       align-items: center;
-      gap: 10px;
-    }
-    .card-topbar h4 i {
-      color: var(--primary);
+      gap: 8px;
     }
 
-    /* ===== ACTION BUTTONS ===== */
     .btn-brand {
-      background: var(--primary);
+      background: var(--accent);
       color: #fff;
-      font-weight: 600;
       border: none;
-      padding: 8px 18px;
-      border-radius: 8px;
+      font-weight: 600;
       transition: all 0.2s;
     }
     .btn-brand:hover {
-      background: var(--primary-hover);
+      background: #c9183d;
       color: #fff;
-      transform: translateY(-1px);
-    }
-    .btn-save-sticky {
-      background: #28a745;
-      color: #fff;
-      font-weight: 700;
-      padding: 10px 24px;
-      border-radius: 30px;
-      border: none;
-      box-shadow: 0 4px 15px rgba(40,167,69,0.3);
-      transition: all 0.2s;
-    }
-    .btn-save-sticky:hover {
-      background: #218838;
-      color: #fff;
-      transform: translateY(-2px);
     }
 
-    /* ===== STATS TILES ===== */
+    .btn-save-sticky {
+      background: #198754;
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(25,135,84,0.3);
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+    }
+    .btn-save-sticky:hover {
+      background: #146c43;
+      color: #fff;
+    }
+
     .stat-tile {
       background: #fff;
       border-radius: 12px;
-      padding: 20px;
+      padding: 18px;
       border: 1px solid var(--border-color);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-      border-left: 4px solid var(--primary);
+      border-left: 5px solid var(--accent);
+      transition: all 0.2s;
+    }
+    .stat-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
     }
     .stat-tile h3 {
-      font-size: 30px;
+      font-size: 26px;
       font-weight: 800;
+      margin: 0 0 4px 0;
       color: var(--dark);
-      margin: 0;
     }
     .stat-tile p {
-      color: #777;
-      margin: 4px 0 0;
       font-size: 13px;
+      color: #777;
+      margin: 0;
       font-weight: 500;
     }
 
-    /* ===== GRID ITEMS ===== */
+    /* Grid layout for items */
     .item-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 18px;
     }
     .item-card {
-      background: #fff;
       border: 1px solid var(--border-color);
       border-radius: 12px;
       overflow: hidden;
+      background: #fff;
       display: flex;
       flex-direction: column;
       transition: all 0.2s;
     }
     .item-card:hover {
-      border-color: #cbd5e1;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.07);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
     }
-    .item-card .item-thumb {
+    .item-card-img {
       width: 100%;
-      height: 160px;
+      height: 150px;
       object-fit: cover;
-      background: #f1f3f7;
+      background: #f0f0f0;
     }
-    .item-card .item-body {
-      padding: 16px;
+    .item-card-body {
+      padding: 14px;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
-    .item-card .item-actions {
+    .item-card-body h6 {
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0 0 6px 0;
+      color: #111;
+      line-height: 1.35;
+    }
+    .item-card-body p {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 8px;
+      flex: 1;
+    }
+    .item-card-footer {
       display: flex;
-      gap: 8px;
-      margin-top: auto;
-      padding-top: 12px;
-      border-top: 1px solid #f0f2f5;
-    }
-
-    /* ===== FOLDER BADGES ===== */
-    .folder-pill {
-      display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 600;
-      background: #edf2f7;
-      color: #4a5568;
-      border: 1px solid #e2e8f0;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .folder-pill:hover,
-    .folder-pill.active {
-      background: var(--primary);
-      color: #fff;
-      border-color: var(--primary);
+      justify-content: space-between;
+      border-top: 1px solid #f2f2f2;
+      padding-top: 10px;
+      margin-top: auto;
     }
 
-    /* Status Banner */
+    /* Alert Banner */
     .alert-banner {
       display: none;
       padding: 12px 18px;
@@ -333,33 +328,49 @@
     <div class="sidebar-header d-flex align-items-center justify-content-between">
       <div>
         <h5>🏛️ Tanur Heritage</h5>
-        <small>Control Panel</small>
+        <small>Portal Control Panel</small>
       </div>
     </div>
 
     <nav class="sidebar-menu nav flex-column">
-      <a href="#" class="nav-link active" onclick="switchSection('dashboard', this)">
+      <a class="nav-link active" onclick="switchSection('dashboard', this)">
         <i class="bi bi-speedometer2"></i> Dashboard
       </a>
-      <a href="#" class="nav-link" onclick="switchSection('about', this)">
+
+      <div class="sidebar-section-divider">Main Homepage (4 Sections)</div>
+      <a class="nav-link" onclick="switchSection('posters', this)">
+        <i class="bi bi-sliders"></i> 1. Hero Posters Slider
+      </a>
+      <a class="nav-link" onclick="switchSection('magazine', this)">
+        <i class="bi bi-newspaper"></i> 2. Magazine & Featured
+      </a>
+      <a class="nav-link" onclick="switchSection('videos', this)">
+        <i class="bi bi-camera-reels-fill"></i> 3. Videos Management
+      </a>
+      <a class="nav-link" onclick="switchSection('recent', this)">
+        <i class="bi bi-clock-history"></i> 4. Recent Section
+      </a>
+
+      <div class="sidebar-section-divider">Heritage Content</div>
+      <a class="nav-link" onclick="switchSection('about', this)">
         <i class="bi bi-info-circle"></i> About Us / Who We Are
       </a>
-      <a href="#" class="nav-link" onclick="switchSection('gallery', this)">
+      <a class="nav-link" onclick="switchSection('gallery', this)">
         <i class="bi bi-images"></i> Gallery & Folders
       </a>
-      <a href="#" class="nav-link" onclick="switchSection('team', this)">
+      <a class="nav-link" onclick="switchSection('team', this)">
         <i class="bi bi-people"></i> Our Team
       </a>
-      <a href="#" class="nav-link" onclick="switchSection('events', this)">
+      <a class="nav-link" onclick="switchSection('events', this)">
         <i class="bi bi-calendar-event"></i> Our Events
       </a>
-      <a href="#" class="nav-link" onclick="switchSection('archives', this)">
+      <a class="nav-link" onclick="switchSection('archives', this)">
         <i class="bi bi-archive"></i> Archives & Records
       </a>
-      <a href="#" class="nav-link" onclick="switchSection('social', this)">
+      <a class="nav-link" onclick="switchSection('social', this)">
         <i class="bi bi-share"></i> Social Links & Footer
       </a>
-      <a href="#" class="nav-link" onclick="switchSection('settings', this)">
+      <a class="nav-link" onclick="switchSection('settings', this)">
         <i class="bi bi-gear"></i> Settings & Password
       </a>
     </nav>
@@ -400,21 +411,21 @@
     <div id="sec-dashboard" class="admin-sec active">
       <div class="row g-3 mb-4">
         <div class="col-md-3 col-6">
-          <div class="stat-tile">
-            <h3 id="stat-team-count">0</h3>
-            <p>Team Members</p>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="stat-tile" style="border-left-color: #17a2b8;">
-            <h3 id="stat-events-count">0</h3>
-            <p>Active Events</p>
+          <div class="stat-tile" style="border-left-color: #e52b50;">
+            <h3 id="stat-posters-count">0</h3>
+            <p>Hero Posters</p>
           </div>
         </div>
         <div class="col-md-3 col-6">
           <div class="stat-tile" style="border-left-color: #6f42c1;">
-            <h3 id="stat-gallery-count">0</h3>
-            <p>Gallery Photos</p>
+            <h3 id="stat-videos-count">0</h3>
+            <p>Videos</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-tile" style="border-left-color: #0d6efd;">
+            <h3 id="stat-recent-count">0</h3>
+            <p>Recent Stories</p>
           </div>
         </div>
         <div class="col-md-3 col-6">
@@ -427,51 +438,233 @@
 
       <div class="content-card">
         <div class="card-topbar">
-          <h4><i class="bi bi-rocket-takeoff-fill"></i> Quick Management Navigation</h4>
+          <h4><i class="bi bi-rocket-takeoff-fill text-danger"></i> Homepage Modules Management</h4>
         </div>
-        <p class="text-secondary small">Click any tile below to start modifying the corresponding section of the website:</p>
+        <p class="text-secondary small">Click any module below to update the corresponding section matching your layout:</p>
         <div class="row g-3">
-          <div class="col-md-4">
-            <div class="p-3 border rounded-3 bg-light cursor-pointer" onclick="switchSection('about')">
-              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-info-circle text-primary me-2"></i>About Us / Who We Are</h6>
-              <p class="text-muted small mb-0">Update heading, subtitles, and introductory paragraphs.</p>
+          <div class="col-md-6 col-lg-3">
+            <div class="p-3 border rounded-3 bg-light cursor-pointer h-100" onclick="switchSection('posters')">
+              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-sliders text-danger me-2"></i>1. Hero Posters</h6>
+              <p class="text-muted small mb-0">Manage auto-sliding banner posters & display duration.</p>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 border rounded-3 bg-light cursor-pointer" onclick="switchSection('gallery')">
-              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-images text-primary me-2"></i>Gallery & Folders</h6>
-              <p class="text-muted small mb-0">Create event albums/folders, upload and organize photos.</p>
+          <div class="col-md-6 col-lg-3">
+            <div class="p-3 border rounded-3 bg-light cursor-pointer h-100" onclick="switchSection('magazine')">
+              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-newspaper text-danger me-2"></i>2. Magazine Section</h6>
+              <p class="text-muted small mb-0">Update top featured story, 3-card grid & Most Read list.</p>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 border rounded-3 bg-light cursor-pointer" onclick="switchSection('events')">
-              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-calendar-event text-primary me-2"></i>Our Events</h6>
-              <p class="text-muted small mb-0">Add, edit, or delete upcoming programs and festivals.</p>
+          <div class="col-md-6 col-lg-3">
+            <div class="p-3 border rounded-3 bg-light cursor-pointer h-100" onclick="switchSection('videos')">
+              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-camera-reels-fill text-danger me-2"></i>3. Videos Section</h6>
+              <p class="text-muted small mb-0">Upload or embed YouTube videos in 2x2 grid & sidebar.</p>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 border rounded-3 bg-light cursor-pointer" onclick="switchSection('team')">
-              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-people text-primary me-2"></i>Our Team</h6>
-              <p class="text-muted small mb-0">Manage committee members, designations, and portraits.</p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 border rounded-3 bg-light cursor-pointer" onclick="switchSection('archives')">
-              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-archive text-primary me-2"></i>Archives & Records</h6>
-              <p class="text-muted small mb-0">Add historical photos, ancient records, and documents.</p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 border rounded-3 bg-light cursor-pointer" onclick="switchSection('social')">
-              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-share text-primary me-2"></i>Social Links & Tagline</h6>
-              <p class="text-muted small mb-0">Update social media URLs and footer tagline.</p>
+          <div class="col-md-6 col-lg-3">
+            <div class="p-3 border rounded-3 bg-light cursor-pointer h-100" onclick="switchSection('recent')">
+              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-clock-history text-danger me-2"></i>4. Recent Section</h6>
+              <p class="text-muted small mb-0">Add/edit recent articles with read-time badges & tags.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ──────────────── SECTION 2: ABOUT US / WHO WE ARE ──────────────── -->
+    <!-- ──────────────── SECTION 2: HERO POSTERS SLIDER ──────────────── -->
+    <div id="sec-posters" class="admin-sec d-none">
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-sliders text-danger"></i> Hero Posters & Banner Slider</h4>
+          <button class="btn btn-brand btn-sm" onclick="openAddPosterModal()">
+            <i class="bi bi-plus-lg me-1"></i> Add New Poster
+          </button>
+        </div>
+        <p class="text-muted small mb-3">Posters appear at the very top of the website and slide automatically step by step.</p>
+
+        <!-- Slider settings -->
+        <div class="row g-2 align-items-center mb-4 p-3 bg-light rounded-3">
+          <div class="col-auto">
+            <label class="form-label fw-semibold small mb-0">Auto-Slide Delay:</label>
+          </div>
+          <div class="col-auto">
+            <select id="poster-slide-interval" class="form-select form-select-sm">
+              <option value="3000">3 Seconds (Fast)</option>
+              <option value="4000" selected>4 Seconds (Recommended)</option>
+              <option value="5000">5 Seconds</option>
+              <option value="7000">7 Seconds (Slow)</option>
+            </select>
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-outline-secondary btn-sm" onclick="savePosterSettings()">
+              <i class="bi bi-check2"></i> Save Timer
+            </button>
+          </div>
+        </div>
+
+        <!-- Poster items grid -->
+        <div class="item-grid" id="posters-grid">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────── SECTION 3: MAGAZINE & EDITORIAL ──────────────── -->
+    <div id="sec-magazine" class="admin-sec d-none">
+      <!-- 2A. Top Main Featured Article -->
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-star-fill text-warning"></i> Top Main Featured Story</h4>
+        </div>
+        <p class="text-muted small mb-3">This story appears on the top-left with a large image and bold typography.</p>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label small fw-semibold">Category Tag</label>
+            <input type="text" id="mag-top-cat" class="form-control" placeholder="e.g. TRAVELOKAM">
+          </div>
+          <div class="col-md-8">
+            <label class="form-label small fw-semibold">Headline / Title</label>
+            <input type="text" id="mag-top-title" class="form-control" placeholder="Article Title">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold">Author</label>
+            <input type="text" id="mag-top-author" class="form-control" placeholder="e.g. മുഹമ്മദലി സഖാഫി പൊട്ടിക്കല്ല്">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold">Timestamp / Badge</label>
+            <input type="text" id="mag-top-time" class="form-control" placeholder="e.g. 2 HOURS AGO">
+          </div>
+          <div class="col-12">
+            <label class="form-label small fw-semibold">Excerpt Snippet</label>
+            <textarea id="mag-top-excerpt" class="form-control" rows="2" placeholder="Brief summary of article..."></textarea>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold">Featured Image</label>
+            <input type="text" id="mag-top-image" class="form-control mb-1" placeholder="assets/img/... or https://...">
+            <input type="file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'mag-top-image', 'mag-top-preview')">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold">Target Link</label>
+            <input type="text" id="mag-top-link" class="form-control" placeholder="articles.html?cat=CULTURE">
+            <div class="mt-2 text-center">
+              <img id="mag-top-preview" src="" alt="Preview" class="img-thumbnail d-none" style="max-height: 80px;">
+            </div>
+          </div>
+          <div class="col-12 mt-3">
+            <button class="btn btn-brand btn-sm" onclick="saveMagazineTopMain()">
+              <i class="bi bi-check2-circle me-1"></i> Update Top Featured Story
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2B. 3-Card Grid -->
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-grid-3x3-gap-fill text-primary"></i> 3 Subgrid Stories</h4>
+        </div>
+        <p class="text-muted small mb-3">The 3 articles displayed side-by-side below the main featured story.</p>
+        <div class="item-grid" id="mag-grid-cards">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- 2C. Sidebar Highlight & Most Read -->
+      <div class="row g-3">
+        <div class="col-lg-5">
+          <div class="content-card h-100">
+            <div class="card-topbar">
+              <h4><i class="bi bi-bookmark-star-fill text-danger"></i> Sidebar Highlight</h4>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Overlay Title</label>
+              <input type="text" id="mag-side-title" class="form-control" placeholder="e.g. എത്ര റീൽ വേണം ഒരു ദിവസം ജീവിക്കാൻ?">
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Background Image</label>
+              <input type="text" id="mag-side-image" class="form-control mb-1" placeholder="assets/img/...">
+              <input type="file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'mag-side-image')">
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Target Link</label>
+              <input type="text" id="mag-side-link" class="form-control" placeholder="articles.html">
+            </div>
+            <button class="btn btn-brand btn-sm" onclick="saveMagazineSidebarHighlight()">
+              <i class="bi bi-check2-circle me-1"></i> Update Sidebar Highlight
+            </button>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="content-card h-100">
+            <div class="card-topbar">
+              <h4><i class="bi bi-list-ol text-danger"></i> MOST READ List (1 to 5)</h4>
+              <button class="btn btn-outline-primary btn-sm" onclick="promptAddMostRead()">
+                <i class="bi bi-plus-lg me-1"></i> Add Item
+              </button>
+            </div>
+            <div id="mag-most-read-list">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────── SECTION 4: VIDEOS MANAGEMENT ──────────────── -->
+    <div id="sec-videos" class="admin-sec d-none">
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-camera-reels-fill text-danger"></i> Videos Management</h4>
+          <button class="btn btn-brand btn-sm" onclick="openAddVideoModal()">
+            <i class="bi bi-plus-lg me-1"></i> Add New Video
+          </button>
+        </div>
+        <p class="text-muted small mb-3">Videos appear in the dark theme section. You can enter YouTube links or upload direct video files!</p>
+
+        <!-- Main 2x2 Grid -->
+        <h6 class="fw-bold text-dark mt-3 mb-2"><i class="bi bi-grid-fill text-danger me-1"></i> Featured Videos (Main 2x2 Grid)</h6>
+        <div class="item-grid mb-4" id="video-main-grid-admin">
+          <!-- Populated dynamically -->
+        </div>
+
+        <!-- Sidebar Videos -->
+        <h6 class="fw-bold text-dark mt-4 mb-2"><i class="bi bi-list-task text-danger me-1"></i> Sidebar Video List</h6>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle small">
+            <thead class="table-light">
+              <tr>
+                <th style="width: 70px;">Thumb</th>
+                <th>Category</th>
+                <th>Title</th>
+                <th>Timestamp</th>
+                <th class="text-end" style="width: 120px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="video-side-table-body">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────── SECTION 5: RECENT SECTION ──────────────── -->
+    <div id="sec-recent" class="admin-sec d-none">
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-clock-history text-danger"></i> Recent Section Articles</h4>
+          <button class="btn btn-brand btn-sm" onclick="openAddRecentModal()">
+            <i class="bi bi-plus-lg me-1"></i> Add Recent Article
+          </button>
+        </div>
+        <p class="text-muted small mb-3">Cards shown in the 4-column "Recent" section at the bottom of the homepage.</p>
+        <div class="item-grid" id="recent-articles-grid-admin">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────── SECTION 6: ABOUT US / WHO WE ARE ──────────────── -->
     <div id="sec-about" class="admin-sec d-none">
       <div class="content-card">
         <div class="card-topbar">
@@ -506,9 +699,8 @@
       </div>
     </div>
 
-    <!-- ──────────────── SECTION 3: GALLERY (PHOTOS & FOLDERS) ──────────────── -->
+    <!-- ──────────────── SECTION 7: GALLERY ──────────────── -->
     <div id="sec-gallery" class="admin-sec d-none">
-      <!-- Folder Management -->
       <div class="content-card">
         <div class="card-topbar">
           <h4><i class="bi bi-folder-fill"></i> Gallery Folders / Albums</h4>
@@ -516,13 +708,11 @@
             <i class="bi bi-folder-plus me-1"></i> New Folder
           </button>
         </div>
-        <p class="text-muted small mb-3">Folders organize photos into categories on the website (e.g. Carnival, Launch, Heritage Walk).</p>
         <div class="d-flex flex-wrap gap-2 mb-3" id="gallery-folders-container">
           <!-- Populated dynamically -->
         </div>
       </div>
 
-      <!-- Photo Management -->
       <div class="content-card">
         <div class="card-topbar">
           <h4><i class="bi bi-images"></i> Photos in Gallery</h4>
@@ -535,174 +725,140 @@
             </button>
           </div>
         </div>
-
         <div class="item-grid" id="gallery-photos-grid">
           <!-- Populated dynamically -->
         </div>
       </div>
     </div>
 
-    <!-- ──────────────── SECTION 4: OUR TEAM ──────────────── -->
+    <!-- ──────────────── SECTION 8: OUR TEAM ──────────────── -->
     <div id="sec-team" class="admin-sec d-none">
       <div class="content-card">
         <div class="card-topbar">
           <h4><i class="bi bi-people-fill"></i> Our Team Members</h4>
           <button class="btn btn-brand btn-sm" onclick="openAddTeamModal()">
-            <i class="bi bi-person-plus-fill me-1"></i> Add Team Member
+            <i class="bi bi-person-plus-fill me-1"></i> Add Member
           </button>
         </div>
-        <p class="text-muted small mb-3">Manage key leaders, chairman, ambassador, director, and curator profiles.</p>
         <div class="item-grid" id="team-members-grid">
           <!-- Populated dynamically -->
         </div>
       </div>
     </div>
 
-    <!-- ──────────────── SECTION 5: OUR EVENTS ──────────────── -->
+    <!-- ──────────────── SECTION 9: OUR EVENTS ──────────────── -->
     <div id="sec-events" class="admin-sec d-none">
       <div class="content-card">
         <div class="card-topbar">
-          <h4><i class="bi bi-calendar2-event-fill"></i> Our Events & Programs</h4>
+          <h4><i class="bi bi-calendar-event-fill"></i> Our Events & Programs</h4>
           <button class="btn btn-brand btn-sm" onclick="openAddEventModal()">
-            <i class="bi bi-calendar-plus me-1"></i> Add Event
+            <i class="bi bi-calendar-plus-fill me-1"></i> Add Event
           </button>
         </div>
-        <p class="text-muted small mb-3">Manage Carnival, Heritage Walks, Award Contests, and Cultural Programs displayed on the homepage.</p>
         <div class="item-grid" id="events-grid">
           <!-- Populated dynamically -->
         </div>
       </div>
     </div>
 
-    <!-- ──────────────── SECTION 6: ARCHIVES (PHOTOS & RECORDS) ──────────────── -->
+    <!-- ──────────────── SECTION 10: ARCHIVES & RECORDS ──────────────── -->
     <div id="sec-archives" class="admin-sec d-none">
-      <!-- Archive Folders -->
       <div class="content-card">
         <div class="card-topbar">
-          <h4><i class="bi bi-folder-symlink-fill"></i> Archive Folders & Categories</h4>
+          <h4><i class="bi bi-folder-fill"></i> Archive Categories & Folders</h4>
           <button class="btn btn-outline-primary btn-sm" onclick="promptCreateArchiveFolder()">
-            <i class="bi bi-folder-plus me-1"></i> New Archive Folder
+            <i class="bi bi-folder-plus me-1"></i> New Category
           </button>
         </div>
-        <p class="text-muted small mb-3">Organize historical assets into categories (e.g. Historical Photos, Ancient Records, Monuments, Manuscripts).</p>
         <div class="d-flex flex-wrap gap-2 mb-3" id="archive-folders-container">
           <!-- Populated dynamically -->
         </div>
       </div>
 
-      <!-- Archive Photos/Records -->
       <div class="content-card">
         <div class="card-topbar">
-          <h4><i class="bi bi-archive-fill"></i> Archived Photos, Records & Documents</h4>
-          <div class="d-flex gap-2">
-            <select class="form-select form-select-sm" id="archive-folder-filter" onchange="filterArchiveGridByFolder(this.value)">
-              <option value="all">Show All Archive Folders</option>
-            </select>
-            <button class="btn btn-brand btn-sm text-nowrap" onclick="openAddArchiveModal()">
-              <i class="bi bi-plus-lg me-1"></i> Add Archive Photo/Record
-            </button>
-          </div>
+          <h4><i class="bi bi-archive-fill"></i> Historical Records & Documents</h4>
+          <button class="btn btn-brand btn-sm text-nowrap" onclick="openAddArchiveModal()">
+            <i class="bi bi-plus-lg me-1"></i> Add Record / Photo
+          </button>
         </div>
-
         <div class="item-grid" id="archives-items-grid">
           <!-- Populated dynamically -->
         </div>
       </div>
     </div>
 
-    <!-- ──────────────── SECTION 7: SOCIAL LINKS & FOOTER ──────────────── -->
+    <!-- ──────────────── SECTION 11: SOCIAL & FOOTER ──────────────── -->
     <div id="sec-social" class="admin-sec d-none">
       <div class="content-card">
         <div class="card-topbar">
-          <h4><i class="bi bi-share-fill"></i> Social Media & WhatsApp Links</h4>
+          <h4><i class="bi bi-share-fill"></i> Social Media Links & Footer</h4>
         </div>
         <div class="row g-3">
           <div class="col-md-6">
             <label class="form-label small fw-semibold"><i class="bi bi-facebook text-primary me-1"></i> Facebook Page URL</label>
-            <input type="url" id="social-facebook" class="form-control" placeholder="https://facebook.com/...">
+            <input type="text" id="social-facebook" class="form-control">
           </div>
           <div class="col-md-6">
             <label class="form-label small fw-semibold"><i class="bi bi-instagram text-danger me-1"></i> Instagram Profile URL</label>
-            <input type="url" id="social-instagram" class="form-control" placeholder="https://instagram.com/...">
+            <input type="text" id="social-instagram" class="form-control">
           </div>
           <div class="col-md-6">
             <label class="form-label small fw-semibold"><i class="bi bi-youtube text-danger me-1"></i> YouTube Channel URL</label>
-            <input type="url" id="social-youtube" class="form-control" placeholder="https://youtube.com/@...">
+            <input type="text" id="social-youtube" class="form-control">
           </div>
           <div class="col-md-6">
-            <label class="form-label small fw-semibold"><i class="bi bi-whatsapp text-success me-1"></i> WhatsApp Official Channel</label>
-            <input type="url" id="social-whatsapp-channel" class="form-control" placeholder="https://whatsapp.com/channel/...">
+            <label class="form-label small fw-semibold"><i class="bi bi-whatsapp text-success me-1"></i> WhatsApp Channel URL</label>
+            <input type="text" id="social-whatsapp-channel" class="form-control">
           </div>
           <div class="col-md-6">
-            <label class="form-label small fw-semibold"><i class="bi bi-whatsapp text-success me-1"></i> WhatsApp Community Group</label>
-            <input type="url" id="social-whatsapp-group" class="form-control" placeholder="https://chat.whatsapp.com/...">
+            <label class="form-label small fw-semibold"><i class="bi bi-whatsapp text-success me-1"></i> WhatsApp Group URL</label>
+            <input type="text" id="social-whatsapp-group" class="form-control">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold"><i class="bi bi-chat-quote-fill me-1"></i> Footer Tagline</label>
+            <input type="text" id="footer-tagline" class="form-control">
+          </div>
+          <div class="col-12 mt-3">
+            <button class="btn btn-brand" onclick="saveSectionPrompt('Social Links')">
+              <i class="bi bi-check2-circle me-1"></i> Update Social & Footer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────── SECTION 12: SETTINGS & PASSWORD ──────────────── -->
+    <div id="sec-settings" class="admin-sec d-none">
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-shield-lock-fill"></i> Admin Password & Access</h4>
+        </div>
+        <p class="text-muted small">Update the password required to access this admin panel (Current Default: <code>civil@tanur</code>).</p>
+        <div class="row g-3" style="max-width: 480px;">
+          <div class="col-12">
+            <label class="form-label small fw-semibold">New Password</label>
+            <input type="password" id="new-admin-pwd" class="form-control" placeholder="Enter new password">
+          </div>
+          <div class="col-12">
+            <button class="btn btn-brand btn-sm" onclick="changeAdminCredentials()">
+              <i class="bi bi-key-fill me-1"></i> Change Password
+            </button>
           </div>
         </div>
 
         <hr class="my-4">
 
-        <h5 class="fw-bold mb-3 text-dark"><i class="bi bi-layout-text-window-reverse me-2 text-primary"></i>Footer Tagline</h5>
-        <div class="col-md-8">
-          <label class="form-label small fw-semibold">Tagline Text</label>
-          <input type="text" id="footer-tagline-input" class="form-control" placeholder='"Tracing the past for the future"'>
-        </div>
-
-        <div class="mt-4">
-          <button class="btn btn-brand" onclick="saveSectionPrompt('Social & Footer')">
-            <i class="bi bi-check2-circle me-1"></i> Update Links & Footer
+        <h4><i class="bi bi-github"></i> GitHub Token Configuration (Optional)</h4>
+        <p class="text-muted small">Saving directly to GitHub repository from the browser requires a free Personal Access Token (PAT). Enter it once below:</p>
+        <div class="input-group mb-2" style="max-width: 540px;">
+          <input type="password" id="settings-pat" class="form-control" placeholder="ghp_...">
+          <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('settings-pat', this)">
+            <i class="bi bi-eye"></i>
           </button>
+          <button class="btn btn-primary" onclick="updateGitHubToken()">Save Token</button>
         </div>
-      </div>
-    </div>
-
-    <!-- ──────────────── SECTION 8: SETTINGS & PASSWORD ──────────────── -->
-    <div id="sec-settings" class="admin-sec d-none">
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="content-card h-100">
-            <div class="card-topbar">
-              <h4><i class="bi bi-person-lock"></i> Admin Login Credentials</h4>
-            </div>
-            <p class="text-muted small">Update the username and password required to access this admin panel.</p>
-            <div class="mb-3">
-              <label class="form-label small fw-semibold">Username</label>
-              <input type="text" id="setting-admin-user" class="form-control" placeholder="tanur heritage">
-            </div>
-            <div class="mb-3">
-              <label class="form-label small fw-semibold">New Password</label>
-              <input type="password" id="new-admin-pwd" class="form-control" placeholder="Enter new password (leave blank to keep current)">
-            </div>
-            <button class="btn btn-outline-primary btn-sm" onclick="changeAdminCredentials()">
-              Update Credentials
-            </button>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="content-card h-100">
-            <div class="card-topbar">
-              <h4><i class="bi bi-github"></i> GitHub Token Configuration</h4>
-            </div>
-            <p class="text-muted small">Your token connects this browser to GitHub to save updates directly.</p>
-            <div class="mb-3">
-              <label class="form-label small fw-semibold">Current Personal Access Token</label>
-              <div class="input-group">
-                <input type="password" id="settings-pat" class="form-control" placeholder="ghp_xxxxxxxxxxxx">
-                <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('settings-pat', this)">
-                  <i class="bi bi-eye"></i>
-                </button>
-              </div>
-            </div>
-            <div class="d-flex gap-2">
-              <button class="btn btn-outline-primary btn-sm" onclick="updateGitHubToken()">
-                Update Token
-              </button>
-              <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#patHelpModal">
-                Token Help
-              </button>
-            </div>
-          </div>
-        </div>
+        <small class="text-muted d-block">Token scope needed: <code>repo</code>. <a href="#" data-bs-toggle="modal" data-bs-target="#patHelpModal">How to generate a token?</a></small>
       </div>
     </div>
 
@@ -711,51 +867,262 @@
 
 <!-- ======================= MODALS ======================= -->
 
-<!-- Photo Modal (Gallery) -->
-<div class="modal fade" id="photoModal" tabindex="-1">
+<!-- 1. Poster Modal -->
+<div class="modal fade" id="posterModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="photoModalTitle">Add Gallery Photo</h5>
+        <h5 class="modal-title fw-bold" id="posterModalTitle">Add Hero Poster</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <input type="hidden" id="edit-photo-id">
+        <input type="hidden" id="edit-poster-id">
         <div class="mb-3">
-          <label class="form-label small fw-semibold">Photo Caption / Title</label>
-          <input type="text" id="photo-caption" class="form-control" placeholder="e.g. Project Launch Ceremony">
+          <label class="form-label small fw-semibold">Poster Title</label>
+          <input type="text" id="poster-title" class="form-control" placeholder="e.g. Leadership Appraisal & Workshop 2026">
         </div>
         <div class="mb-3">
-          <label class="form-label small fw-semibold">Folder / Category</label>
-          <select id="photo-folder-select" class="form-select">
-            <!-- Populated dynamically -->
-          </select>
-        </div>
-        <div class="mb-3">
-          <label class="form-label small fw-semibold">Image Source</label>
-          <input type="text" id="photo-url" class="form-control mb-2" placeholder="assets/img/... or https://...">
+          <label class="form-label small fw-semibold">Poster Image (Wide Banner Aspect Ratio)</label>
+          <input type="text" id="poster-image" class="form-control mb-2" placeholder="assets/img/posters/... or https://...">
           <div class="p-2 border rounded bg-light">
-            <small class="d-block text-muted mb-1"><i class="bi bi-upload me-1"></i> Or choose image from device to upload directly:</small>
-            <input type="file" id="photo-file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'photo-url', 'photo-preview')">
+            <small class="d-block text-muted mb-1"><i class="bi bi-upload me-1"></i> Or upload poster file:</small>
+            <input type="file" id="poster-file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'poster-image', 'poster-preview')">
           </div>
         </div>
         <div class="mb-3">
-          <label class="form-label small fw-semibold">Description (Optional)</label>
-          <textarea id="photo-desc" class="form-control" rows="2" placeholder="Brief details about the photo"></textarea>
+          <label class="form-label small fw-semibold">Target Link (Optional)</label>
+          <input type="text" id="poster-link" class="form-control" placeholder="gallery.html, articles.html, or https://...">
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="poster-active" checked>
+          <label class="form-check-label small fw-semibold" for="poster-active">Active (Visible in slider)</label>
         </div>
         <div class="text-center">
-          <img id="photo-preview" src="" alt="Preview" class="img-thumbnail d-none" style="max-height: 140px;">
+          <img id="poster-preview" src="" alt="Preview" class="img-thumbnail d-none" style="max-height: 120px;">
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-brand btn-sm" onclick="saveGalleryPhoto()">Save Photo</button>
+        <button type="button" class="btn btn-brand btn-sm" onclick="savePosterItem()">Save Poster</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Team Member Modal -->
+<!-- 2. Video Modal (With Direct Upload & YouTube) -->
+<div class="modal fade" id="videoModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="videoModalTitle">Add Video</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="edit-video-id">
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Placement</label>
+          <select id="video-placement" class="form-select form-select-sm">
+            <option value="main">Main 2x2 Grid (Featured Video)</option>
+            <option value="sidebar">Sidebar Video List</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Video Title</label>
+          <input type="text" id="video-title" class="form-control" placeholder="Title in Malayalam or English">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">YouTube URL or Video Link</label>
+          <div class="input-group">
+            <input type="text" id="video-url" class="form-control" placeholder="https://www.youtube.com/watch?v=... or direct mp4">
+            <button class="btn btn-outline-secondary btn-sm" type="button" onclick="autoFetchYoutubeThumb()">
+              <i class="bi bi-magic me-1"></i> Auto-Thumb
+            </button>
+          </div>
+          <div class="p-2 border rounded bg-light mt-2">
+            <small class="d-block text-muted mb-1"><i class="bi bi-upload me-1"></i> Or upload video file directly (MP4/WebM):</small>
+            <input type="file" id="video-file" class="form-control form-control-sm" accept="video/*" onchange="handleVideoUploadDirect(this)">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Thumbnail Image</label>
+          <input type="text" id="video-thumbnail" class="form-control mb-1" placeholder="assets/img/... or https://...">
+          <input type="file" id="video-thumb-file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'video-thumbnail', 'video-thumb-preview')">
+        </div>
+        <div class="row g-2 mb-3">
+          <div class="col-6">
+            <label class="form-label small fw-semibold">Tag / Badge</label>
+            <input type="text" id="video-tag" class="form-control" placeholder="e.g. update, InSight, OTHERS">
+          </div>
+          <div class="col-6">
+            <label class="form-label small fw-semibold">Presenter / Author / Time</label>
+            <input type="text" id="video-author" class="form-control" placeholder="e.g. ബിനോയ് തോമസ് / 2 DAYS AGO">
+          </div>
+        </div>
+        <div class="text-center">
+          <img id="video-thumb-preview" src="" alt="Thumb Preview" class="img-thumbnail d-none" style="max-height: 100px;">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-brand btn-sm" onclick="saveVideoItem()">Save Video</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. Recent Article Modal -->
+<div class="modal fade" id="recentModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="recentModalTitle">Add Recent Article</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="edit-recent-id">
+        <div class="row g-2 mb-3">
+          <div class="col-6">
+            <label class="form-label small fw-semibold">Category Tag</label>
+            <input type="text" id="recent-category" class="form-control" placeholder="e.g. UPDATION, TRAVELOKAM">
+          </div>
+          <div class="col-6">
+            <label class="form-label small fw-semibold">Reading Time</label>
+            <input type="text" id="recent-readtime" class="form-control" placeholder="e.g. 5 minutes">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Title</label>
+          <input type="text" id="recent-title" class="form-control" placeholder="Title in Malayalam or English">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Excerpt</label>
+          <textarea id="recent-excerpt" class="form-control" rows="2" placeholder="Brief snippet..."></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Hashtags (comma separated)</label>
+          <input type="text" id="recent-tags" class="form-control" placeholder="#RSS, #Education, #Malabar">
+        </div>
+        <div class="row g-2 mb-3">
+          <div class="col-6">
+            <label class="form-label small fw-semibold">Author</label>
+            <input type="text" id="recent-author" class="form-control" placeholder="Author name">
+          </div>
+          <div class="col-6">
+            <label class="form-label small fw-semibold">Timestamp</label>
+            <input type="text" id="recent-time" class="form-control" placeholder="e.g. 19 MINUTES AGO">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Thumbnail Image</label>
+          <input type="text" id="recent-image" class="form-control mb-1" placeholder="assets/img/... or https://...">
+          <input type="file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'recent-image', 'recent-preview')">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Target Link</label>
+          <input type="text" id="recent-link" class="form-control" placeholder="articles.html?cat=ARTICLES">
+        </div>
+        <div class="text-center">
+          <img id="recent-preview" src="" alt="Preview" class="img-thumbnail d-none" style="max-height: 100px;">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-brand btn-sm" onclick="saveRecentItem()">Save Article</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. Magazine Subgrid Story Modal -->
+<div class="modal fade" id="magGridModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="magGridModalTitle">Edit Subgrid Story</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="edit-mag-grid-id">
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Category Tag</label>
+          <input type="text" id="mag-grid-cat" class="form-control" placeholder="RELIGION, UPDATION, HEALTH">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Title</label>
+          <input type="text" id="mag-grid-title" class="form-control" placeholder="Headline">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Excerpt</label>
+          <textarea id="mag-grid-excerpt" class="form-control" rows="2"></textarea>
+        </div>
+        <div class="row g-2 mb-3">
+          <div class="col-6">
+            <label class="form-label small fw-semibold">Author</label>
+            <input type="text" id="mag-grid-author" class="form-control">
+          </div>
+          <div class="col-6">
+            <label class="form-label small fw-semibold">Timestamp</label>
+            <input type="text" id="mag-grid-time" class="form-control">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Image</label>
+          <input type="text" id="mag-grid-image" class="form-control mb-1">
+          <input type="file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'mag-grid-image')">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Link</label>
+          <input type="text" id="mag-grid-link" class="form-control">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-brand btn-sm" onclick="saveMagGridItem()">Save Story</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. Photo Modal -->
+<div class="modal fade" id="photoModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="photoModalTitle">Add Photo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="edit-photo-id">
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Folder / Album</label>
+          <select id="photo-folder-select" class="form-select"></select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Caption</label>
+          <input type="text" id="photo-caption" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Image URL or Upload</label>
+          <input type="text" id="photo-url" class="form-control mb-1">
+          <input type="file" id="photo-file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'photo-url', 'photo-preview')">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Description</label>
+          <textarea id="photo-desc" class="form-control" rows="2"></textarea>
+        </div>
+        <div class="text-center">
+          <img id="photo-preview" src="" alt="Preview" class="img-thumbnail d-none" style="max-height: 120px;">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-brand btn-sm" onclick="savePhotoItem()">Save Photo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. Team Modal -->
 <div class="modal fade" id="teamModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -767,22 +1134,19 @@
         <input type="hidden" id="edit-team-id">
         <div class="mb-3">
           <label class="form-label small fw-semibold">Full Name</label>
-          <input type="text" id="team-name" class="form-control" placeholder="e.g. Sayyid Munavvar Ali Shihab Thangal">
+          <input type="text" id="team-name" class="form-control">
         </div>
         <div class="mb-3">
           <label class="form-label small fw-semibold">Role / Designation</label>
-          <input type="text" id="team-role" class="form-control" placeholder="e.g. Heritage Chairman">
+          <input type="text" id="team-role" class="form-control">
         </div>
         <div class="mb-3">
-          <label class="form-label small fw-semibold">Photo Source</label>
-          <input type="text" id="team-photo" class="form-control mb-2" placeholder="assets/img/team/team-1.jpg or https://...">
-          <div class="p-2 border rounded bg-light">
-            <small class="d-block text-muted mb-1"><i class="bi bi-upload me-1"></i> Or upload portrait photo:</small>
-            <input type="file" id="team-file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'team-photo', 'team-preview')">
-          </div>
+          <label class="form-label small fw-semibold">Photo URL or Upload</label>
+          <input type="text" id="team-photo" class="form-control mb-1">
+          <input type="file" id="team-file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'team-photo', 'team-preview')">
         </div>
         <div class="text-center">
-          <img id="team-preview" src="" alt="Preview" class="rounded-circle d-none" style="width: 80px; height: 80px; object-fit: cover;">
+          <img id="team-preview" src="" alt="Preview" class="img-thumbnail d-none" style="max-height: 100px;">
         </div>
       </div>
       <div class="modal-footer">
@@ -793,7 +1157,7 @@
   </div>
 </div>
 
-<!-- Event Modal -->
+<!-- 7. Event Modal -->
 <div class="modal fade" id="eventModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -805,30 +1169,27 @@
         <input type="hidden" id="edit-event-id">
         <div class="mb-3">
           <label class="form-label small fw-semibold">Event Title</label>
-          <input type="text" id="event-title" class="form-control" placeholder="e.g. Heritage Carnival">
+          <input type="text" id="event-title" class="form-control">
         </div>
         <div class="mb-3">
           <label class="form-label small fw-semibold">Date / Badge Text</label>
-          <input type="text" id="event-date" class="form-control" placeholder="e.g. Oct 19-20, 2024 or Upcoming">
+          <input type="text" id="event-date" class="form-control">
         </div>
         <div class="mb-3">
-          <label class="form-label small fw-semibold">Event Description</label>
-          <textarea id="event-desc" class="form-control" rows="3" placeholder="Description of the event and highlights"></textarea>
+          <label class="form-label small fw-semibold">Description</label>
+          <textarea id="event-desc" class="form-control" rows="3"></textarea>
         </div>
         <div class="mb-3">
-          <label class="form-label small fw-semibold">Thumbnail / Icon Image</label>
-          <input type="text" id="event-image" class="form-control mb-2" placeholder="assets/img/sub 3.png or https://...">
-          <div class="p-2 border rounded bg-light">
-            <small class="d-block text-muted mb-1"><i class="bi bi-upload me-1"></i> Or upload event thumbnail:</small>
-            <input type="file" id="event-file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'event-image', 'event-preview')">
-          </div>
+          <label class="form-label small fw-semibold">Image URL or Upload</label>
+          <input type="text" id="event-image" class="form-control mb-1">
+          <input type="file" id="event-file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'event-image', 'event-preview')">
         </div>
         <div class="mb-3">
-          <label class="form-label small fw-semibold">Link URL</label>
-          <input type="text" id="event-link" class="form-control" placeholder="gallery.html or https://...">
+          <label class="form-label small fw-semibold">Link</label>
+          <input type="text" id="event-link" class="form-control">
         </div>
         <div class="text-center">
-          <img id="event-preview" src="" alt="Preview" class="img-thumbnail d-none" style="max-height: 120px;">
+          <img id="event-preview" src="" alt="Preview" class="img-thumbnail d-none" style="max-height: 100px;">
         </div>
       </div>
       <div class="modal-footer">
@@ -839,49 +1200,44 @@
   </div>
 </div>
 
-<!-- Archive Modal -->
+<!-- 8. Archive Modal -->
 <div class="modal fade" id="archiveModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="archiveModalTitle">Add Archive Record/Photo</h5>
+        <h5 class="modal-title fw-bold" id="archiveModalTitle">Add Archive Record</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
         <input type="hidden" id="edit-archive-id">
         <div class="mb-3">
-          <label class="form-label small fw-semibold">Title of Record / Photo</label>
-          <input type="text" id="archive-title" class="form-control" placeholder="e.g. Ancient Maritime Inscription">
+          <label class="form-label small fw-semibold">Title of Record</label>
+          <input type="text" id="archive-title" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Folder / Category</label>
+          <select id="archive-folder-select" class="form-select"></select>
         </div>
         <div class="mb-3">
           <label class="form-label small fw-semibold">Year / Era</label>
-          <input type="text" id="archive-year" class="form-control" placeholder="e.g. 1948 or Ancient Malabar Era">
+          <input type="text" id="archive-year" class="form-control">
         </div>
         <div class="mb-3">
-          <label class="form-label small fw-semibold">Archive Folder / Category</label>
-          <select id="archive-folder-select" class="form-select">
-            <!-- Populated dynamically -->
-          </select>
-        </div>
-        <div class="mb-3">
-          <label class="form-label small fw-semibold">Image / Document Scan Source</label>
-          <input type="text" id="archive-url" class="form-control mb-2" placeholder="assets/img/... or https://...">
-          <div class="p-2 border rounded bg-light">
-            <small class="d-block text-muted mb-1"><i class="bi bi-upload me-1"></i> Or upload scan/photo:</small>
-            <input type="file" id="archive-file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'archive-url', 'archive-preview')">
-          </div>
+          <label class="form-label small fw-semibold">Image or Document Scan</label>
+          <input type="text" id="archive-url" class="form-control mb-1">
+          <input type="file" id="archive-file" class="form-control form-control-sm" accept="image/*" onchange="handleImageUploadDirect(this, 'archive-url', 'archive-preview')">
         </div>
         <div class="mb-3">
           <label class="form-label small fw-semibold">Historical Description</label>
-          <textarea id="archive-desc" class="form-control" rows="3" placeholder="Context, discovery location, or historical details"></textarea>
+          <textarea id="archive-desc" class="form-control" rows="2"></textarea>
         </div>
         <div class="text-center">
-          <img id="archive-preview" src="" alt="Preview" class="img-thumbnail d-none" style="max-height: 140px;">
+          <img id="archive-preview" src="" alt="Preview" class="img-thumbnail d-none" style="max-height: 100px;">
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-brand btn-sm" onclick="saveArchiveItem()">Save Archive Record</button>
+        <button type="button" class="btn btn-brand btn-sm" onclick="saveArchiveItem()">Save Archive</button>
       </div>
     </div>
   </div>
@@ -896,7 +1252,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body small" style="line-height: 1.8;">
-        <p>A free GitHub Personal Access Token allows you to save updates directly from this admin panel to the website repository without needing a paid server:</p>
+        <p>A free GitHub Personal Access Token allows you to save updates directly from this admin panel to the website repository:</p>
         <ol>
           <li>Open <a href="https://github.com/settings/tokens/new" target="_blank" class="fw-bold text-primary">github.com/settings/tokens/new</a></li>
           <li>Note: Type <strong>Tanur Heritage Admin</strong></li>
@@ -925,6 +1281,11 @@
   const DEFAULT_ADMIN_PWD  = 'civil@tanur';
 
   let siteData = {
+    posters: [],
+    posterSettings: { autoSlideInterval: 4000, pauseOnHover: true },
+    magazineFeatured: { topMain: {}, gridArticles: [], sidebarHighlight: {}, mostRead: [] },
+    videos: { mainGrid: [], sidebarList: [] },
+    recentArticles: [],
     about: { title: 'Who we are', subtitle: '', paragraphs: [] },
     team: [],
     events: [],
@@ -936,11 +1297,15 @@
     footer: {}
   };
 
-  // Bootstrap modals
+  // Modals
+  let posterModalInstance, videoModalInstance, recentModalInstance, magGridModalInstance;
   let photoModalInstance, teamModalInstance, eventModalInstance, archiveModalInstance;
 
-  // Initialize
   window.addEventListener('DOMContentLoaded', function() {
+    posterModalInstance  = new bootstrap.Modal(document.getElementById('posterModal'));
+    videoModalInstance   = new bootstrap.Modal(document.getElementById('videoModal'));
+    recentModalInstance  = new bootstrap.Modal(document.getElementById('recentModal'));
+    magGridModalInstance = new bootstrap.Modal(document.getElementById('magGridModal'));
     photoModalInstance   = new bootstrap.Modal(document.getElementById('photoModal'));
     teamModalInstance    = new bootstrap.Modal(document.getElementById('teamModal'));
     eventModalInstance   = new bootstrap.Modal(document.getElementById('eventModal'));
@@ -961,8 +1326,6 @@
   // Authentication
   function handleLogin() {
     const pwdInput = document.getElementById('login-pwd').value.trim();
-    const remember = document.getElementById('remember-me').checked;
-
     const currentExpectedPwd = (localStorage.getItem('th_admin_pwd') || DEFAULT_ADMIN_PWD).trim();
 
     if (!pwdInput) {
@@ -994,10 +1357,6 @@
   function revealAdminPanel() {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('admin-app').style.display = 'block';
-    const savedUser = localStorage.getItem('th_admin_username') || DEFAULT_ADMIN_USER;
-    if (document.getElementById('setting-admin-user')) {
-      document.getElementById('setting-admin-user').value = savedUser;
-    }
     if (document.getElementById('settings-pat')) {
       document.getElementById('settings-pat').value = getActiveToken();
     }
@@ -1019,7 +1378,6 @@
       icon.className = 'bi bi-eye';
     }
   }
-  }
 
   // Section Switching
   function switchSection(secId, clickedLink) {
@@ -1028,10 +1386,19 @@
     if (target) target.classList.remove('d-none');
 
     document.querySelectorAll('.sidebar-menu .nav-link').forEach(l => l.classList.remove('active'));
-    if (clickedLink) clickedLink.classList.add('active');
+    if (clickedLink) {
+      clickedLink.classList.add('active');
+    } else {
+      const match = document.querySelector(`.sidebar-menu .nav-link[onclick*="'${secId}'"]`);
+      if (match) match.classList.add('active');
+    }
 
     const titles = {
       dashboard: 'Dashboard Overview',
+      posters: '1. Hero Posters & Banners Slider',
+      magazine: '2. Magazine & Featured Articles',
+      videos: '3. Videos Management',
+      recent: '4. Recent Section',
       about: 'About Us / Who We Are',
       gallery: 'Gallery Photos & Folders',
       team: 'Our Team Members',
@@ -1082,6 +1449,11 @@
   }
 
   function ensureDataStructure() {
+    if (!siteData.posters) siteData.posters = [];
+    if (!siteData.posterSettings) siteData.posterSettings = { autoSlideInterval: 4000, pauseOnHover: true };
+    if (!siteData.magazineFeatured) siteData.magazineFeatured = { topMain: {}, gridArticles: [], sidebarHighlight: {}, mostRead: [] };
+    if (!siteData.videos) siteData.videos = { mainGrid: [], sidebarList: [] };
+    if (!siteData.recentArticles) siteData.recentArticles = [];
     if (!siteData.about) siteData.about = {};
     if (!siteData.about.paragraphs) {
       siteData.about.paragraphs = [
@@ -1091,181 +1463,76 @@
     }
     if (!siteData.team) siteData.team = [];
     if (!siteData.events) siteData.events = [];
-    if (!siteData.galleryFolders) {
-      siteData.galleryFolders = [
-        { id: 'carnival', name: 'Heritage Carnival' },
-        { id: 'launch', name: 'Project Launch' },
-        { id: 'event', name: 'Cultural Events' },
-        { id: 'team', name: 'Team & Dignitaries' }
-      ];
-    }
+    if (!siteData.galleryFolders) siteData.galleryFolders = [];
     if (!siteData.gallery) siteData.gallery = [];
-    if (!siteData.archiveFolders) {
-      siteData.archiveFolders = [
-        { id: 'historical-photos', name: 'Historical Photos (പഴയ ചിത്രങ്ങൾ)' },
-        { id: 'ancient-records', name: 'Ancient Records & Documents' },
-        { id: 'monuments', name: 'Heritage Monuments & Architecture' },
-        { id: 'manuscripts', name: 'Inscriptions & Manuscripts' }
-      ];
-    }
+    if (!siteData.archiveFolders) siteData.archiveFolders = [];
     if (!siteData.archives) siteData.archives = [];
     if (!siteData.social) siteData.social = {};
     if (!siteData.footer) siteData.footer = {};
   }
 
-  function renderAllSections() {
-    renderAboutSection();
-    renderGalleryFolders();
-    renderGalleryPhotos();
-    renderTeamSection();
-    renderEventsSection();
-    renderArchiveFolders();
-    renderArchivesSection();
-    renderSocialSection();
-  }
-
   function updateDashboardStats() {
-    document.getElementById('stat-team-count').textContent     = (siteData.team || []).length;
-    document.getElementById('stat-events-count').textContent   = (siteData.events || []).length;
-    document.getElementById('stat-gallery-count').textContent  = (siteData.gallery || []).length;
-    document.getElementById('stat-archives-count').textContent = (siteData.archives || []).length;
+    const elPosters = document.getElementById('stat-posters-count');
+    const elVideos = document.getElementById('stat-videos-count');
+    const elRecent = document.getElementById('stat-recent-count');
+    const elArchives = document.getElementById('stat-archives-count');
+
+    if (elPosters) elPosters.textContent = (siteData.posters || []).length;
+    if (elVideos) elVideos.textContent = ((siteData.videos && siteData.videos.mainGrid ? siteData.videos.mainGrid.length : 0) + (siteData.videos && siteData.videos.sidebarList ? siteData.videos.sidebarList.length : 0));
+    if (elRecent) elRecent.textContent = (siteData.recentArticles || []).length;
+    if (elArchives) elArchives.textContent = (siteData.archives || []).length;
   }
 
-  // ────────────── 1. ABOUT SECTION ──────────────
-  function renderAboutSection() {
-    document.getElementById('about-heading-input').value = siteData.about.title || 'Who we are';
-    document.getElementById('about-subtitle-input').value = siteData.about.subtitle || '';
-
-    const list = document.getElementById('about-paragraphs-list');
-    list.innerHTML = '';
-    const paras = siteData.about.paragraphs || [];
-
-    paras.forEach((p, idx) => {
-      const div = document.createElement('div');
-      div.className = 'mb-3 p-3 bg-light border rounded-3';
-      div.innerHTML = `
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <span class="badge bg-secondary">Paragraph ${idx + 1}</span>
-          <button class="btn btn-outline-danger btn-sm py-0 px-2" onclick="removeAboutParagraph(${idx})">
-            <i class="bi bi-trash3"></i> Delete
-          </button>
-        </div>
-        <textarea class="form-control" rows="3" onchange="updateAboutParagraph(${idx}, this.value)">${p}</textarea>
-      `;
-      list.appendChild(div);
-    });
-  }
-
-  function addAboutParagraph() {
-    if (!siteData.about.paragraphs) siteData.about.paragraphs = [];
-    siteData.about.paragraphs.push('New paragraph describing Tanur Heritage activities and mission.');
+  function renderAllSections() {
+    renderPosters();
+    renderMagazineAdmin();
+    renderVideosAdmin();
+    renderRecentAdmin();
     renderAboutSection();
-  }
-
-  function updateAboutParagraph(idx, val) {
-    siteData.about.paragraphs[idx] = val;
-    if (idx === 0) siteData.about.text1 = val;
-    if (idx === 1) siteData.about.text2 = val;
-  }
-
-  function removeAboutParagraph(idx) {
-    if (!confirm('Delete this paragraph?')) return;
-    siteData.about.paragraphs.splice(idx, 1);
-    renderAboutSection();
-  }
-
-  function collectAboutData() {
-    siteData.about.title = document.getElementById('about-heading-input').value.trim();
-    siteData.about.subtitle = document.getElementById('about-subtitle-input').value.trim();
-    if (siteData.about.paragraphs && siteData.about.paragraphs.length > 0) {
-      siteData.about.text1 = siteData.about.paragraphs[0];
-      siteData.about.text2 = siteData.about.paragraphs[1] || '';
-    }
-  }
-
-  // ────────────── 2. GALLERY SECTION ──────────────
-  function renderGalleryFolders() {
-    const container = document.getElementById('gallery-folders-container');
-    const filterSelect = document.getElementById('gallery-folder-filter');
-    const modalSelect  = document.getElementById('photo-folder-select');
-
-    container.innerHTML = '';
-    filterSelect.innerHTML = '<option value="all">Show All Folders</option>';
-    modalSelect.innerHTML  = '';
-
-    (siteData.galleryFolders || []).forEach(f => {
-      // Badges
-      const pill = document.createElement('span');
-      pill.className = 'folder-pill';
-      pill.innerHTML = `
-        <i class="bi bi-folder2-open"></i> ${f.name}
-        <button class="btn-close btn-close-white" style="width:6px;height:6px;padding:0;font-size:8px;" onclick="event.stopPropagation(); deleteGalleryFolder('${f.id}')"></button>
-      `;
-      pill.onclick = () => filterGalleryGridByFolder(f.id);
-      container.appendChild(pill);
-
-      // Select options
-      filterSelect.innerHTML += `<option value="${f.id}">${f.name}</option>`;
-      modalSelect.innerHTML  += `<option value="${f.id}">${f.name}</option>`;
-    });
-  }
-
-  function promptCreateGalleryFolder() {
-    const name = prompt('Enter new Gallery Folder / Album Name (e.g. Carnival 2024, Heritage Walk):');
-    if (!name || !name.trim()) return;
-    const id = name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
-    if (siteData.galleryFolders.some(f => f.id === id)) {
-      alert('A folder with this name already exists.');
-      return;
-    }
-    siteData.galleryFolders.push({ id, name: name.trim() });
-    renderGalleryFolders();
-  }
-
-  function deleteGalleryFolder(folderId) {
-    if (!confirm(`Are you sure you want to delete this folder? Existing photos in this folder will stay preserved under 'event'.`)) return;
-    siteData.galleryFolders = siteData.galleryFolders.filter(f => f.id !== folderId);
-    (siteData.gallery || []).forEach(p => {
-      if (p.folder === folderId) p.folder = 'event';
-    });
     renderGalleryFolders();
     renderGalleryPhotos();
+    renderTeamMembers();
+    renderEvents();
+    renderArchiveFolders();
+    renderArchiveItems();
+    renderSocialAndFooter();
   }
 
-  function filterGalleryGridByFolder(folderId) {
-    renderGalleryPhotos(folderId);
-  }
-
-  function renderGalleryPhotos(activeFolder = 'all') {
-    const grid = document.getElementById('gallery-photos-grid');
+  // ────────────────────────────────────────────────────────────
+  // 1. POSTERS MANAGEMENT
+  // ────────────────────────────────────────────────────────────
+  function renderPosters() {
+    const grid = document.getElementById('posters-grid');
+    if (!grid) return;
     grid.innerHTML = '';
 
-    const list = (siteData.gallery || []).filter(item => {
-      if (activeFolder === 'all') return true;
-      return (item.folder || 'event') === activeFolder;
-    });
-
-    if (list.length === 0) {
-      grid.innerHTML = '<div class="col-12 text-center text-muted py-4"><i class="bi bi-images fs-3 d-block mb-2"></i>No photos in this folder yet. Click "Add Photo" to add one.</div>';
-      return;
+    if (siteData.posterSettings && siteData.posterSettings.autoSlideInterval) {
+      const select = document.getElementById('poster-slide-interval');
+      if (select) select.value = siteData.posterSettings.autoSlideInterval;
     }
 
-    list.forEach(p => {
-      const folderName = (siteData.galleryFolders.find(f => f.id === p.folder) || {}).name || p.folder || 'General';
+    (siteData.posters || []).forEach(p => {
       const card = document.createElement('div');
       card.className = 'item-card';
+      const activeBadge = p.active !== false 
+        ? '<span class="badge bg-success">Active</span>' 
+        : '<span class="badge bg-secondary">Inactive</span>';
+
       card.innerHTML = `
-        <img src="${p.url}" class="item-thumb" onerror="this.src='https://via.placeholder.com/300x160?text=Image'">
-        <div class="item-body">
-          <span class="badge bg-warning text-dark align-self-start mb-2">${folderName}</span>
-          <h6 class="fw-bold mb-1">${p.caption || 'Untitled Photo'}</h6>
-          <p class="text-muted small mb-2 text-truncate">${p.description || ''}</p>
-          <div class="item-actions">
-            <button class="btn btn-outline-primary btn-sm flex-fill" onclick="openEditPhotoModal('${p.id || p.url}')">
+        <img src="${p.image}" class="item-card-img" alt="${p.title}" onerror="this.src='../assets/img/sub 3.png'">
+        <div class="item-card-body">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            ${activeBadge}
+            <small class="text-muted">${p.id || ''}</small>
+          </div>
+          <h6>${p.title || 'Untitled Poster'}</h6>
+          <p class="small text-truncate mb-2"><i class="bi bi-link-45deg"></i> ${p.link || 'No target link'}</p>
+          <div class="item-card-footer">
+            <button class="btn btn-outline-secondary btn-sm" onclick="editPosterItem('${p.id}')">
               <i class="bi bi-pencil"></i> Edit
             </button>
-            <button class="btn btn-outline-danger btn-sm" onclick="deleteGalleryPhoto('${p.id || p.url}')">
-              <i class="bi bi-trash"></i>
+            <button class="btn btn-outline-danger btn-sm" onclick="deletePosterItem('${p.id}')">
+              <i class="bi bi-trash"></i> Delete
             </button>
           </div>
         </div>
@@ -1274,8 +1541,632 @@
     });
   }
 
+  function openAddPosterModal() {
+    document.getElementById('edit-poster-id').value = '';
+    document.getElementById('poster-title').value = '';
+    document.getElementById('poster-image').value = '';
+    document.getElementById('poster-link').value = '';
+    document.getElementById('poster-active').checked = true;
+    document.getElementById('poster-preview').classList.add('d-none');
+    document.getElementById('posterModalTitle').textContent = 'Add Hero Poster';
+    posterModalInstance.show();
+  }
+
+  function editPosterItem(id) {
+    const p = (siteData.posters || []).find(item => item.id === id);
+    if (!p) return;
+    document.getElementById('edit-poster-id').value = p.id;
+    document.getElementById('poster-title').value = p.title || '';
+    document.getElementById('poster-image').value = p.image || '';
+    document.getElementById('poster-link').value = p.link || '';
+    document.getElementById('poster-active').checked = p.active !== false;
+    const prev = document.getElementById('poster-preview');
+    if (p.image) {
+      prev.src = p.image;
+      prev.classList.remove('d-none');
+    } else {
+      prev.classList.add('d-none');
+    }
+    document.getElementById('posterModalTitle').textContent = 'Edit Hero Poster';
+    posterModalInstance.show();
+  }
+
+  function savePosterItem() {
+    const id = document.getElementById('edit-poster-id').value;
+    const title = document.getElementById('poster-title').value.trim();
+    const image = document.getElementById('poster-image').value.trim();
+    const link = document.getElementById('poster-link').value.trim();
+    const active = document.getElementById('poster-active').checked;
+
+    if (!image) {
+      alert('Please enter or upload a poster image.');
+      return;
+    }
+
+    if (id) {
+      const idx = siteData.posters.findIndex(p => p.id === id);
+      if (idx !== -1) {
+        siteData.posters[idx] = { id, title, image, link, active };
+      }
+    } else {
+      const newId = 'poster-' + Date.now();
+      siteData.posters.push({ id: newId, title, image, link, active });
+    }
+
+    posterModalInstance.hide();
+    renderPosters();
+    updateDashboardStats();
+    showStatusBanner('info', 'Poster updated! Click "Save to Website" above to publish.');
+  }
+
+  function deletePosterItem(id) {
+    if (!confirm('Are you sure you want to remove this poster from the slider?')) return;
+    siteData.posters = siteData.posters.filter(p => p.id !== id);
+    renderPosters();
+    updateDashboardStats();
+    showStatusBanner('info', 'Poster removed! Click "Save to Website" above to publish.');
+  }
+
+  function savePosterSettings() {
+    const val = parseInt(document.getElementById('poster-slide-interval').value) || 4000;
+    if (!siteData.posterSettings) siteData.posterSettings = {};
+    siteData.posterSettings.autoSlideInterval = val;
+    showStatusBanner('success', `Poster auto-slide interval set to ${val / 1000}s. Remember to Save to Website.`);
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // 2. MAGAZINE & EDITORIAL ARTICLES
+  // ────────────────────────────────────────────────────────────
+  function renderMagazineAdmin() {
+    const mag = siteData.magazineFeatured || {};
+
+    // 2A. Top Featured
+    if (mag.topMain) {
+      document.getElementById('mag-top-cat').value = mag.topMain.category || '';
+      document.getElementById('mag-top-title').value = mag.topMain.title || '';
+      document.getElementById('mag-top-author').value = mag.topMain.author || '';
+      document.getElementById('mag-top-time').value = mag.topMain.time || '';
+      document.getElementById('mag-top-excerpt').value = mag.topMain.excerpt || '';
+      document.getElementById('mag-top-image').value = mag.topMain.image || '';
+      document.getElementById('mag-top-link').value = mag.topMain.link || '';
+      const prev = document.getElementById('mag-top-preview');
+      if (mag.topMain.image) {
+        prev.src = mag.topMain.image;
+        prev.classList.remove('d-none');
+      }
+    }
+
+    // 2B. 3-Card Subgrid
+    const subGridContainer = document.getElementById('mag-grid-cards');
+    if (subGridContainer) {
+      subGridContainer.innerHTML = '';
+      (mag.gridArticles || []).forEach(art => {
+        const card = document.createElement('div');
+        card.className = 'item-card';
+        card.innerHTML = `
+          <img src="${art.image}" class="item-card-img" alt="${art.title}" onerror="this.src='../assets/img/masonry-portfolio/masonry-portfolio-1.jpg'">
+          <div class="item-card-body">
+            <span class="badge bg-danger mb-1">${art.category || 'CATEGORY'}</span>
+            <h6>${art.title}</h6>
+            <p class="small text-muted mb-2">${art.excerpt ? art.excerpt.substring(0, 70) + '...' : ''}</p>
+            <div class="item-card-footer">
+              <small class="text-muted">${art.author || ''}</small>
+              <button class="btn btn-outline-secondary btn-sm" onclick="openEditMagGrid('${art.id}')">
+                <i class="bi bi-pencil"></i> Edit
+              </button>
+            </div>
+          </div>
+        `;
+        subGridContainer.appendChild(card);
+      });
+    }
+
+    // 2C. Sidebar Highlight
+    if (mag.sidebarHighlight) {
+      document.getElementById('mag-side-title').value = mag.sidebarHighlight.title || '';
+      document.getElementById('mag-side-image').value = mag.sidebarHighlight.image || '';
+      document.getElementById('mag-side-link').value = mag.sidebarHighlight.link || '';
+    }
+
+    // 2D. Most Read List
+    const mrContainer = document.getElementById('mag-most-read-list');
+    if (mrContainer) {
+      mrContainer.innerHTML = '';
+      (mag.mostRead || []).forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'd-flex align-items-center justify-content-between p-2 border-bottom';
+        div.innerHTML = `
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge rounded-circle bg-danger">${idx + 1}</span>
+            <span class="fw-semibold small">${item.title}</span>
+          </div>
+          <button class="btn btn-outline-danger btn-sm py-0 px-2" onclick="deleteMostReadItem('${item.id || idx}')">
+            <i class="bi bi-x"></i>
+          </button>
+        `;
+        mrContainer.appendChild(div);
+      });
+    }
+  }
+
+  function saveMagazineTopMain() {
+    if (!siteData.magazineFeatured) siteData.magazineFeatured = {};
+    siteData.magazineFeatured.topMain = {
+      category: document.getElementById('mag-top-cat').value.trim(),
+      title: document.getElementById('mag-top-title').value.trim(),
+      author: document.getElementById('mag-top-author').value.trim(),
+      time: document.getElementById('mag-top-time').value.trim(),
+      excerpt: document.getElementById('mag-top-excerpt').value.trim(),
+      image: document.getElementById('mag-top-image').value.trim(),
+      link: document.getElementById('mag-top-link').value.trim()
+    };
+    showStatusBanner('info', 'Top Featured Story updated. Click "Save to Website" above.');
+  }
+
+  function saveMagazineSidebarHighlight() {
+    if (!siteData.magazineFeatured) siteData.magazineFeatured = {};
+    siteData.magazineFeatured.sidebarHighlight = {
+      title: document.getElementById('mag-side-title').value.trim(),
+      image: document.getElementById('mag-side-image').value.trim(),
+      link: document.getElementById('mag-side-link').value.trim()
+    };
+    showStatusBanner('info', 'Sidebar Highlight updated. Click "Save to Website" above.');
+  }
+
+  function openEditMagGrid(id) {
+    const art = (siteData.magazineFeatured.gridArticles || []).find(a => a.id === id);
+    if (!art) return;
+    document.getElementById('edit-mag-grid-id').value = art.id;
+    document.getElementById('mag-grid-cat').value = art.category || '';
+    document.getElementById('mag-grid-title').value = art.title || '';
+    document.getElementById('mag-grid-excerpt').value = art.excerpt || '';
+    document.getElementById('mag-grid-author').value = art.author || '';
+    document.getElementById('mag-grid-time').value = art.time || '';
+    document.getElementById('mag-grid-image').value = art.image || '';
+    document.getElementById('mag-grid-link').value = art.link || '';
+    magGridModalInstance.show();
+  }
+
+  function saveMagGridItem() {
+    const id = document.getElementById('edit-mag-grid-id').value;
+    const idx = (siteData.magazineFeatured.gridArticles || []).findIndex(a => a.id === id);
+    if (idx !== -1) {
+      siteData.magazineFeatured.gridArticles[idx] = {
+        id,
+        category: document.getElementById('mag-grid-cat').value.trim(),
+        title: document.getElementById('mag-grid-title').value.trim(),
+        excerpt: document.getElementById('mag-grid-excerpt').value.trim(),
+        author: document.getElementById('mag-grid-author').value.trim(),
+        time: document.getElementById('mag-grid-time').value.trim(),
+        image: document.getElementById('mag-grid-image').value.trim(),
+        link: document.getElementById('mag-grid-link').value.trim()
+      };
+      magGridModalInstance.hide();
+      renderMagazineAdmin();
+      showStatusBanner('info', 'Subgrid story updated. Click "Save to Website" above.');
+    }
+  }
+
+  function promptAddMostRead() {
+    const title = prompt('Enter article title for MOST READ list:');
+    if (!title) return;
+    const link = prompt('Enter link URL (e.g. articles.html?cat=HISTORY):', 'articles.html');
+    if (!siteData.magazineFeatured.mostRead) siteData.magazineFeatured.mostRead = [];
+    siteData.magazineFeatured.mostRead.push({
+      id: 'mr-' + Date.now(),
+      title,
+      link: link || 'articles.html'
+    });
+    renderMagazineAdmin();
+    showStatusBanner('info', 'Added to Most Read list. Click "Save to Website" above.');
+  }
+
+  function deleteMostReadItem(idOrIdx) {
+    if (!confirm('Remove this item from Most Read?')) return;
+    siteData.magazineFeatured.mostRead = siteData.magazineFeatured.mostRead.filter((item, idx) => item.id !== idOrIdx && String(idx) !== String(idOrIdx));
+    renderMagazineAdmin();
+    showStatusBanner('info', 'Removed item. Click "Save to Website" above.');
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // 3. VIDEOS MANAGEMENT (WITH VIDEO UPLOAD & YOUTUBE)
+  // ────────────────────────────────────────────────────────────
+  function renderVideosAdmin() {
+    const mainGrid = document.getElementById('video-main-grid-admin');
+    const sideTable = document.getElementById('video-side-table-body');
+    if (!mainGrid || !sideTable) return;
+
+    mainGrid.innerHTML = '';
+    sideTable.innerHTML = '';
+
+    // Main 2x2 Grid Videos
+    (siteData.videos && siteData.videos.mainGrid ? siteData.videos.mainGrid : []).forEach(v => {
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.innerHTML = `
+        <div style="position:relative;">
+          <img src="${v.thumbnail}" class="item-card-img" alt="${v.title}" onerror="this.src='../assets/img/sub 1.png'">
+          <span class="badge bg-danger" style="position:absolute; top:8px; left:8px;">${v.tag || 'VIDEO'}</span>
+        </div>
+        <div class="item-card-body">
+          <h6>${v.title}</h6>
+          <small class="text-muted d-block mb-2">${v.author || ''}</small>
+          <div class="item-card-footer">
+            <a href="${v.url || '#'}" target="_blank" class="btn btn-outline-primary btn-sm"><i class="bi bi-play-circle"></i> View</a>
+            <div>
+              <button class="btn btn-outline-secondary btn-sm" onclick="editVideoItem('main', '${v.id}')"><i class="bi bi-pencil"></i></button>
+              <button class="btn btn-outline-danger btn-sm" onclick="deleteVideoItem('main', '${v.id}')"><i class="bi bi-trash"></i></button>
+            </div>
+          </div>
+        </div>
+      `;
+      mainGrid.appendChild(card);
+    });
+
+    // Sidebar Videos
+    (siteData.videos && siteData.videos.sidebarList ? siteData.videos.sidebarList : []).forEach(v => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><img src="${v.thumbnail}" alt="" style="width:50px; height:32px; object-fit:cover; border-radius:4px;" onerror="this.src='../assets/img/masonry-portfolio/masonry-portfolio-6.jpg'"></td>
+        <td><span class="badge bg-secondary">${v.category || 'VIDEO'}</span></td>
+        <td class="fw-semibold">${v.title}</td>
+        <td class="text-muted">${v.time || 'RECENT'}</td>
+        <td class="text-end">
+          <button class="btn btn-outline-secondary btn-sm py-0 px-2" onclick="editVideoItem('sidebar', '${v.id}')"><i class="bi bi-pencil"></i></button>
+          <button class="btn btn-outline-danger btn-sm py-0 px-2" onclick="deleteVideoItem('sidebar', '${v.id}')"><i class="bi bi-trash"></i></button>
+        </td>
+      `;
+      sideTable.appendChild(tr);
+    });
+  }
+
+  function openAddVideoModal() {
+    document.getElementById('edit-video-id').value = '';
+    document.getElementById('video-placement').value = 'main';
+    document.getElementById('video-title').value = '';
+    document.getElementById('video-url').value = '';
+    document.getElementById('video-thumbnail').value = '';
+    document.getElementById('video-tag').value = '';
+    document.getElementById('video-author').value = '';
+    document.getElementById('video-thumb-preview').classList.add('d-none');
+    document.getElementById('videoModalTitle').textContent = 'Add Video';
+    videoModalInstance.show();
+  }
+
+  function editVideoItem(placement, id) {
+    const list = placement === 'main' ? siteData.videos.mainGrid : siteData.videos.sidebarList;
+    const v = (list || []).find(item => item.id === id);
+    if (!v) return;
+
+    document.getElementById('edit-video-id').value = v.id;
+    document.getElementById('video-placement').value = placement;
+    document.getElementById('video-title').value = v.title || '';
+    document.getElementById('video-url').value = v.url || '';
+    document.getElementById('video-thumbnail').value = v.thumbnail || '';
+    document.getElementById('video-tag').value = v.tag || v.category || '';
+    document.getElementById('video-author').value = v.author || v.time || '';
+    const prev = document.getElementById('video-thumb-preview');
+    if (v.thumbnail) {
+      prev.src = v.thumbnail;
+      prev.classList.remove('d-none');
+    }
+    document.getElementById('videoModalTitle').textContent = 'Edit Video';
+    videoModalInstance.show();
+  }
+
+  function autoFetchYoutubeThumb() {
+    const url = document.getElementById('video-url').value.trim();
+    const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+    if (m && m[1]) {
+      const thumb = `https://img.youtube.com/vi/${m[1]}/hqdefault.jpg`;
+      document.getElementById('video-thumbnail').value = thumb;
+      const prev = document.getElementById('video-thumb-preview');
+      prev.src = thumb;
+      prev.classList.remove('d-none');
+      alert('YouTube thumbnail fetched successfully!');
+    } else {
+      alert('Please enter a valid YouTube video link first.');
+    }
+  }
+
+  // Handle direct video file upload
+  function handleVideoUploadDirect(fileInput) {
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    if (file.size > 25 * 1024 * 1024) {
+      alert('Warning: Large video files (>25MB) may exceed GitHub limits. Consider uploading to YouTube or Vimeo and pasting the link for optimal performance.');
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('video-url').value = e.target.result;
+      alert('Video file loaded ready for saving!');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function saveVideoItem() {
+    const id = document.getElementById('edit-video-id').value;
+    const placement = document.getElementById('video-placement').value;
+    const title = document.getElementById('video-title').value.trim();
+    const url = document.getElementById('video-url').value.trim();
+    const thumbnail = document.getElementById('video-thumbnail').value.trim();
+    const tag = document.getElementById('video-tag').value.trim();
+    const author = document.getElementById('video-author').value.trim();
+
+    if (!title || !url) {
+      alert('Please provide a video title and URL / file.');
+      return;
+    }
+
+    const videoObj = {
+      id: id || ('vid-' + Date.now()),
+      title,
+      url,
+      thumbnail: thumbnail || 'assets/img/sub 1.png',
+      tag: tag || 'update',
+      category: tag || 'OTHERS',
+      author: author || 'The Tanur Heritage',
+      time: author || 'RECENT'
+    };
+
+    if (!siteData.videos) siteData.videos = { mainGrid: [], sidebarList: [] };
+
+    // Remove old occurrence if editing
+    siteData.videos.mainGrid = siteData.videos.mainGrid.filter(v => v.id !== videoObj.id);
+    siteData.videos.sidebarList = siteData.videos.sidebarList.filter(v => v.id !== videoObj.id);
+
+    if (placement === 'main') {
+      siteData.videos.mainGrid.push(videoObj);
+    } else {
+      siteData.videos.sidebarList.push(videoObj);
+    }
+
+    videoModalInstance.hide();
+    renderVideosAdmin();
+    updateDashboardStats();
+    showStatusBanner('info', 'Video saved! Click "Save to Website" above to publish.');
+  }
+
+  function deleteVideoItem(placement, id) {
+    if (!confirm('Are you sure you want to delete this video?')) return;
+    if (placement === 'main') {
+      siteData.videos.mainGrid = siteData.videos.mainGrid.filter(v => v.id !== id);
+    } else {
+      siteData.videos.sidebarList = siteData.videos.sidebarList.filter(v => v.id !== id);
+    }
+    renderVideosAdmin();
+    updateDashboardStats();
+    showStatusBanner('info', 'Video removed! Click "Save to Website" above.');
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // 4. RECENT SECTION ARTICLES
+  // ────────────────────────────────────────────────────────────
+  function renderRecentAdmin() {
+    const grid = document.getElementById('recent-articles-grid-admin');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    (siteData.recentArticles || []).forEach(r => {
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.innerHTML = `
+        <img src="${r.image}" class="item-card-img" alt="${r.title}" onerror="this.src='../assets/img/team/team-2.jpg'">
+        <div class="item-card-body">
+          <div class="d-flex justify-content-between mb-1">
+            <span class="badge bg-danger">${r.category || 'UPDATION'}</span>
+            <small class="text-muted"><i class="bi bi-book"></i> ${r.readTime || '5 min'}</small>
+          </div>
+          <h6>${r.title}</h6>
+          <p class="small text-muted mb-2">${r.excerpt ? r.excerpt.substring(0, 65) + '...' : ''}</p>
+          <div class="item-card-footer">
+            <small class="text-muted">${r.author || ''}</small>
+            <div>
+              <button class="btn btn-outline-secondary btn-sm" onclick="editRecentItem('${r.id}')"><i class="bi bi-pencil"></i></button>
+              <button class="btn btn-outline-danger btn-sm" onclick="deleteRecentItem('${r.id}')"><i class="bi bi-trash"></i></button>
+            </div>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function openAddRecentModal() {
+    document.getElementById('edit-recent-id').value = '';
+    document.getElementById('recent-category').value = '';
+    document.getElementById('recent-readtime').value = '5 minutes';
+    document.getElementById('recent-title').value = '';
+    document.getElementById('recent-excerpt').value = '';
+    document.getElementById('recent-tags').value = '';
+    document.getElementById('recent-author').value = '';
+    document.getElementById('recent-time').value = 'RECENT';
+    document.getElementById('recent-image').value = '';
+    document.getElementById('recent-link').value = 'articles.html';
+    document.getElementById('recent-preview').classList.add('d-none');
+    document.getElementById('recentModalTitle').textContent = 'Add Recent Article';
+    recentModalInstance.show();
+  }
+
+  function editRecentItem(id) {
+    const r = (siteData.recentArticles || []).find(item => item.id === id);
+    if (!r) return;
+    document.getElementById('edit-recent-id').value = r.id;
+    document.getElementById('recent-category').value = r.category || '';
+    document.getElementById('recent-readtime').value = r.readTime || '5 minutes';
+    document.getElementById('recent-title').value = r.title || '';
+    document.getElementById('recent-excerpt').value = r.excerpt || '';
+    document.getElementById('recent-tags').value = (r.tags || []).join(', ');
+    document.getElementById('recent-author').value = r.author || '';
+    document.getElementById('recent-time').value = r.time || '';
+    document.getElementById('recent-image').value = r.image || '';
+    document.getElementById('recent-link').value = r.link || 'articles.html';
+    const prev = document.getElementById('recent-preview');
+    if (r.image) {
+      prev.src = r.image;
+      prev.classList.remove('d-none');
+    }
+    document.getElementById('recentModalTitle').textContent = 'Edit Recent Article';
+    recentModalInstance.show();
+  }
+
+  function saveRecentItem() {
+    const id = document.getElementById('edit-recent-id').value;
+    const category = document.getElementById('recent-category').value.trim();
+    const readTime = document.getElementById('recent-readtime').value.trim();
+    const title = document.getElementById('recent-title').value.trim();
+    const excerpt = document.getElementById('recent-excerpt').value.trim();
+    const tagsRaw = document.getElementById('recent-tags').value.trim();
+    const author = document.getElementById('recent-author').value.trim();
+    const time = document.getElementById('recent-time').value.trim();
+    const image = document.getElementById('recent-image').value.trim();
+    const link = document.getElementById('recent-link').value.trim();
+
+    if (!title) {
+      alert('Please enter an article title.');
+      return;
+    }
+
+    const tags = tagsRaw.split(',').map(t => t.trim()).filter(Boolean);
+    const recObj = {
+      id: id || ('rec-' + Date.now()),
+      category: category || 'UPDATION',
+      readTime: readTime || '5 minutes',
+      title,
+      excerpt,
+      tags,
+      author: author || 'The Tanur Heritage',
+      time: time || 'RECENT',
+      image: image || 'assets/img/team/team-2.jpg',
+      link: link || 'articles.html'
+    };
+
+    if (!siteData.recentArticles) siteData.recentArticles = [];
+    if (id) {
+      const idx = siteData.recentArticles.findIndex(r => r.id === id);
+      if (idx !== -1) siteData.recentArticles[idx] = recObj;
+    } else {
+      siteData.recentArticles.push(recObj);
+    }
+
+    recentModalInstance.hide();
+    renderRecentAdmin();
+    updateDashboardStats();
+    showStatusBanner('info', 'Recent article updated! Click "Save to Website" above.');
+  }
+
+  function deleteRecentItem(id) {
+    if (!confirm('Are you sure you want to delete this recent article?')) return;
+    siteData.recentArticles = siteData.recentArticles.filter(r => r.id !== id);
+    renderRecentAdmin();
+    updateDashboardStats();
+    showStatusBanner('info', 'Article removed. Click "Save to Website" above.');
+  }
+
+  // ────────────────────────────────────────────────────────────
+  // 5. ABOUT US, TEAM, EVENTS, GALLERY, ARCHIVES, SOCIAL
+  // ────────────────────────────────────────────────────────────
+  function renderAboutSection() {
+    document.getElementById('about-heading-input').value = siteData.about.title || 'Who we are';
+    document.getElementById('about-subtitle-input').value = siteData.about.subtitle || '';
+    const list = document.getElementById('about-paragraphs-list');
+    list.innerHTML = '';
+    (siteData.about.paragraphs || []).forEach((p, idx) => {
+      const div = document.createElement('div');
+      div.className = 'mb-3 p-3 border rounded bg-light';
+      div.innerHTML = `
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="badge bg-secondary">Paragraph #${idx + 1}</span>
+          <button class="btn btn-outline-danger btn-sm py-0 px-2" onclick="removeAboutParagraph(${idx})"><i class="bi bi-trash"></i></button>
+        </div>
+        <textarea class="form-control about-para-input" rows="3">${p}</textarea>
+      `;
+      list.appendChild(div);
+    });
+  }
+
+  function addAboutParagraph() {
+    if (!siteData.about.paragraphs) siteData.about.paragraphs = [];
+    siteData.about.paragraphs.push('');
+    renderAboutSection();
+  }
+
+  function removeAboutParagraph(idx) {
+    siteData.about.paragraphs.splice(idx, 1);
+    renderAboutSection();
+  }
+
+  function collectAboutData() {
+    siteData.about.title = document.getElementById('about-heading-input').value.trim();
+    siteData.about.subtitle = document.getElementById('about-subtitle-input').value.trim();
+    const inputs = document.querySelectorAll('.about-para-input');
+    siteData.about.paragraphs = Array.from(inputs).map(i => i.value.trim()).filter(Boolean);
+  }
+
+  // Gallery
+  function renderGalleryFolders() {
+    const container = document.getElementById('gallery-folders-container');
+    const select = document.getElementById('photo-folder-select');
+    const filterSelect = document.getElementById('gallery-folder-filter');
+    if (!container || !select) return;
+
+    container.innerHTML = '';
+    select.innerHTML = '';
+    filterSelect.innerHTML = '<option value="all">Show All Folders</option>';
+
+    (siteData.galleryFolders || []).forEach(f => {
+      const badge = document.createElement('span');
+      badge.className = 'badge bg-light text-dark border p-2 d-flex align-items-center gap-2';
+      badge.innerHTML = `
+        <span><i class="bi bi-folder-fill text-warning me-1"></i>${f.name}</span>
+        <button class="btn btn-sm text-danger p-0" onclick="deleteGalleryFolder('${f.id}')"><i class="bi bi-x"></i></button>
+      `;
+      container.appendChild(badge);
+
+      select.innerHTML += `<option value="${f.id}">${f.name}</option>`;
+      filterSelect.innerHTML += `<option value="${f.id}">${f.name}</option>`;
+    });
+  }
+
+  function renderGalleryPhotos() {
+    const grid = document.getElementById('gallery-photos-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    (siteData.gallery || []).forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.innerHTML = `
+        <img src="${p.url}" class="item-card-img" alt="${p.caption}" onerror="this.src='../assets/img/sub 1.png'">
+        <div class="item-card-body">
+          <span class="badge bg-secondary mb-1">${(p.folder || '').toUpperCase()}</span>
+          <h6>${p.caption || 'Untitled'}</h6>
+          <div class="item-card-footer">
+            <button class="btn btn-outline-secondary btn-sm" onclick="editPhotoItem('${p.id}')"><i class="bi bi-pencil"></i></button>
+            <button class="btn btn-outline-danger btn-sm" onclick="deletePhotoItem('${p.id}')"><i class="bi bi-trash"></i></button>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function promptCreateGalleryFolder() {
+    const name = prompt('Enter new album/folder name (e.g. Workshop 2026):');
+    if (!name) return;
+    const id = name.toLowerCase().replace(/[^a-z0-9]/g, '-');
+    siteData.galleryFolders.push({ id, name });
+    renderGalleryFolders();
+  }
+
+  function deleteGalleryFolder(id) {
+    if (!confirm('Delete this folder?')) return;
+    siteData.galleryFolders = siteData.galleryFolders.filter(f => f.id !== id);
+    renderGalleryFolders();
+  }
+
   function openAddPhotoModal() {
-    document.getElementById('photoModalTitle').textContent = 'Add Gallery Photo';
     document.getElementById('edit-photo-id').value = '';
     document.getElementById('photo-caption').value = '';
     document.getElementById('photo-url').value = '';
@@ -1284,85 +2175,64 @@
     photoModalInstance.show();
   }
 
-  function openEditPhotoModal(idOrUrl) {
-    const item = siteData.gallery.find(p => (p.id === idOrUrl || p.url === idOrUrl));
-    if (!item) return;
-
-    document.getElementById('photoModalTitle').textContent = 'Edit Gallery Photo';
-    document.getElementById('edit-photo-id').value = item.id || item.url;
-    document.getElementById('photo-caption').value = item.caption || '';
-    document.getElementById('photo-folder-select').value = item.folder || 'carnival';
-    document.getElementById('photo-url').value = item.url || '';
-    document.getElementById('photo-desc').value = item.description || '';
-
-    const prev = document.getElementById('photo-preview');
-    prev.src = item.url;
-    prev.classList.remove('d-none');
-
+  function editPhotoItem(id) {
+    const p = (siteData.gallery || []).find(item => item.id === id);
+    if (!p) return;
+    document.getElementById('edit-photo-id').value = p.id;
+    document.getElementById('photo-caption').value = p.caption || '';
+    document.getElementById('photo-url').value = p.url || '';
+    document.getElementById('photo-folder-select').value = p.folder || '';
+    document.getElementById('photo-desc').value = p.description || '';
     photoModalInstance.show();
   }
 
-  function saveGalleryPhoto() {
-    const editId = document.getElementById('edit-photo-id').value;
+  function savePhotoItem() {
+    const id = document.getElementById('edit-photo-id').value;
     const caption = document.getElementById('photo-caption').value.trim();
-    const folder  = document.getElementById('photo-folder-select').value;
-    const url     = document.getElementById('photo-url').value.trim();
-    const desc    = document.getElementById('photo-desc').value.trim();
+    const url = document.getElementById('photo-url').value.trim();
+    const folder = document.getElementById('photo-folder-select').value;
+    const description = document.getElementById('photo-desc').value.trim();
 
     if (!url) {
-      alert('Please provide an image URL or upload an image file.');
+      alert('Please enter or upload an image URL.');
       return;
     }
 
-    if (editId) {
-      const idx = siteData.gallery.findIndex(p => (p.id === editId || p.url === editId));
-      if (idx !== -1) {
-        siteData.gallery[idx] = { ...siteData.gallery[idx], caption, folder, url, description: desc };
-      }
+    if (id) {
+      const idx = siteData.gallery.findIndex(p => p.id === id);
+      if (idx !== -1) siteData.gallery[idx] = { id, caption, url, folder, description };
     } else {
-      siteData.gallery.push({
-        id: 'gal-' + Date.now(),
-        caption: caption || 'Heritage Photo',
-        folder,
-        url,
-        description: desc
-      });
+      siteData.gallery.push({ id: 'gal-' + Date.now(), caption, url, folder, description });
     }
 
     photoModalInstance.hide();
     renderGalleryPhotos();
     updateDashboardStats();
+    showStatusBanner('info', 'Photo updated! Click "Save to Website" above.');
   }
 
-  function deleteGalleryPhoto(idOrUrl) {
-    if (!confirm('Delete this photo from the gallery?')) return;
-    siteData.gallery = siteData.gallery.filter(p => (p.id !== idOrUrl && p.url !== idOrUrl));
+  function deletePhotoItem(id) {
+    if (!confirm('Delete this photo?')) return;
+    siteData.gallery = siteData.gallery.filter(p => p.id !== id);
     renderGalleryPhotos();
-    updateDashboardStats();
   }
 
-  // ────────────── 3. TEAM SECTION ──────────────
-  function renderTeamSection() {
+  // Team
+  function renderTeamMembers() {
     const grid = document.getElementById('team-members-grid');
+    if (!grid) return;
     grid.innerHTML = '';
-
     (siteData.team || []).forEach(m => {
       const card = document.createElement('div');
       card.className = 'item-card';
       card.innerHTML = `
-        <div class="text-center p-3 bg-light">
-          <img src="${m.photo || '../assets/img/team/team-1.jpg'}" class="rounded-circle shadow-sm" style="width:90px;height:90px;object-fit:cover;" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(m.name)}&size=90&background=ef6603&color=fff'">
-        </div>
-        <div class="item-body">
-          <h6 class="fw-bold mb-1 text-center">${m.name}</h6>
-          <p class="text-primary small text-center mb-3">${m.role || 'Member'}</p>
-          <div class="item-actions">
-            <button class="btn btn-outline-primary btn-sm flex-fill" onclick="openEditTeamModal('${m.id || m.name}')">
-              <i class="bi bi-pencil"></i> Edit
-            </button>
-            <button class="btn btn-outline-danger btn-sm" onclick="deleteTeamMember('${m.id || m.name}')">
-              <i class="bi bi-trash"></i>
-            </button>
+        <img src="${m.photo}" class="item-card-img" alt="${m.name}" onerror="this.src='../assets/img/team/team-1.jpg'">
+        <div class="item-card-body">
+          <h6>${m.name}</h6>
+          <small class="text-muted d-block mb-2">${m.role || ''}</small>
+          <div class="item-card-footer">
+            <button class="btn btn-outline-secondary btn-sm" onclick="editTeamMember('${m.id}')"><i class="bi bi-pencil"></i></button>
+            <button class="btn btn-outline-danger btn-sm" onclick="deleteTeamMember('${m.id}')"><i class="bi bi-trash"></i></button>
           </div>
         </div>
       `;
@@ -1371,90 +2241,63 @@
   }
 
   function openAddTeamModal() {
-    document.getElementById('teamModalTitle').textContent = 'Add Team Member';
     document.getElementById('edit-team-id').value = '';
     document.getElementById('team-name').value = '';
     document.getElementById('team-role').value = '';
     document.getElementById('team-photo').value = '';
-    document.getElementById('team-preview').classList.add('d-none');
     teamModalInstance.show();
   }
 
-  function openEditTeamModal(idOrName) {
-    const m = siteData.team.find(t => (t.id === idOrName || t.name === idOrName));
+  function editTeamMember(id) {
+    const m = (siteData.team || []).find(item => item.id === id);
     if (!m) return;
-
-    document.getElementById('teamModalTitle').textContent = 'Edit Team Member';
-    document.getElementById('edit-team-id').value = m.id || m.name;
+    document.getElementById('edit-team-id').value = m.id;
     document.getElementById('team-name').value = m.name || '';
     document.getElementById('team-role').value = m.role || '';
     document.getElementById('team-photo').value = m.photo || '';
-
-    const prev = document.getElementById('team-preview');
-    prev.src = m.photo || '';
-    prev.classList.remove('d-none');
-
     teamModalInstance.show();
   }
 
   function saveTeamMember() {
-    const editId = document.getElementById('edit-team-id').value;
-    const name   = document.getElementById('team-name').value.trim();
-    const role   = document.getElementById('team-role').value.trim();
-    const photo  = document.getElementById('team-photo').value.trim();
+    const id = document.getElementById('edit-team-id').value;
+    const name = document.getElementById('team-name').value.trim();
+    const role = document.getElementById('team-role').value.trim();
+    const photo = document.getElementById('team-photo').value.trim();
+    if (!name) return alert('Name required');
 
-    if (!name) {
-      alert('Please enter member name.');
-      return;
-    }
-
-    if (editId) {
-      const idx = siteData.team.findIndex(t => (t.id === editId || t.name === editId));
-      if (idx !== -1) {
-        siteData.team[idx] = { ...siteData.team[idx], name, role, photo };
-      }
+    if (id) {
+      const idx = siteData.team.findIndex(m => m.id === id);
+      if (idx !== -1) siteData.team[idx] = { id, name, role, photo };
     } else {
-      siteData.team.push({
-        id: 'team-' + Date.now(),
-        name,
-        role: role || 'Member',
-        photo: photo || 'assets/img/team/team-1.jpg'
-      });
+      siteData.team.push({ id: 'team-' + Date.now(), name, role, photo });
     }
-
     teamModalInstance.hide();
-    renderTeamSection();
-    updateDashboardStats();
+    renderTeamMembers();
+    showStatusBanner('info', 'Team member updated! Click "Save to Website" above.');
   }
 
-  function deleteTeamMember(idOrName) {
-    if (!confirm('Remove this team member?')) return;
-    siteData.team = siteData.team.filter(t => (t.id !== idOrName && t.name !== idOrName));
-    renderTeamSection();
-    updateDashboardStats();
+  function deleteTeamMember(id) {
+    if (!confirm('Delete team member?')) return;
+    siteData.team = siteData.team.filter(m => m.id !== id);
+    renderTeamMembers();
   }
 
-  // ────────────── 4. EVENTS SECTION ──────────────
-  function renderEventsSection() {
+  // Events
+  function renderEvents() {
     const grid = document.getElementById('events-grid');
+    if (!grid) return;
     grid.innerHTML = '';
-
-    (siteData.events || []).forEach(ev => {
+    (siteData.events || []).forEach(e => {
       const card = document.createElement('div');
       card.className = 'item-card';
       card.innerHTML = `
-        <img src="${ev.image || '../assets/img/sub 1.png'}" class="item-thumb" onerror="this.src='../assets/img/sub 1.png'">
-        <div class="item-body">
-          <span class="badge bg-warning text-dark align-self-start mb-2">${ev.date || 'Event'}</span>
-          <h6 class="fw-bold mb-1">${ev.title || 'Untitled Event'}</h6>
-          <p class="text-muted small mb-2 text-truncate">${ev.description || ''}</p>
-          <div class="item-actions">
-            <button class="btn btn-outline-primary btn-sm flex-fill" onclick="openEditEventModal('${ev.id || ev.title}')">
-              <i class="bi bi-pencil"></i> Edit
-            </button>
-            <button class="btn btn-outline-danger btn-sm" onclick="deleteEventItem('${ev.id || ev.title}')">
-              <i class="bi bi-trash"></i>
-            </button>
+        <img src="${e.image}" class="item-card-img" alt="${e.title}" onerror="this.src='../assets/img/sub 1.png'">
+        <div class="item-card-body">
+          <span class="badge bg-primary mb-1">${e.date || 'EVENT'}</span>
+          <h6>${e.title}</h6>
+          <div class="item-card-footer">
+            <button class="btn btn-outline-secondary btn-sm" onclick="editEventItem('${e.id}')"><i class="bi bi-pencil"></i></button>
+            <button class="btn btn-outline-danger btn-sm" onclick="deleteEventItem('${e.id}')"><i class="bi bi-trash"></i></button>
           </div>
         </div>
       `;
@@ -1463,160 +2306,87 @@
   }
 
   function openAddEventModal() {
-    document.getElementById('eventModalTitle').textContent = 'Add Event';
     document.getElementById('edit-event-id').value = '';
     document.getElementById('event-title').value = '';
     document.getElementById('event-date').value = '';
     document.getElementById('event-desc').value = '';
     document.getElementById('event-image').value = '';
-    document.getElementById('event-link').value = 'gallery.html';
-    document.getElementById('event-preview').classList.add('d-none');
+    document.getElementById('event-link').value = '';
     eventModalInstance.show();
   }
 
-  function openEditEventModal(idOrTitle) {
-    const ev = siteData.events.find(e => (e.id === idOrTitle || e.title === idOrTitle));
-    if (!ev) return;
-
-    document.getElementById('eventModalTitle').textContent = 'Edit Event';
-    document.getElementById('edit-event-id').value = ev.id || ev.title;
-    document.getElementById('event-title').value = ev.title || '';
-    document.getElementById('event-date').value = ev.date || '';
-    document.getElementById('event-desc').value = ev.description || '';
-    document.getElementById('event-image').value = ev.image || '';
-    document.getElementById('event-link').value = ev.link || 'gallery.html';
-
-    const prev = document.getElementById('event-preview');
-    prev.src = ev.image || '';
-    prev.classList.remove('d-none');
-
+  function editEventItem(id) {
+    const e = (siteData.events || []).find(item => item.id === id);
+    if (!e) return;
+    document.getElementById('edit-event-id').value = e.id;
+    document.getElementById('event-title').value = e.title || '';
+    document.getElementById('event-date').value = e.date || '';
+    document.getElementById('event-desc').value = e.description || '';
+    document.getElementById('event-image').value = e.image || '';
+    document.getElementById('event-link').value = e.link || '';
     eventModalInstance.show();
   }
 
   function saveEventItem() {
-    const editId = document.getElementById('edit-event-id').value;
-    const title  = document.getElementById('event-title').value.trim();
-    const date   = document.getElementById('event-date').value.trim();
-    const desc   = document.getElementById('event-desc').value.trim();
-    const image  = document.getElementById('event-image').value.trim();
-    const link   = document.getElementById('event-link').value.trim();
+    const id = document.getElementById('edit-event-id').value;
+    const title = document.getElementById('event-title').value.trim();
+    const date = document.getElementById('event-date').value.trim();
+    const description = document.getElementById('event-desc').value.trim();
+    const image = document.getElementById('event-image').value.trim();
+    const link = document.getElementById('event-link').value.trim();
+    if (!title) return alert('Event title required');
 
-    if (!title) {
-      alert('Please enter event title.');
-      return;
-    }
-
-    if (editId) {
-      const idx = siteData.events.findIndex(e => (e.id === editId || e.title === editId));
-      if (idx !== -1) {
-        siteData.events[idx] = { ...siteData.events[idx], title, date, description: desc, image, link };
-      }
+    if (id) {
+      const idx = siteData.events.findIndex(e => e.id === id);
+      if (idx !== -1) siteData.events[idx] = { id, title, date, description, image, link };
     } else {
-      siteData.events.push({
-        id: 'event-' + Date.now(),
-        title,
-        date: date || 'Upcoming',
-        description: desc,
-        image: image || 'assets/img/sub 1.png',
-        link: link || 'gallery.html'
-      });
+      siteData.events.push({ id: 'ev-' + Date.now(), title, date, description, image, link });
     }
-
     eventModalInstance.hide();
-    renderEventsSection();
-    updateDashboardStats();
+    renderEvents();
+    showStatusBanner('info', 'Event updated! Click "Save to Website" above.');
   }
 
-  function deleteEventItem(idOrTitle) {
-    if (!confirm('Delete this event?')) return;
-    siteData.events = siteData.events.filter(e => (e.id !== idOrTitle && e.title !== idOrTitle));
-    renderEventsSection();
-    updateDashboardStats();
+  function deleteEventItem(id) {
+    if (!confirm('Delete event?')) return;
+    siteData.events = siteData.events.filter(e => e.id !== id);
+    renderEvents();
   }
 
-  // ────────────── 5. ARCHIVES SECTION ──────────────
+  // Archives
   function renderArchiveFolders() {
     const container = document.getElementById('archive-folders-container');
-    const filterSelect = document.getElementById('archive-folder-filter');
-    const modalSelect  = document.getElementById('archive-folder-select');
-
+    const select = document.getElementById('archive-folder-select');
+    if (!container || !select) return;
     container.innerHTML = '';
-    filterSelect.innerHTML = '<option value="all">Show All Archive Folders</option>';
-    modalSelect.innerHTML  = '';
-
+    select.innerHTML = '';
     (siteData.archiveFolders || []).forEach(f => {
-      const pill = document.createElement('span');
-      pill.className = 'folder-pill';
-      pill.innerHTML = `
-        <i class="bi bi-archive"></i> ${f.name}
-        <button class="btn-close btn-close-white" style="width:6px;height:6px;padding:0;font-size:8px;" onclick="event.stopPropagation(); deleteArchiveFolder('${f.id}')"></button>
+      const badge = document.createElement('span');
+      badge.className = 'badge bg-light text-dark border p-2 d-flex align-items-center gap-2';
+      badge.innerHTML = `
+        <span><i class="bi bi-folder-fill text-warning me-1"></i>${f.name}</span>
+        <button class="btn btn-sm text-danger p-0" onclick="deleteArchiveFolder('${f.id}')"><i class="bi bi-x"></i></button>
       `;
-      pill.onclick = () => filterArchiveGridByFolder(f.id);
-      container.appendChild(pill);
-
-      filterSelect.innerHTML += `<option value="${f.id}">${f.name}</option>`;
-      modalSelect.innerHTML  += `<option value="${f.id}">${f.name}</option>`;
+      container.appendChild(badge);
+      select.innerHTML += `<option value="${f.id}">${f.name}</option>`;
     });
   }
 
-  function promptCreateArchiveFolder() {
-    const name = prompt('Enter new Archive Folder Name (e.g. Historical Photos, Documents, Inscriptions):');
-    if (!name || !name.trim()) return;
-    const id = name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-');
-    if (siteData.archiveFolders.some(f => f.id === id)) {
-      alert('An archive folder with this name already exists.');
-      return;
-    }
-    siteData.archiveFolders.push({ id, name: name.trim() });
-    renderArchiveFolders();
-  }
-
-  function deleteArchiveFolder(folderId) {
-    if (!confirm(`Delete this archive folder? Existing items will stay preserved.`)) return;
-    siteData.archiveFolders = siteData.archiveFolders.filter(f => f.id !== folderId);
-    (siteData.archives || []).forEach(a => {
-      if (a.folder === folderId) a.folder = 'ancient-records';
-    });
-    renderArchiveFolders();
-    renderArchivesSection();
-  }
-
-  function filterArchiveGridByFolder(folderId) {
-    renderArchivesSection(folderId);
-  }
-
-  function renderArchivesSection(activeFolder = 'all') {
+  function renderArchiveItems() {
     const grid = document.getElementById('archives-items-grid');
+    if (!grid) return;
     grid.innerHTML = '';
-
-    const list = (siteData.archives || []).filter(item => {
-      if (activeFolder === 'all') return true;
-      return (item.folder || 'ancient-records') === activeFolder;
-    });
-
-    if (list.length === 0) {
-      grid.innerHTML = '<div class="col-12 text-center text-muted py-4"><i class="bi bi-archive fs-3 d-block mb-2"></i>No items in this archive folder yet. Click "Add Archive Photo/Record" to add.</div>';
-      return;
-    }
-
-    list.forEach(a => {
-      const folderName = (siteData.archiveFolders.find(f => f.id === a.folder) || {}).name || a.folder || 'Archive';
+    (siteData.archives || []).forEach(a => {
       const card = document.createElement('div');
       card.className = 'item-card';
       card.innerHTML = `
-        <img src="${a.url}" class="item-thumb" onerror="this.src='https://via.placeholder.com/300x160?text=Archive+Record'">
-        <div class="item-body">
-          <span class="badge bg-secondary align-self-start mb-2">${folderName}</span>
-          <h6 class="fw-bold mb-1">${a.title || 'Historical Document'}</h6>
-          <span class="text-warning small fw-semibold mb-2">${a.year || ''}</span>
-          <p class="text-muted small mb-2 text-truncate">${a.description || ''}</p>
-          <div class="item-actions">
-            <button class="btn btn-outline-primary btn-sm flex-fill" onclick="openEditArchiveModal('${a.id || a.title}')">
-              <i class="bi bi-pencil"></i> Edit
-            </button>
-            <button class="btn btn-outline-danger btn-sm" onclick="deleteArchiveItem('${a.id || a.title}')">
-              <i class="bi bi-trash"></i>
-            </button>
+        <img src="${a.url}" class="item-card-img" alt="${a.title}" onerror="this.src='../assets/img/sub 2.png'">
+        <div class="item-card-body">
+          <span class="badge bg-secondary mb-1">${a.year || 'HISTORICAL'}</span>
+          <h6>${a.title}</h6>
+          <div class="item-card-footer">
+            <button class="btn btn-outline-secondary btn-sm" onclick="editArchiveItem('${a.id}')"><i class="bi bi-pencil"></i></button>
+            <button class="btn btn-outline-danger btn-sm" onclick="deleteArchiveItem('${a.id}')"><i class="bi bi-trash"></i></button>
           </div>
         </div>
       `;
@@ -1624,166 +2394,115 @@
     });
   }
 
+  function promptCreateArchiveFolder() {
+    const name = prompt('New Archive Category (e.g. Ancient Documents):');
+    if (!name) return;
+    const id = name.toLowerCase().replace(/[^a-z0-9]/g, '-');
+    siteData.archiveFolders.push({ id, name });
+    renderArchiveFolders();
+  }
+
+  function deleteArchiveFolder(id) {
+    if (!confirm('Delete archive category?')) return;
+    siteData.archiveFolders = siteData.archiveFolders.filter(f => f.id !== id);
+    renderArchiveFolders();
+  }
+
   function openAddArchiveModal() {
-    document.getElementById('archiveModalTitle').textContent = 'Add Archive Photo/Record';
     document.getElementById('edit-archive-id').value = '';
     document.getElementById('archive-title').value = '';
     document.getElementById('archive-year').value = '';
     document.getElementById('archive-url').value = '';
     document.getElementById('archive-desc').value = '';
-    document.getElementById('archive-preview').classList.add('d-none');
     archiveModalInstance.show();
   }
 
-  function openEditArchiveModal(idOrTitle) {
-    const a = siteData.archives.find(item => (item.id === idOrTitle || item.title === idOrTitle));
+  function editArchiveItem(id) {
+    const a = (siteData.archives || []).find(item => item.id === id);
     if (!a) return;
-
-    document.getElementById('archiveModalTitle').textContent = 'Edit Archive Photo/Record';
-    document.getElementById('edit-archive-id').value = a.id || a.title;
+    document.getElementById('edit-archive-id').value = a.id;
     document.getElementById('archive-title').value = a.title || '';
     document.getElementById('archive-year').value = a.year || '';
-    document.getElementById('archive-folder-select').value = a.folder || 'historical-photos';
     document.getElementById('archive-url').value = a.url || '';
+    document.getElementById('archive-folder-select').value = a.folder || '';
     document.getElementById('archive-desc').value = a.description || '';
-
-    const prev = document.getElementById('archive-preview');
-    prev.src = a.url || '';
-    prev.classList.remove('d-none');
-
     archiveModalInstance.show();
   }
 
   function saveArchiveItem() {
-    const editId = document.getElementById('edit-archive-id').value;
-    const title  = document.getElementById('archive-title').value.trim();
-    const year   = document.getElementById('archive-year').value.trim();
+    const id = document.getElementById('edit-archive-id').value;
+    const title = document.getElementById('archive-title').value.trim();
+    const year = document.getElementById('archive-year').value.trim();
+    const url = document.getElementById('archive-url').value.trim();
     const folder = document.getElementById('archive-folder-select').value;
-    const url    = document.getElementById('archive-url').value.trim();
-    const desc   = document.getElementById('archive-desc').value.trim();
+    const description = document.getElementById('archive-desc').value.trim();
+    if (!title || !url) return alert('Title and Image URL required');
 
-    if (!url) {
-      alert('Please provide an image URL or upload an image file.');
-      return;
-    }
-
-    if (editId) {
-      const idx = siteData.archives.findIndex(a => (a.id === editId || a.title === editId));
-      if (idx !== -1) {
-        siteData.archives[idx] = { ...siteData.archives[idx], title, year, folder, url, description: desc };
-      }
+    if (id) {
+      const idx = siteData.archives.findIndex(a => a.id === id);
+      if (idx !== -1) siteData.archives[idx] = { id, title, year, url, folder, description };
     } else {
-      siteData.archives.push({
-        id: 'arc-' + Date.now(),
-        title: title || 'Archive Record',
-        year,
-        folder,
-        url,
-        description: desc
-      });
+      siteData.archives.push({ id: 'arc-' + Date.now(), title, year, url, folder, description });
     }
-
     archiveModalInstance.hide();
-    renderArchivesSection();
-    updateDashboardStats();
+    renderArchiveItems();
+    showStatusBanner('info', 'Archive record updated! Click "Save to Website" above.');
   }
 
-  function deleteArchiveItem(idOrTitle) {
-    if (!confirm('Delete this record from archives?')) return;
-    siteData.archives = siteData.archives.filter(a => (a.id !== idOrTitle && a.title !== idOrTitle));
-    renderArchivesSection();
-    updateDashboardStats();
+  function deleteArchiveItem(id) {
+    if (!confirm('Delete archive record?')) return;
+    siteData.archives = siteData.archives.filter(a => a.id !== id);
+    renderArchiveItems();
   }
 
-  // ────────────── 6. SOCIAL & FOOTER SECTION ──────────────
-  function renderSocialSection() {
-    const s = siteData.social || {};
-    document.getElementById('social-facebook').value         = s.facebook || '';
-    document.getElementById('social-instagram').value        = s.instagram || '';
-    document.getElementById('social-youtube').value          = s.youtube || '';
-    document.getElementById('social-whatsapp-channel').value = s.whatsapp_channel || '';
-    document.getElementById('social-whatsapp-group').value   = s.whatsapp_group || '';
-    document.getElementById('footer-tagline-input').value    = (siteData.footer || {}).tagline || '';
+  // Social & Footer
+  function renderSocialAndFooter() {
+    const soc = siteData.social || {};
+    document.getElementById('social-facebook').value = soc.facebook || '';
+    document.getElementById('social-instagram').value = soc.instagram || '';
+    document.getElementById('social-youtube').value = soc.youtube || '';
+    document.getElementById('social-whatsapp-channel').value = soc.whatsapp_channel || '';
+    document.getElementById('social-whatsapp-group').value = soc.whatsapp_group || '';
+    document.getElementById('footer-tagline').value = (siteData.footer && siteData.footer.tagline) || '';
   }
 
   function collectSocialData() {
-    siteData.social = {
-      facebook:         document.getElementById('social-facebook').value.trim(),
-      instagram:        document.getElementById('social-instagram').value.trim(),
-      youtube:          document.getElementById('social-youtube').value.trim(),
-      whatsapp_channel: document.getElementById('social-whatsapp-channel').value.trim(),
-      whatsapp_group:   document.getElementById('social-whatsapp-group').value.trim()
-    };
-    siteData.footer = {
-      tagline: document.getElementById('footer-tagline-input').value.trim()
-    };
+    if (!siteData.social) siteData.social = {};
+    siteData.social.facebook = document.getElementById('social-facebook').value.trim();
+    siteData.social.instagram = document.getElementById('social-instagram').value.trim();
+    siteData.social.youtube = document.getElementById('social-youtube').value.trim();
+    siteData.social.whatsapp_channel = document.getElementById('social-whatsapp-channel').value.trim();
+    siteData.social.whatsapp_group = document.getElementById('social-whatsapp-group').value.trim();
+    if (!siteData.footer) siteData.footer = {};
+    siteData.footer.tagline = document.getElementById('footer-tagline').value.trim();
   }
 
-  // ────────────── 7. DIRECT IMAGE UPLOADER ──────────────
-  async function handleImageUploadDirect(fileInput, targetUrlInputId, previewImgId) {
+  // ────────────────────────────────────────────────────────────
+  // MEDIA UPLOADER
+  // ────────────────────────────────────────────────────────────
+  function handleImageUploadDirect(fileInput, targetInputId, previewImgId) {
     const file = fileInput.files[0];
     if (!file) return;
 
-    const pat = getActiveToken();
-    if (!pat) {
-      alert('GitHub Token required for uploading images directly to repository.');
-      return;
-    }
+    const targetInput = document.getElementById(targetInputId);
+    const previewImg = previewImgId ? document.getElementById(previewImgId) : null;
 
-    const previewEl = document.getElementById(previewImgId);
-    const targetInput = document.getElementById(targetUrlInputId);
-
-    // Show temporary local base64 preview
     const reader = new FileReader();
-    reader.onload = async function(e) {
-      const base64Data = e.target.result.split(',')[1];
-      previewEl.src = e.target.result;
-      previewEl.classList.remove('d-none');
-
-      // Upload directly to GitHub repository: assets/img/uploads/
-      const cleanFileName = Date.now() + '-' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-      const uploadPath = `assets/img/uploads/${cleanFileName}`;
-
-      targetInput.value = 'Uploading image to repository...';
-      targetInput.disabled = true;
-
-      try {
-        const uploadUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${uploadPath}`;
-        const res = await fetch(uploadUrl, {
-          method: 'PUT',
-          headers: {
-            'Authorization': `token ${pat}`,
-            'Content-Type': 'application/json',
-            'Accept': 'application/vnd.github.v3+json'
-          },
-          body: JSON.stringify({
-            message: `Upload media: ${cleanFileName}`,
-            content: base64Data,
-            branch: GITHUB_BRANCH
-          })
-        });
-
-        if (!res.ok) {
-          const err = await res.json();
-          throw new Error(err.message || 'Upload failed');
-        }
-
-        targetInput.value = uploadPath;
-        targetInput.disabled = false;
-        alert('Image successfully uploaded into repository!');
-      } catch (err) {
-        console.error('Image upload failed:', err);
-        targetInput.value = e.target.result; // Use data URL as fallback
-        targetInput.disabled = false;
-        alert('Notice: Image saved locally as data URL.');
+    reader.onload = function(e) {
+      targetInput.value = e.target.result;
+      if (previewImg) {
+        previewImg.src = e.target.result;
+        previewImg.classList.remove('d-none');
       }
     };
     reader.readAsDataURL(file);
   }
 
-  // ────────────── 8. GLOBAL SAVE TO GITHUB ──────────────
-  function saveSectionPrompt(sectionName) {
-    saveAllChangesToGitHub(`Updated ${sectionName}`);
+  // ────────────────────────────────────────────────────────────
+  // SAVE TO GITHUB / VERCEL
+  // ────────────────────────────────────────────────────────────
+  function saveSectionPrompt(name) {
+    saveAllChangesToGitHub(`Updated ${name}`);
   }
 
   async function saveAllChangesToGitHub(commitCustomMsg) {
@@ -1795,10 +2514,9 @@
     saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving to Website...';
 
     showStatusBanner('info', 'Connecting and updating website data...');
-
     const commitMessage = commitCustomMsg ? `Admin: ${commitCustomMsg}` : `Admin: Update website content [${new Date().toLocaleTimeString()}]`;
 
-    // 1. Try serverless API save (/api/save)
+    // 1. Try serverless save endpoint
     try {
       const apiRes = await fetch('/api/save', {
         method: 'POST',
@@ -1806,21 +2524,15 @@
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${getActiveToken()}`
         },
-        body: JSON.stringify({
-          content: siteData,
-          message: commitMessage
-        })
+        body: JSON.stringify({ content: siteData, message: commitMessage })
       });
-
       if (apiRes.ok) {
-        showStatusBanner('success', 'Changes saved successfully! Your website is updating via Vercel (~1 min).');
+        showStatusBanner('success', 'Changes saved successfully! Website is updating (~1 min).');
         saveBtn.disabled = false;
         saveBtn.innerHTML = '<i class="bi bi-cloud-arrow-up-fill me-2"></i> Save to Website';
         return;
       }
-    } catch (apiErr) {
-      // Fallback to client-side GitHub API
-    }
+    } catch (e) {}
 
     // 2. Direct GitHub API save
     const pat = getActiveToken();
@@ -1832,29 +2544,20 @@
     }
 
     try {
-      // 1. Fetch current file SHA
       const getFileUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${CONTENT_FILE_PATH}?ref=${GITHUB_BRANCH}`;
       const getRes = await fetch(getFileUrl, {
-        headers: {
-          'Authorization': `token ${pat}`,
-          'Accept': 'application/vnd.github.v3+json'
-        }
+        headers: { 'Authorization': `token ${pat}`, 'Accept': 'application/vnd.github.v3+json' }
       });
-
       let currentSha = null;
       if (getRes.ok) {
         const fileInfo = await getRes.json();
         currentSha = fileInfo.sha;
       }
 
-      // 2. Prepare JSON with proper UTF-8 handling
-      const jsonText = JSON.stringify(siteData, null, 2);
-      const b64Data = btoa(unescape(encodeURIComponent(jsonText)));
+      const jsonString = JSON.stringify(siteData, null, 2);
+      const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
 
-      // 3. Commit to GitHub
-      const putFileUrl = `https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${CONTENT_FILE_PATH}`;
-
-      const putRes = await fetch(putFileUrl, {
+      const putRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO_OWNER}/${GITHUB_REPO_NAME}/contents/${CONTENT_FILE_PATH}`, {
         method: 'PUT',
         headers: {
           'Authorization': `token ${pat}`,
@@ -1863,21 +2566,20 @@
         },
         body: JSON.stringify({
           message: commitMessage,
-          content: b64Data,
-          branch: GITHUB_BRANCH,
-          sha: currentSha
+          content: base64Content,
+          sha: currentSha,
+          branch: GITHUB_BRANCH
         })
       });
 
-      if (!putRes.ok) {
-        const errJson = await putRes.json();
-        throw new Error(errJson.message || 'Commit rejected by GitHub');
+      if (putRes.ok) {
+        showStatusBanner('success', 'All changes successfully published to GitHub and website! (~1 min).');
+      } else {
+        const errData = await putRes.json();
+        showStatusBanner('danger', 'GitHub Save Failed: ' + (errData.message || 'Error occurred'));
       }
-
-      showStatusBanner('success', 'Changes saved successfully! Your website is now automatically updating via Vercel (~1 min).');
     } catch (err) {
-      console.error(err);
-      showStatusBanner('danger', 'Save error: ' + err.message);
+      showStatusBanner('danger', 'Network error while saving: ' + err.message);
     } finally {
       saveBtn.disabled = false;
       saveBtn.innerHTML = '<i class="bi bi-cloud-arrow-up-fill me-2"></i> Save to Website';
@@ -1885,18 +2587,16 @@
   }
 
   function promptSaveWithoutToken() {
-    const token = prompt('To save updates directly to GitHub & Vercel, please enter your GitHub Token once (or click Cancel to download site-content.json backup):');
+    const token = prompt('To save updates directly to GitHub, please enter your GitHub Token once (or click Cancel to download site-content.json backup):');
     if (token && token.trim()) {
       localStorage.setItem('th_github_pat', token.trim());
       saveAllChangesToGitHub();
     } else {
-      downloadJsonBackup();
+      downloadContentBackup();
     }
   }
 
-  function downloadJsonBackup() {
-    collectAboutData();
-    collectSocialData();
+  function downloadContentBackup() {
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(siteData, null, 2));
     const dlAnchor = document.createElement('a');
     dlAnchor.setAttribute("href", dataStr);
@@ -1912,33 +2612,23 @@
     banner.className = `alert-banner alert alert-${type}`;
     banner.innerHTML = `<i class="bi bi-info-circle-fill me-2"></i> ${message}`;
     banner.style.display = 'block';
-
     if (type === 'success') {
       setTimeout(() => { banner.style.display = 'none'; }, 8000);
     }
   }
 
-  // ────────────── 9. SETTINGS & PASSWORD ──────────────
   function changeAdminCredentials() {
-    const newUser = document.getElementById('setting-admin-user').value.trim();
-    const newPwd  = document.getElementById('new-admin-pwd').value.trim();
-
-    if (newUser) {
-      localStorage.setItem('th_admin_username', newUser);
-    }
+    const newPwd = document.getElementById('new-admin-pwd').value.trim();
     if (newPwd) {
       localStorage.setItem('th_admin_pwd', newPwd);
       document.getElementById('new-admin-pwd').value = '';
+      alert('Admin password updated successfully!');
     }
-    alert('Admin credentials updated successfully!');
   }
 
   function updateGitHubToken() {
     const token = document.getElementById('settings-pat').value.trim();
-    if (!token) {
-      alert('Please enter a GitHub Personal Access Token.');
-      return;
-    }
+    if (!token) return alert('Please enter a GitHub Personal Access Token.');
     localStorage.setItem('th_github_pat', token);
     alert('GitHub Token saved successfully!');
   }
