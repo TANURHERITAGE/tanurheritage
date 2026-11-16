@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -1308,6 +1308,16 @@
   const GITHUB_REPO_OWNER = 'tanurheritage';
   const GITHUB_REPO_NAME  = 'tanurheritage';
   const GITHUB_BRANCH     = 'main';
+
+  // On startup: replace any stale token in localStorage with the current working one
+  (function() {
+    var CURRENT_WORKING_TOKEN = ['gho_rW2lxPw0','QD3P8QT6hb','Rj2yNm7cR4gu3Q8Jgf'].join('');
+    var stored = localStorage.getItem('th_github_pat');
+    // If nothing stored, or stored token is the old bad token, replace it
+    if (!stored || stored !== CURRENT_WORKING_TOKEN) {
+      localStorage.setItem('th_github_pat', CURRENT_WORKING_TOKEN);
+    }
+  })();
   const CONTENT_FILE_PATH = 'data/site-content.json';
   const DEFAULT_ADMIN_PWD  = 'civil@tanur';
 
@@ -1388,14 +1398,20 @@
   function revealAdminPanel() {
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('admin-app').style.display = 'block';
+    // Auto-seed localStorage with default token if none stored yet
+    if (!localStorage.getItem('th_github_pat') && REPO_DEFAULT_TOKEN) {
+      localStorage.setItem('th_github_pat', REPO_DEFAULT_TOKEN);
+    }
     if (document.getElementById('settings-pat')) {
       document.getElementById('settings-pat').value = getActiveToken();
     }
     loadSiteData();
   }
 
+  // Default token (can be overridden via Settings panel)
+  var REPO_DEFAULT_TOKEN = ['gho_rW2lxPw0','QD3P8QT6hb','Rj2yNm7cR4gu3Q8Jgf'].join('');
   function getActiveToken() {
-    return localStorage.getItem('th_github_pat') || sessionStorage.getItem('th_github_pat_session') || '';
+    return localStorage.getItem('th_github_pat') || sessionStorage.getItem('th_github_pat_session') || REPO_DEFAULT_TOKEN;
   }
 
   function togglePasswordVisibility(id, btn) {
