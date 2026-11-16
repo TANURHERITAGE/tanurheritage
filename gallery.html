@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -23,11 +23,11 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/main.css?v=1794710000000" rel="stylesheet">
   <link href="assets/css/blog-feed.css" rel="stylesheet">
 
   <style>
-    /* ── Inner page header ── */
+    /* â”€â”€ Inner page header â”€â”€ */
     .inner-header {
       background: #2a2c39;
       position: sticky;
@@ -40,7 +40,7 @@
     .inner-header .navmenu a:hover,
     .inner-header .navmenu .active { color: #ef6603; }
 
-    /* ── Page Hero Banner ── */
+    /* â”€â”€ Page Hero Banner â”€â”€ */
     .gallery-hero {
       background: linear-gradient(135deg, #1a1a2e 0%, #2a2c39 60%, #1a1a2e 100%);
       padding: 60px 0 40px;
@@ -70,7 +70,7 @@
       border-radius: 2px;
     }
 
-    /* ── Category Filter Tabs ── */
+    /* â”€â”€ Category Filter Tabs â”€â”€ */
     .gallery-filter-wrap {
       display: flex;
       flex-wrap: wrap;
@@ -97,7 +97,7 @@
       border-color: #ef6603;
     }
 
-    /* ── Masonry Gallery Grid ── */
+    /* â”€â”€ Masonry Gallery Grid â”€â”€ */
     .gallery-grid {
       columns: 3;
       column-gap: 16px;
@@ -161,7 +161,7 @@
       letter-spacing: 0.5px;
     }
 
-    /* ── Upload Notice Banner ── */
+    /* â”€â”€ Upload Notice Banner â”€â”€ */
     .upload-notice {
       background: #fff8f3;
       border: 2px dashed #ef6603;
@@ -171,14 +171,51 @@
       margin-bottom: 30px;
     }
     .upload-notice h5 { color: #ef6603; font-weight: 700; }
-    .upload-notice p { color: #666; font-size: 14px; margin: 0; }
+    .upload-notice p { color: #666; font-size: 14px; margin: 0; }    /* ======= MOBILE NAV: dark background, white text ======= */
+    @media (max-width: 1199px) {
+      .navmenu ul {
+        background-color: #20222e !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.5) !important;
+      }
+      .navmenu a, .navmenu a:focus, .navmenu a:visited {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+      }
+      .navmenu a:hover, .navmenu a:active, .navmenu li:hover > a {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-color: #ef6603 !important;
+      }
+      .navmenu .active > a, .navmenu .active > a:focus {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-color: #ef6603 !important;
+        border-radius: 20px !important;
+      }
+      .navmenu .dropdown ul {
+        background-color: #161825 !important;
+      }
+      .navmenu .dropdown ul a {
+        color: #cccccc !important;
+        -webkit-text-fill-color: #cccccc !important;
+      }
+      .navmenu .dropdown ul a:hover {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-color: #ef6603 !important;
+      }
+      .mobile-nav-active .navmenu {
+        background: rgba(10, 12, 20, 0.92) !important;
+      }
+    }
   </style>
 </head>
 
 <body style="background: #f6f8fa;">
 
   <!-- Header -->
-  <header id="header" class="header inner-header d-flex align-items-center">
+  <header id="header" class="header inner-header d-flex align-items-center" style="background-color: #20222e !important;">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/main logo in (300).png" alt="The Tanur Heritage">
@@ -191,7 +228,7 @@
           <li><a href="articles.html?cat=ARTICLES">Articles</a></li>
           <li><a href="articles.html?cat=Who'sWho">Who's Who</a></li>
           <li><a href="articles.html?cat=Monuments">Monuments</a></li>
-          <li><a href="gallery.html" class="active">Updates</a></li>
+          <li><a href="gallery.html" class="active">Gallery</a></li>
           <li><a href="archives.html">Archives</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -221,7 +258,7 @@
       <!-- Gallery Grid -->
       <div class="gallery-grid" id="gallery-grid" data-aos="fade-up" data-aos-delay="100">
 
-        <!-- ══════════════════════════════════════════════
+        <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
              ADD YOUR OWN PHOTOS HERE.
              
              Each item follows this pattern:
@@ -241,7 +278,7 @@
              </a>
              
              data-category options: carnival | launch | team | event
-        ═══════════════════════════════════════════════ -->
+        â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 
         <a class="gallery-item glightbox" href="assets/img/masonry-portfolio/masonry-portfolio-1.jpg"
            data-category="launch"
@@ -258,7 +295,7 @@
 
         <a class="gallery-item glightbox" href="assets/img/masonry-portfolio/masonry-portfolio-2.jpg"
            data-category="carnival"
-           data-glightbox="title: Heritage Carnival 2024; description: Tanur Heritage Carnival – 19th & 20th October 2024.">
+           data-glightbox="title: Heritage Carnival 2024; description: Tanur Heritage Carnival â€“ 19th & 20th October 2024.">
           <img src="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" alt="Heritage Carnival">
           <div class="gallery-item-overlay">
             <div>
@@ -466,3 +503,5 @@
 
 </body>
 </html>
+
+

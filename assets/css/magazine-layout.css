@@ -22,40 +22,79 @@
    1. HERO POSTER SLIDER (Image 1)
    ──────────────────────────────────────────────────────────── */
 .hero-poster-section {
-  padding: 100px 0 25px 0;
-  background: #f4f5f7;
+  padding: 72px 0 0 0 !important;
+  background: #10121a !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  position: relative;
 }
 
 .poster-slider-container {
-  max-width: 1240px;
-  margin: 0 auto;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
   position: relative;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-  background: #111;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+  background: #10121a !important;
 }
 
 .poster-swiper {
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .poster-slide-wrap {
   position: relative;
-  width: 100%;
-  display: block;
+  width: 100% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  background: #000;
+  background: #10121a !important;
 }
 
 .poster-slide-img {
-  width: 100%;
-  height: auto;
-  max-height: 480px;
-  object-fit: cover;
-  display: block;
+  width: 100% !important;
+  height: 560px !important;
+  min-height: 440px !important;
+  max-height: 720px !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  border-radius: 0 !important;
+  display: block !important;
   transition: transform 0.4s ease;
+}
+
+@media (min-width: 1400px) {
+  .poster-slide-img {
+    height: 620px !important;
+    min-height: 520px !important;
+    max-height: 780px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .hero-poster-section {
+    padding-top: 68px !important;
+  }
+  .poster-slide-img {
+    height: 380px !important;
+    min-height: 300px !important;
+    max-height: 480px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-poster-section {
+    padding-top: 64px !important;
+  }
+  .poster-slide-img {
+    height: 240px !important;
+    min-height: 200px !important;
+    max-height: 320px !important;
+  }
 }
 
 .poster-slide-wrap:hover .poster-slide-img {
@@ -697,4 +736,68 @@
   .poster-slide-img {
     max-height: 240px;
   }
+}
+
+/* ────────────────────────────────────────────────────────────
+   HEADER NAVIGATION CONTRAST & VISIBILITY (Always Visible)
+   ──────────────────────────────────────────────────────────── */
+.header {
+  background-color: #20222e !important;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2) !important;
+  padding: 12px 0 !important;
+  transition: all 0.3s ease;
+  z-index: 997;
+}
+
+.header .logo img {
+  max-height: 48px;
+}
+
+.header .logo h1,
+.header .logo a {
+  color: #ffffff !important;
+}
+
+.navmenu a,
+.navmenu a:visited {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+  border-radius: 50px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.navmenu a:hover,
+.navmenu a:active,
+.navmenu a:focus,
+.navmenu a:focus-visible,
+.navmenu li:hover > a,
+.navmenu li:active > a,
+.navmenu li > a:hover,
+.navmenu li > a:active,
+.navmenu li > a:focus,
+.navmenu .active,
+.navmenu .active:hover,
+.navmenu .active:focus,
+.navmenu .active:active {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background-color: #ef6603 !important;
+  text-decoration: none !important;
+}
+
+.mobile-nav-toggle {
+  color: #ffffff !important;
+}
+
+.scrolled .header {
+  background-color: rgba(32, 34, 46, 0.98) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
 }

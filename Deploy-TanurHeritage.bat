@@ -1,21 +1,35 @@
 @echo off
-title Deploy Tanur Heritage
-echo ============================================
-echo   TANUR HERITAGE - DEPLOY TO LIVE SITE
-echo ============================================
+title Deploy Tanur Heritage to Live Site
+echo ========================================================
+echo   TANUR HERITAGE - ONE-CLICK DEPLOY TO LIVE SITE
+echo   Target: https://www.tanurheritage.in
+echo ========================================================
 echo.
-cd /d "C:\Users\Student\Documents\TANURHERITAGE-master"
-echo Pushing to GitHub...
+cd /d "%~dp0"
+
+echo 1. Pushing code to GitHub...
 git push origin main
 echo.
-if %errorlevel% == 0 (
-  echo ============================================
-  echo   SUCCESS! Site will update in ~1 minute.
-  echo   Visit: https://tanurheritage.in/admin
-  echo ============================================
+
+echo 2. Deploying to Vercel...
+if exist "%~dp0.vercel_token" (
+  set /p VERCEL_TOKEN=<"%~dp0.vercel_token"
+  call npx vercel deploy --prod --yes --token %VERCEL_TOKEN%
 ) else (
-  echo ============================================
-  echo   ERROR - Push failed. Try again.
-  echo ============================================
+  call npx vercel deploy --prod --yes
 )
+echo.
+
+if %errorlevel% == 0 (
+  echo ========================================================
+  echo   SUCCESS! Deployment complete!
+  echo   Website:     https://www.tanurheritage.in
+  echo   Admin Panel: https://www.tanurheritage.in/admin
+  echo ========================================================
+) else (
+  echo ========================================================
+  echo   Deployment encountered an issue. Check the output above.
+  echo ========================================================
+)
+echo.
 pause

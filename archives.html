@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -23,7 +23,7 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/main.css?v=1794710000000" rel="stylesheet">
   <link href="assets/css/blog-feed.css" rel="stylesheet">
 
   <style>
@@ -200,6 +200,43 @@
       border-radius: 3px;
       margin-bottom: 4px;
       letter-spacing: 0.5px;
+    }    /* ======= MOBILE NAV: dark background, white text ======= */
+    @media (max-width: 1199px) {
+      .navmenu ul {
+        background-color: #20222e !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.5) !important;
+      }
+      .navmenu a, .navmenu a:focus, .navmenu a:visited {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+      }
+      .navmenu a:hover, .navmenu a:active, .navmenu li:hover > a {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-color: #ef6603 !important;
+      }
+      .navmenu .active > a, .navmenu .active > a:focus {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-color: #ef6603 !important;
+        border-radius: 20px !important;
+      }
+      .navmenu .dropdown ul {
+        background-color: #161825 !important;
+      }
+      .navmenu .dropdown ul a {
+        color: #cccccc !important;
+        -webkit-text-fill-color: #cccccc !important;
+      }
+      .navmenu .dropdown ul a:hover {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-color: #ef6603 !important;
+      }
+      .mobile-nav-active .navmenu {
+        background: rgba(10, 12, 20, 0.92) !important;
+      }
     }
   </style>
 </head>
@@ -207,7 +244,7 @@
 <body class="archives-page">
 
   <!-- Header -->
-  <header id="header" class="header inner-header d-flex align-items-center">
+  <header id="header" class="header inner-header d-flex align-items-center" style="background-color: #20222e !important;">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/main logo in (300).png" alt="The Tanur Heritage">
@@ -221,7 +258,7 @@
           <li><a href="articles.html?cat=ARTICLES">Articles</a></li>
           <li><a href="articles.html?cat=Who'sWho">Who's Who</a></li>
           <li><a href="articles.html?cat=Monuments">Monuments</a></li>
-          <li><a href="gallery.html">Updates</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
           <li><a href="archives.html" class="active">Archives</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -372,3 +409,5 @@
 
 </body>
 </html>
+
+

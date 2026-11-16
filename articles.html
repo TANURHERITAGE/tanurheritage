@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -25,7 +25,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/main.css?v=1794710000000" rel="stylesheet">
   <link href="assets/css/blog-feed.css" rel="stylesheet">
 
   <style>
@@ -43,6 +43,43 @@
     .inner-header .navmenu a:hover,
     .inner-header .navmenu .active {
       color: #ef6603;
+    }    /* ======= MOBILE NAV: dark background, white text ======= */
+    @media (max-width: 1199px) {
+      .navmenu ul {
+        background-color: #20222e !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.5) !important;
+      }
+      .navmenu a, .navmenu a:focus, .navmenu a:visited {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+      }
+      .navmenu a:hover, .navmenu a:active, .navmenu li:hover > a {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-color: #ef6603 !important;
+      }
+      .navmenu .active > a, .navmenu .active > a:focus {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-color: #ef6603 !important;
+        border-radius: 20px !important;
+      }
+      .navmenu .dropdown ul {
+        background-color: #161825 !important;
+      }
+      .navmenu .dropdown ul a {
+        color: #cccccc !important;
+        -webkit-text-fill-color: #cccccc !important;
+      }
+      .navmenu .dropdown ul a:hover {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-color: #ef6603 !important;
+      }
+      .mobile-nav-active .navmenu {
+        background: rgba(10, 12, 20, 0.92) !important;
+      }
     }
   </style>
 </head>
@@ -50,7 +87,7 @@
 <body class="articles-archive-page" style="background-color: #f9f9f9;">
 
   <!-- Header -->
-  <header id="header" class="header inner-header d-flex align-items-center">
+  <header id="header" class="header inner-header d-flex align-items-center" style="background-color: #20222e !important;">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/main logo in (300).png" alt="The Tanur Heritage">
@@ -64,7 +101,7 @@
           <li><a href="articles.html?cat=ARTICLES" id="nav-articles">Articles</a></li>
           <li><a href="articles.html?cat=Who'sWho" id="nav-whoswho">Who's Who</a></li>
           <li><a href="articles.html?cat=Monuments" id="nav-monuments">Monuments</a></li>
-          <li><a href="gallery.html" id="nav-updates">Updates</a></li>
+          <li><a href="gallery.html" id="nav-updates">Gallery</a></li>
           <li><a href="articles.html" id="nav-archives">Archives</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -103,13 +140,13 @@
 
       <!-- Category Filter Pills -->
       <div class="category-filter-wrap" data-aos="fade-up" data-aos-delay="100">
-        <a href="articles.html" class="cat-filter-btn" id="filter-all">All (എല്ലാം)</a>
-        <a href="articles.html?cat=HISTORY" class="cat-filter-btn" id="filter-history">History (ചരിത്രം)</a>
-        <a href="articles.html?cat=CULTURE" class="cat-filter-btn" id="filter-culture">Culture (സംസ്കാരം)</a>
-        <a href="articles.html?cat=ARTICLES" class="cat-filter-btn" id="filter-articles">Articles (ലേഖനങ്ങൾ)</a>
-        <a href="articles.html?cat=Who'sWho" class="cat-filter-btn" id="filter-whoswho">Who's Who (വ്യക്തികൾ)</a>
-        <a href="articles.html?cat=Monuments" class="cat-filter-btn" id="filter-monuments">Monuments (സ്മാരകങ്ങൾ)</a>
-        <a href="articles.html?cat=Updates" class="cat-filter-btn" id="filter-updates">Updates (വാർത്തകൾ)</a>
+        <a href="articles.html" class="cat-filter-btn" id="filter-all">All (à´Žà´²àµà´²à´¾à´‚)</a>
+        <a href="articles.html?cat=HISTORY" class="cat-filter-btn" id="filter-history">History (à´šà´°à´¿à´¤àµà´°à´‚)</a>
+        <a href="articles.html?cat=CULTURE" class="cat-filter-btn" id="filter-culture">Culture (à´¸à´‚à´¸àµà´•à´¾à´°à´‚)</a>
+        <a href="articles.html?cat=ARTICLES" class="cat-filter-btn" id="filter-articles">Articles (à´²àµ‡à´–à´¨à´™àµà´™àµ¾)</a>
+        <a href="articles.html?cat=Who'sWho" class="cat-filter-btn" id="filter-whoswho">Who's Who (à´µàµà´¯à´•àµà´¤à´¿à´•àµ¾)</a>
+        <a href="articles.html?cat=Monuments" class="cat-filter-btn" id="filter-monuments">Monuments (à´¸àµà´®à´¾à´°à´•à´™àµà´™àµ¾)</a>
+        <a href="articles.html?cat=Updates" class="cat-filter-btn" id="filter-updates">Updates (à´µà´¾àµ¼à´¤àµà´¤à´•àµ¾)</a>
       </div>
 
       <!-- Articles Grid -->
@@ -119,12 +156,12 @@
           <!-- Loading Spinner -->
           <div id="archive-loader" class="text-center py-5">
             <div class="spinner-border text-warning" role="status" style="width: 3rem; height: 3rem;"></div>
-            <p class="mt-3 text-muted">ലേഖനങ്ങൾ ശേഖരിക്കുന്നു... (Loading articles...)</p>
+            <p class="mt-3 text-muted">à´²àµ‡à´–à´¨à´™àµà´™àµ¾ à´¶àµ‡à´–à´°à´¿à´•àµà´•àµà´¨àµà´¨àµ... (Loading articles...)</p>
           </div>
 
           <!-- Empty Result -->
           <div id="archive-empty" class="alert alert-info py-4 text-center d-none" role="alert">
-            <p class="mb-0">ഈ വിഭാഗത്തിൽ ലേഖനങ്ങൾ ഒന്നും കണ്ടെത്തിയില്ല. (No articles found in this category.)</p>
+            <p class="mb-0">à´ˆ à´µà´¿à´­à´¾à´—à´¤àµà´¤à´¿àµ½ à´²àµ‡à´–à´¨à´™àµà´™àµ¾ à´’à´¨àµà´¨àµà´‚ à´•à´£àµà´Ÿàµ†à´¤àµà´¤à´¿à´¯à´¿à´²àµà´². (No articles found in this category.)</p>
           </div>
 
           <!-- Posts Container -->
@@ -232,7 +269,7 @@
         var link = pid ? 'article.html?id=' + pid : (entry.link.filter(function(l){ return l.rel === 'alternate'; })[0].href);
         var pubDate = formatDate(entry.published.$t);
         var rawContent = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : '');
-        var excerpt = stripHtml(rawContent).substring(0, 160).trim() + '…';
+        var excerpt = stripHtml(rawContent).substring(0, 160).trim() + 'â€¦';
         var imgSrc = extractImage(rawContent);
         var cats = (entry.category || []).map(function(c){ return c.term; });
         var cat = cats[0] || 'ARTICLES';
@@ -260,7 +297,7 @@
                 '<span class="blog-date">' + pubDate + '</span>' +
               '</div>' +
               '<p class="blog-card-excerpt">' + excerpt + '</p>' +
-              '<a href="' + link + '" class="blog-read-more">വായിക്കുക (Read More) &rarr;</a>' +
+              '<a href="' + link + '" class="blog-read-more">à´µà´¾à´¯à´¿à´•àµà´•àµà´• (Read More) &rarr;</a>' +
             '</div>' +
           '</div>';
         container.appendChild(col);
@@ -305,3 +342,5 @@
 
 </body>
 </html>
+
+

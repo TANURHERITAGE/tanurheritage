@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>The Tanur Heritage - Digital Portal</title>
-  <meta name="description" content="The Tanur Heritage – Discover the rich history, culture, monuments, and traditions of Tanur, a coastal town in Kerala. Read articles on Tanur's heritage, Malabar history, watch videos, and explore archives.">
+  <meta name="description" content="The Tanur Heritage â€“ Discover the rich history, culture, monuments, and traditions of Tanur, a coastal town in Kerala. Read articles on Tanur's heritage, Malabar history, watch videos, and explore archives.">
   <meta name="keywords" content="Tanur Heritage, Tanur History, Kerala Heritage, Malabar History, Tanur Culture, Tanur Monuments, Tanur Articles, thetanurheritage">
   <link rel="canonical" href="https://tanurheritage.in/">
   <meta property="og:title" content="The Tanur Heritage">
@@ -31,19 +31,144 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/main.css?v=1794710000000" rel="stylesheet">
 
   <!-- Blog Feed CSS -->
-  <link href="assets/css/blog-feed.css" rel="stylesheet">
+  <link href="assets/css/blog-feed.css?v=1794710000000" rel="stylesheet">
 
   <!-- Magazine & Media Layout CSS (Matches 4 Images) -->
-  <link href="assets/css/magazine-layout.css" rel="stylesheet">
+  <link href="assets/css/magazine-layout.css?v=1794735000000" rel="stylesheet">
+
+  <style>
+    /* ======= HEADER: Always dark background ======= */
+    #header, .header {
+      background-color: #20222e !important;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3) !important;
+      transition: all 0.3s ease !important;
+    }
+    #header .logo h1, #header .logo a, .header .logo a {
+      color: #ffffff !important;
+    }
+
+    /* ======= DESKTOP NAV: white text ======= */
+    @media (min-width: 1200px) {
+      .navmenu a, .navmenu a:focus, .navmenu a:visited {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        text-decoration: none !important;
+      }
+      .navmenu a:hover, .navmenu a:active, .navmenu li:hover > a, .navmenu .active {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-color: #ef6603 !important;
+        border-radius: 20px !important;
+      }
+    }
+
+    /* ======= MOBILE NAV: dark background, white text ======= */
+    @media (max-width: 1199px) {
+      .navmenu ul {
+        background-color: #20222e !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.5) !important;
+      }
+      .navmenu a, .navmenu a:focus, .navmenu a:visited {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        text-decoration: none !important;
+      }
+      .navmenu a:hover, .navmenu a:active, .navmenu li:hover > a {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-color: #ef6603 !important;
+      }
+      .navmenu .active > a, .navmenu .active > a:focus {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-color: #ef6603 !important;
+        border-radius: 20px !important;
+      }
+      /* Dropdown sub-menus inside mobile nav */
+      .navmenu .dropdown ul {
+        background-color: #161825 !important;
+        border: 1px solid rgba(255,255,255,0.08) !important;
+      }
+      .navmenu .dropdown ul a {
+        color: #cccccc !important;
+        -webkit-text-fill-color: #cccccc !important;
+      }
+      .navmenu .dropdown ul a:hover {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        background-color: #ef6603 !important;
+      }
+      /* Overlay backdrop */
+      .mobile-nav-active .navmenu {
+        background: rgba(10, 12, 20, 0.92) !important;
+      }
+    }
+
+    /* ======= HERO POSTER: Full-bleed edge-to-edge ======= */
+    .hero-poster-section {
+      padding: 72px 0 0 0 !important;
+      background: #10121a !important;
+      width: 100% !important;
+      overflow: hidden !important;
+    }
+    .poster-slider-container {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      background: #10121a !important;
+    }
+    .poster-slide-wrap {
+      width: 100% !important;
+      background: #10121a !important;
+      border-radius: 0 !important;
+    }
+    .poster-slide-img {
+      width: 100% !important;
+      height: 560px !important;
+      min-height: 440px !important;
+      max-height: 720px !important;
+      object-fit: cover !important;
+      object-position: center center !important;
+      border-radius: 0 !important;
+      display: block !important;
+    }
+    @media (min-width: 1400px) {
+      .poster-slide-img {
+        height: 620px !important;
+        min-height: 520px !important;
+      }
+    }
+    @media (max-width: 991px) {
+      .hero-poster-section {
+        padding-top: 68px !important;
+      }
+      .poster-slide-img {
+        height: 380px !important;
+        min-height: 300px !important;
+      }
+    }
+    @media (max-width: 576px) {
+      .hero-poster-section {
+        padding-top: 64px !important;
+      }
+      .poster-slide-img {
+        height: 240px !important;
+        min-height: 200px !important;
+      }
+    }
+  </style>
 </head>
 
 <body class="index-page">
 
   <!-- ======================== HEADER ======================== -->
-  <header id="header" class="header d-flex align-items-center fixed-top">
+  <header id="header" class="header d-flex align-items-center fixed-top" style="background-color: #20222e !important;">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center">
@@ -55,13 +180,13 @@
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="articles.html?cat=HISTORY">History</a></li>
           <li><a href="articles.html?cat=CULTURE">Culture</a></li>
-          <li><a href="articles.html?cat=ARTICLES">Articles</a></li>
+          <li><a href="articles.html?cat=ARTICLES">Recents</a></li>
           <li><a href="articles.html?cat=Who'sWho">Who's Who</a></li>
           <li><a href="articles.html?cat=Monuments">Monuments</a></li>
           <li><a href="#videos-section">Videos</a></li>
-          <li><a href="gallery.html">Updates</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
           <li><a href="archives.html">Archives</a></li>
-          <li><a href="#about">About</a></li>
+          <li><a href="about.html">About</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -75,37 +200,37 @@
          SECTION 1: HERO AUTO-SLIDING POSTERS (Image 1)
          ======================================================== -->
     <section id="hero-posters" class="hero-poster-section">
-      <div class="container">
+      <div class="container-fluid px-0">
         <div class="poster-slider-container">
           <!-- Swiper Slider -->
           <div class="swiper poster-swiper" id="poster-swiper">
             <div class="swiper-wrapper" id="poster-swiper-wrapper">
               
-              <!-- Slide 1: Primary poster from user image -->
+              <!-- Slide 1: Primary poster -->
               <div class="swiper-slide">
                 <a href="gallery.html" class="poster-slide-wrap">
-                  <img src="assets/img/posters/poster-1.jpg" alt="TWO-DAY Leadership Appraisal & Workshop 2026" class="poster-slide-img" onerror="this.src='assets/img/sub 3.png'">
+                  <img src="assets/img/posters/poster-1.webp" alt="The Tanur Heritage" class="poster-slide-img" onerror="this.src='assets/img/sub 3.png'">
                 </a>
               </div>
 
-              <!-- Slide 2: Carnival poster -->
+              <!-- Slide 2: Heritage Team -->
               <div class="swiper-slide">
                 <a href="gallery.html" class="poster-slide-wrap">
-                  <img src="assets/img/sub 3.png" alt="Tanur Heritage Carnival" class="poster-slide-img">
+                  <img src="assets/img/posters/poster-2.jpg" alt="Heritage Team" class="poster-slide-img">
                 </a>
               </div>
 
-              <!-- Slide 3: Heritage Walk poster -->
+              <!-- Slide 3: Guest Talk -->
               <div class="swiper-slide">
                 <a href="gallery.html" class="poster-slide-wrap">
-                  <img src="assets/img/sub 2.png" alt="Tanur Heritage Walk" class="poster-slide-img">
+                  <img src="assets/img/posters/poster-3.webp" alt="Guest Talk" class="poster-slide-img">
                 </a>
               </div>
 
-              <!-- Slide 4: Photography Award poster -->
+              <!-- Slide 4: Heritage Book Stall -->
               <div class="swiper-slide">
                 <a href="gallery.html" class="poster-slide-wrap">
-                  <img src="assets/img/sub 1.png" alt="Heritage Photography Award" class="poster-slide-img">
+                  <img src="assets/img/posters/poster-4.webp" alt="Heritage Book Stall" class="poster-slide-img">
                 </a>
               </div>
 
@@ -140,532 +265,364 @@
     </div>
 
     <!-- ========================================================
-         SECTION 2: MAGAZINE / EDITORIAL ARTICLES (Image 2)
+         SECTION 2: MAGAZINE / EDITORIAL RECENTS (Image 2)
          ======================================================== -->
     <section id="magazine-section" class="magazine-section">
       <div class="container">
-        <div class="row">
 
-          <!-- Left Column (Main Articles - Top Featured + 3 Subgrid) -->
+        <!-- Section Heading -->
+        <div class="section-crimson-title" style="margin-bottom:20px;">
+          <span>Recents</span>
+        </div>
+
+        <div class="row g-4">
+
+          <!-- Left Column (8 cols): Top Featured + 3-Card Subgrid -->
           <div class="col-lg-8">
             
-            <!-- Top Main Featured Story (Left text, Right image) -->
+            <!-- 2A. Top Featured Story -->
             <div id="mag-top-main-container">
-              <div class="mag-top-card">
-                <div class="row align-items-center">
-                  <div class="col-lg-7 col-md-7">
-                    <span class="category-tag">TRAVELOKAM</span>
-                    <h2 class="mag-top-title">
-                      <a href="articles.html?cat=CULTURE">കർഷകർക്ക് പൂമണം കൊടുത്ത വദ്‌ജി ഗ്രാമം</a>
-                    </h2>
-                    <p class="mag-top-excerpt">
-                      പൂപ്പാടങ്ങളുടെ പകിട്ടും സുഗന്ധവും വദ്‌ജിയിലെ ഓരോ നിമിഷങ്ങൾക്കും നിറം ചാർത്തുന്നതായിരുന്നു. 'ഗുലാബാച്ചെ ഗാവ്' എന്ന...
-                    </p>
-                    <div class="mag-byline">
-                      <span>മുഹമ്മദലി സഖാഫി പൊട്ടിക്കല്ല്</span>, <span class="text-muted">2 HOURS AGO</span>
+              <article class="mag-top-story" data-aos="fade-up">
+                <div class="row g-3">
+                  <div class="col-md-5 d-flex flex-column justify-content-between">
+                    <div>
+                      <span class="category-tag">HISTORY</span>
+                      <h2 class="mag-title-main">
+                        <a href="article.html?id=2487327519945937082">à´µàµ†à´Ÿàµà´Ÿà´¤àµà´¤àµà´¨à´¾à´Ÿàµ: à´…à´¥à´µà´¾ à´¤à´¾à´¨àµ‚àµ¼ à´¸àµà´µà´°àµ‚à´ªà´‚</a>
+                      </h2>
+                      <p class="mag-excerpt">
+                        à´°à´£àµà´Ÿà´¾à´‚ à´šàµ‡à´° à´¸à´¾à´®àµà´°à´¾à´œàµà´¯à´¤àµà´¤à´¿à´¨àµà´±àµ† à´ªà´¤à´¨à´¤àµà´¤àµ‹à´Ÿàµ† à´•àµ‡à´°à´³à´¤àµà´¤à´¿àµ½ à´¨à´¿à´°à´µà´§à´¿ à´¨à´¾à´Ÿàµà´Ÿàµ à´°à´¾à´œàµà´¯à´™àµà´™à´³à´¾à´£àµ à´‰à´¦à´¯à´‚ à´•àµŠà´£àµà´Ÿà´¤àµ. à´‡à´•àµà´•àµ‚à´Ÿàµà´Ÿà´¤àµà´¤à´¿àµ½ à´•àµ‡à´°à´³à´¤àµà´¤à´¿à´¨àµà´±àµ† à´à´•à´¦àµ‡à´¶à´‚ à´®à´§àµà´¯à´­à´¾à´—à´¤àµà´¤àµ à´‰à´¦à´¯à´‚ à´šàµ†à´¯àµà´¤ à´’à´°àµ à´ªàµà´°à´®àµà´– à´¨à´¾à´Ÿàµà´Ÿàµ à´°à´¾à´œàµà´¯à´®à´¾à´¯à´¿à´°àµà´¨àµà´¨àµ à´µàµ†à´Ÿàµà´Ÿà´¤àµà´¤àµà´¨à´¾à´Ÿàµ à´…à´¥à´µà´¾ à´¤à´¾à´¨àµ‚àµ¼ à´¸àµà´µà´°àµ‚à´ªà´‚...
+                      </p>
+                    </div>
+                    <div class="mag-byline mt-3">
+                      <strong style="color:var(--th-accent);">The Tanur Heritage</strong>, <span class="text-muted">HISTORY SPECIAL</span>
                     </div>
                   </div>
-                  <div class="col-lg-5 col-md-5 mt-3 mt-md-0">
-                    <div class="mag-top-img-wrap">
-                      <a href="articles.html?cat=CULTURE">
-                        <img src="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" alt="കർഷകർക്ക് പൂമണം കൊടുത്ത വദ്‌ജി ഗ്രാമം" class="mag-top-img">
-                      </a>
-                    </div>
+                  <div class="col-md-7">
+                    <a href="article.html?id=2487327519945937082" class="d-block overflow-hidden rounded-2">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Colored_vettattnad.jpg/220px-Colored_vettattnad.jpg" alt="à´µàµ†à´Ÿàµà´Ÿà´¤àµà´¤àµà´¨à´¾à´Ÿàµ: à´…à´¥à´µà´¾ à´¤à´¾à´¨àµ‚àµ¼ à´¸àµà´µà´°àµ‚à´ªà´‚" class="mag-featured-img">
+                    </a>
                   </div>
                 </div>
-              </div>
+              </article>
             </div>
 
-            <!-- Bottom 3-Card Grid -->
-            <div class="row gy-4" id="mag-subgrid-container">
-              
-              <!-- Card 1 -->
+            <!-- 2B. 3-Card Subgrid -->
+            <div class="row g-3 mt-1" id="mag-subgrid-container">
+
+              <!-- Subgrid Card 1 -->
               <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="mag-sub-card">
-                  <div class="mag-sub-img-wrap">
-                    <a href="articles.html?cat=HISTORY">
-                      <img src="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" alt="മഹ്ബരിനും മലബാറും" class="mag-sub-img">
-                    </a>
-                  </div>
-                  <span class="category-tag">RELIGION</span>
+                <article class="mag-sub-card">
+                  <a href="article.html?id=5360548811375307347">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMv5MSlsfivZv85Mx_wDhvsJESXrgSmMOPjQ&s" alt="à´ªàµ‹àµ¼à´šàµà´šàµà´—àµ€à´¸àµ à´•à´¾à´²à´˜à´Ÿàµà´Ÿà´¤àµà´¤à´¿à´²àµ† à´¤à´¾à´¨àµ‚àµ¼" class="mag-sub-img">
+                  </a>
+                  <span class="category-tag">HISTORY</span>
                   <h4 class="mag-sub-title">
-                    <a href="articles.html?cat=HISTORY">മഹ്ബരിനും മലബാറും ഇടയിലെ സ്വദഖത്തുല്ലാഹിൽ ഖാഹിരി</a>
+                    <a href="article.html?id=5360548811375307347">à´ªàµ‹àµ¼à´šàµà´šàµà´—àµ€à´¸àµ à´•à´¾à´²à´˜à´Ÿàµà´Ÿà´¤àµà´¤à´¿à´²àµ† à´¤à´¾à´¨àµ‚àµ¼</a>
                   </h4>
                   <p class="mag-sub-excerpt">
-                    കീഴക്കരയുടെ ആത്മീയ പ്രഭാവത്തിന് അടിത്തറയിട്ടതും വിജ്ഞാനത്തിന്റെ...
+                    1498-àµ½ à´µà´¾à´¸àµà´•àµ‹ à´¡ à´—à´¾à´® à´•àµ‹à´´à´¿à´•àµà´•àµ‹à´Ÿàµà´Ÿàµ†à´¤àµà´¤à´¿à´¯à´¤àµ à´®àµà´¤à´²à´¾à´£àµ à´•àµ‡à´°à´³à´¤àµà´¤à´¿àµ½ à´ªàµ‹àµ¼à´šàµà´šàµà´—àµ€à´¸àµ à´¯àµà´—à´‚ à´†à´°à´‚à´­à´¿à´•àµà´•àµà´¨àµà´¨à´¤àµ. à´¤à´¾à´¨àµ‚àµ¼ à´ªàµ‹àµ¼à´šàµà´šàµà´—àµ€à´¸àµà´•à´¾à´°àµà´Ÿàµ† à´¶àµà´°à´¦àµà´§à´¾à´•àµ‡à´¨àµà´¦àµà´°à´®à´¾à´¯à´¿ à´®à´¾à´±à´¿...
                   </p>
                   <div class="mag-byline">
-                    <span>ഷിഫ നസ്വീഹ സി തലക്കടത്തൂർ</span>, <span class="text-muted">A DAY AGO</span>
+                    <strong>The Tanur Heritage</strong>, <span class="text-muted">HISTORICAL STUDY</span>
                   </div>
-                </div>
+                </article>
               </div>
 
-              <!-- Card 2 -->
-              <div class="col-md-4" data-aos="fade-up" data-aos-delay="180">
-                <div class="mag-sub-card">
-                  <div class="mag-sub-img-wrap">
-                    <a href="articles.html?cat=ARTICLES">
-                      <img src="assets/img/team/team-2.jpg" alt="ക്ഷമിക്കണം റോജി ജോൺ" class="mag-sub-img">
-                    </a>
-                  </div>
-                  <span class="category-tag">UPDATION</span>
+              <!-- Subgrid Card 2 -->
+              <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
+                <article class="mag-sub-card">
+                  <a href="article.html?id=4363435959433211658">
+                    <img src="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" alt="à´¤à´¾à´¨àµ‚à´°à´¿à´¨àµà´±àµ† à´®à´¹à´¤àµà´¤à´¾à´¯ à´®à´¾à´ªàµà´ªà´¿à´³ à´¸à´¾à´¹à´¿à´¤àµà´¯ à´ªà´¾à´°à´®àµà´ªà´°àµà´¯à´‚" class="mag-sub-img">
+                  </a>
+                  <span class="category-tag">CULTURE</span>
                   <h4 class="mag-sub-title">
-                    <a href="articles.html?cat=ARTICLES">ക്ഷമിക്കണം റോജി ജോൺ, നിങ്ങളിൽ ഞങ്ങൾക്ക് സംശയങ്ങളുണ്ട്</a>
+                    <a href="article.html?id=4363435959433211658">à´¤à´¾à´¨àµ‚à´°à´¿à´¨àµà´±àµ† à´®à´¹à´¤àµà´¤à´¾à´¯ à´®à´¾à´ªàµà´ªà´¿à´³ à´¸à´¾à´¹à´¿à´¤àµà´¯ à´ªà´¾à´°à´®àµà´ªà´°àµà´¯à´‚</a>
                   </h4>
                   <p class="mag-sub-excerpt">
-                    വിനോദ് കുമാർ കല്ലോലിക്കലിനെ നിയമിക്കുക വഴി ആ സ്ഥാപനത്തിന്റെ...
+                    à´®à´¾à´ªàµà´ªà´¿à´³à´ªàµà´ªà´¾à´Ÿàµà´Ÿàµà´•à´³àµà´Ÿàµ†à´¯àµà´‚ à´¸à´¾à´¹à´¿à´¤àµà´¯à´¤àµà´¤à´¿à´¨àµà´±àµ†à´¯àµà´‚ à´•à´¾à´°àµà´¯à´¤àµà´¤à´¿àµ½ à´¤à´¾à´¨àµ‚à´°à´¿à´¨àµ à´¸àµà´ªàµà´°à´§à´¾à´¨ à´¸àµà´¥à´¾à´¨à´®àµà´£àµà´Ÿàµ. à´¨à´¿à´°à´µà´§à´¿ à´•à´µà´¿à´•à´³àµà´‚ à´°à´šà´¯à´¿à´¤à´¾à´•àµà´•à´³àµà´‚ à´¤à´¾à´¨àµ‚à´°à´¿àµ½ à´œà´¨àµà´®à´®àµ†à´Ÿàµà´¤àµà´¤àµ...
                   </p>
                   <div class="mag-byline">
-                    <span>സഞ്ജയൻ 2.0</span>, <span class="text-muted">19 MINUTES AGO</span>
+                    <strong>The Tanur Heritage</strong>, <span class="text-muted">CULTURE SPECIAL</span>
                   </div>
-                </div>
+                </article>
               </div>
 
-              <!-- Card 3 -->
-              <div class="col-md-4" data-aos="fade-up" data-aos-delay="260">
-                <div class="mag-sub-card">
-                  <div class="mag-sub-img-wrap">
-                    <a href="articles.html?cat=ARTICLES">
-                      <img src="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" alt="നിങ്ങൾക്ക് ഒറ്റയ്ക്ക് കേൾക്കാൻ" class="mag-sub-img">
-                    </a>
-                  </div>
-                  <span class="category-tag">HEALTH</span>
+              <!-- Subgrid Card 3 -->
+              <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <article class="mag-sub-card">
+                  <a href="article.html?id=6944249057337203015">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjqFExqYhYCoT6vDkjLvR6pkk8O6Z_k3Jd4VwKEb2krBxx5BUCaunqDGZEhA_YMOyEoW0uQNUAr8msSw7XhCQ5zeR9yNE5nC-GZlFVe73qDxZNT-f_dvld8-5IHfVG0F80z5ZlG0aU0puo/s320/thanni+maram.jpg" alt="à´¤à´¾à´¨àµ‚àµ¼: à´¤à´¾à´¨àµà´¨à´¿à´®à´°à´™àµà´™à´³àµà´Ÿàµ† à´¨à´¾à´Ÿàµ ?" class="mag-sub-img">
+                  </a>
+                  <span class="category-tag">HISTORY</span>
                   <h4 class="mag-sub-title">
-                    <a href="articles.html?cat=ARTICLES">നിങ്ങൾക്ക് ഒറ്റയ്ക്ക് കേൾക്കാൻ ഇത്ര ഒച്ച വേണോ?</a>
+                    <a href="article.html?id=6944249057337203015">à´¤à´¾à´¨àµ‚àµ¼: à´¤à´¾à´¨àµà´¨à´¿à´®à´°à´™àµà´™à´³àµà´Ÿàµ† à´¨à´¾à´Ÿàµ ?</a>
                   </h4>
                   <p class="mag-sub-excerpt">
-                    ശബ്ദമര്യാദ ശബ്ദമുണ്ടാക്കാതിരിക്കാനുള്ള നിയമം...
+                    à´¤à´¾à´¨àµ‚àµ¼ à´Žà´¨àµà´¨ à´ªàµ‡à´°àµ à´®à´§àµà´¯ à´•à´¾à´²à´˜à´Ÿàµà´Ÿà´‚ à´®àµà´¤àµ½à´•àµà´•àµ‡ à´²àµ‹à´•à´¤àµà´¤à´¿à´¨àµ à´¸àµà´ªà´°à´¿à´šà´¿à´¤à´®à´¾à´£àµ. à´®à´±àµà´±àµ à´¨à´¾à´Ÿàµà´Ÿàµ à´ªàµ‡à´°àµà´•à´³à´¿àµ½ à´¨à´¿à´¨àµà´¨àµà´‚ à´­à´¿à´¨àµà´¨à´®à´¾à´¯à´¿ à´…à´±à´¬àµ-à´ªàµ‹àµ¼à´šàµà´šàµà´—àµ€à´¸àµ à´°à´šà´¨à´•à´³à´¿àµ½ à´ˆ à´ªàµ‡à´°àµ à´•à´¾à´£à´¾à´‚...
                   </p>
                   <div class="mag-byline">
-                    <span>ഡോ. ഫാത്തിമ. എസ്</span>, <span class="text-muted">2 DAYS AGO</span>
+                    <strong>The Tanur Heritage</strong>, <span class="text-muted">HERITAGE STUDY</span>
                   </div>
-                </div>
+                </article>
               </div>
 
             </div>
+          </div>
 
-          </div><!-- /End Left Column -->
-
-          <!-- Right Column (Sidebar Highlight + MOST READ) -->
-          <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
+          <!-- Right Column (4 cols): Highlight Card + "MOST READ" -->
+          <div class="col-lg-4">
             
-            <!-- Sidebar Highlight Card (Top Right) -->
+            <!-- 2C. Sidebar Highlight Card -->
             <div id="mag-side-highlight-container">
-              <a href="articles.html?cat=ARTICLES" class="mag-side-highlight">
-                <img src="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" alt="എത്ര റീൽ വേണം ഒരു ദിവസം ജീവിക്കാൻ?">
-                <div class="mag-side-highlight-overlay">
-                  <p class="mag-side-highlight-title">എത്ര റീൽ വേണം ഒരു ദിവസം ജീവിക്കാൻ?</p>
-                </div>
-              </a>
+              <div class="mag-highlight-card" data-aos="fade-up">
+                <a href="article.html?id=7565311976029258255">
+                  <img src="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" alt="à´®à´²à´¯à´¾à´³ à´¸à´¾à´¹à´¿à´¤àµà´¯à´¤àµà´¤à´¿àµ½ à´¤à´¾à´¨àµ‚à´°à´¿à´¨àµà´±àµ† à´ªà´¾à´°à´®àµà´ªà´°àµà´¯à´‚" class="mag-highlight-img">
+                  <div class="mag-highlight-overlay">
+                    <h5 class="mag-highlight-title">à´®à´²à´¯à´¾à´³ à´¸à´¾à´¹à´¿à´¤àµà´¯à´¤àµà´¤à´¿àµ½ à´¤à´¾à´¨àµ‚à´°à´¿à´¨àµà´±àµ† à´ªà´¾à´°à´®àµà´ªà´°àµà´¯à´‚</h5>
+                  </div>
+                </a>
+              </div>
             </div>
 
-            <!-- MOST READ Widget -->
-            <div class="most-read-box">
+            <!-- 2D. "MOST READ" List -->
+            <div class="mag-most-read-card" data-aos="fade-up" data-aos-delay="100">
               <h5 class="most-read-heading">MOST READ</h5>
-              <div id="mag-most-read-container">
-                
-                <a href="articles.html?cat=HISTORY" class="most-read-item">
-                  <span class="most-read-badge">1</span>
-                  <p class="most-read-title">ദലാഇലുൽ ഖൈറാത്തിന്റെ ദേശവും ദേശാന്തരീയതയും</p>
-                </a>
 
-                <a href="articles.html?cat=Who'sWho" class="most-read-item">
-                  <span class="most-read-badge">2</span>
-                  <p class="most-read-title">കോമു മുസ്ലിയാരുടെ ജ്ഞാനജീവിതം</p>
-                </a>
+              <ul class="most-read-list" id="mag-most-read-container">
+                <li class="most-read-item">
+                  <span class="most-read-num">1</span>
+                  <a href="article.html?id=4493212617688566905" class="most-read-link">à´ªàµà´°à´¾à´šàµ€à´¨ à´¤à´¾à´¨àµ‚àµ¼: à´šà´°à´¿à´¤àµà´°à´¤àµà´¤à´¿à´²àµ† à´¸àµ‚à´šà´¨à´•àµ¾</a>
+                </li>
+                <li class="most-read-item">
+                  <span class="most-read-num">2</span>
+                  <a href="article.html?id=3834730641862462277" class="most-read-link">à´®àµˆà´¸àµ‚àµ¼ à´…à´§à´¿à´¨à´¿à´µàµ‡à´¶ à´•à´¾à´²à´¤àµà´¤àµ† à´¤à´¾à´¨àµ‚àµ¼</a>
+                </li>
+                <li class="most-read-item">
+                  <span class="most-read-num">3</span>
+                  <a href="article.html?id=5741165808967118932" class="most-read-link">à´¬àµà´°à´¿à´Ÿàµà´Ÿàµ€à´·àµ à´­à´°à´£ à´•à´¾à´²à´¤àµà´¤àµ† à´¤à´¾à´¨àµ‚àµ¼</a>
+                </li>
+                <li class="most-read-item">
+                  <span class="most-read-num">4</span>
+                  <a href="article.html?id=6847944447785566125" class="most-read-link">à´‡à´¸àµà´²à´¾à´®à´¿à´• à´µàµà´¯à´¾à´ªà´¨à´‚ à´¤à´¾à´¨àµ‚à´°à´¿àµ½</a>
+                </li>
+                <li class="most-read-item">
+                  <span class="most-read-num">5</span>
+                  <a href="article.html?id=3351477611139868195" class="most-read-link">à´—àµà´°à´¨àµà´¥à´¾à´²à´¯à´™àµà´™àµ¾: à´µàµ†à´³à´¿à´šàµà´šà´¤àµà´¤à´¿à´¨àµà´±àµ† à´ªàµà´°à´­à´µ à´•àµ‡à´¨àµà´¦àµà´°à´™àµà´™àµ¾</a>
+                </li>
+              </ul>
 
-                <a href="articles.html?cat=ARTICLES" class="most-read-item">
-                  <span class="most-read-badge">3</span>
-                  <p class="most-read-title">കാലടിയിലെ സിസ തോമസ് അറിയുമോ ബഹാവുദ്ദീനെ?</p>
-                </a>
-
-                <a href="articles.html?cat=Who'sWho" class="most-read-item">
-                  <span class="most-read-badge">4</span>
-                  <p class="most-read-title">മുഅല്ലിമുകളുടെ തങ്ങൾ</p>
-                </a>
-
-                <a href="articles.html?cat=Who'sWho" class="most-read-item">
-                  <span class="most-read-badge">5</span>
-                  <p class="most-read-title">എം എ ഉസ്താദ്; കവിയും കവിതകളും</p>
-                </a>
-
-              </div>
-              
-              <div class="text-end">
-                <a href="articles.html" class="see-all-link">
-                  See all <i class="bi bi-chevron-right"></i>
-                </a>
+              <div class="see-all-wrap">
+                <a href="articles.html" class="see-all-link">See all &gt;</a>
               </div>
             </div>
 
-          </div><!-- /End Right Column -->
+          </div>
 
         </div>
       </div>
     </section>
-    <!-- /End Section 2 -->
 
     <!-- ========================================================
-         SECTION 3: VIDEOS SECTION (Image 3) — PURE DARK THEME
+         SECTION 3: VIDEOS SECTION (Image 3) â€” PURE DARK THEME
          ======================================================== -->
     <section id="videos-section" class="videos-section">
       <div class="container">
         
-        <!-- Header -->
+        <!-- Section Crimson Header -->
         <div class="section-crimson-title">
           <span>Videos</span>
         </div>
 
-        <div class="row">
-          
-          <!-- Left Area: 2x2 Grid (4 Video Cards) -->
+        <div class="row g-4">
+          <!-- Main 2x2 Grid (8 cols) -->
           <div class="col-lg-8">
-            <div class="row" id="video-main-grid-container">
-
+            <div class="row g-3" id="video-main-grid-container">
+              
               <!-- Video Card 1 -->
               <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="video-card-main">
-                  <div class="video-thumb-wrap" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'അഗ്നിപഥിലും കാർഷിക നിയമങ്ങളിലും മോദി തോറ്റുവോ?')">
-                    <img src="assets/img/sub 1.png" alt="Video thumbnail" class="video-thumb-img">
-                    <span class="video-brand-tag">update</span>
-                    <div class="video-play-btn"><i class="bi bi-play-fill"></i></div>
+                <div class="video-card" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'The Tanur Heritage Project Launching Ceremony')">
+                  <div class="video-thumb-wrap">
+                    <img src="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" alt="The Tanur Heritage Project Launching Ceremony" class="video-thumb-img">
+                    <span class="video-category-tag">HERITAGE LAUNCH</span>
+                    <button class="video-play-btn"><i class="bi bi-play-fill"></i></button>
+                    <span class="video-duration">18:45</span>
                   </div>
-                  <h4 class="video-main-title" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'അഗ്നിപഥിലും കാർഷിക നിയമങ്ങളിലും മോദി തോറ്റുവോ?')">
-                    അഗ്നിപഥിലും കാർഷിക നിയമങ്ങളിലും മോദി തോറ്റുവോ? | BINOY THOMAS
+                  <h4 class="video-card-title">
+                    <a href="javascript:void(0);">The Tanur Heritage Project Launching Ceremony</a>
                   </h4>
-                  <p class="video-main-author">ബിനോയ് തോമസ് | സ്പെഷ്യൽ അനാലിസിസ്</p>
+                  <div class="video-channel-line">
+                    <strong style="color:var(--th-accent);">The Tanur Heritage</strong>
+                  </div>
                 </div>
               </div>
 
               <!-- Video Card 2 -->
-              <div class="col-md-6" data-aos="fade-up" data-aos-delay="180">
-                <div class="video-card-main">
-                  <div class="video-thumb-wrap" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'ഇന്ത്യക്കാർക്ക് ലിക്വിഡ് മണിയെ വിശ്വാസം')">
-                    <img src="assets/img/sub 2.png" alt="Video thumbnail" class="video-thumb-img">
-                    <span class="video-brand-tag">EXPLAINER</span>
-                    <div class="video-play-btn"><i class="bi bi-play-fill"></i></div>
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
+                <div class="video-card" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'Tanur Heritage Carnival & Cultural Highlights')">
+                  <div class="video-thumb-wrap">
+                    <img src="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" alt="Tanur Heritage Carnival" class="video-thumb-img">
+                    <span class="video-category-tag">CARNIVAL</span>
+                    <button class="video-play-btn"><i class="bi bi-play-fill"></i></button>
+                    <span class="video-duration">12:30</span>
                   </div>
-                  <h4 class="video-main-title" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'ഇന്ത്യക്കാർക്ക് ലിക്വിഡ് മണിയെ വിശ്വാസം')">
-                    ഇന്ത്യക്കാർക്ക് 'ലിക്വിഡ് മണി'യെ വിശ്വാസം | നോട്ടുനിരോധനത്തെ...
+                  <h4 class="video-card-title">
+                    <a href="javascript:void(0);">Tanur Heritage Carnival & Cultural Highlights</a>
                   </h4>
-                  <p class="video-main-author">മുഹമ്മദ് നജ്മീർ</p>
+                  <div class="video-channel-line">
+                    <strong style="color:var(--th-accent);">The Tanur Heritage</strong>
+                  </div>
                 </div>
               </div>
 
               <!-- Video Card 3 -->
-              <div class="col-md-6" data-aos="fade-up" data-aos-delay="260">
-                <div class="video-card-main">
-                  <div class="video-thumb-wrap" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'E20 പെട്രോൾ; സർക്കാർ സ്പോൺസേഡ് വഞ്ചന?')">
-                    <img src="assets/img/sub 3.png" alt="Video thumbnail" class="video-thumb-img">
-                    <span class="video-brand-tag">update</span>
-                    <div class="video-play-btn"><i class="bi bi-play-fill"></i></div>
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="video-card" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'Historical Monuments & Ancient Heritage of Tanur')">
+                  <div class="video-thumb-wrap">
+                    <img src="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" alt="Historical Monuments of Tanur" class="video-thumb-img">
+                    <span class="video-category-tag">DOCUMENTARY</span>
+                    <button class="video-play-btn"><i class="bi bi-play-fill"></i></button>
+                    <span class="video-duration">15:20</span>
                   </div>
-                  <h4 class="video-main-title" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'E20 പെട്രോൾ; സർക്കാർ സ്പോൺസേഡ് വഞ്ചന?')">
-                    E20 പെട്രോൾ; സർക്കാർ സ്പോൺസേഡ് വഞ്ചന? | BINOY THOMAS | NEWS KITCHEN
+                  <h4 class="video-card-title">
+                    <a href="javascript:void(0);">Historical Monuments & Ancient Heritage of Tanur</a>
                   </h4>
-                  <p class="video-main-author">ബിനോയ് തോമസ് | ന്യൂസ് കിച്ചൻ</p>
+                  <div class="video-channel-line">
+                    <strong style="color:var(--th-accent);">The Tanur Heritage</strong>
+                  </div>
                 </div>
               </div>
 
               <!-- Video Card 4 -->
-              <div class="col-md-6" data-aos="fade-up" data-aos-delay="340">
-                <div class="video-card-main">
-                  <div class="video-thumb-wrap" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'വിദ്യാഭ്യാസ കച്ചവടക്കാരെ കയറൂരി വിടുകയാണോ?')">
-                    <img src="assets/img/Project (20241001042716).png" alt="Video thumbnail" class="video-thumb-img">
-                    <span class="video-brand-tag">InSight</span>
-                    <div class="video-play-btn"><i class="bi bi-play-fill"></i></div>
+              <div class="col-md-6" data-aos="fade-up" data-aos-delay="250">
+                <div class="video-card" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'Maritime Trade & Malabar Coastal Traditions in Tanur')">
+                  <div class="video-thumb-wrap">
+                    <img src="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" alt="Maritime Trade in Tanur" class="video-thumb-img">
+                    <span class="video-category-tag">MARITIME HISTORY</span>
+                    <button class="video-play-btn"><i class="bi bi-play-fill"></i></button>
+                    <span class="video-duration">21:10</span>
                   </div>
-                  <h4 class="video-main-title" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'വിദ്യാഭ്യാസ കച്ചവടക്കാരെ കയറൂരി വിടുകയാണോ?')">
-                    വിദ്യാഭ്യാസ കച്ചവടക്കാരെ കയറൂരി വിടുകയാണോ? | Dr. PJ VINCENT | BINOY...
+                  <h4 class="video-card-title">
+                    <a href="javascript:void(0);">Maritime Trade & Malabar Coastal Traditions in Tanur</a>
                   </h4>
-                  <p class="video-main-author">ഡോ. പി.ജെ. വിൻസെന്റ് | ബിനോയ് തോമസ്</p>
+                  <div class="video-channel-line">
+                    <strong style="color:var(--th-accent);">The Tanur Heritage</strong>
+                  </div>
                 </div>
               </div>
 
             </div>
-          </div><!-- /End Left Area -->
+          </div>
 
-          <!-- Right Sidebar: Vertical Video List -->
-          <div class="col-lg-4 mt-4 mt-lg-0">
-            <div id="video-side-list-container">
-              
-              <div class="video-side-item" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'നമ്മൾ ഒഴിവാക്കുന്ന വസ്ത്രങ്ങൾ')">
-                <div class="video-side-content">
-                  <div class="video-side-cat">OTHERS</div>
-                  <h5 class="video-side-title">നമ്മൾ ഒഴിവാക്കുന്ന വസ്ത്രങ്ങൾ എങ്ങോട്ട് പോകുന്നു? | പഴയ...</h5>
-                  <div class="video-side-time">2 DAYS AGO</div>
+          <!-- Sidebar Video List (4 cols) -->
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="video-side-list" id="video-side-list-container">
+
+              <!-- Side Item 1 -->
+              <div class="video-side-item" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'à´¤à´¾à´¨àµ‚à´°à´¿à´¨àµà´±àµ† à´ªàµˆà´¤àµƒà´• à´µà´´à´¿à´•àµ¾ - à´šà´°à´¿à´¤àµà´° à´¯à´¾à´¤àµà´°')">
+                <div class="video-side-info">
+                  <span class="video-side-cat">HERITAGE WALK</span>
+                  <h5 class="video-side-title">à´¤à´¾à´¨àµ‚à´°à´¿à´¨àµà´±àµ† à´ªàµˆà´¤àµƒà´• à´µà´´à´¿à´•àµ¾ - à´šà´°à´¿à´¤àµà´° à´¯à´¾à´¤àµà´°</h5>
+                  <span class="video-side-time">RECENT</span>
                 </div>
-                <div class="video-side-thumb">
-                  <img src="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" alt="Video thumbnail">
-                  <div class="video-play-btn"><i class="bi bi-play-fill"></i></div>
+                <div class="video-side-thumb-wrap">
+                  <img src="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" alt="" class="video-side-thumb">
+                  <span class="video-side-play"><i class="bi bi-play-fill"></i></span>
                 </div>
               </div>
 
-              <div class="video-side-item" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'ക്രിയേറ്റീവ് മാർക്കറ്റിങ്ങിലെ AI')">
-                <div class="video-side-content">
-                  <div class="video-side-cat">OTHERS</div>
-                  <h5 class="video-side-title">ക്രിയേറ്റീവ് മാർക്കറ്റിങ്ങിലെ AI | salim kodur | risala update</h5>
-                  <div class="video-side-time">2 DAYS AGO</div>
+              <!-- Side Item 2 -->
+              <div class="video-side-item" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'à´®à´¾à´ªàµà´ªà´¿à´³ à´¸à´¾à´¹à´¿à´¤àµà´¯à´µàµà´‚ à´¤à´¾à´¨àµ‚àµ¼ à´ªà´¾à´°à´®àµà´ªà´°àµà´¯à´µàµà´‚ à´šàµ¼à´šàµà´š')">
+                <div class="video-side-info">
+                  <span class="video-side-cat">CULTURE</span>
+                  <h5 class="video-side-title">à´®à´¾à´ªàµà´ªà´¿à´³ à´¸à´¾à´¹à´¿à´¤àµà´¯à´µàµà´‚ à´¤à´¾à´¨àµ‚àµ¼ à´ªà´¾à´°à´®àµà´ªà´°àµà´¯à´µàµà´‚ à´šàµ¼à´šàµà´š</h5>
+                  <span class="video-side-time">RECENT</span>
                 </div>
-                <div class="video-side-thumb">
-                  <img src="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" alt="Video thumbnail">
-                  <div class="video-play-btn"><i class="bi bi-play-fill"></i></div>
-                </div>
-              </div>
-
-              <div class="video-side-item" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'ജാമിയ മില്ലിയ ഇസ്ലാമിയ')">
-                <div class="video-side-content">
-                  <div class="video-side-cat">SATYAM PARANJAL</div>
-                  <h5 class="video-side-title">ജാമിയ മില്ലിയ ഇസ്ലാമിയ | സത്യം പറഞ്ഞാൽ | dr. ns abdul hameed</h5>
-                  <div class="video-side-time">2 DAYS AGO</div>
-                </div>
-                <div class="video-side-thumb">
-                  <img src="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" alt="Video thumbnail">
-                  <div class="video-play-btn"><i class="bi bi-play-fill"></i></div>
+                <div class="video-side-thumb-wrap">
+                  <img src="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" alt="" class="video-side-thumb">
+                  <span class="video-side-play"><i class="bi bi-play-fill"></i></span>
                 </div>
               </div>
 
-              <div class="video-side-item" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'പടക്ക് പരാന്നിയുന്നതോ രാഷ്ട്രീയസ്നേഹം?')">
-                <div class="video-side-content">
-                  <div class="video-side-cat">SPECIAL ANALYSIS</div>
-                  <h5 class="video-side-title">പടക്ക് പരാന്നിയുന്നതോ രാഷ്ട്രീയസ്നേഹം? | binoy thomas</h5>
-                  <div class="video-side-time">3 DAYS AGO</div>
+              <!-- Side Item 3 -->
+              <div class="video-side-item" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'à´¤à´¾à´¨àµ‚àµ¼ à´¹àµ†à´±à´¿à´±àµà´±àµ‡à´œàµ à´•à´¾àµ¼à´£à´¿à´µàµ½ à´‰à´¦àµà´˜à´¾à´Ÿà´¨ à´ªàµà´°à´­à´¾à´·à´£à´‚')">
+                <div class="video-side-info">
+                  <span class="video-side-cat">TALK</span>
+                  <h5 class="video-side-title">à´¤à´¾à´¨àµ‚àµ¼ à´¹àµ†à´±à´¿à´±àµà´±àµ‡à´œàµ à´•à´¾àµ¼à´£à´¿à´µàµ½ à´‰à´¦àµà´˜à´¾à´Ÿà´¨ à´ªàµà´°à´­à´¾à´·à´£à´‚</h5>
+                  <span class="video-side-time">CARNIVAL</span>
                 </div>
-                <div class="video-side-thumb">
-                  <img src="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" alt="Video thumbnail">
-                  <div class="video-play-btn"><i class="bi bi-play-fill"></i></div>
+                <div class="video-side-thumb-wrap">
+                  <img src="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" alt="" class="video-side-thumb">
+                  <span class="video-side-play"><i class="bi bi-play-fill"></i></span>
                 </div>
               </div>
 
-              <div class="video-side-item" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'ചികിത്സ കിട്ടാത്ത കേരള മോഡൽ')">
-                <div class="video-side-content">
-                  <div class="video-side-cat">OTHERS</div>
-                  <h5 class="video-side-title">ചികിത്സ കിട്ടാത്ത കേരള മോഡൽ | risala update</h5>
-                  <div class="video-side-time">3 DAYS AGO</div>
+              <!-- Side Item 4 -->
+              <div class="video-side-item" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'à´•à´Ÿà´²àµ‹à´° à´¸à´‚à´¸àµà´•à´¾à´°à´µàµà´‚ à´ªà´°à´®àµà´ªà´°à´¾à´—à´¤ à´¤àµŠà´´à´¿àµ½ à´°àµ€à´¤à´¿à´•à´³àµà´‚')">
+                <div class="video-side-info">
+                  <span class="video-side-cat">DOCUMENTARY</span>
+                  <h5 class="video-side-title">à´•à´Ÿà´²àµ‹à´° à´¸à´‚à´¸àµà´•à´¾à´°à´µàµà´‚ à´ªà´°à´®àµà´ªà´°à´¾à´—à´¤ à´¤àµŠà´´à´¿àµ½ à´°àµ€à´¤à´¿à´•à´³àµà´‚</h5>
+                  <span class="video-side-time">CULTURE</span>
                 </div>
-                <div class="video-side-thumb">
-                  <img src="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" alt="Video thumbnail">
-                  <div class="video-play-btn"><i class="bi bi-play-fill"></i></div>
+                <div class="video-side-thumb-wrap">
+                  <img src="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" alt="" class="video-side-thumb">
+                  <span class="video-side-play"><i class="bi bi-play-fill"></i></span>
+                </div>
+              </div>
+
+              <!-- Side Item 5 -->
+              <div class="video-side-item" onclick="openVideoPlayer('https://youtube.com/@thetanurheritage', 'à´¤à´¾à´¨àµ‚àµ¼ à´šà´°à´¿à´¤àµà´° à´ªàµà´°à´¦àµ¼à´¶à´¨à´‚ - à´µà´¿à´¦àµà´¯à´¾àµ¼à´¤àµà´¥à´¿à´•à´³àµà´Ÿàµ† à´…à´µà´¤à´°à´£à´‚')">
+                <div class="video-side-info">
+                  <span class="video-side-cat">EXHIBITION</span>
+                  <h5 class="video-side-title">à´¤à´¾à´¨àµ‚àµ¼ à´šà´°à´¿à´¤àµà´° à´ªàµà´°à´¦àµ¼à´¶à´¨à´‚ - à´µà´¿à´¦àµà´¯à´¾àµ¼à´¤àµà´¥à´¿à´•à´³àµà´Ÿàµ† à´…à´µà´¤à´°à´£à´‚</h5>
+                  <span class="video-side-time">EDUCATION</span>
+                </div>
+                <div class="video-side-thumb-wrap">
+                  <img src="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" alt="" class="video-side-thumb">
+                  <span class="video-side-play"><i class="bi bi-play-fill"></i></span>
                 </div>
               </div>
 
             </div>
 
+            <!-- See all link -->
             <div class="text-end mt-3">
-              <a href="https://youtube.com/@thetanurheritage?si=rTJ6PPk1Zgz3N1QH" target="_blank" rel="noopener" class="see-all-link" style="color:#aaa;">
-                See all <i class="bi bi-chevron-right"></i>
-              </a>
+              <a href="https://youtube.com/@thetanurheritage?si=rTJ6PPk1Zgz3N1QH" target="_blank" rel="noopener" class="see-all-link">Visit YouTube Channel &gt;</a>
             </div>
-          </div><!-- /End Right Sidebar -->
+          </div>
 
         </div>
+
       </div>
     </section>
     <!-- /End Section 3 -->
 
     <!-- ========================================================
-         SECTION 4: RECENT SECTION (Image 4)
+         SECTION 4: NEWS SECTION — Live from Blogspot
          ======================================================== -->
     <section id="recent-section" class="recent-section">
       <div class="container">
         
         <!-- Header -->
         <div class="section-crimson-title">
-          <span>Recent</span>
+          <span>News</span>
         </div>
 
-        <!-- 4-Card Horizontal Grid -->
+        <!-- 4-Card Horizontal Grid — populated live from Blogspot -->
         <div class="row" id="recent-cards-container">
 
-          <!-- Card 1 -->
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="recent-card">
-              <div class="recent-thumb-wrap">
-                <a href="articles.html?cat=UPDATES">
-                  <img src="assets/img/team/team-2.jpg" alt="Recent story" class="recent-thumb-img">
-                </a>
-                <div class="recent-read-badge"><i class="bi bi-book"></i> 5 minutes</div>
-              </div>
-              <span class="category-tag">UPDATION</span>
-              <h4 class="recent-title">
-                <a href="articles.html?cat=UPDATES">ക്ഷമിക്കണം റോജി ജോൺ, നിങ്ങളിൽ ഞങ്ങൾക്ക് സംശയങ്ങളുണ്ട്</a>
-              </h4>
-              <p class="recent-excerpt">
-                വിനോദ് കുമാർ കല്ലോലിക്കലിനെ നിയമിക്കുക വഴി ആ സ്ഥാപനത്തിന്റെ...
-              </p>
-              <div class="recent-tags">
-                <span>#RSS</span> <span>#Education</span> <span>#Sangh Parivar</span>
-              </div>
-              <div class="mag-byline">
-                <strong style="color:var(--th-accent);">സഞ്ജയൻ 2.0</strong>, <span class="text-muted">19 MINUTES AGO</span>
-              </div>
-            </div>
+          <!-- News cards filled automatically from Blogspot by handleNewsFeed() below -->
+          <div class="col-12 text-center py-4" id="news-loading">
+            <span style="color:#aaa;font-size:14px;"><i class="bi bi-arrow-repeat"></i> Loading latest news...</span>
           </div>
-
-          <!-- Card 2 -->
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="180">
-            <div class="recent-card">
-              <div class="recent-thumb-wrap">
-                <a href="articles.html?cat=CULTURE">
-                  <img src="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" alt="Recent story" class="recent-thumb-img">
-                </a>
-                <div class="recent-read-badge"><i class="bi bi-book"></i> 4 minutes</div>
-              </div>
-              <span class="category-tag">TRAVELOKAM</span>
-              <h4 class="recent-title">
-                <a href="articles.html?cat=CULTURE">കർഷകർക്ക് പൂമണം കൊടുത്ത വദ്‌ജി ഗ്രാമം</a>
-              </h4>
-              <p class="recent-excerpt">
-                പൂപ്പാടങ്ങളുടെ പകിട്ടും സുഗന്ധവും വദ്‌ജിയിലെ ഓരോ നിമിഷങ്ങൾക്കും...
-              </p>
-              <div class="recent-tags">
-                <span>#Travelogue</span> <span>#Farmers</span> <span>#Wadji</span>
-              </div>
-              <div class="mag-byline">
-                <strong style="color:var(--th-accent);">മുഹമ്മദലി സഖാഫി പൊട്ടിക്കല്ല്</strong>, <span class="text-muted">2 HOURS AGO</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="260">
-            <div class="recent-card">
-              <div class="recent-thumb-wrap">
-                <a href="articles.html?cat=HISTORY">
-                  <img src="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" alt="Recent story" class="recent-thumb-img">
-                </a>
-                <div class="recent-read-badge"><i class="bi bi-book"></i> 8 minutes</div>
-              </div>
-              <span class="category-tag">RELIGION</span>
-              <h4 class="recent-title">
-                <a href="articles.html?cat=HISTORY">മഹ്ബരിനും മലബാറും ഇടയിലെ സ്വദഖത്തുല്ലാഹിൽ ഖാഹിരി</a>
-              </h4>
-              <p class="recent-excerpt">
-                കീഴക്കരയുടെ ആത്മീയ പ്രഭാവത്തിന് അടിത്തറയിട്ടതും വിജ്ഞാനത്തിന്റെ...
-              </p>
-              <div class="recent-tags">
-                <span>#Sufi</span> <span>#Sheikh</span> <span>#Aurangzeb</span>
-              </div>
-              <div class="mag-byline">
-                <strong style="color:var(--th-accent);">ഷിഫ നസ്വീഹ സി തലക്കടത്തൂർ</strong>, <span class="text-muted">A DAY AGO</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="340">
-            <div class="recent-card">
-              <div class="recent-thumb-wrap">
-                <a href="articles.html?cat=ARTICLES">
-                  <img src="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" alt="Recent story" class="recent-thumb-img">
-                </a>
-                <div class="recent-read-badge"><i class="bi bi-book"></i> 8 minutes</div>
-              </div>
-              <span class="category-tag">HEALTH</span>
-              <h4 class="recent-title">
-                <a href="articles.html?cat=ARTICLES">നിങ്ങൾക്ക് ഒറ്റയ്ക്ക് കേൾക്കാൻ ഇത്ര ഒച്ച വേണോ?</a>
-              </h4>
-              <p class="recent-excerpt">
-                ശബ്ദമര്യാദ ശബ്ദമുണ്ടാക്കാതിരിക്കാനുള്ള നിയമം...
-              </p>
-              <div class="recent-tags">
-                <span>#Mobile</span> <span>#public space</span> <span>#Noise</span>
-              </div>
-              <div class="mag-byline">
-                <strong style="color:var(--th-accent);">ഡോ. ഫാത്തിമ. എസ്</strong>, <span class="text-muted">2 DAYS AGO</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="text-end mt-2">
-          <a href="articles.html" class="see-all-link">
-            See all <i class="bi bi-chevron-right"></i>
-          </a>
+        <!-- See all footer link -->
+        <div class="text-end mt-4">
+          <a href="articles.html" class="see-all-link">See all &gt;</a>
         </div>
 
       </div>
     </section>
     <!-- /End Section 4 -->
-
-    <!-- ========================================================
-         HERITAGE & ABOUT US SUMMARY SECTION
-         ======================================================== -->
-    <section id="about" class="about section light-background">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>About</h2>
-        <p id="about-heading">Who we are</p>
-      </div>
-
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-            <p id="about-text-1">
-              The Tanur Heritage is a cultural and historical program aimed at unveiling the
-              rich history and vibrant traditions of Tanur, a coastal town in Kerala. 
-              The initiative brings together historians, scholars, and the local community to
-              celebrate and explore Tanur's diverse cultural past.
-            </p>
-          </div>
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <p id="about-text-2">
-              Through exhibitions, talks, and cultural performances, Tanur Heritage highlights the town’s role in Kerala's 
-              historical narrative, showcasing its contributions to art, religion, and maritime trade.
-            </p>
-            <a href="archives.html" class="read-more"><span>Explore Heritage Archives</span> <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Team Section -->
-    <section id="team" class="team section">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Leadership</h2>
-        <p>Our Team</p>
-      </div>
-      <div class="container">
-        <div class="row gy-4" id="team-container">
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="team-member">
-              <div class="member-img"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt="Chairman"></div>
-              <div class="member-info">
-                <h4>Sayyid Munavvar Ali Shihab Thangal</h4>
-                <p>Heritage Chairman</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-            <div class="team-member">
-              <div class="member-img"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt="Ambassador"></div>
-              <div class="member-info">
-                <h4>Dr. Shakeel</h4>
-                <p>Heritage Ambassador</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-            <div class="team-member">
-              <div class="member-img"><img src="assets/img/team/team-3.jpg" class="img-fluid" alt="Director"></div>
-              <div class="member-info">
-                <h4>Rasheed Moriya</h4>
-                <p>Heritage Director</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
-            <div class="team-member">
-              <div class="member-img"><img src="assets/img/team/team-4.jpg" class="img-fluid" alt="Curator"></div>
-              <div class="member-info">
-                <h4>CP Abdul Basith Hudawi</h4>
-                <p>Heritage Curator</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
   </main>
 
@@ -727,7 +684,7 @@
   <script src="assets/js/main.js"></script>
 
   <!-- Dynamic Content Loader from site-content.json -->
-  <script src="assets/js/site-loader.js"></script>
+  <script src="assets/js/site-loader.js?v=1794625000000"></script>
 
   <!-- Initialize Poster Swiper safely -->
   <script>
@@ -755,12 +712,13 @@
     });
   </script>
 
-  <!-- Optional Blogger Feed Sync (Keeps ticker and live articles populated) -->
+  <!-- Blogger Feed: Populates ticker AND the News section cards automatically -->
   <script>
     function handleBlogFeed(data) {
       var entries = (data && data.feed && data.feed.entry) ? data.feed.entry : [];
       if (!entries || entries.length === 0) return;
 
+      // ── 1. Ticker ──────────────────────────────────────────────
       var ticker = document.getElementById('breaking-ticker');
       if (ticker) {
         var tickerHtml = '';
@@ -772,10 +730,58 @@
         });
         ticker.innerHTML = tickerHtml + tickerHtml;
       }
+
+      // ── 2. NEWS section cards (latest 4 posts) ─────────────────
+      var container = document.getElementById('recent-cards-container');
+      var loader    = document.getElementById('news-loading');
+      if (container) {
+        if (loader) loader.remove();
+        var cardsHtml = '';
+        var delays = [100, 150, 200, 250];
+        entries.slice(0, 4).forEach(function(e, idx) {
+          var title   = e.title.$t;
+          var pid     = (e.id.$t.split('.post-')[1]) || '';
+          var link    = pid ? 'article.html?id=' + pid : (e.link.filter(function(l){ return l.rel === 'alternate'; })[0].href);
+          var excerpt = '';
+          if (e.summary && e.summary.$t) {
+            excerpt = e.summary.$t.replace(/<[^>]*>/g, '').substring(0, 120) + '...';
+          }
+          // Try to get thumbnail image from media$thumbnail or content
+          var imgUrl = 'assets/img/favicon.png'; // fallback
+          if (e.media$thumbnail && e.media$thumbnail.url) {
+            imgUrl = e.media$thumbnail.url.replace('/s72-c/', '/s480-c/');
+          } else if (e.content && e.content.$t) {
+            var m = e.content.$t.match(/src="([^"]+\.(jpg|jpeg|png|webp)[^"]*)"/i);
+            if (m) imgUrl = m[1];
+          }
+          // Category label from first tag
+          var cat = 'NEWS';
+          if (e.category && e.category.length > 0) cat = e.category[0].term.toUpperCase();
+
+          cardsHtml += '<div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="' + delays[idx] + '">' +
+            '<div class="recent-card">' +
+              '<div class="recent-thumb-wrap">' +
+                '<a href="' + link + '">' +
+                  '<img src="' + imgUrl + '" alt="' + title + '" class="recent-thumb-img" onerror="this.src=\'assets/img/favicon.png\'">' +
+                '</a>' +
+                '<div class="recent-read-badge"><i class="bi bi-newspaper"></i> Latest</div>' +
+              '</div>' +
+              '<span class="category-tag">' + cat + '</span>' +
+              '<h4 class="recent-title"><a href="' + link + '">' + title + '</a></h4>' +
+              '<p class="recent-excerpt">' + excerpt + '</p>' +
+              '<div class="mag-byline"><strong style="color:var(--th-accent);">The Tanur Heritage</strong></div>' +
+            '</div>' +
+          '</div>';
+        });
+        container.innerHTML += cardsHtml;
+      }
     }
   </script>
-  <script src="https://thetanurheritage.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=8&callback=handleBlogFeed"></script>
+  <script src="https://thetanurheritage.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=4&callback=handleBlogFeed"></script>
 
 </body>
 
 </html>
+
+
+

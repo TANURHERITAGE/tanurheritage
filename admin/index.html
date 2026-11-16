@@ -516,6 +516,12 @@
           <h4><i class="bi bi-star-fill text-warning"></i> Top Main Featured Story</h4>
         </div>
         <p class="text-muted small mb-3">This story appears on the top-left with a large image and bold typography.</p>
+        <div class="mb-3 p-3 bg-light rounded-3">
+          <label class="form-label small fw-bold text-primary"><i class="bi bi-magic me-1"></i> Quick Select from Tanur Heritage Articles:</label>
+          <select id="quick-select-top-mag" class="form-select form-select-sm" onchange="applyQuickArticleToTop(this.value)">
+            <option value="">-- Choose an authentic Tanur Heritage article --</option>
+          </select>
+        </div>
         <div class="row g-3">
           <div class="col-md-4">
             <label class="form-label small fw-semibold">Category Tag</label>
@@ -560,7 +566,10 @@
       <!-- 2B. 3-Card Grid -->
       <div class="content-card">
         <div class="card-topbar">
-          <h4><i class="bi bi-grid-3x3-gap-fill text-primary"></i> 3 Subgrid Stories</h4>
+          <h4><i class="bi bi-grid-3x3-gap-fill text-primary"></i> Subgrid Stories</h4>
+          <button class="btn btn-brand btn-sm" onclick="openAddMagGrid()">
+            <i class="bi bi-plus-lg me-1"></i> Add Subgrid Story
+          </button>
         </div>
         <p class="text-muted small mb-3">The 3 articles displayed side-by-side below the main featured story.</p>
         <div class="item-grid" id="mag-grid-cards">
@@ -598,7 +607,7 @@
           <div class="content-card h-100">
             <div class="card-topbar">
               <h4><i class="bi bi-list-ol text-danger"></i> MOST READ List (1 to 5)</h4>
-              <button class="btn btn-outline-primary btn-sm" onclick="promptAddMostRead()">
+              <button class="btn btn-outline-primary btn-sm" onclick="openAddMostReadModal()">
                 <i class="bi bi-plus-lg me-1"></i> Add Item
               </button>
             </div>
@@ -980,6 +989,13 @@
       </div>
       <div class="modal-body">
         <input type="hidden" id="edit-recent-id">
+
+        <div class="mb-3 p-2 bg-light rounded">
+          <label class="form-label small fw-bold text-primary"><i class="bi bi-magic me-1"></i> Choose from Tanur Heritage Articles:</label>
+          <select id="quick-select-recent" class="form-select form-select-sm" onchange="applyQuickArticleToRecent(this.value)">
+            <option value="">-- Or enter custom details below --</option>
+          </select>
+        </div>
         <div class="row g-2 mb-3">
           <div class="col-6">
             <label class="form-label small fw-semibold">Category Tag</label>
@@ -1043,6 +1059,13 @@
       </div>
       <div class="modal-body">
         <input type="hidden" id="edit-mag-grid-id">
+
+        <div class="mb-3 p-2 bg-light rounded">
+          <label class="form-label small fw-bold text-primary"><i class="bi bi-magic me-1"></i> Choose from Tanur Heritage Articles:</label>
+          <select id="quick-select-mag-grid" class="form-select form-select-sm" onchange="applyQuickArticleToMagGrid(this.value)">
+            <option value="">-- Or enter custom details below --</option>
+          </select>
+        </div>
         <div class="mb-3">
           <label class="form-label small fw-semibold">Category Tag</label>
           <input type="text" id="mag-grid-cat" class="form-control" placeholder="RELIGION, UPDATION, HEALTH">
@@ -1485,7 +1508,7 @@
 
   function renderAllSections() {
     renderPosters();
-    renderMagazineAdmin();
+    renderMagazineAdmin(); populateQuickSelectDropdowns();
     renderVideosAdmin();
     renderRecentAdmin();
     renderAboutSection();
@@ -1651,9 +1674,14 @@
             <p class="small text-muted mb-2">${art.excerpt ? art.excerpt.substring(0, 70) + '...' : ''}</p>
             <div class="item-card-footer">
               <small class="text-muted">${art.author || ''}</small>
-              <button class="btn btn-outline-secondary btn-sm" onclick="openEditMagGrid('${art.id}')">
-                <i class="bi bi-pencil"></i> Edit
-              </button>
+              <div>
+                <button class="btn btn-outline-secondary btn-sm me-1" onclick="openEditMagGrid('${art.id}')">
+                  <i class="bi bi-pencil"></i> Edit
+                </button>
+                <button class="btn btn-outline-danger btn-sm" onclick="deleteMagGridItem('${art.id}')">
+                  <i class="bi bi-trash"></i> Delete
+                </button>
+              </div>
             </div>
           </div>
         `;
@@ -1729,23 +1757,172 @@
 
   function saveMagGridItem() {
     const id = document.getElementById('edit-mag-grid-id').value;
-    const idx = (siteData.magazineFeatured.gridArticles || []).findIndex(a => a.id === id);
+    if (!siteData.magazineFeatured) siteData.magazineFeatured = {};
+    if (!siteData.magazineFeatured.gridArticles) siteData.magazineFeatured.gridArticles = [];
+
+    const title = document.getElementById('mag-grid-title').value.trim();
+    if (!title) return alert('Please enter an article title.');
+
+    const itemObj = {
+      id: id || ('mag-' + Date.now()),
+      category: document.getElementById('mag-grid-cat').value.trim() || 'HISTORY',
+      title: title,
+      excerpt: document.getElementById('mag-grid-excerpt').value.trim(),
+      author: document.getElementById('mag-grid-author').value.trim() || 'The Tanur Heritage',
+      time: document.getElementById('mag-grid-time').value.trim() || 'HISTORICAL STUDY',
+      image: document.getElementById('mag-grid-image').value.trim() || 'assets/img/masonry-portfolio/masonry-portfolio-1.jpg',
+      link: document.getElementById('mag-grid-link').value.trim() || 'articles.html'
+    };
+
+    const idx = siteData.magazineFeatured.gridArticles.findIndex(a => a.id === id);
     if (idx !== -1) {
-      siteData.magazineFeatured.gridArticles[idx] = {
-        id,
-        category: document.getElementById('mag-grid-cat').value.trim(),
-        title: document.getElementById('mag-grid-title').value.trim(),
-        excerpt: document.getElementById('mag-grid-excerpt').value.trim(),
-        author: document.getElementById('mag-grid-author').value.trim(),
-        time: document.getElementById('mag-grid-time').value.trim(),
-        image: document.getElementById('mag-grid-image').value.trim(),
-        link: document.getElementById('mag-grid-link').value.trim()
-      };
-      magGridModalInstance.hide();
-      renderMagazineAdmin();
-      showStatusBanner('info', 'Subgrid story updated. Click "Save to Website" above.');
+      siteData.magazineFeatured.gridArticles[idx] = itemObj;
+    } else {
+      siteData.magazineFeatured.gridArticles.push(itemObj);
+    }
+
+    const modal = bootstrap.Modal.getInstance(document.getElementById('magGridModal'));
+    if (modal) modal.hide();
+    renderMagazineAdmin();
+    updateDashboardStats();
+    showStatusBanner('info', id ? 'Subgrid article updated! Click "Save to Website" above.' : 'New subgrid article added! Click "Save to Website" above.');
+  }
+
+
+  // ── Authentic Tanur Heritage Articles Library ──
+  const TANUR_ARTICLES_CATALOG = [
+    { id: "2487327519945937082", title: "വെട്ടത്തുനാട്: അഥവാ താനൂർ സ്വരൂപം", category: "HISTORY", author: "The Tanur Heritage", time: "HISTORY SPECIAL", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Colored_vettattnad.jpg/220px-Colored_vettattnad.jpg", link: "article.html?id=2487327519945937082", excerpt: "രണ്ടാം ചേര സാമ്രാജ്യത്തിന്റെ പതനത്തോടെ കേരളത്തിൽ നിരവധി നാട്ടു രാജ്യങ്ങളാണ് ഉദയം കൊണ്ടത്. ഇക്കൂട്ടത്തിൽ കേരളത്തിന്റെ ഏകദേശം മധ്യഭാഗത്ത് ഉദയം ചെയ്ത ഒരു പ്രമുഖ നാട്ടു രാജ്യമായിരുന്നു വെട്ടത്തുനാട് അഥവാ താനൂർ സ്വരൂപം..." },
+    { id: "5360548811375307347", title: "പോർച്ചുഗീസ് കാലഘട്ടത്തിലെ താനൂർ", category: "HISTORY", author: "The Tanur Heritage", time: "HISTORICAL STUDY", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMv5MSlsfivZv85Mx_wDhvsJESXrgSmMOPjQ&s", link: "article.html?id=5360548811375307347", excerpt: "1498-ൽ വാസ്കോ ഡ ഗാമ കോഴിക്കോട്ടെത്തിയതു മുതലാണ് കേരളത്തിൽ പോർച്ചുഗീസ് യുഗം ആരംഭിക്കുന്നത്. 1525-ൽ കോഴിക്കോട്ടെ പോർച്ചുഗീസ് കോട്ട തകർത്തതോടെ താനൂർ പോർച്ചുഗീസുകാരുടെ ശ്രദ്ധാകേന്ദ്രമായി മാറി." },
+    { id: "4363435959433211658", title: "താനൂരിന്റെ മഹത്തായ മാപ്പിള സാഹിത്യ പാരമ്പര്യം", category: "CULTURE", author: "The Tanur Heritage", time: "CULTURE SPECIAL", image: "assets/img/masonry-portfolio/masonry-portfolio-7.jpg", link: "article.html?id=4363435959433211658", excerpt: "മാപ്പിളപ്പാട്ടുകളുടെയും സാഹിത്യത്തിന്റെയും കാര്യത്തിൽ താനൂരിന് സുപ്രധാന സ്ഥാനമുണ്ട്. നിരവധി കവികളും രചയിതാക്കളും താനൂരിൽ ജന്മമെടുത്തു..." },
+    { id: "6944249057337203015", title: "താനൂർ: താന്നിമരങ്ങളുടെ നാട് ?", category: "HISTORY", author: "The Tanur Heritage", time: "HERITAGE STUDY", image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjqFExqYhYCoT6vDkjLvR6pkk8O6Z_k3Jd4VwKEb2krBxx5BUCaunqDGZEhA_YMOyEoW0uQNUAr8msSw7XhCQ5zeR9yNE5nC-GZlFVe73qDxZNT-f_dvld8-5IHfVG0F80z5ZlG0aU0puo/s320/thanni+maram.jpg", link: "article.html?id=6944249057337203015", excerpt: "താനൂർ എന്ന പേര് മധ്യ കാലഘട്ടം മുതൽക്കേ ലോകത്തിനു സുപരിചിതമാണ്. മറ്റു നാട്ടു പേരുകളിൽ നിന്നും ഭിന്നമായി അറബ്-പോർച്ചുഗീസ് രചനകളിൽ ഈ പേര് കാണാം..." },
+    { id: "7565311976029258255", title: "മലയാള സാഹിത്യത്തിൽ താനൂരിന്റെ പാരമ്പര്യം", category: "CULTURE", author: "The Tanur Heritage", time: "CULTURE", image: "assets/img/masonry-portfolio/masonry-portfolio-8.jpg", link: "article.html?id=7565311976029258255", excerpt: "തുഞ്ചത്ത് എഴുത്തച്ഛന്റെ സാന്നിധ്യം കൊണ്ടും സാംസ്കാരിക പാരമ്പര്യം കൊണ്ടും സമ്പന്നമായ വെട്ടത്തുനാട്ടിലെ താനൂരിന് മലയാള സാഹിത്യത്തിൽ നിർണ്ണായക സ്ഥാനമുണ്ട്..." },
+    { id: "236607451031382313", title: "താനൂർ: വൈവിധ്യങ്ങളുടെ കലവറ", category: "ARTICLES", author: "The Tanur Heritage", time: "FEATURED ARTICLE", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2lewDRRiFzPHSSpyTyHg89Vmhyn8G3QB8Uw&s", link: "article.html?id=236607451031382313", excerpt: "മലബാറിലെ മറ്റു പ്രദേശങ്ങളിൽ നിന്നും ഭിന്നമായി ഒട്ടേറെ വൈവിധ്യങ്ങൾ താനൂരിനു മാത്രം അവകാശപ്പെടാനുണ്ട്..." },
+    { id: "1506222343135509496", title: "സഞ്ചാരികൾ കണ്ട താനൂർ", category: "ARTICLES", author: "The Tanur Heritage", time: "HISTORICAL ARCHIVE", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/New_account_of_East_India_and_Persia_vol.2_%28IA_in.gov.ignca.6070%29.pdf/page1-789px-New_account_of_East_India_and_Persia_vol.2_%28IA_in.gov.ignca.6070%29.pdf.jpg", link: "article.html?id=1506222343135509496", excerpt: "മലബാറിന്റെ ചരിത്രത്തിൽ സഞ്ചാരികളുടെ വിവരണങ്ങൾക്ക് വലിയ പ്രസക്തിയുണ്ട്. നിരവധി യൂറോപ്യർ ഇവിടെ സന്ദർശിച്ചിട്ടുണ്ട്..." },
+    { id: "106810990294220733", title: "താനൂർ: ചില പൂർവ്വ പഠനങ്ങൾ", category: "ARTICLES", author: "The Tanur Heritage", time: "RESEARCH PAPER", image: "https://m.media-amazon.com/images/I/51YDBrQptKL._AC_UF1000,1000_QL80_.jpg", link: "article.html?id=106810990294220733", excerpt: "ചരിത്രമുറങ്ങുന്ന പ്രദേശം എന്ന നിലയിൽ താനൂരിനെക്കുറിച്ച് ഒട്ടനേകം രചനകളും പഠനങ്ങളും ഉണ്ടായിട്ടുണ്ട്..." },
+    { id: "3042496082783708674", title: "താനുരിന്റെ വിദ്യാഭ്യാസ ചരിത്രം", category: "CULTURE", author: "The Tanur Heritage", time: "CULTURAL HERITAGE", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScwjMqtrxe56X5JwF76BMirkpqb4tVHuzZl-6hiLMQS1ZVdeFbKM_xU2DTJxzkFPho0z8&usqp=CAU", link: "article.html?id=3042496082783708674", excerpt: "വെട്ടത്തുനാട്ടിലെ താന്നിയൂരിൽ (താനൂർ) എഴുത്തുകളരി സ്ഥാപിക്കാനായി പുരാതനകാലത്ത് എഴുത്താശാന്മാരുടെ കുടുംബം എത്തിയ ചരിത്രം..." },
+    { id: "4493212617688566905", title: "പ്രാചീന താനൂർ: ചരിത്രത്തിലെ സൂചനകൾ", category: "HISTORY", author: "The Tanur Heritage", time: "HISTORY", image: "https://cdn.truecopymagazine.in/image-cdn/width=1300/photos/2023/04/tyndis-cover-j9oh.webp", link: "article.html?id=4493212617688566905", excerpt: "താനൂരിന്റെ ചരിത്രം എവിടെ നിന്ന് ആരംഭിക്കുന്നു? ഏറെ പ്രസക്തമായ ഈ ചോദ്യത്തിന് കേരളത്തിലെ ചരിത്രത്തോടൊപ്പം സഞ്ചരിക്കുക എന്നത് മാത്രമാണ് ഉത്തരം..." },
+    { id: "3834730641862462277", title: "മൈസൂർ അധിനിവേശ കാലത്തെ താനൂർ", category: "HISTORY", author: "The Tanur Heritage", time: "HISTORY", image: "assets/img/masonry-portfolio/masonry-portfolio-6.jpg", link: "article.html?id=3834730641862462277", excerpt: "1757-ൽ സാമൂതിരിയോട് പടവെട്ടി പാലക്കാട് കൊച്ചി രാജാക്കന്മാരെ സഹായിച്ചുകൊണ്ടാണ് ഹൈദരലി മലബാറിൽ കടക്കുന്നത്..." },
+    { id: "5741165808967118932", title: "ബ്രിട്ടീഷ് ഭരണ കാലത്തെ താനൂർ", category: "HISTORY", author: "The Tanur Heritage", time: "HISTORY", image: "https://www.mediaoneonline.com/h-upload/2022/07/25/1500x900_1308711-whatsapp-image-2022-07-25-at-33518-pm.webp", link: "article.html?id=5741165808967118932", excerpt: "1792-ലാണ് മലബാർ പ്രദേശങ്ങൾ പൂർണ്ണമായും ബ്രിട്ടീഷ് ആധിപത്യത്തിന് കീഴിലാവുന്നത്..." },
+    { id: "6847944447785566125", title: "ഇസ്ലാമിക വ്യാപനം താനൂരിൽ", category: "CULTURE", author: "The Tanur Heritage", time: "CULTURE", image: "assets/img/masonry-portfolio/masonry-portfolio-1.jpg", link: "article.html?id=6847944447785566125", excerpt: "കേരളത്തിലെ ആദ്യകാല ഇസ്ലാമിക കേന്ദ്രങ്ങളിലൊന്നാണ് താനൂർ..." },
+    { id: "3351477611139868195", title: "ഗ്രന്ഥാലയങ്ങൾ: വെളിച്ചത്തിന്റെ പ്രഭവ കേന്ദ്രങ്ങൾ", category: "Monuments", author: "The Tanur Heritage", time: "MONUMENTS", image: "assets/img/masonry-portfolio/masonry-portfolio-9.jpg", link: "article.html?id=3351477611139868195", excerpt: "വിജ്ഞാനദാഹികളായ ഒരു ജനതയുടെ സാംസ്കാരിക മുന്നേറ്റത്തിൽ താനൂരിലെ വായനശാലകളും ഗ്രന്ഥാലയങ്ങളും വഹിച്ച പങ്ക്..." },
+    { id: "6490832275615763659", title: "മത്സ്യ ബന്ധനം", category: "CULTURE", author: "The Tanur Heritage", time: "CULTURE", image: "https://thumbs.dreamstime.com/b/tanur-fishing-harbor-nagaram-malappuram-district-kerala-india-largest-best-fish-markets-july-327939422.jpg", link: "article.html?id=6490832275615763659", excerpt: "കടലോര പ്രദേശമായ താനൂരിന്റെ സാമ്പത്തിക-സാമൂഹിക ജീവിതത്തിൽ മത്സ്യബന്ധന മേഖലയ്ക്ക് വലിയ പ്രാധാന്യമുണ്ട്..." },
+    { id: "3446337337252273172", title: "താനൂർ: ഭരണ ചരിത്രം", category: "ARTICLES", author: "The Tanur Heritage", time: "ADMINISTRATIVE", image: "https://cdn.truecopymagazine.in/image-cdn/width=1024/photos/2023/04/tanur-qvy8.webp", link: "article.html?id=3446337337252273172", excerpt: "1947-ൽ ഇന്ത്യ സ്വാതന്ത്ര്യം നേടുമ്പോൾ മദിരാശി സംസ്ഥാനത്തിലെ മലബാർ ജില്ലയിലായിരുന്നു താനൂർ ഉൾപ്പെട്ടിരുന്നത്..." }
+  ];
+
+  function populateQuickSelectDropdowns() {
+    const selects = ['quick-select-top-mag', 'quick-select-mag-grid', 'quick-select-recent', 'quick-select-most-read'];
+    selects.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.innerHTML = '<option value="">-- Choose an authentic Tanur Heritage article --</option>';
+      TANUR_ARTICLES_CATALOG.forEach(art => {
+        const opt = document.createElement('option');
+        opt.value = art.id;
+        opt.textContent = `[${art.category}] ${art.title}`;
+        el.appendChild(opt);
+      });
+    });
+  }
+
+  function applyQuickArticleToTop(artId) {
+    const art = TANUR_ARTICLES_CATALOG.find(a => a.id === artId);
+    if (!art) return;
+    document.getElementById('mag-top-cat').value = art.category;
+    document.getElementById('mag-top-title').value = art.title;
+    document.getElementById('mag-top-author').value = art.author;
+    document.getElementById('mag-top-time').value = art.time;
+    document.getElementById('mag-top-excerpt').value = art.excerpt;
+    document.getElementById('mag-top-image').value = art.image;
+    document.getElementById('mag-top-link').value = art.link;
+    const prev = document.getElementById('mag-top-preview');
+    if (prev) {
+      prev.src = art.image;
+      prev.classList.remove('d-none');
     }
   }
+
+  function applyQuickArticleToMagGrid(artId) {
+    const art = TANUR_ARTICLES_CATALOG.find(a => a.id === artId);
+    if (!art) return;
+    document.getElementById('mag-grid-cat').value = art.category;
+    document.getElementById('mag-grid-title').value = art.title;
+    document.getElementById('mag-grid-excerpt').value = art.excerpt;
+    document.getElementById('mag-grid-author').value = art.author;
+    document.getElementById('mag-grid-time').value = art.time;
+    document.getElementById('mag-grid-image').value = art.image;
+    document.getElementById('mag-grid-link').value = art.link;
+  }
+
+  function applyQuickArticleToRecent(artId) {
+    const art = TANUR_ARTICLES_CATALOG.find(a => a.id === artId);
+    if (!art) return;
+    document.getElementById('recent-category').value = art.category;
+    document.getElementById('recent-title').value = art.title;
+    document.getElementById('recent-excerpt').value = art.excerpt;
+    document.getElementById('recent-author').value = art.author;
+    document.getElementById('recent-time').value = art.time;
+    document.getElementById('recent-image').value = art.image;
+    document.getElementById('recent-link').value = art.link;
+    document.getElementById('recent-readtime').value = '5 minutes';
+    document.getElementById('recent-tags').value = `#TanurHeritage, #${art.category}`;
+  }
+
+  function applyQuickArticleToMostRead(artId) {
+    const art = TANUR_ARTICLES_CATALOG.find(a => a.id === artId);
+    if (!art) return;
+    document.getElementById('mr-modal-title').value = art.title;
+    document.getElementById('mr-modal-link').value = art.link;
+  }
+
+  function openAddMagGrid() {
+    document.getElementById('edit-mag-grid-id').value = '';
+    document.getElementById('magGridModalTitle').textContent = 'Add Subgrid Story';
+    document.getElementById('mag-grid-cat').value = 'HISTORY';
+    document.getElementById('mag-grid-title').value = '';
+    document.getElementById('mag-grid-excerpt').value = '';
+    document.getElementById('mag-grid-author').value = 'The Tanur Heritage';
+    document.getElementById('mag-grid-time').value = 'HISTORICAL STUDY';
+    document.getElementById('mag-grid-image').value = '';
+    document.getElementById('mag-grid-link').value = 'articles.html';
+    const qs = document.getElementById('quick-select-mag-grid');
+    if (qs) qs.value = '';
+    new bootstrap.Modal(document.getElementById('magGridModal')).show();
+  }
+
+  function deleteMagGridItem(id) {
+    if (!confirm('Are you sure you want to delete this subgrid article?')) return;
+    if (!siteData.magazineFeatured) siteData.magazineFeatured = {};
+    siteData.magazineFeatured.gridArticles = (siteData.magazineFeatured.gridArticles || []).filter(a => a.id !== id);
+    renderMagazineAdmin();
+    updateDashboardStats();
+    showStatusBanner('info', 'Subgrid article removed! Click "Save to Website" above to publish.');
+  }
+
+  function openAddMostReadModal() {
+    document.getElementById('mr-modal-title').value = '';
+    document.getElementById('mr-modal-link').value = 'articles.html';
+    const qs = document.getElementById('quick-select-most-read');
+    if (qs) qs.value = '';
+    new bootstrap.Modal(document.getElementById('mostReadModal')).show();
+  }
+
+  function saveMostReadModalItem() {
+    const title = document.getElementById('mr-modal-title').value.trim();
+    const link = document.getElementById('mr-modal-link').value.trim();
+    if (!title) return alert('Please enter an article title.');
+    if (!siteData.magazineFeatured) siteData.magazineFeatured = {};
+    if (!siteData.magazineFeatured.mostRead) siteData.magazineFeatured.mostRead = [];
+    siteData.magazineFeatured.mostRead.push({
+      id: 'mr-' + Date.now(),
+      title,
+      link: link || 'articles.html'
+    });
+    const m = bootstrap.Modal.getInstance(document.getElementById('mostReadModal'));
+    if (m) m.hide();
+    renderMagazineAdmin();
+    showStatusBanner('info', 'Item added to MOST READ list! Click "Save to Website" above.');
+  }
+
 
   function promptAddMostRead() {
     const title = prompt('Enter article title for MOST READ list:');
@@ -2633,6 +2810,39 @@
     alert('GitHub Token saved successfully!');
   }
 </script>
+
+
+<!-- Modal: Add Most Read Item -->
+<div class="modal fade" id="mostReadModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold"><i class="bi bi-list-ol text-danger me-2"></i>Add to MOST READ List</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3 p-2 bg-light rounded">
+          <label class="form-label small fw-bold text-primary">Select from Tanur Heritage Articles:</label>
+          <select id="quick-select-most-read" class="form-select form-select-sm" onchange="applyQuickArticleToMostRead(this.value)">
+            <option value="">-- Choose an article --</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Article Title <span class="text-danger">*</span></label>
+          <input type="text" id="mr-modal-title" class="form-control" placeholder="e.g. പ്രാചീന താനൂർ: ചരിത്രത്തിലെ സൂചനകൾ">
+        </div>
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Target Link <span class="text-danger">*</span></label>
+          <input type="text" id="mr-modal-link" class="form-control" placeholder="article.html?id=...">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger btn-sm" onclick="saveMostReadModalItem()"><i class="bi bi-check2"></i> Add to List</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
