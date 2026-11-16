@@ -712,23 +712,30 @@
     });
   </script>
 
-  <!-- Blogger Feed: Populates ticker AND the News section cards automatically -->
+  <!-- Blogger Feed: Dynamically populates Breaking News Ticker and News Cards in real-time -->
   <script>
     function handleBlogFeed(data) {
       var entries = (data && data.feed && data.feed.entry) ? data.feed.entry : [];
       if (!entries || entries.length === 0) return;
 
-      // ── 1. Ticker ──────────────────────────────────────────────
+      // ── 1. Breaking News Ticker: Latest headings from Blogspot ────
       var ticker = document.getElementById('breaking-ticker');
       if (ticker) {
-        var tickerHtml = '';
-        entries.slice(0, 6).forEach(function(e) {
-          var title = e.title.$t;
-          var pid = (e.id.$t.split('.post-')[1]) || '';
-          var link = pid ? 'article.html?id=' + pid : (e.link.filter(function(l){ return l.rel === 'alternate'; })[0].href);
-          tickerHtml += '<span class="ticker-item"><a href="' + link + '">' + title + '</a></span>&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;';
+        var tickerItems = [];
+        // Take latest 12 published posts from Blogspot (newest first)
+        entries.slice(0, 12).forEach(function(e) {
+          var title = (e.title && e.title.$t) ? e.title.$t.trim() : '';
+          if (!title) return;
+          var pid = (e.id && e.id.$t && e.id.$t.split('.post-')[1]) || '';
+          var link = pid ? ('article.html?id=' + pid) : (e.link && e.link.find ? (e.link.find(function(l){ return l.rel === 'alternate'; }) || {}).href : 'articles.html');
+          tickerItems.push('<span class="ticker-item"><a href="' + link + '">' + title + '</a></span>');
         });
-        ticker.innerHTML = tickerHtml + tickerHtml;
+
+        if (tickerItems.length > 0) {
+          var fullTickerHtml = tickerItems.join('&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;') + '&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;';
+          // Duplicate ticker string for seamless infinite horizontal scroll
+          ticker.innerHTML = fullTickerHtml + fullTickerHtml;
+        }
       }
 
       // ── 2. NEWS section: Seamless combination of Blogspot + Admin News ──
@@ -742,12 +749,13 @@
         var delays = [100, 150, 200, 250];
 
         entries.forEach(function(e, idx) {
-          var title = e.title.$t;
-          // Avoid duplicate card if already rendered by site-loader (admin modified)
+          var title = (e.title && e.title.$t) ? e.title.$t.trim() : '';
+          if (!title) return;
+          // Avoid duplicate card if already present in container
           if (existingContent.indexOf(title.substring(0, 15)) !== -1) return;
 
-          var pid = (e.id.$t.split('.post-')[1]) || '';
-          var link = pid ? 'article.html?id=' + pid : (e.link.filter(function(l){ return l.rel === 'alternate'; })[0].href);
+          var pid = (e.id && e.id.$t && e.id.$t.split('.post-')[1]) || '';
+          var link = pid ? ('article.html?id=' + pid) : (e.link && e.link.find ? (e.link.find(function(l){ return l.rel === 'alternate'; }) || {}).href : 'articles.html');
           var excerpt = '';
           if (e.summary && e.summary.$t) {
             excerpt = e.summary.$t.replace(/<[^>]*>/g, '').substring(0, 120) + '...';
@@ -760,7 +768,9 @@
             if (m) imgUrl = m[1];
           }
           var cat = 'NEWS';
-          if (e.category && e.category.length > 0) cat = e.category[0].term.toUpperCase();
+          if (e.category && e.category.length > 0 && e.category[0].term) {
+            cat = e.category[0].term.toUpperCase();
+          }
 
           newCardsHtml += '<div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="' + (delays[idx % 4] || 100) + '">' +
             '<div class="recent-card">' +
@@ -784,8 +794,22 @@
         }
       }
     }
+
+    // Load Blogspot feed dynamically with timestamp to prevent caching
+    function loadLiveBlogspotFeed() {
+      var oldScript = document.getElementById('blogspot-feed-script');
+      if (oldScript) oldScript.remove();
+
+      var script = document.createElement('script');
+      script.id = 'blogspot-feed-script';
+      script.src = 'https://thetanurheritage.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=20&orderby=published&callback=handleBlogFeed&_t=' + Date.now();
+      document.body.appendChild(script);
+    }
+
+    // Initial load + auto check every 60 seconds
+    loadLiveBlogspotFeed();
+    setInterval(loadLiveBlogspotFeed, 60000);
   </script>
-  <script src="https://thetanurheritage.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=6&callback=handleBlogFeed"></script>
 
 </body>
 
