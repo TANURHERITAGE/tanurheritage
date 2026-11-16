@@ -714,69 +714,118 @@
 
   <!-- Blogger Feed: Dynamically populates Breaking News Ticker and News Cards in real-time -->
   <script>
+    // Trusted image domains - only use clean/reliable image sources
+    var TRUSTED_IMG_DOMAINS = ['blogger.googleusercontent.com','lh3.googleusercontent.com','lh4.googleusercontent.com','bp.blogspot.com','storage.googleapis.com','img-mm.manoramaonline.com','thumbs.dreamstime.com','upload.wikimedia.org','www.mediaoneonline.com','m.media-amazon.com'];
+
+    function isTrustedImageUrl(url) {
+      if (!url) return false;
+      // Skip Google Search cache thumbnails (noisy/ad-like)
+      if (url.indexOf('encrypted-tbn') !== -1) return false;
+      // Skip Facebook CDN (session-scoped, breaks)
+      if (url.indexOf('fbcdn.net') !== -1) return false;
+      if (url.indexOf('scontent.') !== -1) return false;
+      // Skip gstatic images (usually Google Search cache)
+      if (url.indexOf('gstatic.com') !== -1) return false;
+      return true;
+    }
+
+    function getBestImageForEntry(e) {
+      // 1. Prefer official Blogspot media thumbnail
+      if (e['media$thumbnail'] && e['media$thumbnail'].url) {
+        var thumbUrl = e['media$thumbnail'].url;
+        if (isTrustedImageUrl(thumbUrl)) {
+          return thumbUrl.replace('/s72-c/', '/s480-c/').replace('/s72/', '/s480/');
+        }
+      }
+      // 2. Try extracting image from content HTML, prefer trusted domains
+      if (e.content && e.content['$t']) {
+        var html = e.content['$t'];
+        var srcRe = /src="([^"]+\.(jpg|jpeg|png|webp|jfif)[^"]*)"/gi;
+        var match;
+        while ((match = srcRe.exec(html)) !== null) {
+          var url = match[1];
+          if (isTrustedImageUrl(url)) return url;
+        }
+      }
+      // 3. Fallback to heritage placeholder
+      return 'assets/img/sub 1.png';
+    }
+
+    var _blogCardsInjected = false;
+
     function handleBlogFeed(data) {
       var entries = (data && data.feed && data.feed.entry) ? data.feed.entry : [];
       if (!entries || entries.length === 0) return;
 
-      // ── 1. Breaking News Ticker: Latest headings from Blogspot ────
+      // ── 1. Breaking News Ticker: Up to 15 latest Blogspot headings ────
       var ticker = document.getElementById('breaking-ticker');
       if (ticker) {
         var tickerItems = [];
-        // Take latest 12 published posts from Blogspot (newest first)
-        entries.slice(0, 12).forEach(function(e) {
-          var title = (e.title && e.title.$t) ? e.title.$t.trim() : '';
+        entries.slice(0, 15).forEach(function(e) {
+          var title = (e.title && e.title['$t']) ? e.title['$t'].trim() : '';
           if (!title) return;
-          var pid = (e.id && e.id.$t && e.id.$t.split('.post-')[1]) || '';
-          var link = pid ? ('article.html?id=' + pid) : (e.link && e.link.find ? (e.link.find(function(l){ return l.rel === 'alternate'; }) || {}).href : 'articles.html');
+          var pid = (e.id && e.id['$t'] && e.id['$t'].split('.post-')[1]) || '';
+          var altLink = '';
+          if (e.link && Array.isArray(e.link)) {
+            var altArr = e.link.filter(function(l) { return l.rel === 'alternate'; });
+            if (altArr.length) altLink = altArr[0].href;
+          }
+          var link = pid ? ('article.html?id=' + pid) : (altLink || 'articles.html');
           tickerItems.push('<span class="ticker-item"><a href="' + link + '">' + title + '</a></span>');
         });
-
         if (tickerItems.length > 0) {
-          var fullTickerHtml = tickerItems.join('&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;') + '&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;';
-          // Duplicate ticker string for seamless infinite horizontal scroll
-          ticker.innerHTML = fullTickerHtml + fullTickerHtml;
+          var sep = '&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;';
+          var fullHtml = tickerItems.join(sep) + sep;
+          ticker.innerHTML = fullHtml + fullHtml;
         }
       }
 
-      // ── 2. NEWS section: Seamless combination of Blogspot + Admin News ──
+      // ── 2. NEWS section: Show only the 4 newest Blogspot posts ──────────
+      if (_blogCardsInjected) return;
+      _blogCardsInjected = true;
+
       var container = document.getElementById('recent-cards-container');
-      if (container) {
-        var loader = document.getElementById('news-loading');
-        if (loader) loader.remove();
+      if (!container) return;
+      var loader = document.getElementById('news-loading');
+      if (loader) loader.remove();
 
-        var existingContent = container.innerText || '';
-        var newCardsHtml = '';
-        var delays = [100, 150, 200, 250];
+      var delays = [100, 150, 200, 250];
+      var blogCardsHtml = '';
+      var addedCount = 0;
 
-        entries.forEach(function(e, idx) {
-          var title = (e.title && e.title.$t) ? e.title.$t.trim() : '';
-          if (!title) return;
-          // Avoid duplicate card if already present in container
-          if (existingContent.indexOf(title.substring(0, 15)) !== -1) return;
+      for (var i = 0; i < entries.length && addedCount < 4; i++) {
+        var e = entries[i];
+        var title = (e.title && e.title['$t']) ? e.title['$t'].trim() : '';
+        if (!title) continue;
 
-          var pid = (e.id && e.id.$t && e.id.$t.split('.post-')[1]) || '';
-          var link = pid ? ('article.html?id=' + pid) : (e.link && e.link.find ? (e.link.find(function(l){ return l.rel === 'alternate'; }) || {}).href : 'articles.html');
-          var excerpt = '';
-          if (e.summary && e.summary.$t) {
-            excerpt = e.summary.$t.replace(/<[^>]*>/g, '').substring(0, 120) + '...';
-          }
-          var imgUrl = 'assets/img/sub 1.png';
-          if (e.media$thumbnail && e.media$thumbnail.url) {
-            imgUrl = e.media$thumbnail.url.replace('/s72-c/', '/s480-c/');
-          } else if (e.content && e.content.$t) {
-            var m = e.content.$t.match(/src="([^"]+\.(jpg|jpeg|png|webp)[^"]*)"/i);
-            if (m) imgUrl = m[1];
-          }
-          var cat = 'NEWS';
-          if (e.category && e.category.length > 0 && e.category[0].term) {
-            cat = e.category[0].term.toUpperCase();
-          }
+        var pid = (e.id && e.id['$t'] && e.id['$t'].split('.post-')[1]) || '';
+        var altLink2 = '';
+        if (e.link && Array.isArray(e.link)) {
+          var altArr2 = e.link.filter(function(l) { return l.rel === 'alternate'; });
+          if (altArr2.length) altLink2 = altArr2[0].href;
+        }
+        var link = pid ? ('article.html?id=' + pid) : (altLink2 || 'articles.html');
 
-          newCardsHtml += '<div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="' + (delays[idx % 4] || 100) + '">' +
+        var excerpt = '';
+        if (e.summary && e.summary['$t']) {
+          excerpt = e.summary['$t'].replace(/<[^>]*>/g, '').substring(0, 120) + '...';
+        } else if (e.content && e.content['$t']) {
+          excerpt = e.content['$t'].replace(/<[^>]*>/g, '').substring(0, 120) + '...';
+        }
+
+        var imgUrl = getBestImageForEntry(e);
+
+        var cat = 'NEWS';
+        if (e.category && e.category.length > 0 && e.category[0].term) {
+          cat = e.category[0].term.toUpperCase();
+        }
+
+        blogCardsHtml +=
+          '<div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="' + delays[addedCount] + '">' +
             '<div class="recent-card">' +
               '<div class="recent-thumb-wrap">' +
                 '<a href="' + link + '">' +
-                  '<img src="' + imgUrl + '" alt="' + title + '" class="recent-thumb-img" onerror="this.src=\'assets/img/sub 1.png\'">' +
+                  '<img src="' + imgUrl + '" alt="' + title.replace(/"/g, '&quot;') + '" class="recent-thumb-img" onerror="this.src=\'assets/img/sub 1.png\'">' +
                 '</a>' +
                 '<div class="recent-read-badge"><i class="bi bi-newspaper"></i> Blogspot</div>' +
               '</div>' +
@@ -786,12 +835,12 @@
               '<div class="mag-byline"><strong style="color:var(--th-accent);">The Tanur Heritage</strong>, <span class="text-muted">BLOGSPOT</span></div>' +
             '</div>' +
           '</div>';
-        });
+        addedCount++;
+      }
 
-        if (newCardsHtml) {
-          // Put fresh Blogspot posts at the front of the news section
-          container.innerHTML = newCardsHtml + container.innerHTML;
-        }
+      if (blogCardsHtml) {
+        // Insert 4 fresh Blogspot cards before any existing admin cards
+        container.innerHTML = blogCardsHtml + container.innerHTML;
       }
     }
 
@@ -799,21 +848,18 @@
     function loadLiveBlogspotFeed() {
       var oldScript = document.getElementById('blogspot-feed-script');
       if (oldScript) oldScript.remove();
-
       var script = document.createElement('script');
       script.id = 'blogspot-feed-script';
-      script.src = 'https://thetanurheritage.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=20&orderby=published&callback=handleBlogFeed&_t=' + Date.now();
+      script.src = 'https://thetanurheritage.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=15&orderby=published&callback=handleBlogFeed&_t=' + Date.now();
       document.body.appendChild(script);
     }
 
-    // Initial load + auto check every 60 seconds
+    // Initial load
     loadLiveBlogspotFeed();
+    // Auto-refresh ticker every 60 seconds (cards won't be re-injected due to flag)
     setInterval(loadLiveBlogspotFeed, 60000);
   </script>
 
 </body>
 
 </html>
-
-
-
