@@ -259,7 +259,7 @@
     }
 
     // ────────────────────────────────────────────────────────────
-    // SECTION 4: RECENT SECTION (Image 4)
+    // SECTION 4: NEWS / RECENT SECTION (Image 4)
     // ────────────────────────────────────────────────────────────
     var recentContainer = document.getElementById('recent-cards-container');
     if (recentContainer && data.recentArticles && Array.isArray(data.recentArticles)) {
@@ -278,17 +278,17 @@
             '<div class="recent-card">' +
               '<div class="recent-thumb-wrap">' +
                 '<a href="' + rLink + '">' +
-                  '<img src="' + rec.image + '" alt="' + rec.title + '" class="recent-thumb-img" onerror="this.src=\'assets/img/team/team-2.jpg\'">' +
+                  '<img src="' + rec.image + '" alt="' + rec.title + '" class="recent-thumb-img" onerror="this.src=\'assets/img/sub 1.png\'">' +
                 '</a>' +
-                '<div class="recent-read-badge"><i class="bi bi-book"></i> ' + (rec.readTime || '5 minutes') + '</div>' +
+                '<div class="recent-read-badge"><i class="bi bi-newspaper"></i> ' + (rec.readTime || '5 minutes') + '</div>' +
               '</div>' +
-              '<span class="category-tag">' + (rec.category || 'UPDATION') + '</span>' +
+              '<span class="category-tag">' + (rec.category || 'NEWS') + '</span>' +
               '<h4 class="recent-title"><a href="' + rLink + '">' + rec.title + '</a></h4>' +
               '<p class="recent-excerpt">' + (rec.excerpt || '') + '</p>' +
               (tagsHtml ? '<div class="recent-tags">' + tagsHtml + '</div>' : '') +
               '<div class="mag-byline">' +
                 '<strong style="color:var(--th-accent);">' + (rec.author || 'The Tanur Heritage') + '</strong>, ' +
-                '<span class="text-muted">' + (rec.time || 'JUST NOW') + '</span>' +
+                '<span class="text-muted">' + (rec.time || 'NEWS') + '</span>' +
               '</div>' +
             '</div>' +
           '</div>';

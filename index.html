@@ -731,53 +731,61 @@
         ticker.innerHTML = tickerHtml + tickerHtml;
       }
 
-      // ── 2. NEWS section cards (latest 4 posts) ─────────────────
+      // ── 2. NEWS section: Seamless combination of Blogspot + Admin News ──
       var container = document.getElementById('recent-cards-container');
-      var loader    = document.getElementById('news-loading');
       if (container) {
+        var loader = document.getElementById('news-loading');
         if (loader) loader.remove();
-        var cardsHtml = '';
+
+        var existingContent = container.innerText || '';
+        var newCardsHtml = '';
         var delays = [100, 150, 200, 250];
-        entries.slice(0, 4).forEach(function(e, idx) {
-          var title   = e.title.$t;
-          var pid     = (e.id.$t.split('.post-')[1]) || '';
-          var link    = pid ? 'article.html?id=' + pid : (e.link.filter(function(l){ return l.rel === 'alternate'; })[0].href);
+
+        entries.forEach(function(e, idx) {
+          var title = e.title.$t;
+          // Avoid duplicate card if already rendered by site-loader (admin modified)
+          if (existingContent.indexOf(title.substring(0, 15)) !== -1) return;
+
+          var pid = (e.id.$t.split('.post-')[1]) || '';
+          var link = pid ? 'article.html?id=' + pid : (e.link.filter(function(l){ return l.rel === 'alternate'; })[0].href);
           var excerpt = '';
           if (e.summary && e.summary.$t) {
             excerpt = e.summary.$t.replace(/<[^>]*>/g, '').substring(0, 120) + '...';
           }
-          // Try to get thumbnail image from media$thumbnail or content
-          var imgUrl = 'assets/img/favicon.png'; // fallback
+          var imgUrl = 'assets/img/sub 1.png';
           if (e.media$thumbnail && e.media$thumbnail.url) {
             imgUrl = e.media$thumbnail.url.replace('/s72-c/', '/s480-c/');
           } else if (e.content && e.content.$t) {
             var m = e.content.$t.match(/src="([^"]+\.(jpg|jpeg|png|webp)[^"]*)"/i);
             if (m) imgUrl = m[1];
           }
-          // Category label from first tag
           var cat = 'NEWS';
           if (e.category && e.category.length > 0) cat = e.category[0].term.toUpperCase();
 
-          cardsHtml += '<div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="' + delays[idx] + '">' +
+          newCardsHtml += '<div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="' + (delays[idx % 4] || 100) + '">' +
             '<div class="recent-card">' +
               '<div class="recent-thumb-wrap">' +
                 '<a href="' + link + '">' +
-                  '<img src="' + imgUrl + '" alt="' + title + '" class="recent-thumb-img" onerror="this.src=\'assets/img/favicon.png\'">' +
+                  '<img src="' + imgUrl + '" alt="' + title + '" class="recent-thumb-img" onerror="this.src=\'assets/img/sub 1.png\'">' +
                 '</a>' +
-                '<div class="recent-read-badge"><i class="bi bi-newspaper"></i> Latest</div>' +
+                '<div class="recent-read-badge"><i class="bi bi-newspaper"></i> Blogspot</div>' +
               '</div>' +
               '<span class="category-tag">' + cat + '</span>' +
               '<h4 class="recent-title"><a href="' + link + '">' + title + '</a></h4>' +
               '<p class="recent-excerpt">' + excerpt + '</p>' +
-              '<div class="mag-byline"><strong style="color:var(--th-accent);">The Tanur Heritage</strong></div>' +
+              '<div class="mag-byline"><strong style="color:var(--th-accent);">The Tanur Heritage</strong>, <span class="text-muted">BLOGSPOT</span></div>' +
             '</div>' +
           '</div>';
         });
-        container.innerHTML += cardsHtml;
+
+        if (newCardsHtml) {
+          // Put fresh Blogspot posts at the front of the news section
+          container.innerHTML = newCardsHtml + container.innerHTML;
+        }
       }
     }
   </script>
-  <script src="https://thetanurheritage.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=4&callback=handleBlogFeed"></script>
+  <script src="https://thetanurheritage.blogspot.com/feeds/posts/default?alt=json-in-script&max-results=6&callback=handleBlogFeed"></script>
 
 </body>
 

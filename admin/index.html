@@ -348,7 +348,7 @@
         <i class="bi bi-camera-reels-fill"></i> 3. Videos Management
       </a>
       <a class="nav-link" onclick="switchSection('recent', this)">
-        <i class="bi bi-clock-history"></i> 4. Recent Section
+        <i class="bi bi-newspaper"></i> 4. News Section
       </a>
 
       <div class="sidebar-section-divider">Heritage Content</div>
@@ -425,7 +425,7 @@
         <div class="col-md-3 col-6">
           <div class="stat-tile" style="border-left-color: #0d6efd;">
             <h3 id="stat-recent-count">0</h3>
-            <p>Recent Stories</p>
+            <p>News Articles</p>
           </div>
         </div>
         <div class="col-md-3 col-6">
@@ -462,8 +462,8 @@
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="p-3 border rounded-3 bg-light cursor-pointer h-100" onclick="switchSection('recent')">
-              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-clock-history text-danger me-2"></i>4. Recent Section</h6>
-              <p class="text-muted small mb-0">Add/edit recent articles with read-time badges & tags.</p>
+              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-newspaper text-danger me-2"></i>4. News Section</h6>
+              <p class="text-muted small mb-0">Modify news cards, add custom articles, or sync from Blogspot.</p>
             </div>
           </div>
         </div>
@@ -657,16 +657,24 @@
       </div>
     </div>
 
-    <!-- ──────────────── SECTION 5: RECENT SECTION ──────────────── -->
+    <!-- ──────────────── SECTION 5: NEWS SECTION ──────────────── -->
     <div id="sec-recent" class="admin-sec d-none">
       <div class="content-card">
-        <div class="card-topbar">
-          <h4><i class="bi bi-clock-history text-danger"></i> Recent Section Articles</h4>
-          <button class="btn btn-brand btn-sm" onclick="openAddRecentModal()">
-            <i class="bi bi-plus-lg me-1"></i> Add Recent Article
-          </button>
+        <div class="card-topbar flex-wrap gap-2">
+          <div>
+            <h4 class="mb-0"><i class="bi bi-newspaper text-danger me-2"></i>News Section Management</h4>
+            <small class="text-muted">Modify existing news or pull new posts published on Blogspot</small>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-primary btn-sm" onclick="syncBlogspotToAdmin()">
+              <i class="bi bi-arrow-repeat me-1"></i> Sync from Blogspot
+            </button>
+            <button class="btn btn-brand btn-sm" onclick="openAddRecentModal()">
+              <i class="bi bi-plus-lg me-1"></i> Add News Item
+            </button>
+          </div>
         </div>
-        <p class="text-muted small mb-3">Cards shown in the 4-column "Recent" section at the bottom of the homepage.</p>
+        <p class="text-muted small mb-3">Cards shown in the "News" section on the homepage. Click <strong>Modify</strong> on any existing news card to edit its text, category tag, or image. When new articles are added on Blogspot, they will automatically appear here and on the live website.</p>
         <div class="item-grid" id="recent-articles-grid-admin">
           <!-- Populated dynamically -->
         </div>
@@ -979,27 +987,27 @@
   </div>
 </div>
 
-<!-- 3. Recent Article Modal -->
+<!-- 3. News Article Modal -->
 <div class="modal fade" id="recentModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="recentModalTitle">Add Recent Article</h5>
+        <h5 class="modal-title fw-bold" id="recentModalTitle">Modify News Article</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
         <input type="hidden" id="edit-recent-id">
 
         <div class="mb-3 p-2 bg-light rounded">
-          <label class="form-label small fw-bold text-primary"><i class="bi bi-magic me-1"></i> Choose from Tanur Heritage Articles:</label>
+          <label class="form-label small fw-bold text-primary"><i class="bi bi-magic me-1"></i> Choose from Tanur Heritage Articles (Optional):</label>
           <select id="quick-select-recent" class="form-select form-select-sm" onchange="applyQuickArticleToRecent(this.value)">
-            <option value="">-- Or enter custom details below --</option>
+            <option value="">-- Or enter custom news details below --</option>
           </select>
         </div>
         <div class="row g-2 mb-3">
           <div class="col-6">
             <label class="form-label small fw-semibold">Category Tag</label>
-            <input type="text" id="recent-category" class="form-control" placeholder="e.g. UPDATION, TRAVELOKAM">
+            <input type="text" id="recent-category" class="form-control" placeholder="e.g. NEWS, CULTURE, HISTORY">
           </div>
           <div class="col-6">
             <label class="form-label small fw-semibold">Reading Time</label>
@@ -1016,16 +1024,16 @@
         </div>
         <div class="mb-3">
           <label class="form-label small fw-semibold">Hashtags (comma separated)</label>
-          <input type="text" id="recent-tags" class="form-control" placeholder="#RSS, #Education, #Malabar">
+          <input type="text" id="recent-tags" class="form-control" placeholder="#TanurHeritage, #News, #Malabar">
         </div>
         <div class="row g-2 mb-3">
           <div class="col-6">
             <label class="form-label small fw-semibold">Author</label>
-            <input type="text" id="recent-author" class="form-control" placeholder="Author name">
+            <input type="text" id="recent-author" class="form-control" placeholder="The Tanur Heritage">
           </div>
           <div class="col-6">
-            <label class="form-label small fw-semibold">Timestamp</label>
-            <input type="text" id="recent-time" class="form-control" placeholder="e.g. 19 MINUTES AGO">
+            <label class="form-label small fw-semibold">Badge / Label</label>
+            <input type="text" id="recent-time" class="form-control" placeholder="e.g. LATEST, RECENT">
           </div>
         </div>
         <div class="mb-3">
@@ -1035,7 +1043,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label small fw-semibold">Target Link</label>
-          <input type="text" id="recent-link" class="form-control" placeholder="articles.html?cat=ARTICLES">
+          <input type="text" id="recent-link" class="form-control" placeholder="article.html?id=... or https://...">
         </div>
         <div class="text-center">
           <img id="recent-preview" src="" alt="Preview" class="img-thumbnail d-none" style="max-height: 100px;">
@@ -1043,7 +1051,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-brand btn-sm" onclick="saveRecentItem()">Save Article</button>
+        <button type="button" class="btn btn-brand btn-sm" onclick="saveRecentItem()">Save News Article</button>
       </div>
     </div>
   </div>
@@ -2119,7 +2127,7 @@
   }
 
   // ────────────────────────────────────────────────────────────
-  // 4. RECENT SECTION ARTICLES
+  // 4. NEWS SECTION ARTICLES
   // ────────────────────────────────────────────────────────────
   function renderRecentAdmin() {
     const grid = document.getElementById('recent-articles-grid-admin');
@@ -2129,20 +2137,25 @@
     (siteData.recentArticles || []).forEach(r => {
       const card = document.createElement('div');
       card.className = 'item-card';
+      const imgSrc = r.image ? (r.image.startsWith('assets/') ? ('../' + r.image) : r.image) : '../assets/img/sub 1.png';
       card.innerHTML = `
-        <img src="${r.image}" class="item-card-img" alt="${r.title}" onerror="this.src='../assets/img/team/team-2.jpg'">
+        <img src="${imgSrc}" class="item-card-img" alt="${r.title}" onerror="this.src='../assets/img/sub 1.png'">
         <div class="item-card-body">
           <div class="d-flex justify-content-between mb-1">
-            <span class="badge bg-danger">${r.category || 'UPDATION'}</span>
-            <small class="text-muted"><i class="bi bi-book"></i> ${r.readTime || '5 min'}</small>
+            <span class="badge bg-danger">${r.category || 'NEWS'}</span>
+            <small class="text-muted"><i class="bi bi-clock"></i> ${r.readTime || '5 min'}</small>
           </div>
           <h6>${r.title}</h6>
-          <p class="small text-muted mb-2">${r.excerpt ? r.excerpt.substring(0, 65) + '...' : ''}</p>
+          <p class="small text-muted mb-2">${r.excerpt ? r.excerpt.substring(0, 75) + '...' : ''}</p>
           <div class="item-card-footer">
-            <small class="text-muted">${r.author || ''}</small>
+            <small class="text-muted">${r.author || 'The Tanur Heritage'}</small>
             <div>
-              <button class="btn btn-outline-secondary btn-sm" onclick="editRecentItem('${r.id}')"><i class="bi bi-pencil"></i></button>
-              <button class="btn btn-outline-danger btn-sm" onclick="deleteRecentItem('${r.id}')"><i class="bi bi-trash"></i></button>
+              <button class="btn btn-primary btn-sm me-1" onclick="editRecentItem('${r.id}')" title="Modify this news article">
+                <i class="bi bi-pencil-square me-1"></i> Modify
+              </button>
+              <button class="btn btn-outline-danger btn-sm" onclick="deleteRecentItem('${r.id}')" title="Delete">
+                <i class="bi bi-trash"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -2153,17 +2166,17 @@
 
   function openAddRecentModal() {
     document.getElementById('edit-recent-id').value = '';
-    document.getElementById('recent-category').value = '';
+    document.getElementById('recent-category').value = 'NEWS';
     document.getElementById('recent-readtime').value = '5 minutes';
     document.getElementById('recent-title').value = '';
     document.getElementById('recent-excerpt').value = '';
-    document.getElementById('recent-tags').value = '';
-    document.getElementById('recent-author').value = '';
-    document.getElementById('recent-time').value = 'RECENT';
+    document.getElementById('recent-tags').value = '#TanurHeritage, #News';
+    document.getElementById('recent-author').value = 'The Tanur Heritage';
+    document.getElementById('recent-time').value = 'LATEST';
     document.getElementById('recent-image').value = '';
     document.getElementById('recent-link').value = 'articles.html';
     document.getElementById('recent-preview').classList.add('d-none');
-    document.getElementById('recentModalTitle').textContent = 'Add Recent Article';
+    document.getElementById('recentModalTitle').textContent = 'Add News Article';
     recentModalInstance.show();
   }
 
@@ -2171,21 +2184,23 @@
     const r = (siteData.recentArticles || []).find(item => item.id === id);
     if (!r) return;
     document.getElementById('edit-recent-id').value = r.id;
-    document.getElementById('recent-category').value = r.category || '';
+    document.getElementById('recent-category').value = r.category || 'NEWS';
     document.getElementById('recent-readtime').value = r.readTime || '5 minutes';
     document.getElementById('recent-title').value = r.title || '';
     document.getElementById('recent-excerpt').value = r.excerpt || '';
     document.getElementById('recent-tags').value = (r.tags || []).join(', ');
-    document.getElementById('recent-author').value = r.author || '';
-    document.getElementById('recent-time').value = r.time || '';
+    document.getElementById('recent-author').value = r.author || 'The Tanur Heritage';
+    document.getElementById('recent-time').value = r.time || 'LATEST';
     document.getElementById('recent-image').value = r.image || '';
     document.getElementById('recent-link').value = r.link || 'articles.html';
     const prev = document.getElementById('recent-preview');
     if (r.image) {
-      prev.src = r.image;
+      prev.src = r.image.startsWith('assets/') ? ('../' + r.image) : r.image;
       prev.classList.remove('d-none');
+    } else {
+      prev.classList.add('d-none');
     }
-    document.getElementById('recentModalTitle').textContent = 'Edit Recent Article';
+    document.getElementById('recentModalTitle').textContent = 'Modify News Article';
     recentModalInstance.show();
   }
 
@@ -2209,14 +2224,14 @@
     const tags = tagsRaw.split(',').map(t => t.trim()).filter(Boolean);
     const recObj = {
       id: id || ('rec-' + Date.now()),
-      category: category || 'UPDATION',
+      category: category || 'NEWS',
       readTime: readTime || '5 minutes',
       title,
       excerpt,
       tags,
       author: author || 'The Tanur Heritage',
-      time: time || 'RECENT',
-      image: image || 'assets/img/team/team-2.jpg',
+      time: time || 'LATEST',
+      image: image || 'assets/img/sub 1.png',
       link: link || 'articles.html'
     };
 
@@ -2231,15 +2246,71 @@
     recentModalInstance.hide();
     renderRecentAdmin();
     updateDashboardStats();
-    showStatusBanner('info', 'Recent article updated! Click "Save to Website" above.');
+    showStatusBanner('info', 'News article modified! Click "Save to Website" above to publish live.');
   }
 
   function deleteRecentItem(id) {
-    if (!confirm('Are you sure you want to delete this recent article?')) return;
+    if (!confirm('Are you sure you want to delete this news article?')) return;
     siteData.recentArticles = siteData.recentArticles.filter(r => r.id !== id);
     renderRecentAdmin();
     updateDashboardStats();
-    showStatusBanner('info', 'Article removed. Click "Save to Website" above.');
+    showStatusBanner('info', 'Article removed. Click "Save to Website" above to publish live.');
+  }
+
+  async function syncBlogspotToAdmin() {
+    showStatusBanner('info', 'Connecting to Tanur Heritage Blogspot feed...');
+    try {
+      const res = await fetch('https://thetanurheritage.blogspot.com/feeds/posts/default?alt=json&max-results=10');
+      if (!res.ok) throw new Error('Blogspot feed request returned status ' + res.status);
+      const data = await res.json();
+      const entries = (data && data.feed && data.feed.entry) ? data.feed.entry : [];
+      if (!entries.length) {
+        showStatusBanner('warning', 'No posts found on the Blogspot feed.');
+        return;
+      }
+      if (!siteData.recentArticles) siteData.recentArticles = [];
+      let addedCount = 0;
+      entries.forEach(e => {
+        const title = e.title.$t;
+        const pid = (e.id.$t.split('.post-')[1]) || ('blog-' + Date.now());
+        const link = pid ? 'article.html?id=' + pid : (e.link.find(l => l.rel === 'alternate')?.href || 'articles.html');
+        const exists = siteData.recentArticles.some(r => r.title === title || r.link === link);
+        if (!exists) {
+          let excerpt = '';
+          if (e.summary && e.summary.$t) {
+            excerpt = e.summary.$t.replace(/<[^>]*>/g, '').substring(0, 140) + '...';
+          }
+          let imgUrl = 'assets/img/sub 1.png';
+          if (e.media$thumbnail && e.media$thumbnail.url) {
+            imgUrl = e.media$thumbnail.url.replace('/s72-c/', '/s640-c/');
+          } else if (e.content && e.content.$t) {
+            const m = e.content.$t.match(/src="([^"]+\.(jpg|jpeg|png|webp)[^"]*)"/i);
+            if (m) imgUrl = m[1];
+          }
+          let cat = 'NEWS';
+          if (e.category && e.category.length > 0) cat = e.category[0].term.toUpperCase();
+
+          siteData.recentArticles.unshift({
+            id: 'rec-' + Date.now() + '-' + Math.floor(Math.random()*1000),
+            title: title,
+            category: cat,
+            readTime: '5 minutes',
+            excerpt: excerpt,
+            author: 'The Tanur Heritage',
+            time: 'BLOGSPOT',
+            image: imgUrl,
+            link: link,
+            tags: ['#TanurHeritage', '#News']
+          });
+          addedCount++;
+        }
+      });
+      renderRecentAdmin();
+      updateDashboardStats();
+      showStatusBanner('success', `Imported ${addedCount} post(s) from Blogspot! You can now click Modify to edit them, then click "Save to Website".`);
+    } catch (err) {
+      showStatusBanner('danger', 'Could not load Blogspot feed: ' + err.message);
+    }
   }
 
   // ────────────────────────────────────────────────────────────
