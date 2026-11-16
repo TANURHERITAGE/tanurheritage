@@ -132,51 +132,47 @@
   "videos": {
     "mainGrid": [
       {
-        "id": "vid-1",
-        "title": "The Tanur Heritage Project Launching Ceremony",
-        "thumbnail": "assets/img/masonry-portfolio/masonry-portfolio-1.jpg",
-        "tag": "HERITAGE LAUNCH",
+        "id": "vid-4",
+        "title": "വെട്ടം അബ്ദുല്ല മാസ്റ്റര്‍ | THE TANUR HERITAGE CARNIVAL",
+        "url": "https://youtu.be/yRuPkHiFCIo?si=s34D2_UirjUZd4me",
+        "thumbnail": "https://img.youtube.com/vi/yRuPkHiFCIo/hqdefault.jpg",
+        "tag": "TANUR HERITAGE CARNIVAL",
+        "category": "TANUR HERITAGE CARNIVAL",
         "author": "The Tanur Heritage",
-        "duration": "18:45",
-        "url": "https://youtube.com/@thetanurheritage"
-      },
-      {
-        "id": "vid-2",
-        "title": "Tanur Heritage Carnival & Cultural Exhibition Highlights",
-        "thumbnail": "assets/img/masonry-portfolio/masonry-portfolio-2.jpg",
-        "tag": "CARNIVAL",
-        "author": "The Tanur Heritage",
-        "duration": "12:30",
-        "url": "https://youtube.com/@thetanurheritage"
+        "time": "The Tanur Heritage"
       },
       {
         "id": "vid-3",
-        "title": "Historical Monuments & Ancient Heritage of Tanur",
-        "thumbnail": "assets/img/masonry-portfolio/masonry-portfolio-3.jpg",
-        "tag": "DOCUMENTARY",
+        "title": "താനൂർ പെരുമ 1",
+        "url": "https://youtu.be/mEXYMj_fk7Q?si=B1vsOhX9EO9ST_T3",
+        "thumbnail": "https://img.youtube.com/vi/mEXYMj_fk7Q/hqdefault.jpg",
+        "tag": "Interview",
+        "category": "Interview",
         "author": "The Tanur Heritage",
-        "duration": "15:20",
-        "url": "https://youtube.com/@thetanurheritage"
+        "time": "The Tanur Heritage"
       },
       {
-        "id": "vid-4",
-        "title": "Maritime Trade & Malabar Coastal Traditions in Tanur",
-        "thumbnail": "assets/img/masonry-portfolio/masonry-portfolio-5.jpg",
-        "tag": "MARITIME HISTORY",
+        "id": "vid-1",
+        "title": "കെ.ജി.എഫും താനൂരും",
+        "url": "https://youtu.be/W-xH2PpXeUQ?si=hx-C1FH2OSkT8xzT",
+        "thumbnail": "https://img.youtube.com/vi/W-xH2PpXeUQ/hqdefault.jpg",
+        "tag": "Interview",
+        "category": "Interview",
         "author": "The Tanur Heritage",
-        "duration": "21:10",
-        "url": "https://youtube.com/@thetanurheritage"
+        "time": "The Tanur Heritage"
+      },
+      {
+        "id": "vid-2",
+        "title": "സ്വാതന്ത്ര്യ സമരത്തിലെ താനൂര്‍",
+        "url": "https://youtu.be/4fawJY01xQw?si=cd1BLKTplfGNpBFO",
+        "thumbnail": "https://img.youtube.com/vi/4fawJY01xQw/hqdefault.jpg",
+        "tag": "സ്വാതന്ത്ര്യ സമരത്തിലെ താനൂര്‍",
+        "category": "സ്വാതന്ത്ര്യ സമരത്തിലെ താനൂര്‍",
+        "author": "The Tanur Heritage",
+        "time": "The Tanur Heritage"
       }
     ],
     "sidebarList": [
-      {
-        "id": "vside-1",
-        "title": "താനൂരിന്റെ പൈതൃക വഴികൾ - ചരിത്ര യാത്ര",
-        "thumbnail": "assets/img/masonry-portfolio/masonry-portfolio-6.jpg",
-        "category": "HERITAGE WALK",
-        "time": "RECENT",
-        "url": "https://youtube.com/@thetanurheritage"
-      },
       {
         "id": "vside-2",
         "title": "മാപ്പിള സാഹിത്യവും താനൂർ പാരമ്പര്യവും ചർച്ച",
@@ -208,6 +204,16 @@
         "category": "EXHIBITION",
         "time": "EDUCATION",
         "url": "https://youtube.com/@thetanurheritage"
+      },
+      {
+        "id": "vside-1",
+        "title": "കലയോരം താനൂരിന്റെ താളങ്ങൾ",
+        "url": "https://youtu.be/T-REQdG0umA?si=ro-ViSa_AkeVIfSt",
+        "thumbnail": "https://img.youtube.com/vi/T-REQdG0umA/hqdefault.jpg",
+        "tag": "താനൂരിന്റെ താളങ്ങൾ",
+        "category": "താനൂരിന്റെ താളങ്ങൾ",
+        "author": "Tanur Heritage",
+        "time": "Tanur Heritage"
       }
     ]
   },
