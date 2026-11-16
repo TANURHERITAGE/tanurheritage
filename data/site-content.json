@@ -51,7 +51,7 @@
     }
   ],
   "posterSettings": {
-    "autoSlideInterval": 4000,
+    "autoSlideInterval": 3000,
     "pauseOnHover": true
   },
   "magazineFeatured": {
