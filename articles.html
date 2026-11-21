@@ -140,13 +140,13 @@
 
       <!-- Category Filter Pills -->
       <div class="category-filter-wrap" data-aos="fade-up" data-aos-delay="100">
-        <a href="articles.html" class="cat-filter-btn" id="filter-all">All (à´Žà´²àµà´²à´¾à´‚)</a>
-        <a href="articles.html?cat=HISTORY" class="cat-filter-btn" id="filter-history">History (à´šà´°à´¿à´¤àµà´°à´‚)</a>
-        <a href="articles.html?cat=CULTURE" class="cat-filter-btn" id="filter-culture">Culture (à´¸à´‚à´¸àµà´•à´¾à´°à´‚)</a>
-        <a href="articles.html?cat=ARTICLES" class="cat-filter-btn" id="filter-articles">Articles (à´²àµ‡à´–à´¨à´™àµà´™àµ¾)</a>
-        <a href="articles.html?cat=Who'sWho" class="cat-filter-btn" id="filter-whoswho">Who's Who (à´µàµà´¯à´•àµà´¤à´¿à´•àµ¾)</a>
-        <a href="articles.html?cat=Monuments" class="cat-filter-btn" id="filter-monuments">Monuments (à´¸àµà´®à´¾à´°à´•à´™àµà´™àµ¾)</a>
-        <a href="articles.html?cat=Updates" class="cat-filter-btn" id="filter-updates">Updates (à´µà´¾àµ¼à´¤àµà´¤à´•àµ¾)</a>
+        <a href="articles.html" class="cat-filter-btn" id="filter-all">All</a>
+        <a href="articles.html?cat=HISTORY" class="cat-filter-btn" id="filter-history">History</a>
+        <a href="articles.html?cat=CULTURE" class="cat-filter-btn" id="filter-culture">Culture</a>
+        <a href="articles.html?cat=ARTICLES" class="cat-filter-btn" id="filter-articles">Articles</a>
+        <a href="articles.html?cat=Who'sWho" class="cat-filter-btn" id="filter-whoswho">Who's Who</a>
+        <a href="articles.html?cat=Monuments" class="cat-filter-btn" id="filter-monuments">Monuments</a>
+        <a href="articles.html?cat=Updates" class="cat-filter-btn" id="filter-updates">Updates</a>
       </div>
 
       <!-- Articles Grid -->
@@ -269,7 +269,7 @@
         var link = pid ? 'article.html?id=' + pid : (entry.link.filter(function(l){ return l.rel === 'alternate'; })[0].href);
         var pubDate = formatDate(entry.published.$t);
         var rawContent = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : '');
-        var excerpt = stripHtml(rawContent).substring(0, 160).trim() + 'â€¦';
+        var excerpt = stripHtml(rawContent).substring(0, 160).trim() + '...';
         var imgSrc = extractImage(rawContent);
         var cats = (entry.category || []).map(function(c){ return c.term; });
         var cat = cats[0] || 'ARTICLES';
@@ -297,7 +297,7 @@
                 '<span class="blog-date">' + pubDate + '</span>' +
               '</div>' +
               '<p class="blog-card-excerpt">' + excerpt + '</p>' +
-              '<a href="' + link + '" class="blog-read-more">à´µà´¾à´¯à´¿à´•àµà´•àµà´• (Read More) &rarr;</a>' +
+              '<a href="' + link + '" class="blog-read-more">Read More &rarr;</a>' +
             '</div>' +
           '</div>';
         container.appendChild(col);

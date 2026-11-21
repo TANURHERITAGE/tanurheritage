@@ -180,10 +180,8 @@
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="articles.html?cat=HISTORY">History</a></li>
           <li><a href="articles.html?cat=CULTURE">Culture</a></li>
-          <li><a href="articles.html?cat=ARTICLES">Recents</a></li>
           <li><a href="articles.html?cat=Who'sWho">Who's Who</a></li>
           <li><a href="articles.html?cat=Monuments">Monuments</a></li>
-          <li><a href="#videos-section">Videos</a></li>
           <li><a href="gallery.html">Gallery</a></li>
           <li><a href="archives.html">Archives</a></li>
           <li><a href="about.html">About</a></li>
@@ -839,8 +837,8 @@
       }
 
       if (blogCardsHtml) {
-        // Insert 4 fresh Blogspot cards before any existing admin cards
-        container.innerHTML = blogCardsHtml + container.innerHTML;
+        // Set exactly 4 latest Blogspot news cards
+        container.innerHTML = blogCardsHtml;
       }
     }
 

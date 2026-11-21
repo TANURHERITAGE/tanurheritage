@@ -262,7 +262,7 @@
     // SECTION 4: NEWS / RECENT SECTION (Image 4)
     // ────────────────────────────────────────────────────────────
     var recentContainer = document.getElementById('recent-cards-container');
-    if (recentContainer && data.recentArticles && Array.isArray(data.recentArticles)) {
+    if (recentContainer && !window._blogCardsInjected && data.recentArticles && Array.isArray(data.recentArticles)) {
       var rHtml = '';
       data.recentArticles.forEach(function(rec, idx) {
         var delay = (idx + 1) * 80;
