@@ -249,17 +249,7 @@
     </section>
     <!-- /End Section 1 -->
 
-    <!-- Breaking News Ticker -->
-    <div id="breaking-bar" class="breaking-bar">
-      <span class="breaking-label">&#x25BA; BREAKING</span>
-      <div class="breaking-ticker-wrap">
-        <div class="breaking-ticker" id="breaking-ticker">
-          <span class="ticker-item"><a href="articles.html">Welcome to The Tanur Heritage</a></span>&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;
-          <span class="ticker-item"><a href="gallery.html">Tanur Heritage Carnival & Photographic Archives Updated</a></span>&nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;
-          <span class="ticker-item"><a href="archives.html">Explore Ancient Documents & Coastal Heritage Records</a></span>
-        </div>
-      </div>
-    </div>
+    
 
     <!-- ========================================================
          SECTION 2: MAGAZINE / EDITORIAL RECENTS (Image 2)
@@ -267,10 +257,7 @@
     <section id="magazine-section" class="magazine-section">
       <div class="container">
 
-        <!-- Section Heading -->
-        <div class="section-crimson-title" style="margin-bottom:20px;">
-          <span>Recents</span>
-        </div>
+        
 
         <div class="row g-4">
 
@@ -594,29 +581,225 @@
     </section>
     <!-- /End Section 3 -->
 
-    <!-- ========================================================
-         SECTION 4: NEWS SECTION — Live from Blogspot
+        <!-- ========================================================
+         SECTION 4: HERITAGE GALLERY (Moving Sideways Animation with Tap to View)
          ======================================================== -->
-    <section id="recent-section" class="recent-section">
+    <section id="gallery-carousel-section" class="moving-gallery-section" aria-label="Heritage Gallery Carousel">
       <div class="container">
-        
-        <!-- Header -->
-        <div class="section-crimson-title">
-          <span>News</span>
-        </div>
-
-        <!-- 4-Card Horizontal Grid — populated live from Blogspot -->
-        <div class="row" id="recent-cards-container">
-
-          <!-- News cards filled automatically from Blogspot by handleNewsFeed() below -->
-          <div class="col-12 text-center py-4" id="news-loading">
-            <span style="color:#aaa;font-size:14px;"><i class="bi bi-arrow-repeat"></i> Loading latest news...</span>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div class="section-crimson-title mb-0">
+            <span>Heritage Gallery</span>
           </div>
-        <!-- See all footer link -->
-        <div class="text-end mt-4">
-          <a href="articles.html" class="see-all-link">See all &gt;</a>
+          <a href="gallery.html" class="see-all-link" style="color:var(--th-accent); font-weight:600; text-decoration:none;">
+            View All Photos <i class="bi bi-arrow-right"></i>
+          </a>
         </div>
+      </div>
 
+      <!-- Continuous Moving Gallery Track -->
+      <div class="moving-gallery-track-wrap" tabindex="0" aria-label="Continuous Heritage Gallery Carousel">
+        <div class="moving-gallery-track">
+          <!-- Item 1 -->
+          <a href="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" 
+             class="moving-gallery-card glightbox" 
+             data-gallery="home-gallery"
+             data-glightbox="title: Project Launch Ceremony; description: Historic launching ceremony of The Tanur Heritage Project.">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" alt="Project Launch Ceremony" class="moving-gallery-img" loading="lazy">
+            <div class="moving-gallery-overlay">
+              <span class="moving-gallery-badge"><i class="bi bi-hand-index-thumb"></i> Tap to view</span>
+              <h4 class="moving-gallery-title">Project Launch Ceremony</h4>
+              <span class="moving-gallery-action"><i class="bi bi-arrows-fullscreen"></i> View Photo</span>
+            </div>
+          </a>
+
+          <!-- Item 2 -->
+          <a href="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" 
+             class="moving-gallery-card glightbox" 
+             data-gallery="home-gallery"
+             data-glightbox="title: Maritime &amp; Coastal Heritage; description: Tanur historic shoreline, ancient fishing traditions, and coastal life.">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" alt="Maritime & Coastal Heritage" class="moving-gallery-img" loading="lazy">
+            <div class="moving-gallery-overlay">
+              <span class="moving-gallery-badge"><i class="bi bi-hand-index-thumb"></i> Tap to view</span>
+              <h4 class="moving-gallery-title">Maritime &amp; Coastal Life</h4>
+              <span class="moving-gallery-action"><i class="bi bi-arrows-fullscreen"></i> View Photo</span>
+            </div>
+          </a>
+
+          <!-- Item 3 -->
+          <a href="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" 
+             class="moving-gallery-card glightbox" 
+             data-gallery="home-gallery"
+             data-glightbox="title: Historical Monuments; description: Ancient mosques, temples, and architectural remnants across Tanur.">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" alt="Historical Monuments" class="moving-gallery-img" loading="lazy">
+            <div class="moving-gallery-overlay">
+              <span class="moving-gallery-badge"><i class="bi bi-hand-index-thumb"></i> Tap to view</span>
+              <h4 class="moving-gallery-title">Historical Monuments</h4>
+              <span class="moving-gallery-action"><i class="bi bi-arrows-fullscreen"></i> View Photo</span>
+            </div>
+          </a>
+
+          <!-- Item 4 -->
+          <a href="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" 
+             class="moving-gallery-card glightbox" 
+             data-gallery="home-gallery"
+             data-glightbox="title: Cultural Photography Award; description: Celebrating Tanur heritage through the lens of dedicated documentary photographers.">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" alt="Photography Exhibition" class="moving-gallery-img" loading="lazy">
+            <div class="moving-gallery-overlay">
+              <span class="moving-gallery-badge"><i class="bi bi-hand-index-thumb"></i> Tap to view</span>
+              <h4 class="moving-gallery-title">Photography Exhibition</h4>
+              <span class="moving-gallery-action"><i class="bi bi-arrows-fullscreen"></i> View Photo</span>
+            </div>
+          </a>
+
+          <!-- Item 5 -->
+          <a href="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" 
+             class="moving-gallery-card glightbox" 
+             data-gallery="home-gallery"
+             data-glightbox="title: Scholarly &amp; Literary Gathering; description: Scholars and community leaders at the Tanur Heritage literature meet.">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" alt="Scholarly & Literary Gathering" class="moving-gallery-img" loading="lazy">
+            <div class="moving-gallery-overlay">
+              <span class="moving-gallery-badge"><i class="bi bi-hand-index-thumb"></i> Tap to view</span>
+              <h4 class="moving-gallery-title">Scholarly &amp; Literary Meet</h4>
+              <span class="moving-gallery-action"><i class="bi bi-arrows-fullscreen"></i> View Photo</span>
+            </div>
+          </a>
+
+          <!-- Item 6 -->
+          <a href="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" 
+             class="moving-gallery-card glightbox" 
+             data-gallery="home-gallery"
+             data-glightbox="title: Youth Heritage Circle; description: Engaging the new generation in preserving local history and archives.">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" alt="Youth Heritage Circle" class="moving-gallery-img" loading="lazy">
+            <div class="moving-gallery-overlay">
+              <span class="moving-gallery-badge"><i class="bi bi-hand-index-thumb"></i> Tap to view</span>
+              <h4 class="moving-gallery-title">Youth Heritage Circle</h4>
+              <span class="moving-gallery-action"><i class="bi bi-arrows-fullscreen"></i> View Photo</span>
+            </div>
+          </a>
+
+          <!-- Item 7 -->
+          <a href="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" 
+             class="moving-gallery-card glightbox" 
+             data-gallery="home-gallery"
+             data-glightbox="title: Public Address &amp; Launch; description: Keynote addresses by historians and cultural leaders of Malabar.">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" alt="Public Address & Launch" class="moving-gallery-img" loading="lazy">
+            <div class="moving-gallery-overlay">
+              <span class="moving-gallery-badge"><i class="bi bi-hand-index-thumb"></i> Tap to view</span>
+              <h4 class="moving-gallery-title">Public Keynote &amp; Launch</h4>
+              <span class="moving-gallery-action"><i class="bi bi-arrows-fullscreen"></i> View Photo</span>
+            </div>
+          </a>
+
+          <!-- Item 8 -->
+          <a href="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" 
+             class="moving-gallery-card glightbox" 
+             data-gallery="home-gallery"
+             data-glightbox="title: Historical Archives Research; description: Research team reviewing ancient documentation of Vettathunad.">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" alt="Historical Archives Research" class="moving-gallery-img" loading="lazy">
+            <div class="moving-gallery-overlay">
+              <span class="moving-gallery-badge"><i class="bi bi-hand-index-thumb"></i> Tap to view</span>
+              <h4 class="moving-gallery-title">Archives &amp; Field Research</h4>
+              <span class="moving-gallery-action"><i class="bi bi-arrows-fullscreen"></i> View Photo</span>
+            </div>
+          </a>
+
+          <!-- DUPLICATE SET FOR INFINITE SMOOTH LOOP -->
+          <a href="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" 
+             class="moving-gallery-card glightbox" 
+             data-gallery="home-gallery"
+             data-glightbox="title: Project Launch Ceremony; description: Historic launching ceremony of The Tanur Heritage Project." aria-hidden="true" tabindex="-1">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" alt="Project Launch Ceremony" class="moving-gallery-img" loading="lazy">
+            <div class="moving-gallery-overlay">
+              <span class="moving-gallery-badge"><i class="bi bi-hand-index-thumb"></i> Tap to view</span>
+              <h4 class="moving-gallery-title">Project Launch Ceremony</h4>
+              <span class="moving-gallery-action"><i class="bi bi-arrows-fullscreen"></i> View Photo</span>
+            </div>
+          </a>
+
+          <a href="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" 
+             class="moving-gallery-card glightbox" 
+             data-gallery="home-gallery"
+             data-glightbox="title: Maritime &amp; Coastal Heritage; description: Tanur historic shoreline, ancient fishing traditions, and coastal life." aria-hidden="true" tabindex="-1">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" alt="Maritime & Coastal Heritage" class="moving-gallery-img" loading="lazy">
+            <div class="moving-gallery-overlay">
+              <span class="moving-gallery-badge"><i class="bi bi-hand-index-thumb"></i> Tap to view</span>
+              <h4 class="moving-gallery-title">Maritime &amp; Coastal Life</h4>
+              <span class="moving-gallery-action"><i class="bi bi-arrows-fullscreen"></i> View Photo</span>
+            </div>
+          </a>
+
+          <a href="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" 
+             class="moving-gallery-card glightbox" 
+             data-gallery="home-gallery"
+             data-glightbox="title: Historical Monuments; description: Ancient mosques, temples, and architectural remnants across Tanur." aria-hidden="true" tabindex="-1">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" alt="Historical Monuments" class="moving-gallery-img" loading="lazy">
+            <div class="moving-gallery-overlay">
+              <span class="moving-gallery-badge"><i class="bi bi-hand-index-thumb"></i> Tap to view</span>
+              <h4 class="moving-gallery-title">Historical Monuments</h4>
+              <span class="moving-gallery-action"><i class="bi bi-arrows-fullscreen"></i> View Photo</span>
+            </div>
+          </a>
+
+          <a href="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" 
+             class="moving-gallery-card glightbox" 
+             data-gallery="home-gallery"
+             data-glightbox="title: Cultural Photography Award; description: Celebrating Tanur heritage through the lens of dedicated documentary photographers." aria-hidden="true" tabindex="-1">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" alt="Photography Exhibition" class="moving-gallery-img" loading="lazy">
+            <div class="moving-gallery-overlay">
+              <span class="moving-gallery-badge"><i class="bi bi-hand-index-thumb"></i> Tap to view</span>
+              <h4 class="moving-gallery-title">Photography Exhibition</h4>
+              <span class="moving-gallery-action"><i class="bi bi-arrows-fullscreen"></i> View Photo</span>
+            </div>
+          </a>
+
+          <a href="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" 
+             class="moving-gallery-card glightbox" 
+             data-gallery="home-gallery"
+             data-glightbox="title: Scholarly &amp; Literary Gathering; description: Scholars and community leaders at the Tanur Heritage literature meet." aria-hidden="true" tabindex="-1">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" alt="Scholarly & Literary Gathering" class="moving-gallery-img" loading="lazy">
+            <div class="moving-gallery-overlay">
+              <span class="moving-gallery-badge"><i class="bi bi-hand-index-thumb"></i> Tap to view</span>
+              <h4 class="moving-gallery-title">Scholarly &amp; Literary Meet</h4>
+              <span class="moving-gallery-action"><i class="bi bi-arrows-fullscreen"></i> View Photo</span>
+            </div>
+          </a>
+
+          <a href="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" 
+             class="moving-gallery-card glightbox" 
+             data-gallery="home-gallery"
+             data-glightbox="title: Youth Heritage Circle; description: Engaging the new generation in preserving local history and archives." aria-hidden="true" tabindex="-1">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" alt="Youth Heritage Circle" class="moving-gallery-img" loading="lazy">
+            <div class="moving-gallery-overlay">
+              <span class="moving-gallery-badge"><i class="bi bi-hand-index-thumb"></i> Tap to view</span>
+              <h4 class="moving-gallery-title">Youth Heritage Circle</h4>
+              <span class="moving-gallery-action"><i class="bi bi-arrows-fullscreen"></i> View Photo</span>
+            </div>
+          </a>
+
+          <a href="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" 
+             class="moving-gallery-card glightbox" 
+             data-gallery="home-gallery"
+             data-glightbox="title: Public Address &amp; Launch; description: Keynote addresses by historians and cultural leaders of Malabar." aria-hidden="true" tabindex="-1">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" alt="Public Address & Launch" class="moving-gallery-img" loading="lazy">
+            <div class="moving-gallery-overlay">
+              <span class="moving-gallery-badge"><i class="bi bi-hand-index-thumb"></i> Tap to view</span>
+              <h4 class="moving-gallery-title">Public Keynote &amp; Launch</h4>
+              <span class="moving-gallery-action"><i class="bi bi-arrows-fullscreen"></i> View Photo</span>
+            </div>
+          </a>
+
+          <a href="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" 
+             class="moving-gallery-card glightbox" 
+             data-gallery="home-gallery"
+             data-glightbox="title: Historical Archives Research; description: Research team reviewing ancient documentation of Vettathunad." aria-hidden="true" tabindex="-1">
+            <img src="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" alt="Historical Archives Research" class="moving-gallery-img" loading="lazy">
+            <div class="moving-gallery-overlay">
+              <span class="moving-gallery-badge"><i class="bi bi-hand-index-thumb"></i> Tap to view</span>
+              <h4 class="moving-gallery-title">Archives &amp; Field Research</h4>
+              <span class="moving-gallery-action"><i class="bi bi-arrows-fullscreen"></i> View Photo</span>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
     <!-- /End Section 4 -->
@@ -857,6 +1040,20 @@
     setInterval(loadLiveBlogspotFeed, 60000);
   </script>
 
+
+  <!-- Initialize GLightbox for Tap to View -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof GLightbox !== 'undefined') {
+        GLightbox({
+          selector: '.glightbox',
+          touchNavigation: true,
+          loop: true,
+          zoomable: true
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>
