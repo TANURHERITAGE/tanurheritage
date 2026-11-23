@@ -508,5 +508,55 @@
     "siteName": "The Tanur Heritage",
     "siteDescription": "The Tanur Heritage – Discover the rich history, culture, monuments, and traditions of Tanur, a coastal town in Kerala.",
     "siteUrl": "https://tanurheritage.in/"
-  }
+  },
+  "homeGallery": [
+    {
+      "id": "hgal-1",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-1.jpg",
+      "title": "Project Launch Ceremony",
+      "description": "Historic launching ceremony of The Tanur Heritage Project."
+    },
+    {
+      "id": "hgal-2",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-2.jpg",
+      "title": "Maritime & Coastal Life",
+      "description": "Tanur historic shoreline, ancient fishing traditions, and coastal life."
+    },
+    {
+      "id": "hgal-3",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-3.jpg",
+      "title": "Historical Monuments",
+      "description": "Ancient mosques, temples, and architectural remnants across Tanur."
+    },
+    {
+      "id": "hgal-4",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-4.jpg",
+      "title": "Photography Exhibition",
+      "description": "Celebrating Tanur heritage through the lens of dedicated documentary photographers."
+    },
+    {
+      "id": "hgal-5",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-5.jpg",
+      "title": "Scholarly & Literary Meet",
+      "description": "Scholars and community leaders at the Tanur Heritage literature meet."
+    },
+    {
+      "id": "hgal-6",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-6.jpg",
+      "title": "Youth Heritage Circle",
+      "description": "Engaging the new generation in preserving local history and archives."
+    },
+    {
+      "id": "hgal-7",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-7.jpg",
+      "title": "Public Keynote & Launch",
+      "description": "Keynote addresses by historians and cultural leaders of Malabar."
+    },
+    {
+      "id": "hgal-8",
+      "url": "assets/img/masonry-portfolio/masonry-portfolio-8.jpg",
+      "title": "Archives & Field Research",
+      "description": "Research team reviewing ancient documentation of Vettathunad."
+    }
+  ]
 }

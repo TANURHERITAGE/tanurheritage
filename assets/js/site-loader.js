@@ -259,41 +259,46 @@
     }
 
     // ────────────────────────────────────────────────────────────
-    // SECTION 4: NEWS / RECENT SECTION (Image 4)
+    // SECTION 4: HOMEPAGE MOVING HERITAGE GALLERY
     // ────────────────────────────────────────────────────────────
-    var recentContainer = document.getElementById('recent-cards-container');
-    if (recentContainer && !window._blogCardsInjected && data.recentArticles && Array.isArray(data.recentArticles)) {
-      var rHtml = '';
-      data.recentArticles.forEach(function(rec, idx) {
-        var delay = (idx + 1) * 80;
-        var rLink = rec.link || 'articles.html';
-        var tagsHtml = '';
-        if (rec.tags && Array.isArray(rec.tags)) {
-          rec.tags.forEach(function(t) {
-            tagsHtml += '<span>' + t + '</span> ';
-          });
-        }
-        rHtml +=
-          '<div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="' + delay + '">' +
-            '<div class="recent-card">' +
-              '<div class="recent-thumb-wrap">' +
-                '<a href="' + rLink + '">' +
-                  '<img src="' + rec.image + '" alt="' + rec.title + '" class="recent-thumb-img" onerror="this.src=\'assets/img/sub 1.png\'">' +
-                '</a>' +
-                '<div class="recent-read-badge"><i class="bi bi-newspaper"></i> ' + (rec.readTime || '5 minutes') + '</div>' +
-              '</div>' +
-              '<span class="category-tag">' + (rec.category || 'NEWS') + '</span>' +
-              '<h4 class="recent-title"><a href="' + rLink + '">' + rec.title + '</a></h4>' +
-              '<p class="recent-excerpt">' + (rec.excerpt || '') + '</p>' +
-              (tagsHtml ? '<div class="recent-tags">' + tagsHtml + '</div>' : '') +
-              '<div class="mag-byline">' +
-                '<strong style="color:var(--th-accent);">' + (rec.author || 'The Tanur Heritage') + '</strong>, ' +
-                '<span class="text-muted">' + (rec.time || 'NEWS') + '</span>' +
-              '</div>' +
-            '</div>' +
-          '</div>';
-      });
-      recentContainer.innerHTML = rHtml;
+    var movingTrack = document.querySelector('.moving-gallery-track');
+    var galleryList = (data.homeGallery && Array.isArray(data.homeGallery) && data.homeGallery.length > 0)
+      ? data.homeGallery
+      : (data.gallery && Array.isArray(data.gallery) && data.gallery.length > 0 ? data.gallery.slice(0, 10) : null);
+
+    if (movingTrack && galleryList && galleryList.length > 0) {
+      var trackHtml = '';
+      function buildCard(item, isDup) {
+        var aria = isDup ? ' aria-hidden="true" tabindex="-1"' : '';
+        var t = item.title || item.caption || 'Tanur Heritage Photo';
+        var desc = item.description || t;
+        var u = item.url || item.image || 'assets/img/sub 1.png';
+        var safeT = String(t).replace(/"/g, '&quot;');
+        var safeDesc = String(desc).replace(/"/g, '&quot;');
+        return '<a href="' + u + '" class="moving-gallery-card glightbox" data-gallery="home-gallery" ' +
+          'data-glightbox="title: ' + safeT + '; description: ' + safeDesc + '"' + aria + '>' +
+          '<img src="' + u + '" alt="' + safeT + '" class="moving-gallery-img" loading="lazy" onerror="this.src=\'assets/img/sub 1.png\'">' +
+          '<div class="moving-gallery-overlay">' +
+            '<span class="moving-gallery-badge"><i class="bi bi-hand-index-thumb"></i> Tap to view</span>' +
+            '<h4 class="moving-gallery-title">' + safeT + '</h4>' +
+            '<span class="moving-gallery-action"><i class="bi bi-arrows-fullscreen"></i> View Photo</span>' +
+          '</div>' +
+        '</a>';
+      }
+
+      galleryList.forEach(function(item) { trackHtml += buildCard(item, false); });
+      galleryList.forEach(function(item) { trackHtml += buildCard(item, true); });
+
+      movingTrack.innerHTML = trackHtml;
+
+      if (window.GLightbox) {
+        window.homeGalleryLightbox = GLightbox({
+          selector: '.glightbox',
+          touchNavigation: true,
+          loop: true,
+          zoomable: true
+        });
+      }
     }
 
     // ────────────────────────────────────────────────────────────

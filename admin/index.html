@@ -347,8 +347,8 @@
       <a class="nav-link" onclick="switchSection('videos', this)">
         <i class="bi bi-camera-reels-fill"></i> 3. Videos Management
       </a>
-      <a class="nav-link" onclick="switchSection('recent', this)">
-        <i class="bi bi-newspaper"></i> 4. News Section
+      <a class="nav-link" onclick="switchSection('homeGallery', this)" id="nav-homeGallery">
+        <i class="bi bi-images text-warning"></i> 4. Homepage Heritage Gallery
       </a>
 
       <div class="sidebar-section-divider">Heritage Content</div>
@@ -425,7 +425,7 @@
         <div class="col-md-3 col-6">
           <div class="stat-tile" style="border-left-color: #0d6efd;">
             <h3 id="stat-recent-count">0</h3>
-            <p>News Articles</p>
+            <p>Homepage Gallery Photos</p>
           </div>
         </div>
         <div class="col-md-3 col-6">
@@ -657,26 +657,31 @@
       </div>
     </div>
 
-    <!-- ──────────────── SECTION 5: NEWS SECTION ──────────────── -->
-    <div id="sec-recent" class="admin-sec d-none">
+    <!-- ──────────────── SECTION 5: HOMEPAGE HERITAGE GALLERY ──────────────── -->
+    <div id="sec-homeGallery" class="admin-sec d-none">
       <div class="content-card">
         <div class="card-topbar flex-wrap gap-2">
           <div>
-            <h4 class="mb-0"><i class="bi bi-newspaper text-danger me-2"></i>News Section Management</h4>
-            <small class="text-muted">Modify existing news or pull new posts published on Blogspot</small>
+            <h4 class="mb-0"><i class="bi bi-images text-warning me-2"></i>Homepage Moving Heritage Gallery</h4>
+            <small class="text-muted">Manage the photos displayed in the continuous moving horizontal gallery carousel on the homepage</small>
           </div>
           <div class="d-flex gap-2">
-            <button class="btn btn-outline-primary btn-sm" onclick="syncBlogspotToAdmin()">
-              <i class="bi bi-arrow-repeat me-1"></i> Sync from Blogspot
+            <button class="btn btn-outline-primary btn-sm" onclick="syncPhotosFromMainGallery()">
+              <i class="bi bi-box-arrow-in-down me-1"></i> Import from Main Gallery
             </button>
-            <button class="btn btn-brand btn-sm" onclick="openAddRecentModal()">
-              <i class="bi bi-plus-lg me-1"></i> Add News Item
+            <button class="btn btn-brand btn-sm text-nowrap" onclick="openAddHomeGalleryModal()">
+              <i class="bi bi-plus-lg me-1"></i> Add Photo to Homepage Gallery
             </button>
           </div>
         </div>
-        <p class="text-muted small mb-3">Cards shown in the "News" section on the homepage. Click <strong>Modify</strong> on any existing news card to edit its text, category tag, or image. When new articles are added on Blogspot, they will automatically appear here and on the live website.</p>
-        <div class="item-grid" id="recent-articles-grid-admin">
-          <!-- Populated dynamically -->
+        <div class="alert alert-warning py-2 px-3 small mb-3 d-flex align-items-center">
+          <i class="bi bi-info-circle-fill fs-5 text-warning me-2"></i>
+          <div>
+            <strong>How it works:</strong> Photos in this list appear in the moving horizontal gallery on the homepage. When visitors click or tap any photo, it opens in a full-screen interactive lightbox with your custom title and description.
+          </div>
+        </div>
+        <div class="item-grid" id="home-gallery-photos-grid">
+          <!-- Populated dynamically by renderHomeGallerySection() -->
         </div>
       </div>
     </div>
@@ -883,6 +888,53 @@
 </div>
 
 <!-- ======================= MODALS ======================= -->
+
+<!-- Homepage Gallery Photo Modal -->
+<div class="modal fade" id="homeGalleryModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="homeGalleryModalTitle"><i class="bi bi-images text-warning me-2"></i>Add Photo to Homepage Gallery</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="edit-home-gallery-id">
+
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Photo Title / Caption *</label>
+          <input type="text" id="home-gallery-title" class="form-control" placeholder="e.g. Project Launch Ceremony" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Image URL or Upload from Device *</label>
+          <div class="input-group mb-2">
+            <input type="text" id="home-gallery-url" class="form-control" placeholder="assets/img/... or https://..." oninput="previewHomeGalleryImage(this.value)">
+            <label class="btn btn-outline-secondary">
+              <i class="bi bi-upload me-1"></i> Upload
+              <input type="file" id="home-gallery-file" class="d-none" accept="image/*" onchange="handleHomeGalleryUpload(event)">
+            </label>
+          </div>
+          <small class="text-muted">You can paste an image URL, use a local asset path (e.g. <code>assets/img/masonry-portfolio/masonry-portfolio-1.jpg</code>), or choose a file from your computer.</small>
+        </div>
+
+        <div id="home-gallery-preview-wrap" class="mb-3 text-center d-none">
+          <img id="home-gallery-preview" src="" alt="Preview" style="max-height: 150px; max-width: 100%; border-radius: 8px; object-fit: cover; box-shadow: 0 4px 14px rgba(0,0,0,0.15);">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label small fw-semibold">Description (Shown on "Tap to view")</label>
+          <textarea id="home-gallery-desc" class="form-control" rows="2" placeholder="Brief details about this photo displayed in the full-size popup view"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-brand" onclick="saveHomeGalleryItem()">
+          <i class="bi bi-check2-circle me-1"></i> Save Photo
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- 1. Poster Modal -->
 <div class="modal fade" id="posterModal" tabindex="-1">
@@ -1332,6 +1384,7 @@
     events: [],
     galleryFolders: [],
     gallery: [],
+    homeGallery: [],
     archiveFolders: [],
     archives: [],
     social: {},
@@ -1351,6 +1404,7 @@
     teamModalInstance    = new bootstrap.Modal(document.getElementById('teamModal'));
     eventModalInstance   = new bootstrap.Modal(document.getElementById('eventModal'));
     archiveModalInstance = new bootstrap.Modal(document.getElementById('archiveModal'));
+    const hgModalEl = document.getElementById('homeGalleryModal'); if (hgModalEl) homeGalleryModalInstance = new bootstrap.Modal(hgModalEl);
 
     if (sessionStorage.getItem('th_logged_in') === 'true') {
       revealAdminPanel();
@@ -1445,7 +1499,8 @@
       posters: '1. Hero Posters & Banners Slider',
       magazine: '2. Magazine & Featured Articles',
       videos: '3. Videos Management',
-      recent: '4. Recent Section',
+      recent: '4. Homepage Heritage Gallery',
+      homeGallery: '4. Homepage Heritage Gallery (Moving Carousel)',
       about: 'About Us / Who We Are',
       gallery: 'Gallery Photos & Folders',
       team: 'Our Team Members',
@@ -1526,7 +1581,7 @@
 
     if (elPosters) elPosters.textContent = (siteData.posters || []).length;
     if (elVideos) elVideos.textContent = ((siteData.videos && siteData.videos.mainGrid ? siteData.videos.mainGrid.length : 0) + (siteData.videos && siteData.videos.sidebarList ? siteData.videos.sidebarList.length : 0));
-    if (elRecent) elRecent.textContent = (siteData.recentArticles || []).length;
+    if (elRecent) elRecent.textContent = (siteData.homeGallery || []).length;
     if (elArchives) elArchives.textContent = (siteData.archives || []).length;
   }
 
@@ -1535,6 +1590,7 @@
     renderMagazineAdmin(); populateQuickSelectDropdowns();
     renderVideosAdmin();
     renderRecentAdmin();
+    renderHomeGallerySection();
     renderAboutSection();
     renderGalleryFolders();
     renderGalleryPhotos();
@@ -2415,6 +2471,210 @@
       grid.appendChild(card);
     });
   }
+
+  
+  // ============================================================
+  // HOMEPAGE HERITAGE GALLERY MANAGEMENT
+  // ============================================================
+  function renderHomeGallerySection() {
+    const grid = document.getElementById('home-gallery-photos-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    if (!siteData.homeGallery || !Array.isArray(siteData.homeGallery)) {
+      siteData.homeGallery = [];
+    }
+
+    if (siteData.homeGallery.length === 0) {
+      grid.innerHTML = '<div class="col-12 text-center py-4 text-muted"><i class="bi bi-images fs-2 d-block mb-2"></i>No photos in the homepage moving gallery yet. Click "Add Photo to Homepage Gallery" above to add some!</div>';
+      return;
+    }
+
+    siteData.homeGallery.forEach((p, idx) => {
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      const imgSrc = p.url ? (p.url.startsWith('assets/') ? ('../' + p.url) : p.url) : '../assets/img/sub 1.png';
+      card.innerHTML = `
+        <div class="position-relative">
+          <img src="${imgSrc}" class="item-card-img" alt="${p.title || 'Photo'}" onerror="this.src='../assets/img/sub 1.png'">
+          <span class="badge bg-dark position-absolute top-0 start-0 m-2 opacity-75">#${idx + 1}</span>
+          <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2"><i class="bi bi-hand-index-thumb"></i> Tap to View</span>
+        </div>
+        <div class="item-card-body">
+          <h6 class="mb-1 fw-bold text-truncate" title="${p.title || ''}">${p.title || 'Untitled Photo'}</h6>
+          <p class="small text-muted mb-2 text-truncate" title="${p.description || ''}">${p.description || 'No description'}</p>
+          <div class="item-card-footer d-flex justify-content-between align-items-center">
+            <div class="btn-group btn-group-sm">
+              <button class="btn btn-outline-secondary" onclick="moveHomeGalleryItem('${p.id}', -1)" title="Move left / earlier in carousel" ${idx === 0 ? 'disabled' : ''}>
+                <i class="bi bi-arrow-left"></i>
+              </button>
+              <button class="btn btn-outline-secondary" onclick="moveHomeGalleryItem('${p.id}', 1)" title="Move right / later in carousel" ${idx === siteData.homeGallery.length - 1 ? 'disabled' : ''}>
+                <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+            <div>
+              <button class="btn btn-primary btn-sm me-1" onclick="editHomeGalleryItem('${p.id}')" title="Edit photo details">
+                <i class="bi bi-pencil-square"></i> Edit
+              </button>
+              <button class="btn btn-outline-danger btn-sm" onclick="deleteHomeGalleryItem('${p.id}')" title="Delete photo">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function openAddHomeGalleryModal() {
+    document.getElementById('edit-home-gallery-id').value = '';
+    document.getElementById('home-gallery-title').value = '';
+    document.getElementById('home-gallery-url').value = '';
+    document.getElementById('home-gallery-desc').value = '';
+    document.getElementById('home-gallery-preview-wrap').classList.add('d-none');
+    document.getElementById('homeGalleryModalTitle').innerHTML = '<i class="bi bi-images text-warning me-2"></i>Add Photo to Homepage Gallery';
+    homeGalleryModalInstance.show();
+  }
+
+  function editHomeGalleryItem(id) {
+    const p = (siteData.homeGallery || []).find(item => item.id === id);
+    if (!p) return;
+    document.getElementById('edit-home-gallery-id').value = p.id;
+    document.getElementById('home-gallery-title').value = p.title || '';
+    document.getElementById('home-gallery-url').value = p.url || '';
+    document.getElementById('home-gallery-desc').value = p.description || '';
+    previewHomeGalleryImage(p.url);
+    document.getElementById('homeGalleryModalTitle').innerHTML = '<i class="bi bi-pencil-square text-primary me-2"></i>Edit Homepage Gallery Photo';
+    homeGalleryModalInstance.show();
+  }
+
+  function previewHomeGalleryImage(url) {
+    const wrap = document.getElementById('home-gallery-preview-wrap');
+    const img = document.getElementById('home-gallery-preview');
+    if (!wrap || !img) return;
+    if (url && url.trim().length > 0) {
+      img.src = url.startsWith('assets/') ? ('../' + url) : url;
+      wrap.classList.remove('d-none');
+    } else {
+      wrap.classList.add('d-none');
+    }
+  }
+
+  function handleHomeGalleryUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const dataUrl = e.target.result;
+      document.getElementById('home-gallery-url').value = dataUrl;
+      previewHomeGalleryImage(dataUrl);
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function saveHomeGalleryItem() {
+    const id = document.getElementById('edit-home-gallery-id').value;
+    const title = document.getElementById('home-gallery-title').value.trim();
+    const url = document.getElementById('home-gallery-url').value.trim();
+    const description = document.getElementById('home-gallery-desc').value.trim();
+
+    if (!title) {
+      alert('Please enter a photo title / caption.');
+      return;
+    }
+    if (!url) {
+      alert('Please enter an image URL or choose a file.');
+      return;
+    }
+
+    if (!siteData.homeGallery) siteData.homeGallery = [];
+
+    if (id) {
+      const idx = siteData.homeGallery.findIndex(p => p.id === id);
+      if (idx !== -1) {
+        siteData.homeGallery[idx] = { id, title, url, description };
+      }
+    } else {
+      const newId = 'hgal-' + Date.now();
+      siteData.homeGallery.push({ id: newId, title, url, description });
+    }
+
+    homeGalleryModalInstance.hide();
+    renderHomeGallerySection();
+    updateDashboardStats();
+    showStatusBanner('info', 'Photo updated in Homepage Gallery list! Click "Save to Website" above to publish live.');
+  }
+
+  function deleteHomeGalleryItem(id) {
+    if (!confirm('Are you sure you want to remove this photo from the homepage moving gallery?')) return;
+    siteData.homeGallery = siteData.homeGallery.filter(p => p.id !== id);
+    renderHomeGallerySection();
+    updateDashboardStats();
+    showStatusBanner('info', 'Photo removed from Homepage Gallery! Click "Save to Website" to publish live.');
+  }
+
+  function moveHomeGalleryItem(id, dir) {
+    if (!siteData.homeGallery) return;
+    const idx = siteData.homeGallery.findIndex(p => p.id === id);
+    if (idx === -1) return;
+    const targetIdx = idx + dir;
+    if (targetIdx < 0 || targetIdx >= siteData.homeGallery.length) return;
+
+    const temp = siteData.homeGallery[idx];
+    siteData.homeGallery[idx] = siteData.homeGallery[targetIdx];
+    siteData.homeGallery[targetIdx] = temp;
+
+    renderHomeGallerySection();
+    showStatusBanner('info', 'Gallery order updated! Click "Save to Website" to publish live.');
+  }
+
+  function syncPhotosFromMainGallery() {
+    if (!siteData.gallery || siteData.gallery.length === 0) {
+      alert('No photos found in main gallery albums to import.');
+      return;
+    }
+    if (!confirm('Import all photos from the main gallery albums into the homepage moving carousel?')) return;
+    if (!siteData.homeGallery) siteData.homeGallery = [];
+
+    let count = 0;
+    siteData.gallery.forEach(g => {
+      const exists = siteData.homeGallery.some(h => h.url === g.url);
+      if (!exists && g.url) {
+        siteData.homeGallery.push({
+          id: 'hgal-' + Date.now() + '-' + count,
+          title: g.caption || 'Tanur Heritage Photo',
+          url: g.url,
+          description: g.description || g.caption || ''
+        });
+        count++;
+      }
+    });
+
+    renderHomeGallerySection();
+    updateDashboardStats();
+    showStatusBanner('success', `Imported ${count} photos from main gallery! Click "Save to Website" to publish live.`);
+  }
+
+  function addExistingPhotoToHomeGallery(photoId) {
+    const photo = (siteData.gallery || []).find(p => p.id === photoId);
+    if (!photo) return;
+    if (!siteData.homeGallery) siteData.homeGallery = [];
+    const exists = siteData.homeGallery.some(h => h.url === photo.url);
+    if (exists) {
+      alert('This photo is already in the Homepage Moving Gallery.');
+      return;
+    }
+    siteData.homeGallery.push({
+      id: 'hgal-' + Date.now(),
+      title: photo.caption || 'Tanur Heritage Photo',
+      url: photo.url,
+      description: photo.description || photo.caption || ''
+    });
+    updateDashboardStats();
+    showStatusBanner('success', `Added "${photo.caption || 'Photo'}" to Homepage Moving Gallery! Click "Save to Website" to publish live.`);
+  }
+
 
   function promptCreateGalleryFolder() {
     const name = prompt('Enter new album/folder name (e.g. Workshop 2026):');
