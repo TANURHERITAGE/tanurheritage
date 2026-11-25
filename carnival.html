@@ -32,6 +32,9 @@
     /* ======= HEADER: Consistent Dark Theme ======= */
     #header, .header, .inner-header {
       background-color: #20222e !important;
+      position: sticky;
+      top: 0;
+      z-index: 997;
       box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3) !important;
     }
     #header .logo img {
@@ -63,123 +66,15 @@
       .navmenu a { color: #fff !important; }
     }
 
-    /* ======= HERO BANNER ======= */
-    .carnival-hero {
-      position: relative;
-      background: radial-gradient(circle at 10% 20%, #1a1a2e 0%, #0d0f17 100%);
-      color: #ffffff;
-      padding: clamp(3.5rem, 6vw, 5.5rem) 0 clamp(2.5rem, 4vw, 4rem);
-      overflow: hidden;
-      border-bottom: 3px solid #ef6603;
-    }
-    .carnival-hero-blob {
-      position: absolute;
-      top: -20%;
-      right: -10%;
-      width: 450px;
-      height: 450px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(239, 102, 3, 0.25) 0%, transparent 70%);
-      filter: blur(50px);
-      pointer-events: none;
-    }
-    .carnival-badge-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(239, 102, 3, 0.18);
-      border: 1px solid rgba(239, 102, 3, 0.45);
-      color: #ff914d;
-      padding: 6px 16px;
-      border-radius: 30px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 1.25rem;
-    }
-    .carnival-hero-title {
-      font-family: 'Raleway', sans-serif;
-      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
-      font-weight: 900;
-      line-height: 1.15;
-      color: #ffffff;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
-    }
-    .carnival-hero-title span.accent-carnival {
-      color: #ef6603;
-      text-shadow: 0 0 25px rgba(239, 102, 3, 0.4);
-    }
-    .carnival-hero-dates {
-      font-size: clamp(1.1rem, 2vw, 1.45rem);
-      color: #ffd29d;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 1.5rem;
-    }
-    .carnival-hero-dates .date-chip {
-      background: #ef6603;
-      color: #fff;
-      padding: 3px 12px;
-      border-radius: 6px;
-      font-weight: 700;
-    }
-    .carnival-hero-tagline {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.78);
-      max-width: 620px;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-    }
-
-    /* Hero Poster Frame */
-    .hero-poster-frame {
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 2px rgba(239, 102, 3, 0.3);
-      aspect-ratio: 1 / 1.38;
-      background: #161825;
-      cursor: pointer;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-    .hero-poster-frame:hover {
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 25px 60px rgba(239, 102, 3, 0.35);
-    }
-    .hero-poster-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .hero-poster-zoom-cue {
-      position: absolute;
-      bottom: 12px;
-      right: 12px;
-      background: rgba(10, 12, 20, 0.85);
-      color: #fff;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-
     /* ======= "OUR PROGRAMMES" CORE SECTION ======= */
     .programmes-section {
-      padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+      padding: clamp(3.5rem, 6vw, 5.25rem) 0;
       background: #fbfbfd;
       position: relative;
+      scroll-margin-top: 90px;
     }
     .section-eyebrow {
+      display: block;
       font-size: 0.85rem;
       font-weight: 800;
       letter-spacing: 0.18em;
@@ -326,6 +221,7 @@
       padding: clamp(3.5rem, 6vw, 5rem) 0;
       background: #ffffff;
       border-top: 1px solid #ebebeb;
+      scroll-margin-top: 90px;
     }
     .reg-box-card {
       background: #ffffff;
@@ -397,59 +293,13 @@
 
   <main class="main">
 
-    <!-- ======================== CARNIVAL HERO BANNER ======================== -->
-    <section class="carnival-hero">
-      <div class="carnival-hero-blob"></div>
-      <div class="container position-relative">
-        <div class="row align-items-center gy-4">
-          
-          <div class="col-lg-7" data-aos="fade-up">
-            <div class="carnival-badge-pill">
-              <i class="bi bi-stars"></i> Official Heritage Festival 2K26
-            </div>
-            <h1 class="carnival-hero-title">
-              TANUR 2K26<br>
-              <span class="accent-carnival">HERITAGE CARNIVAL</span>
-            </h1>
-            <div class="carnival-hero-dates">
-              <span class="date-chip"><i class="bi bi-calendar-check me-1"></i> DECEMBER 11 – 14</span>
-              <span><i class="bi bi-geo-alt-fill text-warning me-1"></i> Tanur, Malappuram, Kerala</span>
-            </div>
-            <p class="carnival-hero-tagline">
-              <em>"Tracing the past for the future..."</em> An immersive multi-day festival celebrating the centuries-old maritime glory, vibrant cultural traditions, scholastic history, and ecological heritage of Tanur.
-            </p>
-            <div class="d-flex gap-3 flex-wrap">
-              <a href="#register-section" class="btn btn-warning px-4 py-3 fw-bold text-white shadow" style="border-radius: 30px; background: #ef6603; border-color: #ef6603;">
-                <i class="bi bi-ticket-perforated-fill me-2"></i> Register Now
-              </a>
-              <a href="#our-programmes" class="btn btn-outline-light px-4 py-3 fw-bold" style="border-radius: 30px;">
-                <i class="bi bi-list-stars me-2"></i> Explore Programmes
-              </a>
-            </div>
-          </div>
-
-          <!-- Poster Column (A4 Visual) -->
-          <div class="col-lg-5 text-center" data-aos="fade-up" data-aos-delay="150">
-            <div class="mx-auto" style="max-width: 340px;">
-              <a href="assets/img/posters/carnival-poster-2k26.jpg" class="hero-poster-frame glightbox d-block" data-glightbox="title: Tanur 2K26 Heritage Carnival Poster; description: Official carnival festival poster (December 11-14).">
-                <img src="assets/img/posters/carnival-poster-2k26.jpg" alt="Tanur 2K26 Heritage Carnival Official Poster" class="hero-poster-img">
-                <span class="hero-poster-zoom-cue"><i class="bi bi-arrows-fullscreen"></i> Tap to View Full Poster</span>
-              </a>
-              <small class="text-white-50 d-block mt-2">Official Carnival Poster &bull; Tap to expand</small>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
     <!-- ======================== CORE SECTION: OUR PROGRAMMES ======================== -->
     <section id="our-programmes" class="programmes-section">
       <div class="container">
         
         <div class="text-center" data-aos="fade-up">
           <span class="section-eyebrow">Tanur 2K26 Carnival Highlights</span>
-          <h2 class="programmes-main-title">Our Programmes</h2>
+          <h1 class="programmes-main-title">Our Programmes</h1>
           <p class="programmes-subtitle">
             Join distinguished historians, cultural dignitaries, researchers, artists, and community voices across our five signature carnival streams.
           </p>
