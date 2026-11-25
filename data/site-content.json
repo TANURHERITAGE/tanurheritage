@@ -51,10 +51,10 @@
     "topMain": {
       "category": "ARTICLES",
       "title": "താനൂർ: വൈവിധ്യങ്ങളുടെ കലവറ",
-      "excerpt": "മലബാറിലെ മറ്റു പ്രദേശങ്ങളിൽ നിന്നും ഭിന്നമായി ഒട്ടേറെ വൈവിധ്യങ്ങൾ താനൂരിനു മാത്രം അവകാശപ്പെടാനുണ്ട്. ഭൂമിശാസ്ത്രം, ആചാരങ്ങൾ, ഭാഷ, തൊഴിൽ, ഭക്ഷണം, കുടുംബം, സമൂഹം തുടങ്ങിയ മേഖലകളിലെല്ലാം താനൂരിന്റെ തനതായ മുദ്രകൾ കാണാം.",
       "author": "The Tanur Heritage",
       "time": "FEATURED ARTICLE",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2lewDRRiFzPHSSpyTyHg89Vmhyn8G3QB8Uw&s",
+      "excerpt": "മലബാറിലെ മറ്റു പ്രദേശങ്ങളിൽ നിന്നും ഭിന്നമായി ഒട്ടേറെ വൈവിധ്യങ്ങൾ താനൂരിനു മാത്രം അവകാശപ്പെടാനുണ്ട്. ഭൂമിശാസ്ത്രം, ആചാരങ്ങൾ, ഭാഷ, തൊഴിൽ, ഭക്ഷണം, കുടുംബം, സമൂഹം തുടങ്ങിയ മേഖലകളിലെല്ലാം താനൂരിന്റെ തനതായ മുദ്രകൾ കാണാം.",
+      "image": "https://i.postimg.cc/0y96NMjS/image.png",
       "link": "article.html?id=236607451031382313"
     },
     "gridArticles": [
@@ -65,7 +65,7 @@
         "excerpt": "മലബാറിന്റെ പൊതുവെയുള്ള ചരിത്രത്തിൽ സഞ്ചാരികളുടെ വിവരണങ്ങൾക്ക് വലിയ പ്രസക്തിയുണ്ട്. നിരവധി യൂറോപ്യർ ഇവിടെ സന്ദർശിക്കുകയും തങ്ങളുടെ യാത്രാവിവരണങ്ങളിൽ താനൂരിനെ രേഖപ്പെടുത്തുകയും ചെയ്തിട്ടുണ്ട്.",
         "author": "The Tanur Heritage",
         "time": "HISTORICAL ARCHIVE",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/New_account_of_East_India_and_Persia_vol.2_%28IA_in.gov.ignca.6070%29.pdf/page1-789px-New_account_of_East_India_and_Persia_vol.2_%28IA_in.gov.ignca.6070%29.pdf.jpg",
+        "image": "https://i.postimg.cc/RZW3krDF/images.jpg",
         "link": "article.html?id=1506222343135509496"
       },
       {
@@ -85,42 +85,16 @@
         "excerpt": "1498-ൽ വാസ്കോ ഡ ഗാമ കോഴിക്കോട്ടെത്തിയതു മുതലാണ് കേരളത്തിൽ പോർച്ചുഗീസ് യുഗം ആരംഭിക്കുന്നത്. 1525-ൽ കോഴിക്കോട്ടെ പോർച്ചുഗീസ് കോട്ട തകർത്തതോടെ താനൂർ പോർച്ചുഗീസുകാരുടെ ശ്രദ്ധാകേന്ദ്രമായി മാറി.",
         "author": "The Tanur Heritage",
         "time": "HISTORICAL STUDY",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMv5MSlsfivZv85Mx_wDhvsJESXrgSmMOPjQ&s",
+        "image": "https://i.postimg.cc/C5nXyxk7/image.png",
         "link": "article.html?id=5360548811375307347"
       }
     ],
     "sidebarHighlight": {
       "title": "താനൂർ: താന്നിമരങ്ങളുടെ നാട് ?",
-      "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjqFExqYhYCoT6vDkjLvR6pkk8O6Z_k3Jd4VwKEb2krBxx5BUCaunqDGZEhA_YMOyEoW0uQNUAr8msSw7XhCQ5zeR9yNE5nC-GZlFVe73qDxZNT-f_dvld8-5IHfVG0F80z5ZlG0aU0puo/s320/thanni+maram.jpg",
+      "image": "https://i.postimg.cc/MGcFfGrx/image.png",
       "link": "article.html?id=6944249057337203015"
     },
-    "mostRead": [
-      {
-        "id": "mr-1",
-        "title": "മൈസൂർ അധിനിവേശ കാലത്തെ താനൂർ",
-        "link": "article.html?id=3834730641862462277"
-      },
-      {
-        "id": "mr-2",
-        "title": "താനൂരിന്റെ മഹത്തായ മാപ്പിള സാഹിത്യ പാരമ്പര്യം",
-        "link": "article.html?id=4363435959433211658"
-      },
-      {
-        "id": "mr-3",
-        "title": "മലയാള സാഹിത്യത്തിൽ താനൂരിന്റെ പാരമ്പര്യം",
-        "link": "article.html?id=7565311976029258255"
-      },
-      {
-        "id": "mr-4",
-        "title": "വെട്ടത്തുനാട്: അഥവാ താനൂർ സ്വരൂപം",
-        "link": "article.html?id=2487327519945937082"
-      },
-      {
-        "id": "mr-5",
-        "title": "പ്രാചീന താനൂർ: ചരിത്രത്തിലെ സൂചനകൾ",
-        "link": "article.html?id=4493212617688566905"
-      }
-    ]
+    "mostRead": []
   },
   "videos": {
     "mainGrid": [
@@ -277,13 +251,13 @@
     }
   ],
   "about": {
-    "title": "Who we are",
-    "subtitle": "Discover Tanur's Legacy",
+    "title": "Panakkad Munavarali Shihab Thangal : Chairman's Message",
+    "subtitle": "Tracing the Past for the Future",
     "text1": "The Tanur Heritage is a cultural and historical program aimed at unveiling the rich history and vibrant traditions of Tanur, a coastal town in Kerala. The initiative brings together historians, scholars, and the local community to celebrate and explore Tanur's diverse cultural past, including its ancient maritime trade connections, historical landmarks, and unique traditions.",
     "text2": "Through exhibitions, talks, and cultural performances, Tanur Heritage highlights the town's role in Kerala's historical narrative, showcasing its contributions to art, religion, and trade. The program seeks to preserve and promote awareness of Tanur's heritage for future generations.",
     "paragraphs": [
-      "The Tanur Heritage is a cultural and historical program aimed at unveiling the rich history and vibrant traditions of Tanur, a coastal town in Kerala. The initiative brings together historians, scholars, and the local community to celebrate and explore Tanur's diverse cultural past, including its ancient maritime trade connections, historical landmarks, and unique traditions.",
-      "Through exhibitions, talks, and cultural performances, Tanur Heritage highlights the town's role in Kerala's historical narrative, showcasing its contributions to art, religion, and trade. The program seeks to preserve and promote awareness of Tanur's heritage for future generations."
+      "Tanur is a land of remarkable historical and cultural heritage, shaped by centuries of maritime exchanges, cultural encounters and social transformations. Its rich legacy deserves to be explored, documented and preserved for future generations. The Tanur Heritage was launched as a commemorative initiative marking the Centenary of IUA College, Tanur, and is spearheaded by its Department of Civilizational Studies. It seeks to rediscover the region's past, document its diverse heritage and bring its historical significance into wider public awareness. Heritage preservation is a collective responsibility.",
+      "I hope this initiative will inspire researchers, institutions and the local community to engage in preserving our shared legacy and nurturing a deeper appreciation of our history. I congratulate the Department of Civilizational Studies and all those associated with this endeavour. May The Tanur Heritage grow into a vibrant platform for historical research, cultural preservation and community engagement."
     ]
   },
   "team": [
