@@ -502,6 +502,15 @@ h6 {
 .footer .copyright {
   padding-top: 25px;
   border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  color: #ffffff;
+}
+
+.footer.dark-background .copyright,
+.footer.dark-background .copyright p,
+.footer.dark-background .copyright span,
+.footer.dark-background .copyright strong,
+.footer.dark-background .copyright a {
+  color: #ffffff !important;
 }
 
 .footer .credits {

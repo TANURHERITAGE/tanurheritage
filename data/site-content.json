@@ -577,15 +577,17 @@
       "whatsappNumber": "9605057688",
       "maxFileSizeMB": 500,
       "backLinkText": "Back to Our Programmes",
-      "participantFormHeading": "Participation Registration",
+      "participantFormHeading": "Registration for Participation",
       "participantNameLabel": "Your Name",
       "participantWhatsappLabel": "WhatsApp Number",
-      "participantLocationLabel": "Location",
+      "participantEmailLabel": "Email ID",
       "participantSubmitText": "Submit & Send to WhatsApp",
-      "presentationFormHeading": "Presentation Registration",
+      "presentationFormHeading": "Call for Research Presentation",
       "presentationNameLabel": "Your Name",
       "presentationWhatsappLabel": "WhatsApp Number",
-      "presentationLocationLabel": "Location",
+      "presentationEmailLabel": "Email ID",
+      "presentationInstitutionLabel": "Institution Name",
+      "presentationTopicLabel": "Topic",
       "presentationAbstractLabel": "Attach Abstract",
       "presentationPaperLabel": "Attach Paper",
       "presentationFileNote": "Files up to 500 MB can be included (PDF, DOC, DOCX, PPT, ZIP, etc.)",
@@ -606,9 +608,9 @@
         "posterImage": "",
         "posterCaption": "Research Conclave – Official Poster",
         "enableParticipant": true,
-        "participantOptionLabel": "1. Register as a Participant",
+        "participantOptionLabel": "Registration for Participation",
         "enablePresentation": true,
-        "presentationOptionLabel": "2. Register for a Presentation",
+        "presentationOptionLabel": "Call for Research Presentation",
         "whatsappNumber": ""
       },
       {
@@ -625,9 +627,9 @@
         "posterImage": "",
         "posterCaption": "Angadi Sora – Official Poster",
         "enableParticipant": true,
-        "participantOptionLabel": "1. Register as a Participant",
+        "participantOptionLabel": "Registration for Participation",
         "enablePresentation": true,
-        "presentationOptionLabel": "2. Register for a Presentation",
+        "presentationOptionLabel": "Call for Research Presentation",
         "whatsappNumber": ""
       },
       {
@@ -644,9 +646,9 @@
         "posterImage": "",
         "posterCaption": "Green Summit – Official Poster",
         "enableParticipant": true,
-        "participantOptionLabel": "1. Register as a Participant",
+        "participantOptionLabel": "Registration for Participation",
         "enablePresentation": true,
-        "presentationOptionLabel": "2. Register for a Presentation",
+        "presentationOptionLabel": "Call for Research Presentation",
         "whatsappNumber": ""
       },
       {
@@ -663,9 +665,9 @@
         "posterImage": "",
         "posterCaption": "Meet The Influencers – Official Poster",
         "enableParticipant": true,
-        "participantOptionLabel": "1. Register as a Participant",
+        "participantOptionLabel": "Registration for Participation",
         "enablePresentation": true,
-        "presentationOptionLabel": "2. Register for a Presentation",
+        "presentationOptionLabel": "Call for Research Presentation",
         "whatsappNumber": ""
       },
       {
@@ -682,9 +684,9 @@
         "posterImage": "",
         "posterCaption": "Grand Finale – Official Poster",
         "enableParticipant": true,
-        "participantOptionLabel": "1. Register as a Participant",
+        "participantOptionLabel": "Registration for Participation",
         "enablePresentation": true,
-        "presentationOptionLabel": "2. Register for a Presentation",
+        "presentationOptionLabel": "Call for Research Presentation",
         "whatsappNumber": ""
       }
     ]

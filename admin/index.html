@@ -807,11 +807,11 @@
           </button>
         </div>
         <div class="row g-4">
-          <!-- Participation Form Template -->
+          <!-- Registration for Participation Form Template -->
           <div class="col-md-6">
             <div class="p-3 border rounded-3 bg-light h-100">
               <h6 class="fw-bold text-dark border-bottom pb-2 mb-3">
-                <i class="bi bi-person-check-fill text-warning me-1"></i> 1. Participation Form Template
+                <i class="bi bi-person-check-fill text-warning me-1"></i> 1. Registration for Participation Template
               </h6>
               <div class="mb-2">
                 <label class="form-label small fw-semibold">Form Heading</label>
@@ -826,8 +826,8 @@
                 <input type="text" id="tpl-part-wa" class="form-control form-control-sm">
               </div>
               <div class="mb-2">
-                <label class="form-label small fw-semibold">Location Field Label</label>
-                <input type="text" id="tpl-part-loc" class="form-control form-control-sm">
+                <label class="form-label small fw-semibold">Email ID Field Label</label>
+                <input type="text" id="tpl-part-email" class="form-control form-control-sm">
               </div>
               <div class="mb-0">
                 <label class="form-label small fw-semibold">Submit Button Text</label>
@@ -836,11 +836,11 @@
             </div>
           </div>
 
-          <!-- Presentation Form Template -->
+          <!-- Call for Research Presentation Form Template -->
           <div class="col-md-6">
             <div class="p-3 border rounded-3 bg-light h-100">
               <h6 class="fw-bold text-dark border-bottom pb-2 mb-3">
-                <i class="bi bi-file-earmark-easel-fill text-danger me-1"></i> 2. Presentation Form Template
+                <i class="bi bi-file-earmark-easel-fill text-danger me-1"></i> 2. Call for Research Presentation Template
               </h6>
               <div class="mb-2">
                 <label class="form-label small fw-semibold">Form Heading</label>
@@ -856,9 +856,19 @@
                   <input type="text" id="tpl-pres-wa" class="form-control form-control-sm">
                 </div>
               </div>
+              <div class="row g-2 mb-2">
+                <div class="col-6">
+                  <label class="form-label small fw-semibold">Email ID Label</label>
+                  <input type="text" id="tpl-pres-email" class="form-control form-control-sm">
+                </div>
+                <div class="col-6">
+                  <label class="form-label small fw-semibold">Institution Label</label>
+                  <input type="text" id="tpl-pres-institution" class="form-control form-control-sm">
+                </div>
+              </div>
               <div class="mb-2">
-                <label class="form-label small fw-semibold">Location Field Label</label>
-                <input type="text" id="tpl-pres-loc" class="form-control form-control-sm">
+                <label class="form-label small fw-semibold">Topic Field Label</label>
+                <input type="text" id="tpl-pres-topic" class="form-control form-control-sm">
               </div>
               <div class="row g-2 mb-2">
                 <div class="col-6">
@@ -1624,14 +1634,14 @@
                     <input class="form-check-input" type="checkbox" id="prog-enable-part" checked>
                     <label class="form-check-label small fw-bold" for="prog-enable-part">Enable Option 1 (Participant)</label>
                   </div>
-                  <input type="text" id="prog-part-label" class="form-control form-control-sm" placeholder="1. Register as a Participant">
+                  <input type="text" id="prog-part-label" class="form-control form-control-sm" placeholder="Registration for Participation">
                 </div>
                 <div class="col-md-6">
                   <div class="form-check form-switch mb-2">
                     <input class="form-check-input" type="checkbox" id="prog-enable-pres" checked>
                     <label class="form-check-label small fw-bold" for="prog-enable-pres">Enable Option 2 (Presentation)</label>
                   </div>
-                  <input type="text" id="prog-pres-label" class="form-control form-control-sm" placeholder="2. Register for a Presentation">
+                  <input type="text" id="prog-pres-label" class="form-control form-control-sm" placeholder="Call for Research Presentation">
                 </div>
               </div>
             </div>
@@ -1915,15 +1925,17 @@
         whatsappNumber: '9605057688',
         maxFileSizeMB: 500,
         backLinkText: 'Back to Our Programmes',
-        participantFormHeading: 'Participation Registration',
+        participantFormHeading: 'Registration for Participation',
         participantNameLabel: 'Your Name',
         participantWhatsappLabel: 'WhatsApp Number',
-        participantLocationLabel: 'Location',
+        participantEmailLabel: 'Email ID',
         participantSubmitText: 'Submit & Send to WhatsApp',
-        presentationFormHeading: 'Presentation Registration',
+        presentationFormHeading: 'Call for Research Presentation',
         presentationNameLabel: 'Your Name',
         presentationWhatsappLabel: 'WhatsApp Number',
-        presentationLocationLabel: 'Location',
+        presentationEmailLabel: 'Email ID',
+        presentationInstitutionLabel: 'Institution Name',
+        presentationTopicLabel: 'Topic',
         presentationAbstractLabel: 'Attach Abstract',
         presentationPaperLabel: 'Attach Paper',
         presentationFileNote: 'Files up to 500 MB can be included (PDF, DOC, DOCX, PPT, ZIP, etc.)',
@@ -1937,8 +1949,8 @@
           dayBadge: 'Dec 11 • Day 1', tags: 'Academic • Papers • Panels',
           buttonText: 'Register for Conclave', active: true, showPoster: true, posterImage: '',
           posterCaption: 'Research Conclave – Official Poster', enableParticipant: true,
-          participantOptionLabel: '1. Register as a Participant', enablePresentation: true,
-          presentationOptionLabel: '2. Register for a Presentation', whatsappNumber: ''
+          participantOptionLabel: 'Registration for Participation', enablePresentation: true,
+          presentationOptionLabel: 'Call for Research Presentation', whatsappNumber: ''
         },
         {
           id: 'angadi-sora', num: '02', title: 'ANGADI SORA',
@@ -1947,8 +1959,8 @@
           dayBadge: 'Dec 12 • Day 2', tags: 'Oral History • Bazaar Dialogues',
           buttonText: 'Register for Angadi Sora', active: true, showPoster: true, posterImage: '',
           posterCaption: 'Angadi Sora – Official Poster', enableParticipant: true,
-          participantOptionLabel: '1. Register as a Participant', enablePresentation: true,
-          presentationOptionLabel: '2. Register for a Presentation', whatsappNumber: ''
+          participantOptionLabel: 'Registration for Participation', enablePresentation: true,
+          presentationOptionLabel: 'Call for Research Presentation', whatsappNumber: ''
         },
         {
           id: 'green-summit', num: '03', title: 'GREEN SUMMIT',
@@ -1957,8 +1969,8 @@
           dayBadge: 'Dec 13 • Day 3', tags: 'Ecology • Coastal Resilience',
           buttonText: 'Register for Green Summit', active: true, showPoster: true, posterImage: '',
           posterCaption: 'Green Summit – Official Poster', enableParticipant: true,
-          participantOptionLabel: '1. Register as a Participant', enablePresentation: true,
-          presentationOptionLabel: '2. Register for a Presentation', whatsappNumber: ''
+          participantOptionLabel: 'Registration for Participation', enablePresentation: true,
+          presentationOptionLabel: 'Call for Research Presentation', whatsappNumber: ''
         },
         {
           id: 'meet-the-influencers', num: '04', title: 'MEET THE INFLUENCERS',
@@ -1967,8 +1979,8 @@
           dayBadge: 'Dec 13 • Day 3', tags: 'Creators • Media • Storytelling',
           buttonText: 'Register for Influencers Meet', active: true, showPoster: true, posterImage: '',
           posterCaption: 'Meet The Influencers – Official Poster', enableParticipant: true,
-          participantOptionLabel: '1. Register as a Participant', enablePresentation: true,
-          presentationOptionLabel: '2. Register for a Presentation', whatsappNumber: ''
+          participantOptionLabel: 'Registration for Participation', enablePresentation: true,
+          presentationOptionLabel: 'Call for Research Presentation', whatsappNumber: ''
         },
         {
           id: 'grand-finale', num: '05', title: 'GRAND FINALE',
@@ -1977,8 +1989,8 @@
           dayBadge: 'Dec 14 • Day 4', tags: 'Awards • Folk Arts • Valedictory',
           buttonText: 'Register for Grand Finale', active: true, showPoster: true, posterImage: '',
           posterCaption: 'Grand Finale – Official Poster', enableParticipant: true,
-          participantOptionLabel: '1. Register as a Participant', enablePresentation: true,
-          presentationOptionLabel: '2. Register for a Presentation', whatsappNumber: ''
+          participantOptionLabel: 'Registration for Participation', enablePresentation: true,
+          presentationOptionLabel: 'Call for Research Presentation', whatsappNumber: ''
         }
       ]
     };
@@ -3452,16 +3464,18 @@
     setVal('carnival-reg-maxmb', rs.maxFileSizeMB || 500);
     setVal('carnival-reg-backtext', rs.backLinkText || 'Back to Our Programmes');
 
-    setVal('tpl-part-heading', rs.participantFormHeading || 'Participation Registration');
+    setVal('tpl-part-heading', rs.participantFormHeading || 'Registration for Participation');
     setVal('tpl-part-name', rs.participantNameLabel || 'Your Name');
     setVal('tpl-part-wa', rs.participantWhatsappLabel || 'WhatsApp Number');
-    setVal('tpl-part-loc', rs.participantLocationLabel || 'Location');
+    setVal('tpl-part-email', rs.participantEmailLabel || 'Email ID');
     setVal('tpl-part-btn', rs.participantSubmitText || 'Submit & Send to WhatsApp');
 
-    setVal('tpl-pres-heading', rs.presentationFormHeading || 'Presentation Registration');
+    setVal('tpl-pres-heading', rs.presentationFormHeading || 'Call for Research Presentation');
     setVal('tpl-pres-name', rs.presentationNameLabel || 'Your Name');
     setVal('tpl-pres-wa', rs.presentationWhatsappLabel || 'WhatsApp Number');
-    setVal('tpl-pres-loc', rs.presentationLocationLabel || 'Location');
+    setVal('tpl-pres-email', rs.presentationEmailLabel || 'Email ID');
+    setVal('tpl-pres-institution', rs.presentationInstitutionLabel || 'Institution Name');
+    setVal('tpl-pres-topic', rs.presentationTopicLabel || 'Topic');
     setVal('tpl-pres-abs', rs.presentationAbstractLabel || 'Attach Abstract');
     setVal('tpl-pres-pap', rs.presentationPaperLabel || 'Attach Paper');
     setVal('tpl-pres-note', rs.presentationFileNote || '');
@@ -3549,15 +3563,17 @@
       whatsappNumber: getVal('carnival-reg-whatsapp') || '9605057688',
       maxFileSizeMB: Number(getVal('carnival-reg-maxmb')) || 500,
       backLinkText: getVal('carnival-reg-backtext') || 'Back to Our Programmes',
-      participantFormHeading: getVal('tpl-part-heading') || 'Participation Registration',
+      participantFormHeading: getVal('tpl-part-heading') || 'Registration for Participation',
       participantNameLabel: getVal('tpl-part-name') || 'Your Name',
       participantWhatsappLabel: getVal('tpl-part-wa') || 'WhatsApp Number',
-      participantLocationLabel: getVal('tpl-part-loc') || 'Location',
+      participantEmailLabel: getVal('tpl-part-email') || 'Email ID',
       participantSubmitText: getVal('tpl-part-btn') || 'Submit & Send to WhatsApp',
-      presentationFormHeading: getVal('tpl-pres-heading') || 'Presentation Registration',
+      presentationFormHeading: getVal('tpl-pres-heading') || 'Call for Research Presentation',
       presentationNameLabel: getVal('tpl-pres-name') || 'Your Name',
       presentationWhatsappLabel: getVal('tpl-pres-wa') || 'WhatsApp Number',
-      presentationLocationLabel: getVal('tpl-pres-loc') || 'Location',
+      presentationEmailLabel: getVal('tpl-pres-email') || 'Email ID',
+      presentationInstitutionLabel: getVal('tpl-pres-institution') || 'Institution Name',
+      presentationTopicLabel: getVal('tpl-pres-topic') || 'Topic',
       presentationAbstractLabel: getVal('tpl-pres-abs') || 'Attach Abstract',
       presentationPaperLabel: getVal('tpl-pres-pap') || 'Attach Paper',
       presentationFileNote: getVal('tpl-pres-note') || 'Files up to 500 MB can be included (PDF, DOC, DOCX, PPT, ZIP, etc.)',
@@ -3588,9 +3604,9 @@
       posterImage: '',
       posterCaption: '',
       enableParticipant: true,
-      participantOptionLabel: '1. Register as a Participant',
+      participantOptionLabel: 'Registration for Participation',
       enablePresentation: true,
-      presentationOptionLabel: '2. Register for a Presentation',
+      presentationOptionLabel: 'Call for Research Presentation',
       whatsappNumber: ''
     };
 
@@ -3619,9 +3635,9 @@
     }
 
     document.getElementById('prog-enable-part').checked = p.enableParticipant !== false;
-    document.getElementById('prog-part-label').value = p.participantOptionLabel || '1. Register as a Participant';
+    document.getElementById('prog-part-label').value = p.participantOptionLabel || 'Registration for Participation';
     document.getElementById('prog-enable-pres').checked = p.enablePresentation !== false;
-    document.getElementById('prog-pres-label').value = p.presentationOptionLabel || '2. Register for a Presentation';
+    document.getElementById('prog-pres-label').value = p.presentationOptionLabel || 'Call for Research Presentation';
 
     if (programmeModalInstance) programmeModalInstance.show();
   }
@@ -3670,9 +3686,9 @@
       posterImage: document.getElementById('prog-poster-image').value.trim(),
       posterCaption: document.getElementById('prog-poster-caption').value.trim(),
       enableParticipant: document.getElementById('prog-enable-part').checked,
-      participantOptionLabel: document.getElementById('prog-part-label').value.trim() || '1. Register as a Participant',
+      participantOptionLabel: document.getElementById('prog-part-label').value.trim() || 'Registration for Participation',
       enablePresentation: document.getElementById('prog-enable-pres').checked,
-      presentationOptionLabel: document.getElementById('prog-pres-label').value.trim() || '2. Register for a Presentation',
+      presentationOptionLabel: document.getElementById('prog-pres-label').value.trim() || 'Call for Research Presentation',
       whatsappNumber: document.getElementById('prog-whatsapp').value.trim()
     };
 

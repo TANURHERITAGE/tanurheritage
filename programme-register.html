@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Programme Registration – Tanur 2K26 Heritage Carnival | The Tanur Heritage</title>
-  <meta name="description" content="Register as a Participant or for a Paper Presentation at Tanur 2K26 Heritage Carnival. View programme poster and submit registration via WhatsApp.">
+  <meta name="description" content="Registration for Participation or Call for Research Presentation at Tanur 2K26 Heritage Carnival. View programme poster and submit registration via WhatsApp.">
   <link rel="canonical" href="https://tanurheritage.in/programme-register.html">
 
   <!-- Favicons -->
@@ -432,6 +432,19 @@
       margin-top: 0.75rem;
       text-align: center;
     }
+
+    /* Ensure Footer Copyright and Text remain Crisp White on Dark Footer */
+    #footer.dark-background,
+    #footer.dark-background h3,
+    #footer.dark-background .sitename,
+    #footer.dark-background .footer-tagline,
+    #footer.dark-background .copyright,
+    #footer.dark-background .copyright p,
+    #footer.dark-background .copyright span,
+    #footer.dark-background .copyright strong,
+    #footer.dark-background .copyright a {
+      color: #ffffff !important;
+    }
   </style>
 </head>
 
@@ -494,27 +507,27 @@
         <!-- ======================== TWO OPTIONS BELOW POSTER ======================== -->
         <div class="mode-selector-wrap" id="mode-selector-wrap" data-aos="fade-up" data-aos-delay="150">
           <div class="mode-selector-bar" id="mode-selector-bar">
-            <button type="button" class="mode-option-btn active" id="btn-opt-participant" onclick="switchRegMode('participant')">
+            <button type="button" class="mode-option-btn active" id="btn-opt-participant" onclick="switchRegMode('participant', true)">
               <i class="bi bi-person-check-fill"></i>
-              <span id="label-opt-participant">1. Register as a Participant</span>
+              <span id="label-opt-participant">Registration for Participation</span>
             </button>
             <div class="mode-divider-pipe" id="mode-divider-pipe"></div>
-            <button type="button" class="mode-option-btn" id="btn-opt-presentation" onclick="switchRegMode('presentation')">
+            <button type="button" class="mode-option-btn" id="btn-opt-presentation" onclick="switchRegMode('presentation', true)">
               <i class="bi bi-file-earmark-easel-fill"></i>
-              <span id="label-opt-presentation">2. Register for a Presentation</span>
+              <span id="label-opt-presentation">Call for Research Presentation</span>
             </button>
           </div>
         </div>
 
-        <!-- ======================== FORM 1: PARTICIPATION FORM ======================== -->
+        <!-- ======================== FORM 1: REGISTRATION FOR PARTICIPATION ======================== -->
         <div class="reg-form-card" id="panel-participant" data-aos="fade-up" data-aos-delay="200">
           <div class="reg-form-header">
-            <h2 class="reg-form-title" id="part-form-heading">Participation Registration</h2>
-            <p class="reg-form-sub">Enter your details below to register as a participant for <strong class="reg-prog-inline-name">RESEARCH CONCLAVE</strong>.</p>
+            <h2 class="reg-form-title" id="part-form-heading">Registration for Participation</h2>
+            <p class="reg-form-sub">Enter your details below to complete your registration for participation in <strong class="reg-prog-inline-name">RESEARCH CONCLAVE</strong>.</p>
           </div>
 
           <div id="part-success-box" class="alert alert-success d-none mb-4" role="alert">
-            <h5 class="fw-bold mb-1"><i class="bi bi-check-circle-fill me-2"></i>Participant Details Prepared!</h5>
+            <h5 class="fw-bold mb-1"><i class="bi bi-check-circle-fill me-2"></i>Registration Details Prepared!</h5>
             <p class="small mb-3">Your WhatsApp message has been prepared for <strong class="wa-num-display">+91 9605057688</strong>. Click below if WhatsApp did not open automatically.</p>
             <div class="d-flex flex-wrap gap-2">
               <a href="#" target="_blank" rel="noopener" id="part-wa-direct-btn" class="btn btn-success btn-sm fw-bold">
@@ -540,8 +553,8 @@
                 <input type="tel" class="form-control" id="part-whatsapp" placeholder="Enter your WhatsApp number" required>
               </div>
               <div class="col-12">
-                <label for="part-location" class="form-label" id="lbl-part-location">Location *</label>
-                <input type="text" class="form-control" id="part-location" placeholder="Enter your place / city" required>
+                <label for="part-email" class="form-label" id="lbl-part-email">Email ID *</label>
+                <input type="email" class="form-control" id="part-email" placeholder="Enter your email ID" required>
               </div>
               <div class="col-12 mt-4">
                 <button type="submit" class="btn-whatsapp-submit">
@@ -556,17 +569,17 @@
           </form>
         </div>
 
-        <!-- ======================== FORM 2: PRESENTATION FORM ======================== -->
+        <!-- ======================== FORM 2: CALL FOR RESEARCH PRESENTATION ======================== -->
         <div class="reg-form-card d-none" id="panel-presentation" data-aos="fade-up" data-aos-delay="200">
           <div class="reg-form-header">
-            <h2 class="reg-form-title" id="pres-form-heading">Presentation Registration</h2>
-            <p class="reg-form-sub">Enter your details and attach your abstract &amp; paper to submit for <strong class="reg-prog-inline-name">RESEARCH CONCLAVE</strong>.</p>
+            <h2 class="reg-form-title" id="pres-form-heading">Call for Research Presentation</h2>
+            <p class="reg-form-sub">Enter your details, institution name, topic, and attach your abstract &amp; paper to submit for <strong class="reg-prog-inline-name">RESEARCH CONCLAVE</strong>.</p>
           </div>
 
           <div id="pres-success-box" class="alert alert-success d-none mb-4" role="alert">
-            <h5 class="fw-bold mb-1"><i class="bi bi-check-circle-fill me-2"></i>Presentation Registration Prepared!</h5>
+            <h5 class="fw-bold mb-1"><i class="bi bi-check-circle-fill me-2"></i>Presentation Submission Prepared!</h5>
             <p class="small mb-2" id="pres-success-note">
-              Your registration summary has been prepared for WhatsApp (<strong class="wa-num-display">+91 9605057688</strong>). Please attach your selected Abstract / Paper file directly inside the WhatsApp chat before sending.
+              Your submission summary has been prepared for WhatsApp (<strong class="wa-num-display">+91 9605057688</strong>). Please attach your selected Abstract / Paper file directly inside the WhatsApp chat before sending.
             </p>
             <div id="pres-selected-files-summary" class="small fw-semibold mb-3"></div>
             <div class="d-flex flex-wrap gap-2">
@@ -595,9 +608,17 @@
                 <label for="pres-whatsapp" class="form-label" id="lbl-pres-whatsapp">WhatsApp Number *</label>
                 <input type="tel" class="form-control" id="pres-whatsapp" placeholder="Enter your WhatsApp number" required>
               </div>
+              <div class="col-md-6">
+                <label for="pres-email" class="form-label" id="lbl-pres-email">Email ID *</label>
+                <input type="email" class="form-control" id="pres-email" placeholder="Enter your email ID" required>
+              </div>
+              <div class="col-md-6">
+                <label for="pres-institution" class="form-label" id="lbl-pres-institution">Institution Name *</label>
+                <input type="text" class="form-control" id="pres-institution" placeholder="Enter your institution / organization name" required>
+              </div>
               <div class="col-12">
-                <label for="pres-location" class="form-label" id="lbl-pres-location">Location *</label>
-                <input type="text" class="form-control" id="pres-location" placeholder="Enter your place / city" required>
+                <label for="pres-topic" class="form-label" id="lbl-pres-topic">Topic *</label>
+                <input type="text" class="form-control" id="pres-topic" placeholder="Enter your research / presentation topic" required>
               </div>
 
               <!-- File Uploads (Abstract & Paper up to 500 MB) -->
@@ -668,8 +689,8 @@
         <a href="https://whatsapp.com/channel/0029VaoU67eJ93wY2c3K7t0F" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i></a>
       </div>
 
-      <div class="container copyright text-center mt-4">
-        <p>&copy; <span>Copyright</span> <strong class="px-1 sitename">The Tanur Heritage</strong> <span>All Rights Reserved</span></p>
+      <div class="container copyright text-center mt-4" style="color: #ffffff !important;">
+        <p style="color: #ffffff !important;">&copy; <span style="color: #ffffff !important;">Copyright</span> <strong class="px-1 sitename" style="color: #ffffff !important;">The Tanur Heritage</strong> <span style="color: #ffffff !important;">All Rights Reserved</span></p>
       </div>
     </div>
   </footer>
@@ -690,15 +711,17 @@
         whatsappNumber: '9605057688',
         maxFileSizeMB: 500,
         backLinkText: 'Back to Our Programmes',
-        participantFormHeading: 'Participation Registration',
+        participantFormHeading: 'Registration for Participation',
         participantNameLabel: 'Your Name',
         participantWhatsappLabel: 'WhatsApp Number',
-        participantLocationLabel: 'Location',
+        participantEmailLabel: 'Email ID',
         participantSubmitText: 'Submit & Send to WhatsApp',
-        presentationFormHeading: 'Presentation Registration',
+        presentationFormHeading: 'Call for Research Presentation',
         presentationNameLabel: 'Your Name',
         presentationWhatsappLabel: 'WhatsApp Number',
-        presentationLocationLabel: 'Location',
+        presentationEmailLabel: 'Email ID',
+        presentationInstitutionLabel: 'Institution Name',
+        presentationTopicLabel: 'Topic',
         presentationAbstractLabel: 'Attach Abstract',
         presentationPaperLabel: 'Attach Paper',
         presentationFileNote: 'Files up to 500 MB can be included (PDF, DOC, DOCX, PPT, ZIP, etc.)',
@@ -719,9 +742,9 @@
           posterImage: '',
           posterCaption: 'Research Conclave – Official Poster',
           enableParticipant: true,
-          participantOptionLabel: '1. Register as a Participant',
+          participantOptionLabel: 'Registration for Participation',
           enablePresentation: true,
-          presentationOptionLabel: '2. Register for a Presentation',
+          presentationOptionLabel: 'Call for Research Presentation',
           whatsappNumber: ''
         },
         {
@@ -738,9 +761,9 @@
           posterImage: '',
           posterCaption: 'Angadi Sora – Official Poster',
           enableParticipant: true,
-          participantOptionLabel: '1. Register as a Participant',
+          participantOptionLabel: 'Registration for Participation',
           enablePresentation: true,
-          presentationOptionLabel: '2. Register for a Presentation',
+          presentationOptionLabel: 'Call for Research Presentation',
           whatsappNumber: ''
         },
         {
@@ -757,9 +780,9 @@
           posterImage: '',
           posterCaption: 'Green Summit – Official Poster',
           enableParticipant: true,
-          participantOptionLabel: '1. Register as a Participant',
+          participantOptionLabel: 'Registration for Participation',
           enablePresentation: true,
-          presentationOptionLabel: '2. Register for a Presentation',
+          presentationOptionLabel: 'Call for Research Presentation',
           whatsappNumber: ''
         },
         {
@@ -776,9 +799,9 @@
           posterImage: '',
           posterCaption: 'Meet The Influencers – Official Poster',
           enableParticipant: true,
-          participantOptionLabel: '1. Register as a Participant',
+          participantOptionLabel: 'Registration for Participation',
           enablePresentation: true,
-          presentationOptionLabel: '2. Register for a Presentation',
+          presentationOptionLabel: 'Call for Research Presentation',
           whatsappNumber: ''
         },
         {
@@ -795,9 +818,9 @@
           posterImage: '',
           posterCaption: 'Grand Finale – Official Poster',
           enableParticipant: true,
-          participantOptionLabel: '1. Register as a Participant',
+          participantOptionLabel: 'Registration for Participation',
           enablePresentation: true,
-          presentationOptionLabel: '2. Register for a Presentation',
+          presentationOptionLabel: 'Call for Research Presentation',
           whatsappNumber: ''
         }
       ]
@@ -809,7 +832,9 @@
       abstractFile: null,
       paperFile: null,
       lastPartMessage: '',
-      lastPresMessage: ''
+      lastPresMessage: '',
+      userPickedMode: false,
+      currentMode: 'participant'
     };
 
     function getQueryParam(key) {
@@ -921,20 +946,22 @@
       var enablePart = prog.enableParticipant !== false;
       var enablePres = prog.enablePresentation !== false;
 
-      document.getElementById('label-opt-participant').textContent = prog.participantOptionLabel || '1. Register as a Participant';
-      document.getElementById('label-opt-presentation').textContent = prog.presentationOptionLabel || '2. Register for a Presentation';
+      document.getElementById('label-opt-participant').textContent = prog.participantOptionLabel || 'Registration for Participation';
+      document.getElementById('label-opt-presentation').textContent = prog.presentationOptionLabel || 'Call for Research Presentation';
 
       // Apply Form Labels & Headings
-      document.getElementById('part-form-heading').textContent = settings.participantFormHeading || 'Participation Registration';
+      document.getElementById('part-form-heading').textContent = settings.participantFormHeading || 'Registration for Participation';
       document.getElementById('lbl-part-name').textContent = (settings.participantNameLabel || 'Your Name') + ' *';
       document.getElementById('lbl-part-whatsapp').textContent = (settings.participantWhatsappLabel || 'WhatsApp Number') + ' *';
-      document.getElementById('lbl-part-location').textContent = (settings.participantLocationLabel || 'Location') + ' *';
+      document.getElementById('lbl-part-email').textContent = (settings.participantEmailLabel || 'Email ID') + ' *';
       document.getElementById('lbl-part-submit').textContent = settings.participantSubmitText || 'Submit & Send to WhatsApp';
 
-      document.getElementById('pres-form-heading').textContent = settings.presentationFormHeading || 'Presentation Registration';
+      document.getElementById('pres-form-heading').textContent = settings.presentationFormHeading || 'Call for Research Presentation';
       document.getElementById('lbl-pres-name').textContent = (settings.presentationNameLabel || 'Your Name') + ' *';
       document.getElementById('lbl-pres-whatsapp').textContent = (settings.presentationWhatsappLabel || 'WhatsApp Number') + ' *';
-      document.getElementById('lbl-pres-location').textContent = (settings.presentationLocationLabel || 'Location') + ' *';
+      document.getElementById('lbl-pres-email').textContent = (settings.presentationEmailLabel || 'Email ID') + ' *';
+      document.getElementById('lbl-pres-institution').textContent = (settings.presentationInstitutionLabel || 'Institution Name') + ' *';
+      document.getElementById('lbl-pres-topic').textContent = (settings.presentationTopicLabel || 'Topic') + ' *';
       document.getElementById('lbl-pres-abstract').textContent = settings.presentationAbstractLabel || 'Attach Abstract';
       document.getElementById('lbl-pres-paper').textContent = settings.presentationPaperLabel || 'Attach Paper';
       document.getElementById('lbl-pres-file-note').innerHTML =
@@ -961,15 +988,21 @@
         modeWrap.classList.remove('d-none');
         closedPanel.classList.add('d-none');
         var urlMode = getQueryParam('mode').toLowerCase();
-        if ((urlMode === 'presentation' || !enablePart) && enablePres) {
-          switchRegMode('presentation');
+        if (activeRegState.userPickedMode) {
+          var keepPres = activeRegState.currentMode === 'presentation' && enablePres;
+          switchRegMode(keepPres || !enablePart ? 'presentation' : 'participant', false);
+        } else if ((urlMode === 'presentation' || !enablePart) && enablePres) {
+          switchRegMode('presentation', false);
         } else {
-          switchRegMode('participant');
+          switchRegMode('participant', false);
         }
       }
     }
 
-    function switchRegMode(mode) {
+    function switchRegMode(mode, byUser) {
+      if (byUser) activeRegState.userPickedMode = true;
+      activeRegState.currentMode = (mode === 'presentation') ? 'presentation' : 'participant';
+
       var btnPart = document.getElementById('btn-opt-participant');
       var btnPres = document.getElementById('btn-opt-presentation');
       var panelPart = document.getElementById('panel-participant');
@@ -1040,23 +1073,23 @@
       event.preventDefault();
       var name = document.getElementById('part-name').value.trim();
       var wa = document.getElementById('part-whatsapp').value.trim();
-      var loc = document.getElementById('part-location').value.trim();
+      var email = document.getElementById('part-email').value.trim();
       var progTitle = (activeRegState.programme && activeRegState.programme.title) || 'RESEARCH CONCLAVE';
 
       var msg =
-        '*Tanur 2K26 Heritage Carnival - Registration*\n' +
+        '*Tanur 2K26 Heritage Carnival - Registration for Participation*\n' +
         '*Programme:* ' + progTitle + '\n' +
-        '*Registration Type:* Participant Registration\n' +
+        '*Registration Type:* Registration for Participation\n' +
         '*Your Name:* ' + name + '\n' +
         '*WhatsApp Number:* ' + wa + '\n' +
-        '*Location:* ' + loc;
+        '*Email ID:* ' + email;
 
       activeRegState.lastPartMessage = msg;
       var waUrl = 'https://wa.me/' + getTargetWhatsAppNumber() + '?text=' + encodeURIComponent(msg);
 
       try {
         var existing = JSON.parse(localStorage.getItem('th_carnival_registrations') || '[]');
-        existing.push({ type: 'participant', programme: progTitle, name: name, whatsapp: wa, location: loc, date: new Date().toISOString() });
+        existing.push({ type: 'participant', programme: progTitle, name: name, whatsapp: wa, email: email, date: new Date().toISOString() });
         localStorage.setItem('th_carnival_registrations', JSON.stringify(existing));
       } catch (e) {}
 
@@ -1071,7 +1104,9 @@
       event.preventDefault();
       var name = document.getElementById('pres-name').value.trim();
       var wa = document.getElementById('pres-whatsapp').value.trim();
-      var loc = document.getElementById('pres-location').value.trim();
+      var email = document.getElementById('pres-email').value.trim();
+      var institution = document.getElementById('pres-institution').value.trim();
+      var topic = document.getElementById('pres-topic').value.trim();
       var progTitle = (activeRegState.programme && activeRegState.programme.title) || 'RESEARCH CONCLAVE';
 
       var absFile = activeRegState.abstractFile;
@@ -1081,12 +1116,14 @@
       var papDesc = papFile ? (papFile.name + ' (' + formatFileSize(papFile.size) + ')') : 'Not attached';
 
       var msg =
-        '*Tanur 2K26 Heritage Carnival - Paper Presentation*\n' +
+        '*Tanur 2K26 Heritage Carnival - Call for Research Presentation*\n' +
         '*Programme:* ' + progTitle + '\n' +
-        '*Registration Type:* Presentation Registration\n' +
+        '*Registration Type:* Call for Research Presentation\n' +
         '*Your Name:* ' + name + '\n' +
         '*WhatsApp Number:* ' + wa + '\n' +
-        '*Location:* ' + loc + '\n' +
+        '*Email ID:* ' + email + '\n' +
+        '*Institution Name:* ' + institution + '\n' +
+        '*Topic:* ' + topic + '\n' +
         '*Abstract File:* ' + absDesc + '\n' +
         '*Paper File:* ' + papDesc;
 
@@ -1100,7 +1137,9 @@
           programme: progTitle,
           name: name,
           whatsapp: wa,
-          location: loc,
+          email: email,
+          institution: institution,
+          topic: topic,
           abstractFile: absDesc,
           paperFile: papDesc,
           date: new Date().toISOString()
