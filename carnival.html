@@ -215,55 +215,6 @@
       color: #ffffff !important;
       transform: translateY(-2px);
     }
-
-    /* ======= REGISTRATION SECTION ======= */
-    .register-section {
-      padding: clamp(3.5rem, 6vw, 5rem) 0;
-      background: #ffffff;
-      border-top: 1px solid #ebebeb;
-      scroll-margin-top: 90px;
-    }
-    .reg-box-card {
-      background: #ffffff;
-      border-radius: 20px;
-      padding: clamp(2rem, 4vw, 3rem);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-      border: 1px solid #e8e8e8;
-    }
-    .reg-header-title {
-      font-family: 'Raleway', sans-serif;
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
-      font-weight: 800;
-      color: #1a1a2e;
-      margin-bottom: 0.5rem;
-    }
-    .form-floating > .form-control:focus ~ label,
-    .form-floating > .form-control:not(:placeholder-shown) ~ label {
-      color: #ef6603;
-    }
-    .form-control:focus, .form-select:focus {
-      border-color: #ef6603;
-      box-shadow: 0 0 0 0.25rem rgba(239, 102, 3, 0.2);
-    }
-    .btn-submit-reg {
-      background: linear-gradient(135deg, #ef6603 0%, #e52b50 100%);
-      color: #fff !important;
-      font-size: 1.05rem;
-      font-weight: 700;
-      padding: 14px 28px;
-      border-radius: 30px;
-      border: none;
-      width: 100%;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      box-shadow: 0 8px 25px rgba(239, 102, 3, 0.4);
-      transition: all 0.3s ease;
-    }
-    .btn-submit-reg:hover {
-      background: linear-gradient(135deg, #d35400 0%, #c0392b 100%);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(229, 43, 80, 0.5);
-    }
   </style>
 </head>
 
@@ -298,15 +249,15 @@
       <div class="container">
         
         <div class="text-center" data-aos="fade-up">
-          <span class="section-eyebrow">Tanur 2K26 Carnival Highlights</span>
-          <h1 class="programmes-main-title">Our Programmes</h1>
-          <p class="programmes-subtitle">
+          <span class="section-eyebrow" id="programmes-eyebrow">Tanur 2K26 Carnival Highlights</span>
+          <h1 class="programmes-main-title" id="programmes-main-title">Our Programmes</h1>
+          <p class="programmes-subtitle" id="programmes-subtitle">
             Join distinguished historians, cultural dignitaries, researchers, artists, and community voices across our five signature carnival streams.
           </p>
         </div>
 
         <div class="row justify-content-center">
-          <div class="col-lg-10">
+          <div class="col-lg-10" id="programmes-list-container">
 
             <!-- 1. RESEARCH CONCLAVE -->
             <div class="programme-card" data-aos="fade-up" data-aos-delay="100">
@@ -321,7 +272,7 @@
                   <div class="prog-meta-bar">
                     <span class="prog-meta-pill"><i class="bi bi-calendar3"></i> Dec 11 &bull; Day 1</span>
                     <span class="prog-meta-pill"><i class="bi bi-mortarboard-fill"></i> Academic &bull; Papers &bull; Panels</span>
-                    <a href="#register-section" class="btn-select-prog" onclick="selectProgramme('Research Conclave')">
+                    <a href="programme-register.html?id=research-conclave" class="btn-select-prog">
                       <span>Register for Conclave</span> <i class="bi bi-arrow-right"></i>
                     </a>
                   </div>
@@ -342,7 +293,7 @@
                   <div class="prog-meta-bar">
                     <span class="prog-meta-pill"><i class="bi bi-calendar3"></i> Dec 12 &bull; Day 2</span>
                     <span class="prog-meta-pill"><i class="bi bi-chat-heart-fill"></i> Oral History &bull; Bazaar Dialogues</span>
-                    <a href="#register-section" class="btn-select-prog" onclick="selectProgramme('Angadi Sora')">
+                    <a href="programme-register.html?id=angadi-sora" class="btn-select-prog">
                       <span>Register for Angadi Sora</span> <i class="bi bi-arrow-right"></i>
                     </a>
                   </div>
@@ -363,7 +314,7 @@
                   <div class="prog-meta-bar">
                     <span class="prog-meta-pill"><i class="bi bi-calendar3"></i> Dec 13 &bull; Day 3</span>
                     <span class="prog-meta-pill"><i class="bi bi-tree-fill"></i> Ecology &bull; Coastal Resilience</span>
-                    <a href="#register-section" class="btn-select-prog" onclick="selectProgramme('Green Summit')">
+                    <a href="programme-register.html?id=green-summit" class="btn-select-prog">
                       <span>Register for Green Summit</span> <i class="bi bi-arrow-right"></i>
                     </a>
                   </div>
@@ -384,7 +335,7 @@
                   <div class="prog-meta-bar">
                     <span class="prog-meta-pill"><i class="bi bi-calendar3"></i> Dec 13 &bull; Day 3</span>
                     <span class="prog-meta-pill"><i class="bi bi-camera-reels-fill"></i> Creators &bull; Media &bull; Storytelling</span>
-                    <a href="#register-section" class="btn-select-prog" onclick="selectProgramme('Meet The Influencers')">
+                    <a href="programme-register.html?id=meet-the-influencers" class="btn-select-prog">
                       <span>Register for Influencers Meet</span> <i class="bi bi-arrow-right"></i>
                     </a>
                   </div>
@@ -405,7 +356,7 @@
                   <div class="prog-meta-bar">
                     <span class="prog-meta-pill"><i class="bi bi-calendar3"></i> Dec 14 &bull; Day 4</span>
                     <span class="prog-meta-pill"><i class="bi bi-trophy-fill"></i> Awards &bull; Folk Arts &bull; Valedictory</span>
-                    <a href="#register-section" class="btn-select-prog" onclick="selectProgramme('Grand Finale')">
+                    <a href="programme-register.html?id=grand-finale" class="btn-select-prog">
                       <span>Register for Grand Finale</span> <i class="bi bi-arrow-right"></i>
                     </a>
                   </div>
@@ -416,107 +367,6 @@
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- ======================== REGISTRATION FORM SECTION ======================== -->
-    <section id="register-section" class="register-section">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8" data-aos="fade-up">
-            
-            <div class="reg-box-card">
-              <div class="text-center mb-4">
-                <span class="section-eyebrow">Delegate Registration</span>
-                <h3 class="reg-header-title">Register for Tanur 2K26 Carnival</h3>
-                <p class="text-muted small">
-                  Fill in your details below to receive your delegate confirmation badge and session passes.
-                </p>
-              </div>
-
-              <!-- Alert Box -->
-              <div id="reg-success-alert" class="alert alert-success d-none py-3 text-center" role="alert">
-                <i class="bi bi-check-circle-fill fs-3 text-success d-block mb-2"></i>
-                <h5 class="fw-bold mb-1">Registration Successful!</h5>
-                <p class="mb-3 small">Thank you for registering. You are confirmed for Tanur 2K26 Heritage Carnival programmes.</p>
-                <a href="https://whatsapp.com/channel/0029VaoU67eJ93wY2c3K7t0F" target="_blank" rel="noopener" class="btn btn-success btn-sm px-3 py-2 fw-bold" style="border-radius:20px;">
-                  <i class="bi bi-whatsapp me-1"></i> Join WhatsApp Channel for Live Pass Updates
-                </a>
-              </div>
-
-              <form id="carnival-registration-form" onsubmit="handleRegistrationSubmit(event)">
-                <div class="row g-3">
-                  
-                  <div class="col-md-6">
-                    <div class="form-floating">
-                      <input type="text" class="form-control" id="reg-name" placeholder="Full Name" required>
-                      <label for="reg-name"><i class="bi bi-person me-1"></i> Full Name *</label>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <div class="form-floating">
-                      <input type="tel" class="form-control" id="reg-phone" placeholder="WhatsApp / Mobile" required>
-                      <label for="reg-phone"><i class="bi bi-whatsapp me-1"></i> WhatsApp / Mobile *</label>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <div class="form-floating">
-                      <input type="email" class="form-control" id="reg-email" placeholder="Email Address">
-                      <label for="reg-email"><i class="bi bi-envelope me-1"></i> Email Address</label>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <div class="form-floating">
-                      <input type="text" class="form-control" id="reg-city" placeholder="City / District" required>
-                      <label for="reg-city"><i class="bi bi-geo-alt me-1"></i> City / District *</label>
-                    </div>
-                  </div>
-
-                  <div class="col-12">
-                    <label class="form-label fw-bold small text-dark"><i class="bi bi-check2-square text-warning me-1"></i> Select Programme(s) to Attend *</label>
-                    <select class="form-select form-select-lg" id="reg-programme" required>
-                      <option value="All Programmes (Full Carnival Delegate Pass)" selected>★ All Programmes (Full Carnival Delegate Pass)</option>
-                      <option value="Research Conclave">01. RESEARCH CONCLAVE (Dec 11)</option>
-                      <option value="Angadi Sora">02. ANGADI SORA (Dec 12)</option>
-                      <option value="Green Summit">03. GREEN SUMMIT (Dec 13)</option>
-                      <option value="Meet The Influencers">04. MEET THE INFLUENCERS (Dec 13)</option>
-                      <option value="Grand Finale">05. GRAND FINALE (Dec 14)</option>
-                    </select>
-                  </div>
-
-                  <div class="col-md-6">
-                    <label class="form-label fw-bold small text-dark">Participant Category</label>
-                    <select class="form-select" id="reg-category">
-                      <option value="Delegate" selected>General Delegate</option>
-                      <option value="Student">Student / Research Scholar</option>
-                      <option value="Historian">Historian / Academician</option>
-                      <option value="Media">Media / Content Creator</option>
-                      <option value="Citizen">Local Citizen / Community Member</option>
-                    </select>
-                  </div>
-
-                  <div class="col-md-6">
-                    <label class="form-label fw-bold small text-dark">Institution / Organization (Optional)</label>
-                    <input type="text" class="form-control" id="reg-institution" placeholder="College, University or Firm">
-                  </div>
-
-                  <div class="col-12 mt-4">
-                    <button type="submit" class="btn-submit-reg">
-                      <i class="bi bi-check2-circle me-2"></i> Complete Registration Now
-                    </button>
-                    <small class="text-muted d-block text-center mt-2">Free registration &bull; Passes delivered via WhatsApp &amp; Email</small>
-                  </div>
-
-                </div>
-              </form>
-
-            </div>
-
-          </div>
-        </div>
       </div>
     </section>
 
@@ -548,61 +398,13 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/site-loader.js"></script>
 
   <script>
-    // Initialize AOS & GLightbox
     document.addEventListener('DOMContentLoaded', function() {
       if (window.AOS) AOS.init({ duration: 800, once: true });
       if (window.GLightbox) GLightbox({ selector: '.glightbox' });
     });
-
-    // Helper to select program from card button
-    function selectProgramme(name) {
-      var sel = document.getElementById('reg-programme');
-      if (sel) {
-        for (var i = 0; i < sel.options.length; i++) {
-          if (sel.options[i].value.toLowerCase().includes(name.toLowerCase())) {
-            sel.selectedIndex = i;
-            break;
-          }
-        }
-      }
-    }
-
-    // Handle Registration Submission
-    function handleRegistrationSubmit(event) {
-      event.preventDefault();
-      var name = document.getElementById('reg-name').value.trim();
-      var phone = document.getElementById('reg-phone').value.trim();
-      var email = document.getElementById('reg-email').value.trim();
-      var city = document.getElementById('reg-city').value.trim();
-      var prog = document.getElementById('reg-programme').value;
-      var cat = document.getElementById('reg-category').value;
-      var inst = document.getElementById('reg-institution').value.trim();
-
-      var regData = {
-        name: name,
-        phone: phone,
-        email: email,
-        city: city,
-        programme: prog,
-        category: cat,
-        institution: inst,
-        date: new Date().toISOString()
-      };
-
-      try {
-        var existing = JSON.parse(localStorage.getItem('th_carnival_registrations') || '[]');
-        existing.push(regData);
-        localStorage.setItem('th_carnival_registrations', JSON.stringify(existing));
-      } catch (e) {}
-
-      // Show success
-      document.getElementById('carnival-registration-form').classList.add('d-none');
-      var alertBox = document.getElementById('reg-success-alert');
-      alertBox.classList.remove('d-none');
-      alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
   </script>
 
 </body>

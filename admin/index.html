@@ -350,6 +350,9 @@
       <a class="nav-link" onclick="switchSection('homeGallery', this)" id="nav-homeGallery">
         <i class="bi bi-images text-warning"></i> 4. Homepage Heritage Gallery
       </a>
+      <a class="nav-link" onclick="switchSection('carnival', this)" id="nav-carnival">
+        <i class="bi bi-ticket-perforated-fill text-warning"></i> 5. Carnival &amp; Programmes
+      </a>
 
       <div class="sidebar-section-divider">Heritage Content</div>
       <a class="nav-link" onclick="switchSection('about', this)">
@@ -464,6 +467,12 @@
             <div class="p-3 border rounded-3 bg-light cursor-pointer h-100" onclick="switchSection('recent')">
               <h6 class="fw-bold text-dark mb-1"><i class="bi bi-newspaper text-danger me-2"></i>4. News Section</h6>
               <p class="text-muted small mb-0">Modify news cards, add custom articles, or sync from Blogspot.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="p-3 border rounded-3 bg-light cursor-pointer h-100" onclick="switchSection('carnival')">
+              <h6 class="fw-bold text-dark mb-1"><i class="bi bi-ticket-perforated-fill text-warning me-2"></i>5. Carnival &amp; Programmes</h6>
+              <p class="text-muted small mb-0">Edit A4 poster, Conclave &amp; programmes, posters, forms, and WhatsApp settings.</p>
             </div>
           </div>
         </div>
@@ -684,6 +693,196 @@
           <!-- Populated dynamically by renderHomeGallerySection() -->
         </div>
       </div>
+    </div>
+
+    <!-- ──────────────── SECTION 5B: CARNIVAL & PROGRAMMES ──────────────── -->
+    <div id="sec-carnival" class="admin-sec d-none">
+
+      <!-- Card 1: Homepage A4 Carnival Poster Card -->
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-file-earmark-image text-warning"></i> Homepage A4 Carnival Poster &amp; Register Button</h4>
+          <button class="btn btn-brand btn-sm" onclick="saveSectionPrompt('Carnival Poster & Programmes')">
+            <i class="bi bi-cloud-arrow-up me-1"></i> Save Changes Live
+          </button>
+        </div>
+        <div class="row g-3 align-items-center">
+          <div class="col-md-8">
+            <div class="form-check form-switch mb-3">
+              <input class="form-check-input" type="checkbox" id="carnival-hp-enabled" checked>
+              <label class="form-check-label fw-bold small" for="carnival-hp-enabled">Display A4 Carnival Poster Card on Homepage</label>
+            </div>
+            <div class="row g-2">
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Poster Date Badge</label>
+                <input type="text" id="carnival-hp-badge" class="form-control form-control-sm" placeholder="DEC 11 - 14">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Hover Cue Label</label>
+                <input type="text" id="carnival-hp-cue" class="form-control form-control-sm" placeholder="View Programmes">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Bottom Button Text</label>
+                <input type="text" id="carnival-hp-btn-text" class="form-control form-control-sm" placeholder="Register Now">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Button Destination Link</label>
+                <input type="text" id="carnival-hp-btn-link" class="form-control form-control-sm" placeholder="programmes.html">
+              </div>
+              <div class="col-12 mt-2">
+                <label class="form-label small fw-semibold">Poster Image URL or Upload Replacement Poster</label>
+                <div class="input-group input-group-sm mb-1">
+                  <input type="text" id="carnival-hp-image" class="form-control" placeholder="assets/img/posters/carnival-poster-2k26.jpg" oninput="updatePosterImgPreview(this.value, 'carnival-hp-preview')">
+                  <label class="btn btn-outline-primary mb-0">
+                    <i class="bi bi-upload me-1"></i> Upload
+                    <input type="file" class="d-none" accept="image/*" onchange="handlePosterUploadCompressed(this, 'carnival-hp-image', 'carnival-hp-preview')">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <img id="carnival-hp-preview" src="../assets/img/posters/carnival-poster-2k26.jpg" alt="Homepage Poster Preview" class="img-thumbnail shadow-sm" style="max-height: 220px; object-fit: contain;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Programmes Page Header & Global Registration Settings -->
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-gear-wide-connected text-primary"></i> Our Programmes Header &amp; Registration Target</h4>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label small fw-semibold">Page Eyebrow Label</label>
+            <input type="text" id="carnival-pp-eyebrow" class="form-control form-control-sm" placeholder="Tanur 2K26 Carnival Highlights">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label small fw-semibold">Main Page Heading</label>
+            <input type="text" id="carnival-pp-title" class="form-control form-control-sm" placeholder="Our Programmes">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label small fw-semibold">Back Button Label</label>
+            <input type="text" id="carnival-reg-backtext" class="form-control form-control-sm" placeholder="Back to Our Programmes">
+          </div>
+          <div class="col-12">
+            <label class="form-label small fw-semibold">Page Subtitle Description</label>
+            <textarea id="carnival-pp-subtitle" class="form-control form-control-sm" rows="2"></textarea>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold"><i class="bi bi-whatsapp text-success me-1"></i> Target WhatsApp Number (for submissions)</label>
+            <input type="text" id="carnival-reg-whatsapp" class="form-control form-control-sm" placeholder="9605057688">
+            <small class="text-muted">All participant &amp; presentation registrations open WhatsApp to this number.</small>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold"><i class="bi bi-file-earmark-arrow-up text-danger me-1"></i> Max Attachment Size (MB)</label>
+            <input type="number" id="carnival-reg-maxmb" class="form-control form-control-sm" min="1" max="2000" value="500">
+            <small class="text-muted">Default: 500 MB per attached abstract / paper file.</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Manage All Programmes & Conclave Posters/Options -->
+      <div class="content-card">
+        <div class="card-topbar flex-wrap gap-2">
+          <div>
+            <h4 class="mb-0"><i class="bi bi-list-stars text-danger"></i> Manage Programmes &amp; Individual Landing Pages</h4>
+            <small class="text-muted">Edit each programme card, configure its landing page poster, and toggle Participant / Presentation registration options.</small>
+          </div>
+          <button class="btn btn-brand btn-sm" onclick="openProgrammeModal()">
+            <i class="bi bi-plus-lg me-1"></i> Add New Programme
+          </button>
+        </div>
+        <div id="carnival-programmes-list" class="d-flex flex-column gap-3">
+          <!-- Populated dynamically by renderCarnivalAdmin() -->
+        </div>
+      </div>
+
+      <!-- Card 4: Participation & Presentation Form Templates -->
+      <div class="content-card">
+        <div class="card-topbar">
+          <h4><i class="bi bi-ui-checks-grid text-success"></i> Registration Form Templates (Labels &amp; Text)</h4>
+          <button class="btn btn-brand btn-sm" onclick="saveSectionPrompt('Registration Form Templates')">
+            <i class="bi bi-check2-circle me-1"></i> Update &amp; Publish All
+          </button>
+        </div>
+        <div class="row g-4">
+          <!-- Participation Form Template -->
+          <div class="col-md-6">
+            <div class="p-3 border rounded-3 bg-light h-100">
+              <h6 class="fw-bold text-dark border-bottom pb-2 mb-3">
+                <i class="bi bi-person-check-fill text-warning me-1"></i> 1. Participation Form Template
+              </h6>
+              <div class="mb-2">
+                <label class="form-label small fw-semibold">Form Heading</label>
+                <input type="text" id="tpl-part-heading" class="form-control form-control-sm">
+              </div>
+              <div class="mb-2">
+                <label class="form-label small fw-semibold">Name Field Label</label>
+                <input type="text" id="tpl-part-name" class="form-control form-control-sm">
+              </div>
+              <div class="mb-2">
+                <label class="form-label small fw-semibold">WhatsApp Field Label</label>
+                <input type="text" id="tpl-part-wa" class="form-control form-control-sm">
+              </div>
+              <div class="mb-2">
+                <label class="form-label small fw-semibold">Location Field Label</label>
+                <input type="text" id="tpl-part-loc" class="form-control form-control-sm">
+              </div>
+              <div class="mb-0">
+                <label class="form-label small fw-semibold">Submit Button Text</label>
+                <input type="text" id="tpl-part-btn" class="form-control form-control-sm">
+              </div>
+            </div>
+          </div>
+
+          <!-- Presentation Form Template -->
+          <div class="col-md-6">
+            <div class="p-3 border rounded-3 bg-light h-100">
+              <h6 class="fw-bold text-dark border-bottom pb-2 mb-3">
+                <i class="bi bi-file-earmark-easel-fill text-danger me-1"></i> 2. Presentation Form Template
+              </h6>
+              <div class="mb-2">
+                <label class="form-label small fw-semibold">Form Heading</label>
+                <input type="text" id="tpl-pres-heading" class="form-control form-control-sm">
+              </div>
+              <div class="row g-2 mb-2">
+                <div class="col-6">
+                  <label class="form-label small fw-semibold">Name Label</label>
+                  <input type="text" id="tpl-pres-name" class="form-control form-control-sm">
+                </div>
+                <div class="col-6">
+                  <label class="form-label small fw-semibold">WhatsApp Label</label>
+                  <input type="text" id="tpl-pres-wa" class="form-control form-control-sm">
+                </div>
+              </div>
+              <div class="mb-2">
+                <label class="form-label small fw-semibold">Location Field Label</label>
+                <input type="text" id="tpl-pres-loc" class="form-control form-control-sm">
+              </div>
+              <div class="row g-2 mb-2">
+                <div class="col-6">
+                  <label class="form-label small fw-semibold">Abstract Upload Label</label>
+                  <input type="text" id="tpl-pres-abs" class="form-control form-control-sm">
+                </div>
+                <div class="col-6">
+                  <label class="form-label small fw-semibold">Paper Upload Label</label>
+                  <input type="text" id="tpl-pres-pap" class="form-control form-control-sm">
+                </div>
+              </div>
+              <div class="mb-2">
+                <label class="form-label small fw-semibold">Attachment Limit Note</label>
+                <input type="text" id="tpl-pres-note" class="form-control form-control-sm">
+              </div>
+              <div class="mb-0">
+                <label class="form-label small fw-semibold">Submit Button Text</label>
+                <input type="text" id="tpl-pres-btn" class="form-control form-control-sm">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- ──────────────── SECTION 6: ABOUT US / WHO WE ARE ──────────────── -->
@@ -1326,6 +1525,130 @@
   </div>
 </div>
 
+<!-- Modal: Add / Edit Programme & Landing Page -->
+<div class="modal fade" id="programmeModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="programmeModalTitle"><i class="bi bi-ticket-perforated-fill text-warning me-2"></i>Edit Programme &amp; Registration Page</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="prog-edit-index" value="">
+        <div class="row g-3">
+          <div class="col-md-2">
+            <label class="form-label small fw-semibold">Order No.</label>
+            <input type="text" id="prog-num" class="form-control form-control-sm" placeholder="01">
+          </div>
+          <div class="col-md-5">
+            <label class="form-label small fw-semibold">Programme Title *</label>
+            <input type="text" id="prog-title" class="form-control form-control-sm" placeholder="RESEARCH CONCLAVE">
+          </div>
+          <div class="col-md-5">
+            <label class="form-label small fw-semibold">URL ID Slug *</label>
+            <input type="text" id="prog-id" class="form-control form-control-sm" placeholder="research-conclave">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold">Subtitle / Tagline</label>
+            <input type="text" id="prog-tagline" class="form-control form-control-sm" placeholder="Academic Historiography & Manuscript Studies">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label small fw-semibold">Day / Date Badge</label>
+            <input type="text" id="prog-day" class="form-control form-control-sm" placeholder="Dec 11 • Day 1">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label small fw-semibold">Category Tags</label>
+            <input type="text" id="prog-tags" class="form-control form-control-sm" placeholder="Academic • Papers">
+          </div>
+
+          <div class="col-12">
+            <label class="form-label small fw-semibold">Programme Description</label>
+            <textarea id="prog-desc" class="form-control form-control-sm" rows="3"></textarea>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold">Register Button Label (on Our Programmes)</label>
+            <input type="text" id="prog-btn-text" class="form-control form-control-sm" placeholder="Register for Conclave">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small fw-semibold">Custom WhatsApp Number Override (Optional)</label>
+            <input type="text" id="prog-whatsapp" class="form-control form-control-sm" placeholder="Leave blank to use global (9605057688)">
+          </div>
+
+          <div class="col-12">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="prog-active" checked>
+              <label class="form-check-label small fw-bold" for="prog-active">Show this programme on Our Programmes page</label>
+            </div>
+          </div>
+
+          <!-- Landing Page Poster Configuration -->
+          <div class="col-12">
+            <div class="p-3 border rounded-3 bg-light">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="fw-bold mb-0"><i class="bi bi-image text-warning me-1"></i> Programme / Conclave Landing Page Poster</h6>
+                <div class="form-check form-switch mb-0">
+                  <input class="form-check-input" type="checkbox" id="prog-show-poster" checked>
+                  <label class="form-check-label small fw-semibold" for="prog-show-poster">Display Poster</label>
+                </div>
+              </div>
+              <div class="row g-2 align-items-center">
+                <div class="col-md-8">
+                  <label class="form-label small fw-semibold">Poster Image URL or Upload</label>
+                  <div class="input-group input-group-sm mb-2">
+                    <input type="text" id="prog-poster-image" class="form-control" placeholder="Paste image URL or click Upload..." oninput="updatePosterImgPreview(this.value, 'prog-poster-preview')">
+                    <label class="btn btn-outline-primary mb-0">
+                      <i class="bi bi-upload me-1"></i> Upload
+                      <input type="file" class="d-none" accept="image/*" onchange="handlePosterUploadCompressed(this, 'prog-poster-image', 'prog-poster-preview')">
+                    </label>
+                    <button type="button" class="btn btn-outline-danger" onclick="clearProgPosterPreview()">Clear</button>
+                  </div>
+                  <label class="form-label small fw-semibold">Poster Caption (Optional)</label>
+                  <input type="text" id="prog-poster-caption" class="form-control form-control-sm" placeholder="Official Conclave Poster">
+                </div>
+                <div class="col-md-4 text-center">
+                  <img id="prog-poster-preview" src="" alt="Poster Preview" class="img-thumbnail d-none" style="max-height: 140px; object-fit: contain;">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Two Registration Options Below Poster -->
+          <div class="col-12">
+            <div class="p-3 border rounded-3 bg-light">
+              <h6 class="fw-bold mb-3"><i class="bi bi-toggles text-success me-1"></i> Registration Options Below Poster</h6>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="prog-enable-part" checked>
+                    <label class="form-check-label small fw-bold" for="prog-enable-part">Enable Option 1 (Participant)</label>
+                  </div>
+                  <input type="text" id="prog-part-label" class="form-control form-control-sm" placeholder="1. Register as a Participant">
+                </div>
+                <div class="col-md-6">
+                  <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="prog-enable-pres" checked>
+                    <label class="form-check-label small fw-bold" for="prog-enable-pres">Enable Option 2 (Presentation)</label>
+                  </div>
+                  <input type="text" id="prog-pres-label" class="form-control form-control-sm" placeholder="2. Register for a Presentation">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-brand btn-sm" onclick="saveProgrammeModalItem()">
+          <i class="bi bi-check2-circle me-1"></i> Apply Programme Changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- PAT Help Modal -->
 <div class="modal fade" id="patHelpModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
@@ -1393,18 +1716,19 @@
 
   // Modals
   let posterModalInstance, videoModalInstance, recentModalInstance, magGridModalInstance;
-  let photoModalInstance, teamModalInstance, eventModalInstance, archiveModalInstance;
+  let photoModalInstance, teamModalInstance, eventModalInstance, archiveModalInstance, programmeModalInstance;
 
   window.addEventListener('DOMContentLoaded', function() {
-    posterModalInstance  = new bootstrap.Modal(document.getElementById('posterModal'));
-    videoModalInstance   = new bootstrap.Modal(document.getElementById('videoModal'));
-    recentModalInstance  = new bootstrap.Modal(document.getElementById('recentModal'));
-    magGridModalInstance = new bootstrap.Modal(document.getElementById('magGridModal'));
-    photoModalInstance   = new bootstrap.Modal(document.getElementById('photoModal'));
-    teamModalInstance    = new bootstrap.Modal(document.getElementById('teamModal'));
-    eventModalInstance   = new bootstrap.Modal(document.getElementById('eventModal'));
-    archiveModalInstance = new bootstrap.Modal(document.getElementById('archiveModal'));
+    posterModalInstance    = new bootstrap.Modal(document.getElementById('posterModal'));
+    videoModalInstance     = new bootstrap.Modal(document.getElementById('videoModal'));
+    recentModalInstance    = new bootstrap.Modal(document.getElementById('recentModal'));
+    magGridModalInstance   = new bootstrap.Modal(document.getElementById('magGridModal'));
+    photoModalInstance     = new bootstrap.Modal(document.getElementById('photoModal'));
+    teamModalInstance      = new bootstrap.Modal(document.getElementById('teamModal'));
+    eventModalInstance     = new bootstrap.Modal(document.getElementById('eventModal'));
+    archiveModalInstance   = new bootstrap.Modal(document.getElementById('archiveModal'));
     const hgModalEl = document.getElementById('homeGalleryModal'); if (hgModalEl) homeGalleryModalInstance = new bootstrap.Modal(hgModalEl);
+    const prModalEl = document.getElementById('programmeModal'); if (prModalEl) programmeModalInstance = new bootstrap.Modal(prModalEl);
 
     if (sessionStorage.getItem('th_logged_in') === 'true') {
       revealAdminPanel();
@@ -1501,6 +1825,7 @@
       videos: '3. Videos Management',
       recent: '4. Homepage Heritage Gallery',
       homeGallery: '4. Homepage Heritage Gallery (Moving Carousel)',
+      carnival: '5. Carnival Posters, Programmes & Registration',
       about: 'About Us / Who We Are',
       gallery: 'Gallery Photos & Folders',
       team: 'Our Team Members',
@@ -1571,6 +1896,100 @@
     if (!siteData.archives) siteData.archives = [];
     if (!siteData.social) siteData.social = {};
     if (!siteData.footer) siteData.footer = {};
+
+    const defaultCarnival = {
+      homepagePoster: {
+        enabled: true,
+        image: 'assets/img/posters/carnival-poster-2k26.jpg',
+        dateBadge: 'DEC 11 - 14',
+        hoverCue: 'View Programmes',
+        buttonText: 'Register Now',
+        buttonLink: 'programmes.html'
+      },
+      programmesPage: {
+        eyebrow: 'Tanur 2K26 Carnival Highlights',
+        title: 'Our Programmes',
+        subtitle: 'Join distinguished historians, cultural dignitaries, researchers, artists, and community voices across our five signature carnival streams.'
+      },
+      registrationSettings: {
+        whatsappNumber: '9605057688',
+        maxFileSizeMB: 500,
+        backLinkText: 'Back to Our Programmes',
+        participantFormHeading: 'Participation Registration',
+        participantNameLabel: 'Your Name',
+        participantWhatsappLabel: 'WhatsApp Number',
+        participantLocationLabel: 'Location',
+        participantSubmitText: 'Submit & Send to WhatsApp',
+        presentationFormHeading: 'Presentation Registration',
+        presentationNameLabel: 'Your Name',
+        presentationWhatsappLabel: 'WhatsApp Number',
+        presentationLocationLabel: 'Location',
+        presentationAbstractLabel: 'Attach Abstract',
+        presentationPaperLabel: 'Attach Paper',
+        presentationFileNote: 'Files up to 500 MB can be included (PDF, DOC, DOCX, PPT, ZIP, etc.)',
+        presentationSubmitText: 'Submit & Send to WhatsApp'
+      },
+      programmes: [
+        {
+          id: 'research-conclave', num: '01', title: 'RESEARCH CONCLAVE',
+          tagline: 'Academic Historiography & Manuscript Studies',
+          description: "A premier scholastic conference bringing together eminent university researchers, historians, and archivists. Focuses on peer-reviewed paper presentations regarding Tanur's ancient maritime port connections, Vettathunad royal lineage, regional manuscripts, Arab-Portuguese encounters, and indigenous Malabar historiography.",
+          dayBadge: 'Dec 11 • Day 1', tags: 'Academic • Papers • Panels',
+          buttonText: 'Register for Conclave', active: true, showPoster: true, posterImage: '',
+          posterCaption: 'Research Conclave – Official Poster', enableParticipant: true,
+          participantOptionLabel: '1. Register as a Participant', enablePresentation: true,
+          presentationOptionLabel: '2. Register for a Presentation', whatsappNumber: ''
+        },
+        {
+          id: 'angadi-sora', num: '02', title: 'ANGADI SORA',
+          tagline: 'Community Dialogue, Oral Folklore & Living Memories',
+          description: 'An open-air conversational gathering reviving the authentic tradition of “Sora” (nostalgic community dialogue). Elders, trade veterans, artisans, and storytellers recount living memories of the historical Tanur market (Angadi), ancient maritime commerce, port-side interactions, and local heritage legends.',
+          dayBadge: 'Dec 12 • Day 2', tags: 'Oral History • Bazaar Dialogues',
+          buttonText: 'Register for Angadi Sora', active: true, showPoster: true, posterImage: '',
+          posterCaption: 'Angadi Sora – Official Poster', enableParticipant: true,
+          participantOptionLabel: '1. Register as a Participant', enablePresentation: true,
+          presentationOptionLabel: '2. Register for a Presentation', whatsappNumber: ''
+        },
+        {
+          id: 'green-summit', num: '03', title: 'GREEN SUMMIT',
+          tagline: 'Ecological Heritage, Coastal Protection & Sustainability',
+          description: "A dedicated forum deliberating on the environmental heritage of Tanur's coastline and waterways. Experts in ecology, marine conservation, climate resilience, and sustainable development address coastal soil preservation, mangrove ecosystems, canal rejuvenation, and responsible eco-tourism.",
+          dayBadge: 'Dec 13 • Day 3', tags: 'Ecology • Coastal Resilience',
+          buttonText: 'Register for Green Summit', active: true, showPoster: true, posterImage: '',
+          posterCaption: 'Green Summit – Official Poster', enableParticipant: true,
+          participantOptionLabel: '1. Register as a Participant', enablePresentation: true,
+          presentationOptionLabel: '2. Register for a Presentation', whatsappNumber: ''
+        },
+        {
+          id: 'meet-the-influencers', num: '04', title: 'MEET THE INFLUENCERS',
+          tagline: 'Digital Storytelling, Youth Media & Cultural Promotion',
+          description: 'An interactive summit bringing together digital content creators, documentary filmmakers, authors, social media storytellers, and visual artists. Explores creative strategies to document, promote, and amplify regional history, monuments, and cultural traditions to a global digital audience.',
+          dayBadge: 'Dec 13 • Day 3', tags: 'Creators • Media • Storytelling',
+          buttonText: 'Register for Influencers Meet', active: true, showPoster: true, posterImage: '',
+          posterCaption: 'Meet The Influencers – Official Poster', enableParticipant: true,
+          participantOptionLabel: '1. Register as a Participant', enablePresentation: true,
+          presentationOptionLabel: '2. Register for a Presentation', whatsappNumber: ''
+        },
+        {
+          id: 'grand-finale', num: '05', title: 'GRAND FINALE',
+          tagline: 'Valedictory Ceremony, Cultural Gala & Festival Honors',
+          description: 'The grand celebratory culmination of Tanur 2K26 Heritage Carnival. Features distinguished public dignitaries, keynote valedictory addresses, traditional folk and cultural performances, announcement of heritage research awards, and the official release of festival proceedings.',
+          dayBadge: 'Dec 14 • Day 4', tags: 'Awards • Folk Arts • Valedictory',
+          buttonText: 'Register for Grand Finale', active: true, showPoster: true, posterImage: '',
+          posterCaption: 'Grand Finale – Official Poster', enableParticipant: true,
+          participantOptionLabel: '1. Register as a Participant', enablePresentation: true,
+          presentationOptionLabel: '2. Register for a Presentation', whatsappNumber: ''
+        }
+      ]
+    };
+
+    if (!siteData.carnival) siteData.carnival = JSON.parse(JSON.stringify(defaultCarnival));
+    siteData.carnival.homepagePoster = Object.assign({}, defaultCarnival.homepagePoster, siteData.carnival.homepagePoster || {});
+    siteData.carnival.programmesPage = Object.assign({}, defaultCarnival.programmesPage, siteData.carnival.programmesPage || {});
+    siteData.carnival.registrationSettings = Object.assign({}, defaultCarnival.registrationSettings, siteData.carnival.registrationSettings || {});
+    if (!Array.isArray(siteData.carnival.programmes) || siteData.carnival.programmes.length === 0) {
+      siteData.carnival.programmes = JSON.parse(JSON.stringify(defaultCarnival.programmes));
+    }
   }
 
   function updateDashboardStats() {
@@ -1599,6 +2018,7 @@
     renderArchiveFolders();
     renderArchiveItems();
     renderSocialAndFooter();
+    renderCarnivalAdmin();
   }
 
   // ────────────────────────────────────────────────────────────
@@ -3002,6 +3422,337 @@
   }
 
   // ────────────────────────────────────────────────────────────
+  // 5B. CARNIVAL & PROGRAMMES ADMIN MANAGEMENT
+  // ────────────────────────────────────────────────────────────
+  function renderCarnivalAdmin() {
+    if (!siteData.carnival) return;
+    const hp = siteData.carnival.homepagePoster || {};
+    const pp = siteData.carnival.programmesPage || {};
+    const rs = siteData.carnival.registrationSettings || {};
+
+    const hpEnabled = document.getElementById('carnival-hp-enabled');
+    if (hpEnabled) hpEnabled.checked = hp.enabled !== false;
+    const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val || ''; };
+
+    setVal('carnival-hp-badge', hp.dateBadge || 'DEC 11 - 14');
+    setVal('carnival-hp-cue', hp.hoverCue || 'View Programmes');
+    setVal('carnival-hp-btn-text', hp.buttonText || 'Register Now');
+    setVal('carnival-hp-btn-link', hp.buttonLink || 'programmes.html');
+    setVal('carnival-hp-image', hp.image || 'assets/img/posters/carnival-poster-2k26.jpg');
+    const hpPrev = document.getElementById('carnival-hp-preview');
+    if (hpPrev && hp.image) {
+      hpPrev.src = hp.image.startsWith('assets/') ? ('../' + hp.image) : hp.image;
+    }
+
+    setVal('carnival-pp-eyebrow', pp.eyebrow || '');
+    setVal('carnival-pp-title', pp.title || '');
+    setVal('carnival-pp-subtitle', pp.subtitle || '');
+
+    setVal('carnival-reg-whatsapp', rs.whatsappNumber || '9605057688');
+    setVal('carnival-reg-maxmb', rs.maxFileSizeMB || 500);
+    setVal('carnival-reg-backtext', rs.backLinkText || 'Back to Our Programmes');
+
+    setVal('tpl-part-heading', rs.participantFormHeading || 'Participation Registration');
+    setVal('tpl-part-name', rs.participantNameLabel || 'Your Name');
+    setVal('tpl-part-wa', rs.participantWhatsappLabel || 'WhatsApp Number');
+    setVal('tpl-part-loc', rs.participantLocationLabel || 'Location');
+    setVal('tpl-part-btn', rs.participantSubmitText || 'Submit & Send to WhatsApp');
+
+    setVal('tpl-pres-heading', rs.presentationFormHeading || 'Presentation Registration');
+    setVal('tpl-pres-name', rs.presentationNameLabel || 'Your Name');
+    setVal('tpl-pres-wa', rs.presentationWhatsappLabel || 'WhatsApp Number');
+    setVal('tpl-pres-loc', rs.presentationLocationLabel || 'Location');
+    setVal('tpl-pres-abs', rs.presentationAbstractLabel || 'Attach Abstract');
+    setVal('tpl-pres-pap', rs.presentationPaperLabel || 'Attach Paper');
+    setVal('tpl-pres-note', rs.presentationFileNote || '');
+    setVal('tpl-pres-btn', rs.presentationSubmitText || 'Submit & Send to WhatsApp');
+
+    // Render programmes list
+    const listWrap = document.getElementById('carnival-programmes-list');
+    if (!listWrap) return;
+    listWrap.innerHTML = '';
+
+    (siteData.carnival.programmes || []).forEach((p, idx) => {
+      const card = document.createElement('div');
+      card.className = 'p-3 border rounded-3 bg-white shadow-sm';
+      const activeBadge = p.active !== false
+        ? '<span class="badge bg-success">Visible</span>'
+        : '<span class="badge bg-secondary">Hidden</span>';
+      const posterBadge = p.showPoster === false
+        ? '<span class="badge bg-secondary-subtle text-secondary border">Poster Off</span>'
+        : (p.posterImage ? '<span class="badge bg-warning-subtle text-dark border border-warning">Custom Poster Uploaded</span>' : '<span class="badge bg-light text-dark border">Poster Slot Ready</span>');
+      const opt1 = p.enableParticipant !== false ? '<span class="badge bg-primary-subtle text-primary border">Participant Form</span>' : '';
+      const opt2 = p.enablePresentation !== false ? '<span class="badge bg-danger-subtle text-danger border">Presentation Form</span>' : '';
+
+      card.innerHTML = `
+        <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+          <div style="flex:1; min-width: 240px;">
+            <div class="d-flex align-items-center gap-2 flex-wrap mb-1">
+              <span class="badge bg-dark">${p.num || ('0' + (idx + 1))}</span>
+              <strong class="text-dark fs-6">${p.title || 'Untitled'}</strong>
+              ${activeBadge}
+              ${posterBadge}
+              ${opt1}
+              ${opt2}
+            </div>
+            <div class="small text-muted mb-1">${p.tagline || ''} &bull; <strong>Button:</strong> ${p.buttonText || 'Register'}</div>
+            <div class="small text-secondary text-truncate" style="max-width: 680px;">${p.description || ''}</div>
+          </div>
+          <div class="d-flex align-items-center gap-1 flex-wrap">
+            <a href="../programme-register.html?id=${encodeURIComponent(p.id || '')}" target="_blank" class="btn btn-outline-success btn-sm" title="Preview Landing Page">
+              <i class="bi bi-box-arrow-up-right"></i> Preview
+            </a>
+            <button class="btn btn-outline-secondary btn-sm" onclick="moveProgrammeItem(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} title="Move Up">
+              <i class="bi bi-arrow-up"></i>
+            </button>
+            <button class="btn btn-outline-secondary btn-sm" onclick="moveProgrammeItem(${idx}, 1)" ${idx === siteData.carnival.programmes.length - 1 ? 'disabled' : ''} title="Move Down">
+              <i class="bi bi-arrow-down"></i>
+            </button>
+            <button class="btn btn-outline-primary btn-sm" onclick="openProgrammeModal(${idx})">
+              <i class="bi bi-pencil"></i> Edit
+            </button>
+            <button class="btn btn-outline-danger btn-sm" onclick="deleteProgrammeItem(${idx})">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>
+      `;
+      listWrap.appendChild(card);
+    });
+  }
+
+  function collectCarnivalData() {
+    if (!document.getElementById('carnival-hp-badge')) return;
+    if (!siteData.carnival) siteData.carnival = { homepagePoster: {}, programmesPage: {}, registrationSettings: {}, programmes: [] };
+
+    const getVal = id => {
+      const el = document.getElementById(id);
+      return el ? el.value.trim() : '';
+    };
+
+    siteData.carnival.homepagePoster = {
+      enabled: document.getElementById('carnival-hp-enabled') ? document.getElementById('carnival-hp-enabled').checked : true,
+      dateBadge: getVal('carnival-hp-badge') || 'DEC 11 - 14',
+      hoverCue: getVal('carnival-hp-cue') || 'View Programmes',
+      buttonText: getVal('carnival-hp-btn-text') || 'Register Now',
+      buttonLink: getVal('carnival-hp-btn-link') || 'programmes.html',
+      image: getVal('carnival-hp-image') || 'assets/img/posters/carnival-poster-2k26.jpg'
+    };
+
+    siteData.carnival.programmesPage = {
+      eyebrow: getVal('carnival-pp-eyebrow') || 'Tanur 2K26 Carnival Highlights',
+      title: getVal('carnival-pp-title') || 'Our Programmes',
+      subtitle: getVal('carnival-pp-subtitle') || ''
+    };
+
+    siteData.carnival.registrationSettings = {
+      whatsappNumber: getVal('carnival-reg-whatsapp') || '9605057688',
+      maxFileSizeMB: Number(getVal('carnival-reg-maxmb')) || 500,
+      backLinkText: getVal('carnival-reg-backtext') || 'Back to Our Programmes',
+      participantFormHeading: getVal('tpl-part-heading') || 'Participation Registration',
+      participantNameLabel: getVal('tpl-part-name') || 'Your Name',
+      participantWhatsappLabel: getVal('tpl-part-wa') || 'WhatsApp Number',
+      participantLocationLabel: getVal('tpl-part-loc') || 'Location',
+      participantSubmitText: getVal('tpl-part-btn') || 'Submit & Send to WhatsApp',
+      presentationFormHeading: getVal('tpl-pres-heading') || 'Presentation Registration',
+      presentationNameLabel: getVal('tpl-pres-name') || 'Your Name',
+      presentationWhatsappLabel: getVal('tpl-pres-wa') || 'WhatsApp Number',
+      presentationLocationLabel: getVal('tpl-pres-loc') || 'Location',
+      presentationAbstractLabel: getVal('tpl-pres-abs') || 'Attach Abstract',
+      presentationPaperLabel: getVal('tpl-pres-pap') || 'Attach Paper',
+      presentationFileNote: getVal('tpl-pres-note') || 'Files up to 500 MB can be included (PDF, DOC, DOCX, PPT, ZIP, etc.)',
+      presentationSubmitText: getVal('tpl-pres-btn') || 'Submit & Send to WhatsApp'
+    };
+  }
+
+  function openProgrammeModal(idx) {
+    const isEdit = typeof idx === 'number' && idx >= 0;
+    document.getElementById('prog-edit-index').value = isEdit ? String(idx) : '';
+    document.getElementById('programmeModalTitle').innerHTML = isEdit
+      ? '<i class="bi bi-pencil-square text-warning me-2"></i>Edit Programme &amp; Registration Page'
+      : '<i class="bi bi-plus-circle text-warning me-2"></i>Add New Programme';
+
+    const list = (siteData.carnival && siteData.carnival.programmes) || [];
+    const nextNum = (list.length + 1) < 10 ? ('0' + (list.length + 1)) : String(list.length + 1);
+    const p = isEdit ? (list[idx] || {}) : {
+      id: '',
+      num: nextNum,
+      title: '',
+      tagline: '',
+      description: '',
+      dayBadge: '',
+      tags: '',
+      buttonText: 'Register Now',
+      active: true,
+      showPoster: true,
+      posterImage: '',
+      posterCaption: '',
+      enableParticipant: true,
+      participantOptionLabel: '1. Register as a Participant',
+      enablePresentation: true,
+      presentationOptionLabel: '2. Register for a Presentation',
+      whatsappNumber: ''
+    };
+
+    document.getElementById('prog-num').value = p.num || '';
+    document.getElementById('prog-title').value = p.title || '';
+    document.getElementById('prog-id').value = p.id || '';
+    document.getElementById('prog-tagline').value = p.tagline || '';
+    document.getElementById('prog-day').value = p.dayBadge || '';
+    document.getElementById('prog-tags').value = p.tags || '';
+    document.getElementById('prog-desc').value = p.description || '';
+    document.getElementById('prog-btn-text').value = p.buttonText || '';
+    document.getElementById('prog-whatsapp').value = p.whatsappNumber || '';
+    document.getElementById('prog-active').checked = p.active !== false;
+
+    document.getElementById('prog-show-poster').checked = p.showPoster !== false;
+    document.getElementById('prog-poster-image').value = p.posterImage || '';
+    document.getElementById('prog-poster-caption').value = p.posterCaption || '';
+
+    const prev = document.getElementById('prog-poster-preview');
+    if (p.posterImage) {
+      prev.src = p.posterImage.startsWith('assets/') ? ('../' + p.posterImage) : p.posterImage;
+      prev.classList.remove('d-none');
+    } else {
+      prev.src = '';
+      prev.classList.add('d-none');
+    }
+
+    document.getElementById('prog-enable-part').checked = p.enableParticipant !== false;
+    document.getElementById('prog-part-label').value = p.participantOptionLabel || '1. Register as a Participant';
+    document.getElementById('prog-enable-pres').checked = p.enablePresentation !== false;
+    document.getElementById('prog-pres-label').value = p.presentationOptionLabel || '2. Register for a Presentation';
+
+    if (programmeModalInstance) programmeModalInstance.show();
+  }
+
+  function clearProgPosterPreview() {
+    document.getElementById('prog-poster-image').value = '';
+    const prev = document.getElementById('prog-poster-preview');
+    prev.src = '';
+    prev.classList.add('d-none');
+  }
+
+  function updatePosterImgPreview(val, imgId) {
+    const prev = document.getElementById(imgId);
+    if (!prev) return;
+    const clean = (val || '').trim();
+    if (clean) {
+      prev.src = clean.startsWith('assets/') ? ('../' + clean) : clean;
+      prev.classList.remove('d-none');
+    } else {
+      prev.src = '';
+      prev.classList.add('d-none');
+    }
+  }
+
+  function saveProgrammeModalItem() {
+    const title = document.getElementById('prog-title').value.trim();
+    if (!title) return alert('Please enter a Programme Title.');
+
+    let slug = document.getElementById('prog-id').value.trim().toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-|-$/g, '');
+    if (!slug) {
+      slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || ('prog-' + Date.now());
+    }
+
+    const idxStr = document.getElementById('prog-edit-index').value;
+    const item = {
+      id: slug,
+      num: document.getElementById('prog-num').value.trim() || '01',
+      title: title,
+      tagline: document.getElementById('prog-tagline').value.trim(),
+      description: document.getElementById('prog-desc').value.trim(),
+      dayBadge: document.getElementById('prog-day').value.trim(),
+      tags: document.getElementById('prog-tags').value.trim(),
+      buttonText: document.getElementById('prog-btn-text').value.trim() || ('Register for ' + title),
+      active: document.getElementById('prog-active').checked,
+      showPoster: document.getElementById('prog-show-poster').checked,
+      posterImage: document.getElementById('prog-poster-image').value.trim(),
+      posterCaption: document.getElementById('prog-poster-caption').value.trim(),
+      enableParticipant: document.getElementById('prog-enable-part').checked,
+      participantOptionLabel: document.getElementById('prog-part-label').value.trim() || '1. Register as a Participant',
+      enablePresentation: document.getElementById('prog-enable-pres').checked,
+      presentationOptionLabel: document.getElementById('prog-pres-label').value.trim() || '2. Register for a Presentation',
+      whatsappNumber: document.getElementById('prog-whatsapp').value.trim()
+    };
+
+    if (!siteData.carnival) siteData.carnival = { programmes: [] };
+    if (!Array.isArray(siteData.carnival.programmes)) siteData.carnival.programmes = [];
+
+    if (idxStr !== '') {
+      siteData.carnival.programmes[Number(idxStr)] = item;
+    } else {
+      siteData.carnival.programmes.push(item);
+    }
+
+    if (programmeModalInstance) programmeModalInstance.hide();
+    renderCarnivalAdmin();
+    showStatusBanner('info', 'Programme updated! Click "Save to Website" or "Save Changes Live" to publish.');
+  }
+
+  function moveProgrammeItem(idx, dir) {
+    const list = siteData.carnival && siteData.carnival.programmes;
+    if (!list) return;
+    const target = idx + dir;
+    if (target < 0 || target >= list.length) return;
+    const tmp = list[idx];
+    list[idx] = list[target];
+    list[target] = tmp;
+    renderCarnivalAdmin();
+    showStatusBanner('info', 'Programme order updated! Click "Save to Website" to publish.');
+  }
+
+  function deleteProgrammeItem(idx) {
+    const list = siteData.carnival && siteData.carnival.programmes;
+    if (!list || !list[idx]) return;
+    if (!confirm('Remove programme "' + (list[idx].title || '') + '"?')) return;
+    list.splice(idx, 1);
+    renderCarnivalAdmin();
+    showStatusBanner('info', 'Programme removed! Click "Save to Website" to publish.');
+  }
+
+  // Compresses uploaded poster images if >600KB so site-content.json stays lightweight and under Vercel's 4.5MB limit
+  function handlePosterUploadCompressed(fileInput, targetInputId, previewImgId) {
+    const file = fileInput.files[0];
+    if (!file) return;
+    const targetInput = document.getElementById(targetInputId);
+    const previewImg = previewImgId ? document.getElementById(previewImgId) : null;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const rawDataUrl = e.target.result;
+      if (file.size <= 600 * 1024) {
+        targetInput.value = rawDataUrl;
+        if (previewImg) { previewImg.src = rawDataUrl; previewImg.classList.remove('d-none'); }
+        return;
+      }
+      const img = new Image();
+      img.onload = function() {
+        const maxDim = 1400;
+        let w = img.width, h = img.height;
+        if (w > maxDim || h > maxDim) {
+          if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
+          else { w = Math.round(w * maxDim / h); h = maxDim; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, w, h);
+        const compressedUrl = canvas.toDataURL('image/jpeg', 0.86);
+        targetInput.value = compressedUrl;
+        if (previewImg) { previewImg.src = compressedUrl; previewImg.classList.remove('d-none'); }
+      };
+      img.onerror = function() {
+        targetInput.value = rawDataUrl;
+        if (previewImg) { previewImg.src = rawDataUrl; previewImg.classList.remove('d-none'); }
+      };
+      img.src = rawDataUrl;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ────────────────────────────────────────────────────────────
   // MEDIA UPLOADER
   // ────────────────────────────────────────────────────────────
   function handleImageUploadDirect(fileInput, targetInputId, previewImgId) {
@@ -3032,6 +3783,7 @@
   async function saveAllChangesToGitHub(commitCustomMsg) {
     collectAboutData();
     collectSocialData();
+    collectCarnivalData();
 
     const saveBtn = document.getElementById('btn-save-global');
     saveBtn.disabled = true;

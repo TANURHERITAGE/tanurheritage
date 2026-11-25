@@ -484,6 +484,99 @@
       });
     }
 
+    // ────────────────────────────────────────────────────────────
+    // SECTION 5: CARNIVAL POSTER, OUR PROGRAMMES & REGISTRATION LANDING
+    // ────────────────────────────────────────────────────────────
+    if (data.carnival) {
+      // 5A. Homepage A4 Carnival Poster Sidebar Card
+      var carnivalCard = document.getElementById('carnival-poster-sidebar-card');
+      if (carnivalCard && data.carnival.homepagePoster) {
+        var hp = data.carnival.homepagePoster;
+        if (hp.enabled === false) {
+          carnivalCard.style.display = 'none';
+        } else {
+          carnivalCard.style.display = '';
+          var pImg = hp.image || 'assets/img/posters/carnival-poster-2k26.jpg';
+          var pLink = hp.buttonLink || 'programmes.html';
+          var pBadge = hp.dateBadge || 'DEC 11 - 14';
+          var pCue = hp.hoverCue || 'View Programmes';
+          var pBtn = hp.buttonText || 'Register Now';
+          carnivalCard.innerHTML =
+            '<div class="poster-a4-frame">' +
+              '<a href="' + pLink + '" class="poster-link-wrap" aria-label="Tanur 2K26 Heritage Carnival - ' + pBtn + '">' +
+                '<img src="' + pImg + '" alt="Tanur 2K26 Heritage Carnival Poster" class="poster-a4-img" loading="lazy" onerror="this.src=\'assets/img/posters/carnival-poster-2k26.jpg\'">' +
+                '<div class="poster-hover-overlay">' +
+                  '<span class="poster-badge-top"><i class="bi bi-calendar-event me-1"></i> ' + pBadge + '</span>' +
+                  '<span class="poster-view-cue"><i class="bi bi-arrow-up-right-circle me-1"></i> ' + pCue + '</span>' +
+                '</div>' +
+              '</a>' +
+            '</div>' +
+            '<div class="poster-cta-bottom text-center">' +
+              '<a href="' + pLink + '" class="btn-register-now">' +
+                '<i class="bi bi-ticket-perforated-fill me-2"></i> ' + pBtn + ' <i class="bi bi-arrow-right ms-2"></i>' +
+              '</a>' +
+            '</div>';
+        }
+      }
+
+      // 5B. Programmes Listing Page (programmes.html / carnival.html)
+      if (data.carnival.programmesPage) {
+        var pp = data.carnival.programmesPage;
+        var elEyebrow = document.getElementById('programmes-eyebrow');
+        var elTitle = document.getElementById('programmes-main-title');
+        var elSub = document.getElementById('programmes-subtitle');
+        if (elEyebrow && pp.eyebrow) elEyebrow.textContent = pp.eyebrow;
+        if (elTitle && pp.title) elTitle.textContent = pp.title;
+        if (elSub && pp.subtitle) elSub.textContent = pp.subtitle;
+      }
+
+      var progListEl = document.getElementById('programmes-list-container');
+      if (progListEl && data.carnival.programmes && Array.isArray(data.carnival.programmes)) {
+        var iconMap = {
+          'research-conclave': 'bi-mortarboard-fill',
+          'angadi-sora': 'bi-chat-heart-fill',
+          'green-summit': 'bi-tree-fill',
+          'meet-the-influencers': 'bi-camera-reels-fill',
+          'grand-finale': 'bi-trophy-fill'
+        };
+        var pHtml = '';
+        var visibleIdx = 0;
+        data.carnival.programmes.forEach(function(prog) {
+          if (prog.active === false) return;
+          visibleIdx++;
+          var delay = Math.min(visibleIdx * 50 + 50, 350);
+          var pid = encodeURIComponent(prog.id || ('prog-' + visibleIdx));
+          var num = prog.num || (visibleIdx < 10 ? '0' + visibleIdx : '' + visibleIdx);
+          var tagIcon = prog.iconClass || iconMap[prog.id] || 'bi-stars';
+          var btnText = prog.buttonText || ('Register for ' + (prog.title || 'Programme'));
+          pHtml +=
+            '<div class="programme-card" data-aos="fade-up" data-aos-delay="' + delay + '">' +
+              '<div class="d-flex align-items-start gap-3">' +
+                '<div class="prog-num-badge">' + num + '</div>' +
+                '<div class="flex-grow-1">' +
+                  '<h3 class="prog-name-heading">' + (prog.title || '') + '</h3>' +
+                  '<div class="prog-tagline">' + (prog.tagline || '') + '</div>' +
+                  '<p class="prog-desc">' + (prog.description || '') + '</p>' +
+                  '<div class="prog-meta-bar">' +
+                    (prog.dayBadge ? '<span class="prog-meta-pill"><i class="bi bi-calendar3"></i> ' + prog.dayBadge + '</span>' : '') +
+                    (prog.tags ? '<span class="prog-meta-pill"><i class="bi ' + tagIcon + '"></i> ' + prog.tags + '</span>' : '') +
+                    '<a href="programme-register.html?id=' + pid + '" class="btn-select-prog">' +
+                      '<span>' + btnText + '</span> <i class="bi bi-arrow-right"></i>' +
+                    '</a>' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+            '</div>';
+        });
+        if (pHtml) progListEl.innerHTML = pHtml;
+      }
+
+      // 5C. Programme Registration Landing Page (programme-register.html)
+      if (typeof window.applyCarnivalProgrammeLanding === 'function') {
+        window.applyCarnivalProgrammeLanding(data.carnival);
+      }
+    }
+
     if (window.AOS) AOS.refresh();
   }
 })();
