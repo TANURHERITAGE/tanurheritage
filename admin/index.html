@@ -770,6 +770,24 @@
             <textarea id="carnival-pp-subtitle" class="form-control form-control-sm" rows="2"></textarea>
           </div>
           <div class="col-md-6">
+            <label class="form-label small fw-semibold"><i class="bi bi-shield-check text-primary me-1"></i> Global Registration Status</label>
+            <div class="d-flex gap-3 align-items-center mt-1">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="global-reg-status" id="global-reg-status-open" value="open" checked>
+                <label class="form-check-label small fw-bold text-success" for="global-reg-status-open">
+                  <i class="bi bi-check-circle-fill me-1"></i> Registration Opened
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="global-reg-status" id="global-reg-status-closed" value="closed">
+                <label class="form-check-label small fw-bold text-danger" for="global-reg-status-closed">
+                  <i class="bi bi-x-circle-fill me-1"></i> Registration Closed
+                </label>
+              </div>
+            </div>
+            <small class="text-muted">Master control: open or close registration across the carnival.</small>
+          </div>
+          <div class="col-md-6">
             <label class="form-label small fw-semibold"><i class="bi bi-whatsapp text-success me-1"></i> Target WhatsApp Number (for submissions)</label>
             <input type="text" id="carnival-reg-whatsapp" class="form-control form-control-sm" placeholder="9605057688">
             <small class="text-muted">All participant &amp; presentation registrations open WhatsApp to this number.</small>
@@ -829,9 +847,13 @@
                 <label class="form-label small fw-semibold">Email ID Field Label</label>
                 <input type="text" id="tpl-part-email" class="form-control form-control-sm">
               </div>
-              <div class="mb-0">
+              <div class="mb-2">
                 <label class="form-label small fw-semibold">Submit Button Text</label>
                 <input type="text" id="tpl-part-btn" class="form-control form-control-sm">
+              </div>
+              <div class="mb-0">
+                <label class="form-label small fw-semibold">Participant Guidelines / Description</label>
+                <textarea id="tpl-part-desc" class="form-control form-control-sm" rows="3" placeholder="Default description under Registration for Participation button"></textarea>
               </div>
             </div>
           </div>
@@ -884,9 +906,13 @@
                 <label class="form-label small fw-semibold">Attachment Limit Note</label>
                 <input type="text" id="tpl-pres-note" class="form-control form-control-sm">
               </div>
-              <div class="mb-0">
+              <div class="mb-2">
                 <label class="form-label small fw-semibold">Submit Button Text</label>
                 <input type="text" id="tpl-pres-btn" class="form-control form-control-sm">
+              </div>
+              <div class="mb-0">
+                <label class="form-label small fw-semibold">Presentation Themes &amp; Guidelines Description</label>
+                <textarea id="tpl-pres-desc" class="form-control form-control-sm" rows="6" placeholder="Default themes & submission guidelines under Call for Research Presentation button"></textarea>
               </div>
             </div>
           </div>
@@ -1587,9 +1613,28 @@
           </div>
 
           <div class="col-12">
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="prog-active" checked>
-              <label class="form-check-label small fw-bold" for="prog-active">Show this programme on Our Programmes page</label>
+            <div class="p-2 border rounded-2 bg-white">
+              <div class="row align-items-center g-2">
+                <div class="col-md-5">
+                  <div class="form-check form-switch mb-0">
+                    <input class="form-check-input" type="checkbox" id="prog-active" checked>
+                    <label class="form-check-label small fw-bold" for="prog-active">Show on Programmes page</label>
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <label class="form-label small fw-semibold mb-0"><i class="bi bi-clock-history me-1"></i> Registration Status:</label>
+                    <div class="form-check form-check-inline mb-0">
+                      <input class="form-check-input" type="radio" name="prog-reg-status" id="prog-reg-status-open" value="open" checked>
+                      <label class="form-check-label small fw-bold text-success" for="prog-reg-status-open">Registration Opened</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-0">
+                      <input class="form-check-input" type="radio" name="prog-reg-status" id="prog-reg-status-closed" value="closed">
+                      <label class="form-check-label small fw-bold text-danger" for="prog-reg-status-closed">Registration Closed</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -1634,14 +1679,18 @@
                     <input class="form-check-input" type="checkbox" id="prog-enable-part" checked>
                     <label class="form-check-label small fw-bold" for="prog-enable-part">Enable Option 1 (Participant)</label>
                   </div>
-                  <input type="text" id="prog-part-label" class="form-control form-control-sm" placeholder="Registration for Participation">
+                  <input type="text" id="prog-part-label" class="form-control form-control-sm mb-2" placeholder="Registration for Participation">
+                  <label class="form-label small fw-semibold">Participant Guidelines (Optional override)</label>
+                  <textarea id="prog-part-desc" class="form-control form-control-sm" rows="3" placeholder="Leave blank to use default template description"></textarea>
                 </div>
                 <div class="col-md-6">
                   <div class="form-check form-switch mb-2">
                     <input class="form-check-input" type="checkbox" id="prog-enable-pres" checked>
                     <label class="form-check-label small fw-bold" for="prog-enable-pres">Enable Option 2 (Presentation)</label>
                   </div>
-                  <input type="text" id="prog-pres-label" class="form-control form-control-sm" placeholder="Call for Research Presentation">
+                  <input type="text" id="prog-pres-label" class="form-control form-control-sm mb-2" placeholder="Call for Research Presentation">
+                  <label class="form-label small fw-semibold">Presentation Guidelines / Themes (Optional override)</label>
+                  <textarea id="prog-pres-desc" class="form-control form-control-sm" rows="6" placeholder="Leave blank to use default template description"></textarea>
                 </div>
               </div>
             </div>
@@ -1922,6 +1971,7 @@
         subtitle: 'Join distinguished historians, cultural dignitaries, researchers, artists, and community voices across our five signature carnival streams.'
       },
       registrationSettings: {
+        registrationStatus: 'open',
         whatsappNumber: '9605057688',
         maxFileSizeMB: 500,
         backLinkText: 'Back to Our Programmes',
@@ -1930,6 +1980,7 @@
         participantWhatsappLabel: 'WhatsApp Number',
         participantEmailLabel: 'Email ID',
         participantSubmitText: 'Submit & Send to WhatsApp',
+        participantDescription: 'Researchers, students, academicians, librarians and manuscript enthusiasts are invited to participate in the Research Conclave on Manuscript Culture in Malabar.\nJoin the academic sessions, engage with scholars and explore the rich manuscript heritage of Malabar.\nConfirmation and further programme details will be communicated to registered participants.',
         presentationFormHeading: 'Call for Research Presentation',
         presentationNameLabel: 'Your Name',
         presentationWhatsappLabel: 'WhatsApp Number',
@@ -1939,7 +1990,8 @@
         presentationAbstractLabel: 'Attach Abstract',
         presentationPaperLabel: 'Attach Paper',
         presentationFileNote: 'Files up to 500 MB can be included (PDF, DOC, DOCX, PPT, ZIP, etc.)',
-        presentationSubmitText: 'Submit & Send to WhatsApp'
+        presentationSubmitText: 'Submit & Send to WhatsApp',
+        presentationDescription: 'Scholars, researchers, archivists, postgraduate students and manuscript enthusiasts are invited to submit research proposals on the following themes:\n\n* Major manuscript collections, libraries and archival centres\n* Traditional centres of Islamic learning and manuscript scholarship\n* Arabic, Arabi-Malayalam and Malayalam manuscript traditions\n* Contributions of scholars, scribes, copyists and collectors\n* Manuscripts as sources for the social, cultural and intellectual history of Malabar\n* Manuscript cataloguing, conservation and digitisation\n* Unpublished manuscripts and emerging research possibilities\n\nResearchers are encouraged to present original research, archival findings, fieldwork experiences and critical studies that contribute to a deeper understanding of Malabar\'s manuscript heritage.\n\nSubmit your research proposal and be part of an academic dialogue exploring the rich manuscript traditions of Malabar.\n\nSelected proposals will be considered for research presentations. Confirmation of acceptance will be communicated to the respective applicants following the review process. Applicants are requested to await the official notification regarding the approval of their proposals.'
       },
       programmes: [
         {
@@ -3460,6 +3512,10 @@
     setVal('carnival-pp-title', pp.title || '');
     setVal('carnival-pp-subtitle', pp.subtitle || '');
 
+    const gStatus = (rs && rs.registrationStatus === 'closed') ? 'closed' : 'open';
+    const openRadio = document.getElementById('global-reg-status-open'); if (openRadio) openRadio.checked = (gStatus === 'open');
+    const closedRadio = document.getElementById('global-reg-status-closed'); if (closedRadio) closedRadio.checked = (gStatus === 'closed');
+
     setVal('carnival-reg-whatsapp', rs.whatsappNumber || '9605057688');
     setVal('carnival-reg-maxmb', rs.maxFileSizeMB || 500);
     setVal('carnival-reg-backtext', rs.backLinkText || 'Back to Our Programmes');
@@ -3469,6 +3525,7 @@
     setVal('tpl-part-wa', rs.participantWhatsappLabel || 'WhatsApp Number');
     setVal('tpl-part-email', rs.participantEmailLabel || 'Email ID');
     setVal('tpl-part-btn', rs.participantSubmitText || 'Submit & Send to WhatsApp');
+    setVal('tpl-part-desc', rs.participantDescription || '');
 
     setVal('tpl-pres-heading', rs.presentationFormHeading || 'Call for Research Presentation');
     setVal('tpl-pres-name', rs.presentationNameLabel || 'Your Name');
@@ -3480,6 +3537,7 @@
     setVal('tpl-pres-pap', rs.presentationPaperLabel || 'Attach Paper');
     setVal('tpl-pres-note', rs.presentationFileNote || '');
     setVal('tpl-pres-btn', rs.presentationSubmitText || 'Submit & Send to WhatsApp');
+    setVal('tpl-pres-desc', rs.presentationDescription || '');
 
     // Render programmes list
     const listWrap = document.getElementById('carnival-programmes-list');
@@ -3492,6 +3550,9 @@
       const activeBadge = p.active !== false
         ? '<span class="badge bg-success">Visible</span>'
         : '<span class="badge bg-secondary">Hidden</span>';
+      const regBadge = p.registrationStatus === 'closed'
+        ? '<span class="badge bg-danger"><i class="bi bi-x-circle me-1"></i>Registration Closed</span>'
+        : '<span class="badge bg-success-subtle text-success border border-success"><i class="bi bi-check-circle me-1"></i>Registration Opened</span>';
       const posterBadge = p.showPoster === false
         ? '<span class="badge bg-secondary-subtle text-secondary border">Poster Off</span>'
         : (p.posterImage ? '<span class="badge bg-warning-subtle text-dark border border-warning">Custom Poster Uploaded</span>' : '<span class="badge bg-light text-dark border">Poster Slot Ready</span>');
@@ -3505,6 +3566,7 @@
               <span class="badge bg-dark">${p.num || ('0' + (idx + 1))}</span>
               <strong class="text-dark fs-6">${p.title || 'Untitled'}</strong>
               ${activeBadge}
+              ${regBadge}
               ${posterBadge}
               ${opt1}
               ${opt2}
@@ -3559,7 +3621,10 @@
       subtitle: getVal('carnival-pp-subtitle') || ''
     };
 
+    const globalRegStatus = document.getElementById('global-reg-status-closed') && document.getElementById('global-reg-status-closed').checked ? 'closed' : 'open';
+
     siteData.carnival.registrationSettings = {
+      registrationStatus: globalRegStatus,
       whatsappNumber: getVal('carnival-reg-whatsapp') || '9605057688',
       maxFileSizeMB: Number(getVal('carnival-reg-maxmb')) || 500,
       backLinkText: getVal('carnival-reg-backtext') || 'Back to Our Programmes',
@@ -3568,6 +3633,7 @@
       participantWhatsappLabel: getVal('tpl-part-wa') || 'WhatsApp Number',
       participantEmailLabel: getVal('tpl-part-email') || 'Email ID',
       participantSubmitText: getVal('tpl-part-btn') || 'Submit & Send to WhatsApp',
+      participantDescription: getVal('tpl-part-desc'),
       presentationFormHeading: getVal('tpl-pres-heading') || 'Call for Research Presentation',
       presentationNameLabel: getVal('tpl-pres-name') || 'Your Name',
       presentationWhatsappLabel: getVal('tpl-pres-wa') || 'WhatsApp Number',
@@ -3577,7 +3643,8 @@
       presentationAbstractLabel: getVal('tpl-pres-abs') || 'Attach Abstract',
       presentationPaperLabel: getVal('tpl-pres-pap') || 'Attach Paper',
       presentationFileNote: getVal('tpl-pres-note') || 'Files up to 500 MB can be included (PDF, DOC, DOCX, PPT, ZIP, etc.)',
-      presentationSubmitText: getVal('tpl-pres-btn') || 'Submit & Send to WhatsApp'
+      presentationSubmitText: getVal('tpl-pres-btn') || 'Submit & Send to WhatsApp',
+      presentationDescription: getVal('tpl-pres-desc')
     };
   }
 
@@ -3600,13 +3667,16 @@
       tags: '',
       buttonText: 'Register Now',
       active: true,
+      registrationStatus: 'open',
       showPoster: true,
       posterImage: '',
       posterCaption: '',
       enableParticipant: true,
       participantOptionLabel: 'Registration for Participation',
+      participantDescription: '',
       enablePresentation: true,
       presentationOptionLabel: 'Call for Research Presentation',
+      presentationDescription: '',
       whatsappNumber: ''
     };
 
@@ -3620,6 +3690,10 @@
     document.getElementById('prog-btn-text').value = p.buttonText || '';
     document.getElementById('prog-whatsapp').value = p.whatsappNumber || '';
     document.getElementById('prog-active').checked = p.active !== false;
+
+    const progStatus = p.registrationStatus === 'closed' ? 'closed' : 'open';
+    const pOpenRadio = document.getElementById('prog-reg-status-open'); if (pOpenRadio) pOpenRadio.checked = (progStatus === 'open');
+    const pClosedRadio = document.getElementById('prog-reg-status-closed'); if (pClosedRadio) pClosedRadio.checked = (progStatus === 'closed');
 
     document.getElementById('prog-show-poster').checked = p.showPoster !== false;
     document.getElementById('prog-poster-image').value = p.posterImage || '';
@@ -3636,8 +3710,10 @@
 
     document.getElementById('prog-enable-part').checked = p.enableParticipant !== false;
     document.getElementById('prog-part-label').value = p.participantOptionLabel || 'Registration for Participation';
+    document.getElementById('prog-part-desc').value = p.participantDescription || '';
     document.getElementById('prog-enable-pres').checked = p.enablePresentation !== false;
     document.getElementById('prog-pres-label').value = p.presentationOptionLabel || 'Call for Research Presentation';
+    document.getElementById('prog-pres-desc').value = p.presentationDescription || '';
 
     if (programmeModalInstance) programmeModalInstance.show();
   }
@@ -3672,6 +3748,7 @@
     }
 
     const idxStr = document.getElementById('prog-edit-index').value;
+    const progClosedRadio = document.getElementById('prog-reg-status-closed');
     const item = {
       id: slug,
       num: document.getElementById('prog-num').value.trim() || '01',
@@ -3682,13 +3759,16 @@
       tags: document.getElementById('prog-tags').value.trim(),
       buttonText: document.getElementById('prog-btn-text').value.trim() || ('Register for ' + title),
       active: document.getElementById('prog-active').checked,
+      registrationStatus: (progClosedRadio && progClosedRadio.checked) ? 'closed' : 'open',
       showPoster: document.getElementById('prog-show-poster').checked,
       posterImage: document.getElementById('prog-poster-image').value.trim(),
       posterCaption: document.getElementById('prog-poster-caption').value.trim(),
       enableParticipant: document.getElementById('prog-enable-part').checked,
       participantOptionLabel: document.getElementById('prog-part-label').value.trim() || 'Registration for Participation',
+      participantDescription: document.getElementById('prog-part-desc') ? document.getElementById('prog-part-desc').value.trim() : '',
       enablePresentation: document.getElementById('prog-enable-pres').checked,
       presentationOptionLabel: document.getElementById('prog-pres-label').value.trim() || 'Call for Research Presentation',
+      presentationDescription: document.getElementById('prog-pres-desc') ? document.getElementById('prog-pres-desc').value.trim() : '',
       whatsappNumber: document.getElementById('prog-whatsapp').value.trim()
     };
 

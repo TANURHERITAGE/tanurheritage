@@ -433,6 +433,36 @@
       text-align: center;
     }
 
+    .reg-guidelines-box {
+      background: #fbfcfe;
+      border: 1px solid #e1e7f0;
+      border-left: 4px solid #ef6603;
+      border-radius: 12px;
+      padding: 18px 22px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #333f48;
+      box-shadow: 0 4px 12px rgba(10, 30, 60, 0.03);
+    }
+    .reg-guidelines-box p {
+      margin-bottom: 0.85rem;
+    }
+    .reg-guidelines-box p:last-child {
+      margin-bottom: 0;
+    }
+    .reg-guidelines-box ul {
+      margin: 0.75rem 0 0.9rem 1.4rem;
+      padding-left: 0;
+    }
+    .reg-guidelines-box li {
+      margin-bottom: 0.45rem;
+      color: #24303c;
+      font-weight: 500;
+    }
+    .reg-guidelines-box strong {
+      color: #17222d;
+    }
+
     /* Ensure Footer Copyright and Text remain Crisp White on Dark Footer */
     #footer.dark-background,
     #footer.dark-background h3,
@@ -526,6 +556,9 @@
             <p class="reg-form-sub">Enter your details below to complete your registration for participation in <strong class="reg-prog-inline-name">RESEARCH CONCLAVE</strong>.</p>
           </div>
 
+          <!-- Participant Guidelines / Description Box -->
+          <div class="reg-guidelines-box mb-4 d-none" id="part-guidelines-box"></div>
+
           <div id="part-success-box" class="alert alert-success d-none mb-4" role="alert">
             <h5 class="fw-bold mb-1"><i class="bi bi-check-circle-fill me-2"></i>Registration Details Prepared!</h5>
             <p class="small mb-3">Your WhatsApp message has been prepared for <strong class="wa-num-display">+91 9605057688</strong>. Click below if WhatsApp did not open automatically.</p>
@@ -575,6 +608,9 @@
             <h2 class="reg-form-title" id="pres-form-heading">Call for Research Presentation</h2>
             <p class="reg-form-sub">Enter your details, institution name, topic, and attach your abstract &amp; paper to submit for <strong class="reg-prog-inline-name">RESEARCH CONCLAVE</strong>.</p>
           </div>
+
+          <!-- Presentation Themes & Submission Guidelines Box -->
+          <div class="reg-guidelines-box mb-4 d-none" id="pres-guidelines-box"></div>
 
           <div id="pres-success-box" class="alert alert-success d-none mb-4" role="alert">
             <h5 class="fw-bold mb-1"><i class="bi bi-check-circle-fill me-2"></i>Presentation Submission Prepared!</h5>
@@ -664,12 +700,20 @@
           </form>
         </div>
 
-        <!-- Disabled fallback if both options turned off in admin -->
-        <div class="reg-form-card text-center d-none" id="panel-closed">
-          <i class="bi bi-lock-fill fs-1 text-muted d-block mb-2"></i>
-          <h4 class="fw-bold text-dark">Registration Currently Closed</h4>
-          <p class="text-muted mb-3">Online registration is not currently enabled for this programme. Please check back soon.</p>
-          <a href="programmes.html" class="btn btn-dark rounded-pill px-4">Back to Our Programmes</a>
+        <!-- Disabled fallback / Registration Closed Notice -->
+        <div class="reg-form-card text-center d-none" id="panel-closed" data-aos="fade-up" data-aos-delay="200">
+          <div class="py-4">
+            <span class="badge bg-danger-subtle text-danger border border-danger px-3 py-2 fs-6 rounded-pill mb-3">
+              <i class="bi bi-x-circle-fill me-1"></i> Registration Closed
+            </span>
+            <h3 class="fw-bold text-dark mt-2 mb-2">Registration Currently Closed</h3>
+            <p class="text-muted mb-4 mx-auto" style="max-width: 520px;">
+              Online registration for <strong id="closed-prog-title" class="text-dark">this programme</strong> is currently closed. Thank you for your interest!
+            </p>
+            <a href="programmes.html" class="btn btn-dark rounded-pill px-4 py-2">
+              <i class="bi bi-arrow-left me-1"></i> Back to Our Programmes
+            </a>
+          </div>
         </div>
 
       </div>
@@ -708,6 +752,7 @@
     // Built-in default configuration (hydrated dynamically from data/site-content.json)
     var DEFAULT_CARNIVAL_DATA = {
       registrationSettings: {
+        registrationStatus: 'open',
         whatsappNumber: '9605057688',
         maxFileSizeMB: 500,
         backLinkText: 'Back to Our Programmes',
@@ -716,6 +761,7 @@
         participantWhatsappLabel: 'WhatsApp Number',
         participantEmailLabel: 'Email ID',
         participantSubmitText: 'Submit & Send to WhatsApp',
+        participantDescription: 'Researchers, students, academicians, librarians and manuscript enthusiasts are invited to participate in the Research Conclave on Manuscript Culture in Malabar.\nJoin the academic sessions, engage with scholars and explore the rich manuscript heritage of Malabar.\nConfirmation and further programme details will be communicated to registered participants.',
         presentationFormHeading: 'Call for Research Presentation',
         presentationNameLabel: 'Your Name',
         presentationWhatsappLabel: 'WhatsApp Number',
@@ -725,7 +771,8 @@
         presentationAbstractLabel: 'Attach Abstract',
         presentationPaperLabel: 'Attach Paper',
         presentationFileNote: 'Files up to 500 MB can be included (PDF, DOC, DOCX, PPT, ZIP, etc.)',
-        presentationSubmitText: 'Submit & Send to WhatsApp'
+        presentationSubmitText: 'Submit & Send to WhatsApp',
+        presentationDescription: 'Scholars, researchers, archivists, postgraduate students and manuscript enthusiasts are invited to submit research proposals on the following themes:\n\n* Major manuscript collections, libraries and archival centres\n* Traditional centres of Islamic learning and manuscript scholarship\n* Arabic, Arabi-Malayalam and Malayalam manuscript traditions\n* Contributions of scholars, scribes, copyists and collectors\n* Manuscripts as sources for the social, cultural and intellectual history of Malabar\n* Manuscript cataloguing, conservation and digitisation\n* Unpublished manuscripts and emerging research possibilities\n\nResearchers are encouraged to present original research, archival findings, fieldwork experiences and critical studies that contribute to a deeper understanding of Malabar\'s manuscript heritage.\n\nSubmit your research proposal and be part of an academic dialogue exploring the rich manuscript traditions of Malabar.\n\nSelected proposals will be considered for research presentations. Confirmation of acceptance will be communicated to the respective applicants following the review process. Applicants are requested to await the official notification regarding the approval of their proposals.'
       },
       programmes: [
         {
@@ -848,6 +895,33 @@
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;');
+    }
+
+    function renderGuidelinesHtml(raw) {
+      if (!raw || !raw.trim()) return '';
+      var blocks = raw.trim().split(/\n\s*\n/);
+      var html = '';
+      for (var i = 0; i < blocks.length; i++) {
+        var block = blocks[i].trim();
+        if (!block) continue;
+        var lines = block.split('\n');
+        var isList = lines.some(function(l) { return /^\s*[*•-]\s+/.test(l); });
+        if (isList) {
+          html += '<ul class="mb-3">';
+          for (var j = 0; j < lines.length; j++) {
+            var line = lines[j].trim();
+            if (/^[*•-]\s+/.test(line)) {
+              html += '<li>' + escapeHtml(line.replace(/^[*•-]\s+/, '')) + '</li>';
+            } else if (line) {
+              html += '<li style="list-style:none; margin-left:-1.2rem; margin-bottom:0.35rem; font-weight:600;">' + escapeHtml(line) + '</li>';
+            }
+          }
+          html += '</ul>';
+        } else {
+          html += '<p>' + escapeHtml(block).replace(/\n/g, '<br>') + '</p>';
+        }
+      }
+      return html;
     }
 
     function formatWhatsAppTarget(num) {
@@ -975,15 +1049,49 @@
       var modeWrap = document.getElementById('mode-selector-wrap');
       var closedPanel = document.getElementById('panel-closed');
 
+      // Populate guidelines / description text for both options
+      var partDesc = (prog.participantDescription && prog.participantDescription.trim())
+        ? prog.participantDescription.trim()
+        : (settings.participantDescription || '');
+      var presDesc = (prog.presentationDescription && prog.presentationDescription.trim())
+        ? prog.presentationDescription.trim()
+        : (settings.presentationDescription || '');
+
+      var partBox = document.getElementById('part-guidelines-box');
+      if (partBox) {
+        if (partDesc) {
+          partBox.innerHTML = renderGuidelinesHtml(partDesc);
+          partBox.classList.remove('d-none');
+        } else {
+          partBox.innerHTML = '';
+          partBox.classList.add('d-none');
+        }
+      }
+
+      var presBox = document.getElementById('pres-guidelines-box');
+      if (presBox) {
+        if (presDesc) {
+          presBox.innerHTML = renderGuidelinesHtml(presDesc);
+          presBox.classList.remove('d-none');
+        } else {
+          presBox.innerHTML = '';
+          presBox.classList.add('d-none');
+        }
+      }
+
+      var isRegClosed = (settings.registrationStatus === 'closed') || (prog.registrationStatus === 'closed') || (!enablePart && !enablePres);
+
       btnPart.classList.toggle('d-none', !enablePart);
       btnPres.classList.toggle('d-none', !enablePres);
       divider.classList.toggle('d-none', !(enablePart && enablePres));
 
-      if (!enablePart && !enablePres) {
+      if (isRegClosed) {
         modeWrap.classList.add('d-none');
         document.getElementById('panel-participant').classList.add('d-none');
         document.getElementById('panel-presentation').classList.add('d-none');
         closedPanel.classList.remove('d-none');
+        var closedTitleEl = document.getElementById('closed-prog-title');
+        if (closedTitleEl) closedTitleEl.textContent = prog.title || 'this programme';
       } else {
         modeWrap.classList.remove('d-none');
         closedPanel.classList.add('d-none');

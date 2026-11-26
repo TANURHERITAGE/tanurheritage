@@ -548,7 +548,12 @@
           var pid = encodeURIComponent(prog.id || ('prog-' + visibleIdx));
           var num = prog.num || (visibleIdx < 10 ? '0' + visibleIdx : '' + visibleIdx);
           var tagIcon = prog.iconClass || iconMap[prog.id] || 'bi-stars';
-          var btnText = prog.buttonText || ('Register for ' + (prog.title || 'Programme'));
+          var isClosed = (prog.registrationStatus === 'closed') || (data.carnival.registrationSettings && data.carnival.registrationSettings.registrationStatus === 'closed');
+          var btnText = isClosed ? 'Registration Closed' : (prog.buttonText || ('Register for ' + (prog.title || 'Programme')));
+          var btnClass = isClosed ? 'btn-select-prog btn-prog-closed' : 'btn-select-prog';
+          var btnIcon = isClosed ? 'bi-lock-fill' : 'bi-arrow-right';
+          var closedPill = isClosed ? '<span class="prog-meta-pill" style="background:#fee2e2; color:#b91c1c; border-color:#fca5a5;"><i class="bi bi-x-circle-fill"></i> Closed</span>' : '';
+
           pHtml +=
             '<div class="programme-card" data-aos="fade-up" data-aos-delay="' + delay + '">' +
               '<div class="d-flex align-items-start gap-3">' +
@@ -560,8 +565,9 @@
                   '<div class="prog-meta-bar">' +
                     (prog.dayBadge ? '<span class="prog-meta-pill"><i class="bi bi-calendar3"></i> ' + prog.dayBadge + '</span>' : '') +
                     (prog.tags ? '<span class="prog-meta-pill"><i class="bi ' + tagIcon + '"></i> ' + prog.tags + '</span>' : '') +
-                    '<a href="programme-register.html?id=' + pid + '" class="btn-select-prog">' +
-                      '<span>' + btnText + '</span> <i class="bi bi-arrow-right"></i>' +
+                    closedPill +
+                    '<a href="programme-register.html?id=' + pid + '" class="' + btnClass + '">' +
+                      '<span>' + btnText + '</span> <i class="bi ' + btnIcon + '"></i>' +
                     '</a>' +
                   '</div>' +
                 '</div>' +
