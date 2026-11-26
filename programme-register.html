@@ -585,9 +585,13 @@
                 <label for="part-whatsapp" class="form-label" id="lbl-part-whatsapp">WhatsApp Number *</label>
                 <input type="tel" class="form-control" id="part-whatsapp" placeholder="Enter your WhatsApp number" required>
               </div>
-              <div class="col-12">
+              <div class="col-md-6">
                 <label for="part-email" class="form-label" id="lbl-part-email">Email ID *</label>
                 <input type="email" class="form-control" id="part-email" placeholder="Enter your email ID" required>
+              </div>
+              <div class="col-md-6">
+                <label for="part-institution" class="form-label" id="lbl-part-institution">Institution Name *</label>
+                <input type="text" class="form-control" id="part-institution" placeholder="Enter your institution / organization name" required>
               </div>
               <div class="col-12 mt-4">
                 <button type="submit" class="btn-whatsapp-submit">
@@ -753,6 +757,7 @@
         participantNameLabel: 'Your Name',
         participantWhatsappLabel: 'WhatsApp Number',
         participantEmailLabel: 'Email ID',
+        participantInstitutionLabel: 'Institution Name',
         participantSubmitText: 'Submit & Send to WhatsApp',
         participantDescription: 'Researchers, students, academicians, librarians and manuscript enthusiasts are invited to participate in the Research Conclave on Manuscript Culture in Malabar.\nJoin the academic sessions, engage with scholars and explore the rich manuscript heritage of Malabar.\nConfirmation and further programme details will be communicated to registered participants.',
         presentationFormHeading: 'Call for Research Presentation',
@@ -1025,6 +1030,8 @@
       document.getElementById('lbl-part-name').textContent = (settings.participantNameLabel || 'Your Name') + ' *';
       document.getElementById('lbl-part-whatsapp').textContent = (settings.participantWhatsappLabel || 'WhatsApp Number') + ' *';
       document.getElementById('lbl-part-email').textContent = (settings.participantEmailLabel || 'Email ID') + ' *';
+      var partInstEl = document.getElementById('lbl-part-institution');
+      if (partInstEl) partInstEl.textContent = (settings.participantInstitutionLabel || 'Institution Name') + ' *';
       document.getElementById('lbl-part-submit').textContent = settings.participantSubmitText || 'Submit & Send to WhatsApp';
 
       document.getElementById('pres-form-heading').textContent = settings.presentationFormHeading || 'Call for Research Presentation';
@@ -1180,6 +1187,7 @@
       var name = document.getElementById('part-name').value.trim();
       var wa = document.getElementById('part-whatsapp').value.trim();
       var email = document.getElementById('part-email').value.trim();
+      var institution = document.getElementById('part-institution') ? document.getElementById('part-institution').value.trim() : '';
       var progTitle = (activeRegState.programme && activeRegState.programme.title) || 'RESEARCH CONCLAVE';
 
       var msg =
@@ -1190,12 +1198,24 @@
         '*WhatsApp Number:* ' + wa + '\n' +
         '*Email ID:* ' + email;
 
+      if (institution) {
+        msg += '\n*Institution Name:* ' + institution;
+      }
+
       activeRegState.lastPartMessage = msg;
       var waUrl = 'https://wa.me/' + getTargetWhatsAppNumber() + '?text=' + encodeURIComponent(msg);
 
       try {
         var existing = JSON.parse(localStorage.getItem('th_carnival_registrations') || '[]');
-        existing.push({ type: 'participant', programme: progTitle, name: name, whatsapp: wa, email: email, date: new Date().toISOString() });
+        existing.push({
+          type: 'participant',
+          programme: progTitle,
+          name: name,
+          whatsapp: wa,
+          email: email,
+          institution: institution,
+          date: new Date().toISOString()
+        });
         localStorage.setItem('th_carnival_registrations', JSON.stringify(existing));
       } catch (e) {}
 

@@ -843,9 +843,15 @@
                 <label class="form-label small fw-semibold">WhatsApp Field Label</label>
                 <input type="text" id="tpl-part-wa" class="form-control form-control-sm">
               </div>
-              <div class="mb-2">
-                <label class="form-label small fw-semibold">Email ID Field Label</label>
-                <input type="text" id="tpl-part-email" class="form-control form-control-sm">
+              <div class="row g-2 mb-2">
+                <div class="col-6">
+                  <label class="form-label small fw-semibold">Email ID Label</label>
+                  <input type="text" id="tpl-part-email" class="form-control form-control-sm">
+                </div>
+                <div class="col-6">
+                  <label class="form-label small fw-semibold">Institution Label</label>
+                  <input type="text" id="tpl-part-institution" class="form-control form-control-sm">
+                </div>
               </div>
               <div class="mb-2">
                 <label class="form-label small fw-semibold">Submit Button Text</label>
@@ -1973,6 +1979,7 @@
         participantNameLabel: 'Your Name',
         participantWhatsappLabel: 'WhatsApp Number',
         participantEmailLabel: 'Email ID',
+        participantInstitutionLabel: 'Institution Name',
         participantSubmitText: 'Submit & Send to WhatsApp',
         participantDescription: 'Researchers, students, academicians, librarians and manuscript enthusiasts are invited to participate in the Research Conclave on Manuscript Culture in Malabar.\nJoin the academic sessions, engage with scholars and explore the rich manuscript heritage of Malabar.\nConfirmation and further programme details will be communicated to registered participants.',
         presentationFormHeading: 'Call for Research Presentation',
@@ -3517,6 +3524,7 @@
     setVal('tpl-part-name', rs.participantNameLabel || 'Your Name');
     setVal('tpl-part-wa', rs.participantWhatsappLabel || 'WhatsApp Number');
     setVal('tpl-part-email', rs.participantEmailLabel || 'Email ID');
+    setVal('tpl-part-institution', rs.participantInstitutionLabel || 'Institution Name');
     setVal('tpl-part-btn', rs.participantSubmitText || 'Submit & Send to WhatsApp');
     setVal('tpl-part-desc', rs.participantDescription || '');
 
@@ -3630,6 +3638,7 @@
       participantNameLabel: getVal('tpl-part-name') || 'Your Name',
       participantWhatsappLabel: getVal('tpl-part-wa') || 'WhatsApp Number',
       participantEmailLabel: getVal('tpl-part-email') || 'Email ID',
+      participantInstitutionLabel: getVal('tpl-part-institution') || 'Institution Name',
       participantSubmitText: getVal('tpl-part-btn') || 'Submit & Send to WhatsApp',
       participantDescription: getVal('tpl-part-desc'),
       presentationFormHeading: getVal('tpl-pres-heading') || 'Call for Research Presentation',
