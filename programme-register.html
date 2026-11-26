@@ -1248,7 +1248,7 @@
         '*Topic:* ' + topic;
 
       if (propFile) {
-        msg += '\n\n📄 *Attached Proposal Document:*\n' +
+        msg += '\n\n*Attached Proposal:*\n' +
           '• File: ' + propFile.name + ' (' + formatFileSize(propFile.size) + ')';
       }
 
@@ -1276,10 +1276,13 @@
 
       var summaryHtml = '';
       if (propFile) {
-        summaryHtml += '<div class="mb-2 p-2 bg-white rounded border small shadow-sm">' +
-          '<div class="d-flex justify-content-between align-items-center flex-wrap gap-1">' +
-            '<span><i class="bi bi-file-earmark-check text-success me-1"></i> <strong>Selected Proposal:</strong> ' + escapeHtml(propFile.name) + ' (' + formatFileSize(propFile.size) + ')</span>' +
-            '<span class="badge bg-success-subtle text-success border border-success"><i class="bi bi-whatsapp me-1"></i> Direct WhatsApp File</span>' +
+        summaryHtml += '<div class="mb-3 p-3 bg-white rounded-3 border shadow-sm text-start">' +
+          '<div class="d-flex justify-content-between align-items-center flex-wrap gap-1 mb-2">' +
+            '<span><i class="bi bi-file-earmark-pdf-fill text-danger me-1 fs-5"></i> <strong>Attached Document:</strong> ' + escapeHtml(propFile.name) + ' (' + formatFileSize(propFile.size) + ')</span>' +
+            '<span class="badge bg-success-subtle text-success border border-success"><i class="bi bi-whatsapp me-1"></i> WhatsApp Document</span>' +
+          '</div>' +
+          '<div class="small text-muted border-top pt-2 mt-1">' +
+            '<i class="bi bi-paperclip text-primary me-1"></i> <strong>To download directly inside WhatsApp:</strong> On desktop WhatsApp Web, simply attach your file via the 📎 Paperclip icon (or drag and drop it into the chat) so the recipient receives the native document.' +
           '</div>' +
         '</div>';
       }
