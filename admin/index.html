@@ -3575,8 +3575,14 @@
             <div class="small text-secondary text-truncate" style="max-width: 680px;">${p.description || ''}</div>
           </div>
           <div class="d-flex align-items-center gap-1 flex-wrap">
+            <button class="btn btn-sm ${p.registrationStatus === 'closed' ? 'btn-outline-success' : 'btn-outline-danger'}" onclick="toggleProgrammeRegStatus(${idx})" title="${p.registrationStatus === 'closed' ? 'Click to Open Registration' : 'Click to Close Registration'}">
+              <i class="bi ${p.registrationStatus === 'closed' ? 'bi-unlock-fill' : 'bi-lock-fill'} me-1"></i> ${p.registrationStatus === 'closed' ? 'Open Reg' : 'Close Reg'}
+            </button>
+            <button class="btn btn-sm ${p.active === false ? 'btn-outline-primary' : 'btn-outline-secondary'}" onclick="toggleProgrammeVisibility(${idx})" title="${p.active === false ? 'Click to Show on Our Programmes' : 'Click to Hide from Our Programmes'}">
+              <i class="bi ${p.active === false ? 'bi-eye' : 'bi-eye-slash'}"></i>
+            </button>
             <a href="../programme-register.html?id=${encodeURIComponent(p.id || '')}" target="_blank" class="btn btn-outline-success btn-sm" title="Preview Landing Page">
-              <i class="bi bi-box-arrow-up-right"></i> Preview
+              <i class="bi bi-box-arrow-up-right"></i>
             </a>
             <button class="btn btn-outline-secondary btn-sm" onclick="moveProgrammeItem(${idx}, -1)" ${idx === 0 ? 'disabled' : ''} title="Move Up">
               <i class="bi bi-arrow-up"></i>
@@ -3805,6 +3811,25 @@
     list.splice(idx, 1);
     renderCarnivalAdmin();
     showStatusBanner('info', 'Programme removed! Click "Save to Website" to publish.');
+  }
+
+  function toggleProgrammeRegStatus(idx) {
+    const list = siteData.carnival && siteData.carnival.programmes;
+    if (!list || !list[idx]) return;
+    const current = list[idx].registrationStatus || 'open';
+    list[idx].registrationStatus = current === 'closed' ? 'open' : 'closed';
+    renderCarnivalAdmin();
+    const stateLabel = list[idx].registrationStatus === 'closed' ? 'CLOSED' : 'OPENED';
+    showStatusBanner('info', `Registration for "${list[idx].title || 'Programme'}" is now ${stateLabel}! Click "Save to Website" to publish.`);
+  }
+
+  function toggleProgrammeVisibility(idx) {
+    const list = siteData.carnival && siteData.carnival.programmes;
+    if (!list || !list[idx]) return;
+    list[idx].active = list[idx].active === false ? true : false;
+    renderCarnivalAdmin();
+    const visLabel = list[idx].active ? 'VISIBLE' : 'HIDDEN';
+    showStatusBanner('info', `"${list[idx].title || 'Programme'}" is now ${visLabel} on Our Programmes page! Click "Save to Website" to publish.`);
   }
 
   // Compresses uploaded poster images if >600KB so site-content.json stays lightweight and under Vercel's 4.5MB limit
