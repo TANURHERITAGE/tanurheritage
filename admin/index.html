@@ -775,17 +775,17 @@
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="global-reg-status" id="global-reg-status-open" value="open" checked>
                 <label class="form-check-label small fw-bold text-success" for="global-reg-status-open">
-                  <i class="bi bi-check-circle-fill me-1"></i> Registration Opened
+                  <i class="bi bi-check-circle-fill me-1"></i> Registration Active (Enabled)
                 </label>
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="global-reg-status" id="global-reg-status-closed" value="closed">
                 <label class="form-check-label small fw-bold text-danger" for="global-reg-status-closed">
-                  <i class="bi bi-x-circle-fill me-1"></i> Registration Closed
+                  <i class="bi bi-x-circle-fill me-1"></i> Registration Disabled (Link Inactive)
                 </label>
               </div>
             </div>
-            <small class="text-muted">Master control: open or close registration across the carnival.</small>
+            <small class="text-muted">Master control: open or disable registration links across the carnival.</small>
           </div>
           <div class="col-md-6">
             <label class="form-label small fw-semibold"><i class="bi bi-whatsapp text-success me-1"></i> Target WhatsApp Number (for submissions)</label>
@@ -1626,11 +1626,11 @@
                     <label class="form-label small fw-semibold mb-0"><i class="bi bi-clock-history me-1"></i> Registration Status:</label>
                     <div class="form-check form-check-inline mb-0">
                       <input class="form-check-input" type="radio" name="prog-reg-status" id="prog-reg-status-open" value="open" checked>
-                      <label class="form-check-label small fw-bold text-success" for="prog-reg-status-open">Registration Opened</label>
+                      <label class="form-check-label small fw-bold text-success" for="prog-reg-status-open">Registration Active (Link Enabled)</label>
                     </div>
                     <div class="form-check form-check-inline mb-0">
                       <input class="form-check-input" type="radio" name="prog-reg-status" id="prog-reg-status-closed" value="closed">
-                      <label class="form-check-label small fw-bold text-danger" for="prog-reg-status-closed">Registration Closed</label>
+                      <label class="form-check-label small fw-bold text-danger" for="prog-reg-status-closed">Registration Disabled (Link Inactive)</label>
                     </div>
                   </div>
                 </div>
@@ -3551,8 +3551,8 @@
         ? '<span class="badge bg-success">Visible</span>'
         : '<span class="badge bg-secondary">Hidden</span>';
       const regBadge = p.registrationStatus === 'closed'
-        ? '<span class="badge bg-danger"><i class="bi bi-x-circle me-1"></i>Registration Closed</span>'
-        : '<span class="badge bg-success-subtle text-success border border-success"><i class="bi bi-check-circle me-1"></i>Registration Opened</span>';
+        ? '<span class="badge bg-secondary-subtle text-secondary border"><i class="bi bi-link-45deg me-1"></i>Link Inactive (Disabled)</span>'
+        : '<span class="badge bg-success-subtle text-success border border-success"><i class="bi bi-check-circle me-1"></i>Registration Active</span>';
       const posterBadge = p.showPoster === false
         ? '<span class="badge bg-secondary-subtle text-secondary border">Poster Off</span>'
         : (p.posterImage ? '<span class="badge bg-warning-subtle text-dark border border-warning">Custom Poster Uploaded</span>' : '<span class="badge bg-light text-dark border">Poster Slot Ready</span>');
@@ -3575,8 +3575,8 @@
             <div class="small text-secondary text-truncate" style="max-width: 680px;">${p.description || ''}</div>
           </div>
           <div class="d-flex align-items-center gap-1 flex-wrap">
-            <button class="btn btn-sm ${p.registrationStatus === 'closed' ? 'btn-outline-success' : 'btn-outline-danger'}" onclick="toggleProgrammeRegStatus(${idx})" title="${p.registrationStatus === 'closed' ? 'Click to Open Registration' : 'Click to Close Registration'}">
-              <i class="bi ${p.registrationStatus === 'closed' ? 'bi-unlock-fill' : 'bi-lock-fill'} me-1"></i> ${p.registrationStatus === 'closed' ? 'Open Reg' : 'Close Reg'}
+            <button class="btn btn-sm ${p.registrationStatus === 'closed' ? 'btn-outline-success' : 'btn-outline-danger'}" onclick="toggleProgrammeRegStatus(${idx})" title="${p.registrationStatus === 'closed' ? 'Click to Enable Registration Link' : 'Click to Disable Registration Link'}">
+              <i class="bi ${p.registrationStatus === 'closed' ? 'bi-unlock-fill' : 'bi-lock-fill'} me-1"></i> ${p.registrationStatus === 'closed' ? 'Enable Link' : 'Disable Link'}
             </button>
             <button class="btn btn-sm ${p.active === false ? 'btn-outline-primary' : 'btn-outline-secondary'}" onclick="toggleProgrammeVisibility(${idx})" title="${p.active === false ? 'Click to Show on Our Programmes' : 'Click to Hide from Our Programmes'}">
               <i class="bi ${p.active === false ? 'bi-eye' : 'bi-eye-slash'}"></i>
@@ -3819,8 +3819,8 @@
     const current = list[idx].registrationStatus || 'open';
     list[idx].registrationStatus = current === 'closed' ? 'open' : 'closed';
     renderCarnivalAdmin();
-    const stateLabel = list[idx].registrationStatus === 'closed' ? 'CLOSED' : 'OPENED';
-    showStatusBanner('info', `Registration for "${list[idx].title || 'Programme'}" is now ${stateLabel}! Click "Save to Website" to publish.`);
+    const stateLabel = list[idx].registrationStatus === 'closed' ? 'DISABLED (Link Inactive in Background)' : 'ACTIVE (Link Enabled)';
+    showStatusBanner('info', `Registration link for "${list[idx].title || 'Programme'}" is now ${stateLabel}! Click "Save to Website" to publish.`);
   }
 
   function toggleProgrammeVisibility(idx) {
