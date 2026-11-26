@@ -94,33 +94,7 @@
       "image": "https://i.postimg.cc/MGcFfGrx/image.png",
       "link": "article.html?id=6944249057337203015"
     },
-    "mostRead": [
-      {
-        "id": "mr-1",
-        "title": "മൈസൂർ അധിനിവേശ കാലത്തെ താനൂർ",
-        "link": "article.html?id=3834730641862462277"
-      },
-      {
-        "id": "mr-2",
-        "title": "താനൂരിന്റെ മഹത്തായ മാപ്പിള സാഹിത്യ പാരമ്പര്യം",
-        "link": "article.html?id=4363435959433211658"
-      },
-      {
-        "id": "mr-3",
-        "title": "മലയാള സാഹിത്യത്തിൽ താനൂരിന്റെ പാരമ്പര്യം",
-        "link": "article.html?id=7565311976029258255"
-      },
-      {
-        "id": "mr-4",
-        "title": "വെട്ടത്തുനാട്: അഥവാ താനൂർ സ്വരൂപം",
-        "link": "article.html?id=2487327519945937082"
-      },
-      {
-        "id": "mr-5",
-        "title": "പ്രാചീന താനൂർ: ചരിത്രത്തിലെ സൂചനകൾ",
-        "link": "article.html?id=4493212617688566905"
-      }
-    ]
+    "mostRead": []
   },
   "videos": {
     "mainGrid": [
