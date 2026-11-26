@@ -51,10 +51,10 @@
     "topMain": {
       "category": "ARTICLES",
       "title": "താനൂർ: വൈവിധ്യങ്ങളുടെ കലവറ",
-      "excerpt": "മലബാറിലെ മറ്റു പ്രദേശങ്ങളിൽ നിന്നും ഭിന്നമായി ഒട്ടേറെ വൈവിധ്യങ്ങൾ താനൂരിനു മാത്രം അവകാശപ്പെടാനുണ്ട്. ഭൂമിശാസ്ത്രം, ആചാരങ്ങൾ, ഭാഷ, തൊഴിൽ, ഭക്ഷണം, കുടുംബം, സമൂഹം തുടങ്ങിയ മേഖലകളിലെല്ലാം താനൂരിന്റെ തനതായ മുദ്രകൾ കാണാം.",
       "author": "The Tanur Heritage",
       "time": "FEATURED ARTICLE",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2lewDRRiFzPHSSpyTyHg89Vmhyn8G3QB8Uw&s",
+      "excerpt": "മലബാറിലെ മറ്റു പ്രദേശങ്ങളിൽ നിന്നും ഭിന്നമായി ഒട്ടേറെ വൈവിധ്യങ്ങൾ താനൂരിനു മാത്രം അവകാശപ്പെടാനുണ്ട്. ഭൂമിശാസ്ത്രം, ആചാരങ്ങൾ, ഭാഷ, തൊഴിൽ, ഭക്ഷണം, കുടുംബം, സമൂഹം തുടങ്ങിയ മേഖലകളിലെല്ലാം താനൂരിന്റെ തനതായ മുദ്രകൾ കാണാം.",
+      "image": "https://i.postimg.cc/0y96NMjS/image.png",
       "link": "article.html?id=236607451031382313"
     },
     "gridArticles": [
@@ -65,7 +65,7 @@
         "excerpt": "മലബാറിന്റെ പൊതുവെയുള്ള ചരിത്രത്തിൽ സഞ്ചാരികളുടെ വിവരണങ്ങൾക്ക് വലിയ പ്രസക്തിയുണ്ട്. നിരവധി യൂറോപ്യർ ഇവിടെ സന്ദർശിക്കുകയും തങ്ങളുടെ യാത്രാവിവരണങ്ങളിൽ താനൂരിനെ രേഖപ്പെടുത്തുകയും ചെയ്തിട്ടുണ്ട്.",
         "author": "The Tanur Heritage",
         "time": "HISTORICAL ARCHIVE",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/New_account_of_East_India_and_Persia_vol.2_%28IA_in.gov.ignca.6070%29.pdf/page1-789px-New_account_of_East_India_and_Persia_vol.2_%28IA_in.gov.ignca.6070%29.pdf.jpg",
+        "image": "https://i.postimg.cc/RZW3krDF/images.jpg",
         "link": "article.html?id=1506222343135509496"
       },
       {
@@ -85,13 +85,13 @@
         "excerpt": "1498-ൽ വാസ്കോ ഡ ഗാമ കോഴിക്കോട്ടെത്തിയതു മുതലാണ് കേരളത്തിൽ പോർച്ചുഗീസ് യുഗം ആരംഭിക്കുന്നത്. 1525-ൽ കോഴിക്കോട്ടെ പോർച്ചുഗീസ് കോട്ട തകർത്തതോടെ താനൂർ പോർച്ചുഗീസുകാരുടെ ശ്രദ്ധാകേന്ദ്രമായി മാറി.",
         "author": "The Tanur Heritage",
         "time": "HISTORICAL STUDY",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMv5MSlsfivZv85Mx_wDhvsJESXrgSmMOPjQ&s",
+        "image": "https://i.postimg.cc/C5nXyxk7/image.png",
         "link": "article.html?id=5360548811375307347"
       }
     ],
     "sidebarHighlight": {
       "title": "താനൂർ: താന്നിമരങ്ങളുടെ നാട് ?",
-      "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjqFExqYhYCoT6vDkjLvR6pkk8O6Z_k3Jd4VwKEb2krBxx5BUCaunqDGZEhA_YMOyEoW0uQNUAr8msSw7XhCQ5zeR9yNE5nC-GZlFVe73qDxZNT-f_dvld8-5IHfVG0F80z5ZlG0aU0puo/s320/thanni+maram.jpg",
+      "image": "https://i.postimg.cc/MGcFfGrx/image.png",
       "link": "article.html?id=6944249057337203015"
     },
     "mostRead": [
@@ -508,5 +508,6 @@
     "siteName": "The Tanur Heritage",
     "siteDescription": "The Tanur Heritage – Discover the rich history, culture, monuments, and traditions of Tanur, a coastal town in Kerala.",
     "siteUrl": "https://tanurheritage.in/"
-  }
+  },
+  "homeGallery": []
 }
