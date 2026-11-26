@@ -536,11 +536,11 @@
   "carnival": {
     "homepagePoster": {
       "enabled": true,
-      "image": "assets/img/posters/carnival-poster-2k26.jpg",
       "dateBadge": "DEC 11 - 14",
       "hoverCue": "View Programmes",
       "buttonText": "Register Now",
-      "buttonLink": "programmes.html"
+      "buttonLink": "programmes.html",
+      "image": "assets/img/posters/carnival-poster-2k26.jpg"
     },
     "programmesPage": {
       "eyebrow": "Tanur 2K26 Carnival Highlights",
