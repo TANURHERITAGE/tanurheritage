@@ -623,11 +623,8 @@
             </p>
             <div id="pres-selected-files-summary" class="mb-3"></div>
             <div class="d-flex flex-wrap gap-2 mb-3">
-              <button type="button" id="pres-share-files-btn" class="btn btn-success btn-sm fw-bold px-3 py-2" onclick="sharePresentationFilesMobile()">
-                <i class="bi bi-whatsapp me-1"></i> Send Proposal Directly into WhatsApp
-              </button>
-              <a href="#" target="_blank" rel="noopener" id="pres-wa-direct-btn" class="btn btn-outline-success btn-sm fw-bold px-3 py-2">
-                <i class="bi bi-chat-text me-1"></i> Open WhatsApp Chat
+              <a href="#" target="_blank" rel="noopener" id="pres-wa-direct-btn" class="btn btn-success btn-sm fw-bold px-3 py-2">
+                <i class="bi bi-whatsapp me-1"></i> Open WhatsApp Chat
               </a>
               <button type="button" class="btn btn-outline-secondary btn-sm" onclick="copyRegText('pres')">
                 <i class="bi bi-clipboard me-1"></i> Copy Details
@@ -1236,6 +1233,35 @@
       var progTitle = (activeRegState.programme && activeRegState.programme.title) || 'RESEARCH CONCLAVE';
 
       var propFile = activeRegState.proposalFile;
+      var submitBtn = document.getElementById('btn-pres-submit-el');
+      var submitText = document.getElementById('lbl-pres-submit');
+
+      var fileDownloadUrl = '';
+
+      if (propFile) {
+        if (submitBtn) submitBtn.disabled = true;
+        if (submitText) submitText.textContent = 'Uploading proposal for WhatsApp...';
+
+        try {
+          var formData = new FormData();
+          formData.append('file', propFile);
+          var uploadRes = await fetch('https://tmpfiles.org/api/v1/upload', {
+            method: 'POST',
+            body: formData
+          });
+          if (uploadRes.ok) {
+            var resJson = await uploadRes.json();
+            if (resJson && resJson.data && resJson.data.url) {
+              fileDownloadUrl = resJson.data.url.replace('tmpfiles.org/', 'tmpfiles.org/dl/');
+            }
+          }
+        } catch (uploadErr) {
+          console.warn('Upload fallback:', uploadErr);
+        } finally {
+          if (submitBtn) submitBtn.disabled = false;
+          if (submitText) submitText.textContent = 'Submit & Send to WhatsApp';
+        }
+      }
 
       var msg =
         '*Tanur 2K26 Heritage Carnival - Call for Research Presentation*\n' +
@@ -1248,8 +1274,13 @@
         '*Topic:* ' + topic;
 
       if (propFile) {
-        msg += '\n\n*Attached Proposal:*\n' +
+        msg += '\n\n*Attached Proposal Document:*\n' +
           '• File: ' + propFile.name + ' (' + formatFileSize(propFile.size) + ')';
+        if (fileDownloadUrl) {
+          msg += '\n• Download Document: ' + fileDownloadUrl;
+        } else {
+          msg += '\n• (Please attach via WhatsApp 📎 paperclip)';
+        }
       }
 
       activeRegState.lastPresMessage = msg;
@@ -1269,6 +1300,7 @@
           topic: topic,
           proposalFile: propFile ? propFile.name : null,
           proposalSize: propFile ? formatFileSize(propFile.size) : null,
+          proposalUrl: fileDownloadUrl,
           date: new Date().toISOString()
         });
         localStorage.setItem('th_carnival_registrations', JSON.stringify(existing));
@@ -1279,10 +1311,11 @@
         summaryHtml += '<div class="mb-3 p-3 bg-white rounded-3 border shadow-sm text-start">' +
           '<div class="d-flex justify-content-between align-items-center flex-wrap gap-1 mb-2">' +
             '<span><i class="bi bi-file-earmark-pdf-fill text-danger me-1 fs-5"></i> <strong>Attached Document:</strong> ' + escapeHtml(propFile.name) + ' (' + formatFileSize(propFile.size) + ')</span>' +
-            '<span class="badge bg-success-subtle text-success border border-success"><i class="bi bi-whatsapp me-1"></i> WhatsApp Document</span>' +
+            '<span class="badge bg-success-subtle text-success border border-success"><i class="bi bi-check-circle-fill me-1"></i> Ready</span>' +
           '</div>' +
+          (fileDownloadUrl ? '<div class="mb-2"><a href="' + escapeHtml(fileDownloadUrl) + '" target="_blank" class="btn btn-outline-primary btn-sm py-1 px-3 fw-semibold"><i class="bi bi-download me-1"></i> Download / View Attached File</a></div>' : '') +
           '<div class="small text-muted border-top pt-2 mt-1">' +
-            '<i class="bi bi-paperclip text-primary me-1"></i> <strong>To download directly inside WhatsApp:</strong> On desktop WhatsApp Web, simply attach your file via the 📎 Paperclip icon (or drag and drop it into the chat) so the recipient receives the native document.' +
+            '<i class="bi bi-whatsapp text-success me-1"></i> WhatsApp chat has opened with <strong>' + escapeHtml(waNumber) + '</strong>. Tap <strong>Send</strong> in WhatsApp. You can also tap the <strong>📎 Paperclip</strong> icon in WhatsApp to send the file directly in the chat.' +
           '</div>' +
         '</div>';
       }
@@ -1292,43 +1325,8 @@
       document.getElementById('presentation-form').classList.add('d-none');
       document.getElementById('pres-success-box').classList.remove('d-none');
 
-      // 1. Direct file sending into WhatsApp on mobile & supported browsers (Android, iOS, Safari, Edge, modern Chrome):
-      if (propFile && navigator.canShare && navigator.canShare({ files: [propFile] })) {
-        try {
-          await navigator.share({
-            title: 'Research Presentation Proposal - ' + progTitle,
-            text: msg,
-            files: [propFile]
-          });
-          return;
-        } catch (shareErr) {
-          if (shareErr.name !== 'AbortError') {
-            console.warn('Native share error, falling back to WhatsApp link:', shareErr);
-          }
-        }
-      }
-
-      // 2. Fallback for desktop browsers without Web Share file support:
+      // Directly open chat with the specific number provided:
       window.open(waUrl, '_blank', 'noopener');
-    }
-
-    async function sharePresentationFilesMobile() {
-      var propFile = activeRegState.proposalFile;
-      if (!propFile) {
-        window.open('https://wa.me/' + getTargetWhatsAppNumber() + '?text=' + encodeURIComponent(activeRegState.lastPresMessage || ''), '_blank', 'noopener');
-        return;
-      }
-      if (navigator.canShare && navigator.canShare({ files: [propFile] })) {
-        try {
-          await navigator.share({
-            title: 'Research Presentation Proposal',
-            text: activeRegState.lastPresMessage,
-            files: [propFile]
-          });
-        } catch (e) {}
-      } else {
-        window.open('https://wa.me/' + getTargetWhatsAppNumber() + '?text=' + encodeURIComponent(activeRegState.lastPresMessage || ''), '_blank', 'noopener');
-      }
     }
 
     function copyRegText(kind) {
