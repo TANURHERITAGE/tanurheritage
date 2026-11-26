@@ -892,15 +892,9 @@
                 <label class="form-label small fw-semibold">Topic Field Label</label>
                 <input type="text" id="tpl-pres-topic" class="form-control form-control-sm">
               </div>
-              <div class="row g-2 mb-2">
-                <div class="col-6">
-                  <label class="form-label small fw-semibold">Abstract Upload Label</label>
-                  <input type="text" id="tpl-pres-abs" class="form-control form-control-sm">
-                </div>
-                <div class="col-6">
-                  <label class="form-label small fw-semibold">Paper Upload Label</label>
-                  <input type="text" id="tpl-pres-pap" class="form-control form-control-sm">
-                </div>
+              <div class="mb-2">
+                <label class="form-label small fw-semibold">Proposal Upload Label</label>
+                <input type="text" id="tpl-pres-proposal" class="form-control form-control-sm" placeholder="Attach your proposal">
               </div>
               <div class="mb-2">
                 <label class="form-label small fw-semibold">Attachment Limit Note</label>
@@ -1987,8 +1981,7 @@
         presentationEmailLabel: 'Email ID',
         presentationInstitutionLabel: 'Institution Name',
         presentationTopicLabel: 'Topic',
-        presentationAbstractLabel: 'Attach Abstract',
-        presentationPaperLabel: 'Attach Paper',
+        presentationProposalLabel: 'Attach your proposal',
         presentationFileNote: 'Files up to 500 MB can be included (PDF, DOC, DOCX, PPT, ZIP, etc.)',
         presentationSubmitText: 'Submit & Send to WhatsApp',
         presentationDescription: 'Scholars, researchers, archivists, postgraduate students and manuscript enthusiasts are invited to submit research proposals on the following themes:\n\n* Major manuscript collections, libraries and archival centres\n* Traditional centres of Islamic learning and manuscript scholarship\n* Arabic, Arabi-Malayalam and Malayalam manuscript traditions\n* Contributions of scholars, scribes, copyists and collectors\n* Manuscripts as sources for the social, cultural and intellectual history of Malabar\n* Manuscript cataloguing, conservation and digitisation\n* Unpublished manuscripts and emerging research possibilities\n\nResearchers are encouraged to present original research, archival findings, fieldwork experiences and critical studies that contribute to a deeper understanding of Malabar\'s manuscript heritage.\n\nSubmit your research proposal and be part of an academic dialogue exploring the rich manuscript traditions of Malabar.\n\nSelected proposals will be considered for research presentations. Confirmation of acceptance will be communicated to the respective applicants following the review process. Applicants are requested to await the official notification regarding the approval of their proposals.'
@@ -3533,8 +3526,7 @@
     setVal('tpl-pres-email', rs.presentationEmailLabel || 'Email ID');
     setVal('tpl-pres-institution', rs.presentationInstitutionLabel || 'Institution Name');
     setVal('tpl-pres-topic', rs.presentationTopicLabel || 'Topic');
-    setVal('tpl-pres-abs', rs.presentationAbstractLabel || 'Attach Abstract');
-    setVal('tpl-pres-pap', rs.presentationPaperLabel || 'Attach Paper');
+    setVal('tpl-pres-proposal', rs.presentationProposalLabel || rs.presentationAbstractLabel || 'Attach your proposal');
     setVal('tpl-pres-note', rs.presentationFileNote || '');
     setVal('tpl-pres-btn', rs.presentationSubmitText || 'Submit & Send to WhatsApp');
     setVal('tpl-pres-desc', rs.presentationDescription || '');
@@ -3646,8 +3638,7 @@
       presentationEmailLabel: getVal('tpl-pres-email') || 'Email ID',
       presentationInstitutionLabel: getVal('tpl-pres-institution') || 'Institution Name',
       presentationTopicLabel: getVal('tpl-pres-topic') || 'Topic',
-      presentationAbstractLabel: getVal('tpl-pres-abs') || 'Attach Abstract',
-      presentationPaperLabel: getVal('tpl-pres-pap') || 'Attach Paper',
+      presentationProposalLabel: getVal('tpl-pres-proposal') || 'Attach your proposal',
       presentationFileNote: getVal('tpl-pres-note') || 'Files up to 500 MB can be included (PDF, DOC, DOCX, PPT, ZIP, etc.)',
       presentationSubmitText: getVal('tpl-pres-btn') || 'Submit & Send to WhatsApp',
       presentationDescription: getVal('tpl-pres-desc')
