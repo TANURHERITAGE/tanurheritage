@@ -765,6 +765,10 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/site-loader.js"></script>
 
+  <!-- Supabase Cloud Integration -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-client.js"></script>
+
   <script>
     // Built-in default configuration (hydrated dynamically from data/site-content.json)
     var DEFAULT_CARNIVAL_DATA = {
@@ -1322,6 +1326,20 @@
         localStorage.setItem('th_carnival_registrations', JSON.stringify(existing));
       } catch (e) {}
 
+      // Save to Supabase Cloud Database (if configured)
+      if (typeof saveRegistrationToSupabase === 'function') {
+        saveRegistrationToSupabase({
+          type: 'participant',
+          programme: progTitle,
+          name: name,
+          whatsapp: wa,
+          email: email,
+          institution: institution
+        }).catch(function(err) {
+          console.warn('Supabase save notice:', err);
+        });
+      }
+
       document.getElementById('part-wa-direct-btn').href = waUrl;
       document.getElementById('participant-form').classList.add('d-none');
       var successBox = document.getElementById('part-success-box');
@@ -1376,6 +1394,42 @@
         });
         localStorage.setItem('th_carnival_registrations', JSON.stringify(existing));
       } catch (e) {}
+
+      // Upload files to Supabase Storage and save record to Supabase Database
+      if (typeof uploadProposalFileToSupabase === 'function' && files.length > 0) {
+        Promise.all(files.map(function(f) {
+          return uploadProposalFileToSupabase(f, progTitle);
+        })).then(function(uploadedFiles) {
+          var validFiles = (uploadedFiles || []).filter(Boolean);
+          if (typeof saveRegistrationToSupabase === 'function') {
+            saveRegistrationToSupabase({
+              type: 'presentation',
+              programme: progTitle,
+              name: name,
+              whatsapp: wa,
+              email: email,
+              institution: institution,
+              topic: topic,
+              proposal_files: validFiles.length ? validFiles : files.map(function(f) { return { name: f.name, size: f.size }; })
+            });
+          }
+        }).catch(function(err) {
+          console.warn('Supabase upload notice:', err);
+        });
+      } else if (typeof saveRegistrationToSupabase === 'function') {
+        saveRegistrationToSupabase({
+          type: 'presentation',
+          programme: progTitle,
+          name: name,
+          whatsapp: wa,
+          email: email,
+          institution: institution,
+          topic: topic,
+          proposal_files: []
+        }).catch(function(err) {
+          console.warn('Supabase save notice:', err);
+        });
+      }
 
       // Render summary in success box
       var summaryHtml = '';
