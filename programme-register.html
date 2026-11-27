@@ -643,6 +643,9 @@
               <a href="#" target="_blank" rel="noopener" id="pres-wa-direct-btn" class="btn btn-success btn-sm fw-bold px-3 py-2">
                 <i class="bi bi-whatsapp me-1"></i> Open WhatsApp Chat
               </a>
+              <button type="button" class="btn btn-outline-primary btn-sm fw-semibold" onclick="redownloadFiles()">
+                <i class="bi bi-download me-1"></i> Re-download File
+              </button>
               <button type="button" class="btn btn-outline-secondary btn-sm" onclick="copyWhatsAppNumber()">
                 <i class="bi bi-telephone me-1"></i> Copy WhatsApp Number
               </button>
@@ -1390,11 +1393,12 @@
         });
         summaryHtml += '</div>';
 
-        summaryHtml += '<div class="p-3 bg-success-subtle rounded-3 border border-success small text-success-emphasis mb-2">' +
-          '<div class="fw-bold fs-6 mb-2 text-success"><i class="bi bi-whatsapp me-1"></i> WhatsApp Chat Opened with ' + escapeHtml(waDisplay) + ':</div>' +
-          '<div class="mb-2"><span class="badge bg-success me-1">1</span> <strong>Proposal Document:</strong> Your proposal document has been downloaded to your device.</div>' +
-          '<div class="mb-2"><span class="badge bg-success me-1">2</span> <strong>Direct Chat:</strong> WhatsApp chat with <strong>' + escapeHtml(waDisplay) + '</strong> is opened with your registration details.</div>' +
-          '<div><span class="badge bg-success me-1">3</span> <strong>Send &amp; Attach:</strong> In WhatsApp, tap <strong>Send</strong> and attach your document via the <strong>📎 Paperclip</strong> icon directly in the chat.</div>' +
+        summaryHtml += '<div class="p-3 bg-warning-subtle rounded-3 border border-warning text-dark mb-3">' +
+          '<div class="fw-bold fs-6 mb-2 text-warning-emphasis"><i class="bi bi-exclamation-triangle-fill text-warning me-1"></i> Important: How to Attach Your Document in WhatsApp</div>' +
+          '<div class="small mb-2 text-secondary">WhatsApp Web / Desktop does not allow websites to automatically attach files from a web link for security reasons. Your proposal document has been downloaded to your computer.</div>' +
+          '<div class="mb-2 small"><span class="badge bg-dark me-1">Step 1</span> Click <strong>Open WhatsApp Chat</strong> below to open chat with <strong>' + escapeHtml(waDisplay) + '</strong>.</div>' +
+          '<div class="mb-2 small"><span class="badge bg-dark me-1">Step 2</span> Send your pre-filled registration details.</div>' +
+          '<div class="small fw-semibold text-success"><span class="badge bg-success me-1">Step 3</span> Click the <strong>📎 Paperclip</strong> icon &rarr; <strong>Document</strong> in WhatsApp (or drag your downloaded file from your download bar into the chat) and hit Send.</div>' +
         '</div>';
 
         summaryHtml += '</div>';
