@@ -401,6 +401,20 @@
       font-size: 0.82rem;
       font-weight: 600;
     }
+    .desktop-step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      background: #0d6efd;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.75rem;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
 
     .btn-whatsapp-submit {
       background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
@@ -566,7 +580,10 @@
               <a href="#" target="_blank" rel="noopener" id="part-wa-direct-btn" class="btn btn-success btn-sm fw-bold">
                 <i class="bi bi-whatsapp me-1"></i> Open WhatsApp Chat
               </a>
-              <button type="button" class="btn btn-outline-success btn-sm fw-bold" onclick="copyRegText('part')">
+              <button type="button" class="btn btn-outline-secondary btn-sm" onclick="copyWhatsAppNumber()">
+                <i class="bi bi-telephone me-1"></i> Copy WhatsApp Number
+              </button>
+              <button type="button" class="btn btn-outline-secondary btn-sm" onclick="copyRegText('part')">
                 <i class="bi bi-clipboard me-1"></i> Copy Details
               </button>
               <button type="button" class="btn btn-outline-secondary btn-sm" onclick="resetForm('part')">
@@ -619,13 +636,19 @@
           <div id="pres-success-box" class="alert alert-success d-none mb-4" role="alert">
             <h5 class="fw-bold mb-1"><i class="bi bi-check-circle-fill me-2"></i>Proposal Ready for WhatsApp!</h5>
             <p class="small mb-2" id="pres-success-note">
-              Your details and attached proposal have been prepared for WhatsApp (<strong class="wa-num-display">+91 9605057688</strong>).
+              Your details and proposal document have been prepared for WhatsApp (<strong class="wa-num-display">+91 9605057688</strong>).
             </p>
             <div id="pres-selected-files-summary" class="mb-3"></div>
             <div class="d-flex flex-wrap gap-2 mb-3">
+              <button type="button" class="btn btn-success btn-sm fw-bold px-3 py-2 d-none" id="pres-reshare-btn" onclick="sharePresentationFilesToWhatsApp()">
+                <i class="bi bi-share-fill me-1"></i> Share Documents to WhatsApp
+              </button>
               <a href="#" target="_blank" rel="noopener" id="pres-wa-direct-btn" class="btn btn-success btn-sm fw-bold px-3 py-2">
                 <i class="bi bi-whatsapp me-1"></i> Open WhatsApp Chat
               </a>
+              <button type="button" class="btn btn-outline-secondary btn-sm" onclick="copyWhatsAppNumber()">
+                <i class="bi bi-telephone me-1"></i> Copy WhatsApp Number
+              </button>
               <button type="button" class="btn btn-outline-secondary btn-sm" onclick="copyRegText('pres')">
                 <i class="bi bi-clipboard me-1"></i> Copy Details
               </button>
@@ -635,7 +658,7 @@
             </div>
             <div class="p-2 bg-white rounded border small text-muted">
               <i class="bi bi-file-earmark-pdf fs-6 text-danger me-1"></i>
-              <strong>Direct WhatsApp Attachment:</strong> Your proposal document goes directly into WhatsApp so the recipient can download and view everything directly within WhatsApp without clicking external links. On desktop, if the file is not auto-attached by your browser, simply drag or attach your document via the <strong>📎 Paperclip</strong> icon inside WhatsApp.
+              <strong>Direct WhatsApp Document Submission:</strong> Your actual proposal file is submitted directly to WhatsApp (<strong class="wa-num-display">+91 9605057688</strong>) so the receiving team can download, open, and view the document directly within WhatsApp without external download links.
             </div>
           </div>
 
@@ -662,14 +685,14 @@
                 <input type="text" class="form-control" id="pres-topic" placeholder="Enter your research / presentation topic" required>
               </div>
 
-              <!-- Single Proposal File Upload (up to 500 MB) -->
+              <!-- Proposal File Upload (PDF, DOC, DOCX up to 500 MB) -->
               <div class="col-12">
                 <div class="file-drop-card">
                   <label for="pres-proposal-file" class="form-label d-flex align-items-center justify-content-between mb-2">
                     <span><i class="bi bi-file-earmark-arrow-up text-primary me-1"></i> <span id="lbl-pres-proposal">Attach your proposal</span></span>
                     <span class="badge bg-light text-dark border">Max <span class="max-mb-val">500</span> MB</span>
                   </label>
-                  <input type="file" class="form-control" id="pres-proposal-file" onchange="handlePresentationFileChange(this, 'proposal')">
+                  <input type="file" class="form-control" id="pres-proposal-file" multiple accept=".pdf,application/pdf,.doc,.docx,.ppt,.pptx,.zip" onchange="handlePresentationFileChange(this, 'proposal')">
                   <div id="pres-proposal-status"></div>
                 </div>
               </div>
@@ -875,10 +898,10 @@
     var activeRegState = {
       programme: DEFAULT_CARNIVAL_DATA.programmes[0],
       settings: DEFAULT_CARNIVAL_DATA.registrationSettings,
+      proposalFiles: [],
       proposalFile: null,
       lastPartMessage: '',
       lastPresMessage: '',
-      lastProposalUrl: '',
       userPickedMode: false,
       currentMode: 'participant'
     };
@@ -1132,43 +1155,79 @@
 
     function handlePresentationFileChange(input, kind) {
       kind = kind || 'proposal';
-      var statusEl = document.getElementById('pres-proposal-status') || document.getElementById('pres-' + kind + '-status');
+      var statusEl = document.getElementById('pres-proposal-status');
       var maxMB = Number(activeRegState.settings.maxFileSizeMB) || 500;
       var maxBytes = maxMB * 1024 * 1024;
-      var file = input.files && input.files[0];
+      var selected = input.files ? Array.from(input.files) : [];
 
-      if (!file) {
+      if (!selected.length) {
+        activeRegState.proposalFiles = [];
         activeRegState.proposalFile = null;
         if (statusEl) statusEl.innerHTML = '';
         return;
       }
 
-      if (file.size > maxBytes) {
+      var oversized = selected.filter(function(f) { return f.size > maxBytes; });
+      if (oversized.length > 0) {
         input.value = '';
+        activeRegState.proposalFiles = [];
         activeRegState.proposalFile = null;
         if (statusEl) {
           statusEl.innerHTML =
-            '<div class="file-error-pill"><i class="bi bi-exclamation-triangle-fill me-1"></i> File exceeds ' + maxMB + ' MB limit (' + formatFileSize(file.size) + '). Please choose a smaller file.</div>';
+            '<div class="file-error-pill"><i class="bi bi-exclamation-triangle-fill me-1"></i> File exceeds ' + maxMB + ' MB limit: ' +
+            escapeHtml(oversized.map(function(f) { return f.name; }).join(', ')) + '</div>';
         }
         return;
       }
 
-      activeRegState.proposalFile = file;
-
-      if (statusEl) {
-        statusEl.innerHTML =
-          '<div class="file-status-pill">' +
-            '<span class="text-truncate"><i class="bi bi-check-circle-fill me-1"></i> ' + escapeHtml(file.name) + ' (' + formatFileSize(file.size) + ')</span>' +
-            '<button type="button" class="btn btn-sm btn-link text-danger p-0 ms-2 text-decoration-none fw-bold" onclick="clearPresentationFile(\'' + kind + '\')">Remove</button>' +
-          '</div>';
-      }
+      activeRegState.proposalFiles = selected;
+      activeRegState.proposalFile = selected[0] || null;
+      renderPresentationFilesList();
     }
 
-    function clearPresentationFile(kind) {
-      var input = document.getElementById('pres-proposal-file') || document.getElementById('pres-' + (kind || 'proposal') + '-file');
-      var statusEl = document.getElementById('pres-proposal-status') || document.getElementById('pres-' + (kind || 'proposal') + '-status');
+    function renderPresentationFilesList() {
+      var statusEl = document.getElementById('pres-proposal-status');
+      if (!statusEl) return;
+      var files = activeRegState.proposalFiles || [];
+      if (!files.length) {
+        statusEl.innerHTML = '';
+        return;
+      }
+
+      var html = '<div class="mt-2 d-flex flex-column gap-1">';
+      files.forEach(function(f, idx) {
+        var isPdf = /\.pdf$/i.test(f.name);
+        var icon = isPdf ? 'bi-file-earmark-pdf-fill text-danger' : 'bi-file-earmark-text-fill text-primary';
+        html += '<div class="file-status-pill">' +
+          '<span class="text-truncate d-flex align-items-center gap-1"><i class="bi ' + icon + ' me-1"></i> <strong>' + escapeHtml(f.name) + '</strong> <span class="text-muted fw-normal">(' + formatFileSize(f.size) + ')</span></span>' +
+          '<button type="button" class="btn btn-sm btn-link text-danger p-0 ms-2 text-decoration-none fw-bold" onclick="removePresentationFile(' + idx + ')">Remove</button>' +
+        '</div>';
+      });
+
+      if (files.length > 1) {
+        html += '<div class="text-end mt-1"><button type="button" class="btn btn-sm btn-link text-muted p-0 text-decoration-none" onclick="clearPresentationFiles()">Clear all (' + files.length + ' files)</button></div>';
+      }
+      html += '</div>';
+      statusEl.innerHTML = html;
+    }
+
+    function removePresentationFile(idx) {
+      if (!activeRegState.proposalFiles) return;
+      activeRegState.proposalFiles.splice(idx, 1);
+      activeRegState.proposalFile = activeRegState.proposalFiles[0] || null;
+      var input = document.getElementById('pres-proposal-file');
+      if (input && activeRegState.proposalFiles.length === 0) {
+        input.value = '';
+      }
+      renderPresentationFilesList();
+    }
+
+    function clearPresentationFiles() {
+      var input = document.getElementById('pres-proposal-file');
+      var statusEl = document.getElementById('pres-proposal-status');
       if (input) input.value = '';
       if (statusEl) statusEl.innerHTML = '';
+      activeRegState.proposalFiles = [];
       activeRegState.proposalFile = null;
     }
 
@@ -1177,6 +1236,85 @@
       var settings = activeRegState.settings || {};
       var raw = (prog.whatsappNumber && prog.whatsappNumber.trim()) ? prog.whatsappNumber.trim() : (settings.whatsappNumber || '9605057688');
       return formatWhatsAppTarget(raw);
+    }
+
+    function copyWhatsAppNumber() {
+      var prog = activeRegState.programme || {};
+      var settings = activeRegState.settings || {};
+      var display = (prog.whatsappNumber && prog.whatsappNumber.trim()) ? prog.whatsappNumber.trim() : (settings.whatsappNumber || '9605057688');
+      if (!navigator.clipboard) {
+        prompt('Target WhatsApp Number:', display);
+        return;
+      }
+      navigator.clipboard.writeText(display).then(function() {
+        alert('WhatsApp Number copied: ' + display);
+      }).catch(function() {
+        prompt('Target WhatsApp Number:', display);
+      });
+    }
+
+    function triggerFileDownloads(files) {
+      if (!files || !files.length) return;
+      files.forEach(function(file, idx) {
+        setTimeout(function() {
+          try {
+            var blobUrl = URL.createObjectURL(file);
+            var a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = blobUrl;
+            a.download = file.name;
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(function() {
+              document.body.removeChild(a);
+              URL.revokeObjectURL(blobUrl);
+            }, 3000);
+          } catch (e) {
+            console.error('Download trigger error:', e);
+          }
+        }, idx * 400);
+      });
+    }
+
+    function redownloadFiles() {
+      var files = activeRegState.proposalFiles || [];
+      if (files.length) {
+        triggerFileDownloads(files);
+      } else {
+        alert('No files currently attached to re-download.');
+      }
+    }
+
+    async function sharePresentationFilesToWhatsApp() {
+      var files = activeRegState.proposalFiles || [];
+      var msg = activeRegState.lastPresMessage || '';
+      var progTitle = (activeRegState.programme && activeRegState.programme.title) || 'RESEARCH CONCLAVE';
+
+      if (!files.length) {
+        var waUrl = 'https://wa.me/' + getTargetWhatsAppNumber() + '?text=' + encodeURIComponent(msg);
+        window.open(waUrl, '_blank', 'noopener');
+        return;
+      }
+
+      if (navigator.share) {
+        try {
+          if (navigator.canShare && !navigator.canShare({ files: files })) {
+            alert('Your browser does not support direct file sharing via the share menu. Please use the WhatsApp chat link and attach your file via 📎 paperclip.');
+            return;
+          }
+          await navigator.share({
+            title: progTitle + ' - Proposal Submission',
+            text: msg,
+            files: files
+          });
+        } catch (err) {
+          if (err && err.name !== 'AbortError') {
+            console.warn('Share error:', err);
+          }
+        }
+      } else {
+        alert('Web Share API is not supported in this browser. Please use the WhatsApp chat link.');
+      }
     }
 
     function submitParticipantForm(event) {
@@ -1232,36 +1370,7 @@
       var topic = document.getElementById('pres-topic').value.trim();
       var progTitle = (activeRegState.programme && activeRegState.programme.title) || 'RESEARCH CONCLAVE';
 
-      var propFile = activeRegState.proposalFile;
-      var submitBtn = document.getElementById('btn-pres-submit-el');
-      var submitText = document.getElementById('lbl-pres-submit');
-
-      var fileDownloadUrl = '';
-
-      if (propFile) {
-        if (submitBtn) submitBtn.disabled = true;
-        if (submitText) submitText.textContent = 'Uploading proposal for WhatsApp...';
-
-        try {
-          var formData = new FormData();
-          formData.append('file', propFile);
-          var uploadRes = await fetch('https://tmpfiles.org/api/v1/upload', {
-            method: 'POST',
-            body: formData
-          });
-          if (uploadRes.ok) {
-            var resJson = await uploadRes.json();
-            if (resJson && resJson.data && resJson.data.url) {
-              fileDownloadUrl = resJson.data.url.replace('tmpfiles.org/', 'tmpfiles.org/dl/');
-            }
-          }
-        } catch (uploadErr) {
-          console.warn('Upload fallback:', uploadErr);
-        } finally {
-          if (submitBtn) submitBtn.disabled = false;
-          if (submitText) submitText.textContent = 'Submit & Send to WhatsApp';
-        }
-      }
+      var files = (activeRegState.proposalFiles && activeRegState.proposalFiles.length) ? activeRegState.proposalFiles : (activeRegState.proposalFile ? [activeRegState.proposalFile] : []);
 
       var msg =
         '*Tanur 2K26 Heritage Carnival - Call for Research Presentation*\n' +
@@ -1273,19 +1382,10 @@
         '*Institution Name:* ' + institution + '\n' +
         '*Topic:* ' + topic;
 
-      if (propFile) {
-        msg += '\n\n*Attached Proposal Document:*\n' +
-          '• File: ' + propFile.name + ' (' + formatFileSize(propFile.size) + ')';
-        if (fileDownloadUrl) {
-          msg += '\n• Download Document: ' + fileDownloadUrl;
-        } else {
-          msg += '\n• (Please attach via WhatsApp 📎 paperclip)';
-        }
-      }
-
       activeRegState.lastPresMessage = msg;
 
       var waNumber = getTargetWhatsAppNumber();
+      var waDisplay = (activeRegState.programme && activeRegState.programme.whatsappNumber && activeRegState.programme.whatsappNumber.trim()) ? activeRegState.programme.whatsappNumber.trim() : (activeRegState.settings.whatsappNumber || '9605057688');
       var waUrl = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(msg);
 
       try {
@@ -1298,42 +1398,108 @@
           email: email,
           institution: institution,
           topic: topic,
-          proposalFile: propFile ? propFile.name : null,
-          proposalSize: propFile ? formatFileSize(propFile.size) : null,
-          proposalUrl: fileDownloadUrl,
+          files: files.map(function(f) { return { name: f.name, size: formatFileSize(f.size) }; }),
           date: new Date().toISOString()
         });
         localStorage.setItem('th_carnival_registrations', JSON.stringify(existing));
       } catch (e) {}
 
-      var summaryHtml = '';
-      if (propFile) {
-        summaryHtml += '<div class="mb-3 p-3 bg-white rounded-3 border shadow-sm text-start">' +
-          '<div class="d-flex justify-content-between align-items-center flex-wrap gap-1 mb-2">' +
-            '<span><i class="bi bi-file-earmark-pdf-fill text-danger me-1 fs-5"></i> <strong>Attached Document:</strong> ' + escapeHtml(propFile.name) + ' (' + formatFileSize(propFile.size) + ')</span>' +
-            '<span class="badge bg-success-subtle text-success border border-success"><i class="bi bi-check-circle-fill me-1"></i> Ready</span>' +
-          '</div>' +
-          (fileDownloadUrl ? '<div class="mb-2"><a href="' + escapeHtml(fileDownloadUrl) + '" target="_blank" class="btn btn-outline-primary btn-sm py-1 px-3 fw-semibold"><i class="bi bi-download me-1"></i> Download / View Attached File</a></div>' : '') +
-          '<div class="small text-muted border-top pt-2 mt-1">' +
-            '<i class="bi bi-whatsapp text-success me-1"></i> WhatsApp chat has opened with <strong>' + escapeHtml(waNumber) + '</strong>. Tap <strong>Send</strong> in WhatsApp. You can also tap the <strong>📎 Paperclip</strong> icon in WhatsApp to send the file directly in the chat.' +
-          '</div>' +
-        '</div>';
+      // Check if Web Share API with files is supported (e.g. Android Chrome, iOS Safari)
+      var canShareFiles = false;
+      if (files.length > 0 && typeof navigator.share === 'function') {
+        try {
+          if (typeof navigator.canShare === 'function' && navigator.canShare({ files: files })) {
+            canShareFiles = true;
+          }
+        } catch (e) {
+          canShareFiles = false;
+        }
       }
-      document.getElementById('pres-selected-files-summary').innerHTML = summaryHtml || '<div class="text-muted small">No proposal file attached.</div>';
 
+      // Render summary in success box
+      var summaryHtml = '';
+      if (files.length > 0) {
+        summaryHtml += '<div class="mb-3 p-3 bg-white rounded-3 border shadow-sm text-start">';
+        summaryHtml += '<div class="fw-bold mb-2 text-dark"><i class="bi bi-file-earmark-check-fill text-success me-1"></i> Uploaded Proposal Document' + (files.length > 1 ? 's (' + files.length + ')' : '') + ':</div>';
+        summaryHtml += '<div class="d-flex flex-column gap-2 mb-3">';
+        files.forEach(function(f) {
+          var isPdf = /\.pdf$/i.test(f.name);
+          var icon = isPdf ? 'bi-file-earmark-pdf-fill text-danger' : 'bi-file-earmark-text-fill text-primary';
+          summaryHtml += '<div class="d-flex align-items-center justify-content-between p-2 bg-light rounded border">' +
+            '<span class="text-truncate me-2"><i class="bi ' + icon + ' me-1 fs-5"></i> <strong>' + escapeHtml(f.name) + '</strong> <span class="text-muted small">(' + formatFileSize(f.size) + ')</span></span>' +
+            '<span class="badge bg-success-subtle text-success border border-success"><i class="bi bi-check2"></i> Ready</span>' +
+          '</div>';
+        });
+        summaryHtml += '</div>';
+
+        if (canShareFiles) {
+          // Mobile Web Share flow
+          summaryHtml += '<div class="p-2 bg-success-subtle rounded border border-success small text-success mb-2">' +
+            '<i class="bi bi-phone-fill me-1"></i> <strong>Mobile Document Sharing:</strong> When the share menu opens, choose <strong>WhatsApp</strong> and select chat with <strong>' + escapeHtml(waDisplay) + '</strong>. Your actual PDF document(s) will be attached directly inside WhatsApp.' +
+          '</div>';
+        } else {
+          // Desktop flow
+          summaryHtml += '<div class="p-3 bg-primary-subtle rounded-3 border border-primary small text-primary-emphasis mb-2">' +
+            '<div class="fw-bold fs-6 mb-2 text-primary"><i class="bi bi-laptop me-1"></i> Desktop WhatsApp Document Submission:</div>' +
+            '<div class="mb-2"><span class="badge bg-primary me-1">1</span> <strong>PDF Downloaded:</strong> Your proposal document has been downloaded to your computer downloads folder.</div>' +
+            '<div class="mb-2"><span class="badge bg-primary me-1">2</span> <strong>WhatsApp Web Opened:</strong> Chat with <strong>' + escapeHtml(waDisplay) + '</strong> is open with your registration message.</div>' +
+            '<div><span class="badge bg-primary me-1">3</span> <strong>Attach &amp; Send:</strong> In WhatsApp Web, click the <strong>📎 Paperclip</strong> icon &rarr; <strong>Document</strong> (or drag the downloaded PDF into WhatsApp) and click <strong>Send</strong>.</div>' +
+          '</div>';
+        }
+
+        summaryHtml += '</div>';
+      }
+
+      document.getElementById('pres-selected-files-summary').innerHTML = summaryHtml || '<div class="text-muted small mb-2">No proposal file attached. Registration text prepared.</div>';
       document.getElementById('pres-wa-direct-btn').href = waUrl;
+
+      // Update success box action buttons based on mobile share support
+      var reshareBtnEl = document.getElementById('pres-reshare-btn');
+      if (reshareBtnEl) {
+        if (canShareFiles) {
+          reshareBtnEl.classList.remove('d-none');
+        } else {
+          reshareBtnEl.classList.add('d-none');
+        }
+      }
+
       document.getElementById('presentation-form').classList.add('d-none');
       document.getElementById('pres-success-box').classList.remove('d-none');
 
-      // Directly open chat with the specific number provided:
-      window.open(waUrl, '_blank', 'noopener');
+      // Execute Workflow
+      if (canShareFiles) {
+        // Mobile: Trigger Web Share API directly
+        try {
+          await navigator.share({
+            title: progTitle + ' - Proposal Submission',
+            text: msg,
+            files: files
+          });
+        } catch (shareErr) {
+          if (shareErr && shareErr.name !== 'AbortError') {
+            console.log('Mobile share note:', shareErr);
+          }
+        }
+      } else {
+        // Desktop: Download the participant's files and open WhatsApp Web
+        if (files.length > 0) {
+          triggerFileDownloads(files);
+        }
+        window.open(waUrl, '_blank', 'noopener');
+      }
     }
 
     function copyRegText(kind) {
       var text = kind === 'part' ? activeRegState.lastPartMessage : activeRegState.lastPresMessage;
-      if (!text || !navigator.clipboard) return;
+      if (!text) return;
+      if (!navigator.clipboard) {
+        prompt('Copy Details:', text);
+        return;
+      }
       navigator.clipboard.writeText(text).then(function() {
         alert('Registration details copied to clipboard!');
+      }).catch(function() {
+        prompt('Copy Details:', text);
       });
     }
 
@@ -1344,7 +1510,7 @@
         document.getElementById('part-success-box').classList.add('d-none');
       } else {
         document.getElementById('presentation-form').reset();
-        clearPresentationFile('proposal');
+        clearPresentationFiles();
         document.getElementById('presentation-form').classList.remove('d-none');
         document.getElementById('pres-success-box').classList.add('d-none');
       }
